@@ -1,0 +1,11 @@
+/build/
+/cache/
+/development-*.ini
+/dist/
+/openfisca_web_site/static/bower/
+*.egg-info
+*.mo
+*.pyc
+*.pyo
+*~
+

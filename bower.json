@@ -1,0 +1,34 @@
+{
+  "name": "OpenFisca-Web-Site",
+  "version": "0.2.0",
+  "authors": [
+    "OpenFisca Team"
+  ],
+  "description": "Web site for OpenFisca -- a versatile microsimulation free software",
+  "keywords": [
+    "benefit",
+    "microsimulation",
+    "social",
+    "site",
+    "tax",
+    "server",
+    "web"
+  ],
+  "license": "AGPL",
+  "homepage": "https://github.com/openfisca/openfisca-web-site",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1",
+    "bootstrap": "~3",
+    "html5shiv": "~3",
+    "jquery": "~1",
+    "respond": "~1"
+  }
+}
