@@ -66,7 +66,7 @@ setup(
     install_requires = [
         'Biryani1 >= 0.9dev',
         'lxml >= 2.3',
-        'Mako >= 0.3.6',
+        'Mako >= 0.7.0',
         #'python-magic',  # TODO: This is the name of the Debian package. Pypi name is not known.
         'WebError >= 0.10',
         'WebOb >= 1.1',
