@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenFisca-Web-Site 0.2dev\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-02-14 16:37+0100\n"
-"PO-Revision-Date: 2014-02-14 16:50+0100\n"
+"PO-Revision-Date: 2014-02-15 09:46+0100\n"
 "Last-Translator: Emmanuel Raviart <emmanuel@openfisca.fr>\n"
 "Language-Team: fr <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -164,7 +164,7 @@ msgstr "Soumettre"
 
 #: openfisca_web_site/templates/tree/index.mako:96
 msgid "Try it online"
-msgstr "Essai en ligne"
+msgstr "Essayer en ligne"
 
 #: openfisca_web_site/templates/tree/index.mako:105
 msgid "Partners"
