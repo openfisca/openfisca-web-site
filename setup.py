@@ -71,7 +71,7 @@ setup(
         'WebError >= 0.10',
         'WebOb >= 1.1',
         ],
-    message_extractors = {'openfisca_web_ui': [
+    message_extractors = {'openfisca_web_site': [
         ('**.py', 'python', None),
         ('templates/**.mako', 'mako', {'input_encoding': 'utf-8'}),
         ('static/**', 'ignore', None)]},

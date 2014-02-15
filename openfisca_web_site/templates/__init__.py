@@ -95,7 +95,7 @@ def qp(s, encoding = 'utf-8'):
 
 def render(ctx, template_path, custom_name = None, **kw):
     return get_template(template_path, custom_name = custom_name).render_unicode(
-        _ = lambda message: message,
+        _ = ctx.translator.ugettext,
         ctx = ctx,
         js = js,
         N_ = lambda message: message,
@@ -106,7 +106,7 @@ def render(ctx, template_path, custom_name = None, **kw):
 
 def render_def(ctx, template_path, def_name, custom_name = None, **kw):
     return get_template(template_path, custom_name = custom_name).get_def(def_name).render_unicode(
-        _ = lambda message: message,
+        _ = ctx.translator.ugettext,
         ctx = ctx,
         js = js,
         N_ = lambda message: message,

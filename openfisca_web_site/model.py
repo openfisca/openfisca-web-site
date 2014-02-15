@@ -176,7 +176,7 @@ class AbstractNode(objects.Initable):
         if template is None:
             return None
         return template.render_unicode(
-            _ = lambda message: message,
+            _ = ctx.translator.ugettext,
             ctx = ctx,
             js = templates.js,
             N_ = lambda message: message,
@@ -190,7 +190,7 @@ class AbstractNode(objects.Initable):
         if template is None:
             return None
         return template.get_def(def_name).render_unicode(
-            _ = lambda message: message,
+            _ = ctx.translator.ugettext,
             ctx = ctx,
             js = templates.js,
             N_ = lambda message: message,
@@ -203,7 +203,7 @@ class AbstractNode(objects.Initable):
         template_path = os.path.join(os.sep, 'page-not-found.mako')
         template = templates.get_template(template_path)
         return template.render_unicode(
-            _ = lambda message: message,
+            _ = ctx.translator.ugettext,
             ctx = ctx,
             js = templates.js,
             N_ = lambda message: message,

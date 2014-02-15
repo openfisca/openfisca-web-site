@@ -181,12 +181,12 @@ $(function () {
 
 
 <%def name="topbar_collapse_content()" filter="trim">
-                    <li><a href="presentation">${_(u"Présentation")}</a></li>
-                    <li><a href="telechargement">${_(u"Téléchargement")}</a></li>
-                    <li><a href="${conf['ui.url']}">${_(u"Simulation en ligne")}</a></li>
-                    <li><a href="api">${_(u"API")}</a></li>
-                    <li><a href="contact">${_(u"Contact")}</a></li>
-                    <li><a href="a-propos">${_(u"À propos")}</a></li>
+                    <li><a href="presentation">${u"Présentation"}</a></li>
+                    <li><a href="telechargement">${u"Téléchargement"}</a></li>
+                    <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
+                    <li><a href="api">${u"API"}</a></li>
+                    <li><a href="contact">${u"Contact"}</a></li>
+                    <li><a href="a-propos">${u"À propos"}</a></li>
 </%def>
 
 

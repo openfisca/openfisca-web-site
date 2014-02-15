@@ -1,0 +1,175 @@
+# French translations for OpenFisca-Web-Site.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the OpenFisca-Web-Site
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenFisca-Web-Site 0.2dev\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-02-14 16:37+0100\n"
+"PO-Revision-Date: 2014-02-14 16:50+0100\n"
+"Last-Translator: Emmanuel Raviart <emmanuel@openfisca.fr>\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr\n"
+
+#: openfisca_web_site/application.py:54
+msgid "Web site not found."
+msgstr "Site web non trouvé"
+
+#: openfisca_web_site/objects.py:117 openfisca_web_site/objects.py:199
+msgid "Expected a dictionary. Got {0}"
+msgstr "Un dictionnaire était attendu. Reçu {0}"
+
+#: openfisca_web_site/objects.py:158
+msgid "No slug found for multi-class mapper {0}"
+msgstr "No slug found for multi-class mapper {0}"
+
+#: openfisca_web_site/objects.py:196
+msgid "Missing \"class\" item"
+msgstr "Élément \"class\" manquant"
+
+#: openfisca_web_site/objects.py:201
+msgid "Unknown value"
+msgstr "Valeur inconnue"
+
+#: openfisca_web_site/urls.py:136 openfisca_web_site/urls.py:141
+msgid "Invalid path: {0}"
+msgstr "Chemin incorrect : {0}"
+
+#: openfisca_web_site/urls.py:162
+msgid "Path not found: {0}"
+msgstr "Chemin non trouvé : {0}"
+
+#: openfisca_web_site/urls.py:167
+msgid "Page not found: {0}"
+msgstr "Page non trouvée : {0}"
+
+#: openfisca_web_site/wsgihelpers.py:46
+msgid "Request is faulty"
+msgstr "La requête est défectueuse"
+
+#: openfisca_web_site/wsgihelpers.py:47
+msgid "Access is restricted to authorized persons."
+msgstr "L'accès est réservé au personnes autorisées."
+
+#: openfisca_web_site/wsgihelpers.py:48
+msgid "Access is forbidden."
+msgstr "L'accès est interdit."
+
+#: openfisca_web_site/wsgihelpers.py:49
+msgid "The requested page was not found."
+msgstr "La page demandée n'existe pas."
+
+#: openfisca_web_site/wsgihelpers.py:52
+msgid "You must login to access this page."
+msgstr "Vous devez vous identifier pour accéder à cette page"
+
+#: openfisca_web_site/wsgihelpers.py:55 openfisca_web_site/wsgihelpers.py:58
+msgid "Unable to Access"
+msgstr "Impossible d'accéder"
+
+#: openfisca_web_site/wsgihelpers.py:56 openfisca_web_site/wsgihelpers.py:57
+msgid "Access Denied"
+msgstr "Accès refusé"
+
+#: openfisca_web_site/wsgihelpers.py:161
+msgid "{0} <a href=\"{1}\">{1}</a>."
+msgstr "{0} <a href=\"{1}\">{1}</a>."
+
+#: openfisca_web_site/wsgihelpers.py:162
+msgid "You'll be redirected to page"
+msgstr "Vous allez être redirigé vers la page"
+
+#: openfisca_web_site/wsgihelpers.py:170
+msgid "Redirection in progress..."
+msgstr "Redirection en cours..."
+
+#: openfisca_web_site/templates/page-not-found.mako:31
+msgid "Page Not Found"
+msgstr "Page non trouvée"
+
+#: openfisca_web_site/templates/page-not-found.mako:32
+msgid "Page \"{}\" doesn't exist."
+msgstr "La page \"{}\" n'existe pas."
+
+#: openfisca_web_site/templates/page-not-found.mako:38
+msgid "Page \"{}\" not found"
+msgstr "Page \"{}\" non trouvée"
+
+#: openfisca_web_site/templates/site.mako:66
+#: openfisca_web_site/templates/tree/index.mako:46
+msgid "Home"
+msgstr "Accueil"
+
+#: openfisca_web_site/templates/site.mako:86
+msgid "Error!"
+msgstr "Erreur !"
+
+#: openfisca_web_site/templates/site.mako:97
+msgid "Please, correct the informations below."
+msgstr "Veuillez corriger les informations ci-dessous."
+
+#: openfisca_web_site/templates/site.mako:113
+msgid "{0}:"
+msgstr "{0} :"
+
+#: openfisca_web_site/templates/site.mako:113
+msgid "Software"
+msgstr "Logiciel"
+
+#: openfisca_web_site/templates/site.mako:116
+msgid "Copyright © {} OpenFisca Team"
+msgstr "Copyright © {} OpenFisca Team"
+
+#: openfisca_web_site/templates/site.mako:121
+#: openfisca_web_site/templates/tree/a-propos.mako:45
+msgid "GNU Affero General Public License"
+msgstr "GNU Affero General Public License"
+
+#: openfisca_web_site/templates/site.mako:196
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: openfisca_web_site/templates/tree/a-propos.mako:34
+msgid "About OpenFisca"
+msgstr "À propos d'OpenFisca"
+
+#: openfisca_web_site/templates/tree/a-propos.mako:39
+msgid "Copyright"
+msgstr "Copyright"
+
+#: openfisca_web_site/templates/tree/a-propos.mako:40
+msgid "Copyright © {0} OpenFisca Team"
+msgstr "Copyright © {0} OpenFisca Team"
+
+#: openfisca_web_site/templates/tree/a-propos.mako:44
+msgid "License"
+msgstr "Licence"
+
+#: openfisca_web_site/templates/tree/a-propos.mako:46
+msgid "Source Code"
+msgstr "Code source"
+
+#: openfisca_web_site/templates/tree/api.mako:76
+msgid "Submit"
+msgstr "Soumettre"
+
+#: openfisca_web_site/templates/tree/index.mako:96
+msgid "Try it online"
+msgstr "Essai en ligne"
+
+#: openfisca_web_site/templates/tree/index.mako:105
+msgid "Partners"
+msgstr "Partenaires"
+
+#: openfisca_web_site/templates/tree/presentation.mako:30
+msgid "Presentation"
+msgstr "Présentation"
