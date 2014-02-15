@@ -158,7 +158,7 @@ ${conf['realm']}
 
 
 <%def name="scripts()" filter="trim">
-    <script src="${urls.get_url(ctx, u'/bower/jquery/jquery.js')}"></script>
+    <script src="${urls.get_url(ctx, u'/bower/jquery/dist/jquery.min.js')}"></script>
     <script src="${urls.get_url(ctx, u'/bower/bootstrap/dist/js/bootstrap.min.js')}"></script>
     <script>
 $(function () {
