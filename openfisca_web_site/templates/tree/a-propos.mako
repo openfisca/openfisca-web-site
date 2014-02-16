@@ -45,5 +45,34 @@ ${_(u'About OpenFisca')}
         <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>
         <h3>${_(u'Source Code')}</h3>
         <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
+
+        <h3>Développeurs initiaux</h3>
+        Clément Schaff et Mahdi Ben Jelloul (Centre d'analyse stratégique, puis Commissariat général à la stratégie et
+        à la prospective)
+
+        <h3>Contributeurs au code (<em>OpenFisca Team</em>)</h3>
+        <ul>
+            <li>Mahdi Ben Jellloul</li>
+            <li>Christophe Benz</li>
+            <li>Laurence Bouvard</li>
+            <li>Sarah Dijols</li>
+            <li>Alexis Eidelman</li>
+            <li>Malka Guillot</li>
+            <li>Victor Le Breton</li>
+            <li>Louise Paul-Delvaux</li>
+            <li>Emmanuel Raviart</li>
+            <li>Jérôme Santoul</li>
+            <li>Clément Schaff</li>
+            <li>Romain Soufflet</li>
+        </ul>
+
+        <h3>Remerciements</h3>
+        <ul>
+            <li>Antoine Bozio</li>
+            <li>Alain Trannoy</li>
+        </ul>
+
+        <h3>${_('Partners')}</h3>
+        <%self:partners/>
 </%def>
 
