@@ -37,6 +37,9 @@ API
 
 
 <%def name="page_content()" filter="trim">
+        <h2>Exemple d'utilisation de l'API en Python</h2>
+        Un <i>notebook IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+
         <h2>Exemple d'utilisation de l'API en JavaScript</h2>
         <div ng-app>
             <form role="form">
