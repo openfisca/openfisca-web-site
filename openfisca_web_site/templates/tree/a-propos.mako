@@ -36,27 +36,35 @@ ${_(u'About OpenFisca')}
 
 
 <%def name="page_content()" filter="trim">
-        <h3>${_(u'Copyright')}</h3>
+        <p>
+            OpenFisca est un logiciel libre de simulation du système socio-fiscal français. Il permet de visualiser simplement un grand nombre de prestations sociales et d’impôts payés, par les ménages, et de simuler l’impact de réformes sur le budget des ménages. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
+        </p>
+        <p>
+            À terme, OpenFisca intégrera l’ensemble du système socio-fiscal français et son évolution et permettra de calculer l’impact de réformes sur le budget de l’État.
+        </p>
+
+        <h2>${_(u'Copyright')}</h2>
         <p>${_(u'Copyright © {0} OpenFisca Team').format(u', '.join(
             unicode(year)
             for year in range(2011, datetime.date.today().year + 1)
             ))}</p>
-        <h3>${_(u'License')}</h3>
+        <h2>${_(u'License')}</h2>
         <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>
-        <h3>${_(u'Source Code')}</h3>
+        <h2>${_(u'Source Code')}</h2>
         <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
 
-        <h3>Développeurs initiaux</h3>
+        <h2>Développeurs initiaux</h2>
         Clément Schaff et Mahdi Ben Jelloul (Centre d'analyse stratégique, puis Commissariat général à la stratégie et
         à la prospective)
 
-        <h3>Contributeurs au code (<em>OpenFisca Team</em>)</h3>
+        <h2>Contributeurs au code (<em>OpenFisca Team</em>)</h2>
         <ul>
             <li>Mahdi Ben Jellloul</li>
             <li>Christophe Benz</li>
             <li>Laurence Bouvard</li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
+            <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
             <li>Victor Le Breton</li>
             <li>Louise Paul-Delvaux</li>
@@ -66,13 +74,13 @@ ${_(u'About OpenFisca')}
             <li>Romain Soufflet</li>
         </ul>
 
-        <h3>Remerciements</h3>
+        <h2>Remerciements</h2>
         <ul>
             <li>Antoine Bozio</li>
             <li>Alain Trannoy</li>
         </ul>
 
-        <h3>${_('Partners')}</h3>
+        <h2>${_('Partners')}</h2>
         <%self:partners/>
 </%def>
 
