@@ -128,7 +128,7 @@ ractive.observe('sali', function (newValue, oldValue) {
         menages: [{personne_de_reference: 'ind0'}],
         year: 2013
     };
-    $.ajax('http://localhost:2014/api/1/simulate', {
+    $.ajax('http://api.openfisca.fr/api/1/simulate', {
         contentType: 'application/json',
         data: JSON.stringify({
             scenarios: [scenario]
