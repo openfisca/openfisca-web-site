@@ -203,26 +203,20 @@ ${conf['realm']}
                         <h4>Institut d'économie publique</h4>
                     </a>
                     <p>
-                        L'IDEP est un Groupement d'intérêt scientifique (GIS) doté de trois tutelles : Aix-Marseille
-                        Université, le CNRS et l'EHESS. Créé par Louis André Gérard-Varet, directeur d'études à l'EHESS,
-                        en 1996, l'Institut a bénéficié du soutien de la ville de Marseille depuis sa création.
-                    </p>
-                    <p>
-                        L'IDEP a aujourd'hui trois missions :
+                         L'IDEP est un réseau de chercheurs. Il a trois missions :
                     </p>
                     <ul>
                         <li>
                             Fournir une expertise en matière de politiques publiques concernant notamment la fiscalité,
                             les systèmes sociaux, le marché du travail, l'environnement, le logement, la santé et
-                            l'éducation. Cette expertise s'adresse aux décideurs politiques locaux, nationaux et/ou
-                            européens, aux institutions, ainsi que, plus largement, à l'ensemble des citoyens.
+                            l'éducation.
                         </li>
                         <li>
                             Assurer la diffusion des savoirs à la fois en termes de valorisation et d'édition.
                         </li>
                         <li>
-                            Assurer une mission pédagogique en direction des lycéens, des étudiants et aussi dans le
-                            cadre de la formation tout au long de la vie.
+                            Assurer une mission pédagogique en direction des lycéens, des étudiants et dans le cadre de
+                            la formation tout au long de la vie.
                         </li>
                     </ul>
                 </div>
