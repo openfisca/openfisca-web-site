@@ -46,6 +46,11 @@ def load_environment(global_conf, app_conf):
     conf.update(strings.deep_decode(app_conf))
     conf.update(conv.check(conv.struct(
         {
+            'api.url': conv.pipe(
+                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                    full = True),
+                conv.default(u'http://api.openfisca.fr/'),
+                ),
             'app_conf': conv.set_value(app_conf),
             'app_dir': conv.set_value(app_dir),
             'biryani1_i18n_dir': conv.pipe(
@@ -86,7 +91,7 @@ def load_environment(global_conf, app_conf):
             'ui.url': conv.pipe(
                 conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
                     full = True),
-                conv.default(u'https://ui.openfisca.fr/'),
+                conv.default(u'http://ui.openfisca.fr/'),
                 ),
             },
         default = 'drop',

@@ -24,7 +24,9 @@
 
 
 <%!
-from openfisca_web_site import urls
+import urlparse
+
+from openfisca_web_site import conf, urls
 %>
 
 
@@ -124,11 +126,11 @@ ractive.observe('sali', function (newValue, oldValue) {
             sali: parseFloat(newValue),
             statmarit: 'Célibataire'
         }],
-        legislation_url: 'http://api.openfisca.fr/api/1/default-legislation',
+        legislation_url: ${urlparse.urljoin(conf['api.url'], '/api/1/default-legislation') | n, js},
         menages: [{personne_de_reference: 'ind0'}],
         year: 2013
     };
-    $.ajax('http://api.openfisca.fr/api/1/simulate', {
+    $.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/simulate') | n, js}, {
         contentType: 'application/json',
         data: JSON.stringify({
             scenarios: [scenario]
