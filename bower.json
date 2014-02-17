@@ -25,10 +25,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1",
     "bootstrap": "~3",
     "html5shiv": "~3",
     "jquery": "~1",
+    "ractive": "~0",
     "respond": "~1"
   }
 }
