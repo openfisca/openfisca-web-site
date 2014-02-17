@@ -62,6 +62,7 @@ ${_(u'About OpenFisca')}
             <li>Mahdi Ben Jellloul</li>
             <li>Christophe Benz</li>
             <li>Laurence Bouvard</li>
+            <li>Grégory Cornu</li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
             <li>Emmanuel Gratuze</li>
