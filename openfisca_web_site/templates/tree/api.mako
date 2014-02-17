@@ -40,13 +40,13 @@ API
 
 <%def name="page_content()" filter="trim">
         <h2>Exemple d'utilisation de l'API en Python</h2>
-        Un <i>notebook IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+        <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
 
         <h2>Exemple d'utilisation de l'API en JavaScript</h2>
+        <h3>Cadre célibataire sans enfant</h3>
         <div id="container1"></div>
         <script id="template1" type="text/ractive">
             <form role="form">
-                <h3>Cadre célibataire sans enfant</h3>
                 <div class="form-group">
                     <label for="sali">Salaire imposable</label>
                     <input class="form-control" id="sali" min="0" step="1" type="number" value="{{sali}}">
@@ -78,23 +78,23 @@ API
     <%parent:scripts/>
     <script src="${urls.get_url(ctx, u'/bower/ractive/Ractive.js')}"></script>
     <script>
-var value_index = 0;
+var valueIndex = 0;
 
 
-function extractColumnsFromTree(columns, node, base_value, code) {
+function extractColumnsFromTree(columns, node, baseValue, code) {
     var children = node['children'];
     if (children) {
-        var child_base_value = base_value;
-        for (var child_code in children) {
-            var child = children[child_code];
-            extractColumnsFromTree(columns, child, child_base_value, child_code);
-            child_base_value += child['values'][value_index];
+        var childBaseValue = baseValue;
+        for (var childCode in children) {
+            var child = children[childCode];
+            extractColumnsFromTree(columns, child, childBaseValue, childCode);
+            childBaseValue += child['values'][valueIndex];
         }
     }
-    value = node['values'][value_index];
+    value = node['values'][valueIndex];
     if (value != 0 && code != null) {
         var column = {
-            base_value: base_value,
+            baseValue: baseValue,
             code: code,
             value: value
         };
