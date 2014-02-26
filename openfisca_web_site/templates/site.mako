@@ -38,6 +38,13 @@ from openfisca_web_site import conf, urls
 
 <%def name="body_content()" filter="trim">
     <div class="container"><div class="row">
+        <div class="alert alert-success">
+            <strong>Économistes, développeurs, info-graphistes, autres <span class="glyphicon glyphicon-wrench"></span></strong> :
+            Participez au <strong>hackathon</strong> OpenFisca le 14 mars 2014 à Montreuil.
+            <div>
+                <a class="btn btn-success" href="https://www.eventbrite.fr/e/billets-hackathon-openfisca-10751826001">M'inscrire</a>
+            </div>
+        </div>
         <%self:breadcrumb/>
         <%self:container_content/>
         <%self:footer/>
