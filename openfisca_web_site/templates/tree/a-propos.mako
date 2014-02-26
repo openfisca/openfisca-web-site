@@ -74,6 +74,7 @@ ${_(u'About OpenFisca')}
             <li>Jérôme Santoul</li>
             <li>Clément Schaff</li>
             <li>Romain Soufflet</li>
+            <li>Suzanne Vergnolle</li>
         </ul>
 
         <h2>Remerciements</h2>
