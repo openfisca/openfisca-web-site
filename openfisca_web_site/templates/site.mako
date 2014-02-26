@@ -81,9 +81,8 @@ ${conf['realm']}
 
 
 <%def name="css()" filter="trim">
-    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" rel="stylesheet">
-    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap-theme.min.css')}" rel="stylesheet">
-    <link rel="stylesheet" href="${urls.get_url(ctx, u'/css/site.css')}">
+    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" media="screen" rel="stylesheet">
+    <link href="${urls.get_url(ctx, u'/css/site.css')}" media="screen" rel="stylesheet">
 </%def>
 
 
@@ -263,7 +262,7 @@ $(function () {
 
 
 <%def name="topbar()" filter="trim">
-    <nav class="navbar navbar-default navbar-fixed-default navbar-inverse" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
         <%self:topbar_content/>
     </nav>
 </%def>
