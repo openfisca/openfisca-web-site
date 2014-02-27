@@ -37,7 +37,7 @@ ${_(u'About OpenFisca')}
 
 <%def name="page_content()" filter="trim">
         <p>
-            OpenFisca est un logiciel libre de simulation du système socio-fiscal français. Il permet de visualiser simplement un grand nombre de prestations sociales et d’impôts payés, par les ménages, et de simuler l’impact de réformes sur le budget des ménages. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
+            OpenFisca est un logiciel libre de simulation du système socio-fiscal français. Il permet de visualiser simplement un grand nombre de prestations sociales et d’impôts payés, par les ménages, et de simuler l’impact de réformes sur leur revenu. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
         </p>
         <p>
             À terme, OpenFisca intégrera l’ensemble du système socio-fiscal français et son évolution et permettra de calculer l’impact de réformes sur le budget de l’État.
