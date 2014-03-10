@@ -234,10 +234,13 @@ ${conf['realm']}
                         <h4>Institut des politiques publiques</h4>
                     </a>
                     <p>
-                        Équipe de recherche permanente dédiée à l’analyse des politiques publiques afin d'une part
-                        faciliter la production de travaux universitaires à forte valeur ajoutée, d’autre part, informer
-                        le débat public sur les principaux enjeux des politiques publiques au moyen d’évaluations
-                        indépendantes, rigoureuses et accessibles au plus grand nombre
+                        L’Institut des politiques publiques (IPP) est développé dans le cadre d’un partenariat
+                        scientifique entre
+                        <a href="http://www.parisschoolofeconomics.eu/"><abbr title="Paris School of Economics">PSE</abbr></a>
+                        et le
+                        <a href="http://www.crest.fr/"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
+                        L’IPP vise à promouvoir l’analyse et l’évaluation  quantitatives des politiques publiques en
+                        s’appuyant sur les méthodes les plus récentes de la recherche en économie.
                     </p>
                 </div>
             </div>
