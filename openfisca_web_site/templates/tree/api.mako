@@ -56,7 +56,6 @@ API
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Description</th>
                         <th>Montant</th>
                     </tr>
                 </thead>
@@ -64,7 +63,6 @@ API
                     {{#columns}}
                     <tr>
                         <td>{{name}}</td>
-                        <td>{{description}}</td>
                         <td>{{(value).toFixed(2)}}</td>
                     </tr>
                     {{/columns}}
