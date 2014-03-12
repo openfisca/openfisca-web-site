@@ -85,7 +85,7 @@ function extractColumnsFromTree(columns, node, baseValue) {
     var children = node['children'];
     if (children) {
         var childBaseValue = baseValue;
-        for (var childIndex = 0; childIndex < len(children); childIndex++) {
+        for (var childIndex = 0; childIndex < children.length; childIndex++) {
             var child = children[childIndex];
             extractColumnsFromTree(columns, child, childBaseValue);
             childBaseValue += child['values'][valueIndex];
