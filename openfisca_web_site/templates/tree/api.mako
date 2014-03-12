@@ -95,7 +95,7 @@ function extractColumnsFromTree(columns, node, baseValue) {
     if (value != 0) {
         var column = {
             baseValue: baseValue,
-            code: child.code,
+            code: node.code,
             value: value
         };
         for (key in node) {
