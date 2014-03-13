@@ -42,8 +42,18 @@ API
         <h2>Exemples d'utilisation de l'API en Python</h2>
         <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
 	<p>
-	<span class="glyphicon glyphicon-plus"></span><span class="label"><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/">Plus d'exemples</a></span>
 	</p>
+	<div class="btn-group">
+    	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    		<span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
+  	</button>
+  	<ul class="dropdown-menu" role="menu">
+   		<li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/">Exemples en python</a></li>
+   		<li><a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/">Exemples en R</a></li>
+   		<li class="divider"></li>
+   		<li><a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-api/tree/master/">Openfisca Web Api</a></li>
+  	</ul>
+	</div>
 
         <h2>Exemple d'utilisation de l'API en JavaScript</h2>
         <h3>Cadre célibataire sans enfant</h3>
