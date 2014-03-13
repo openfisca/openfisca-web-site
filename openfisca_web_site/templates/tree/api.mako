@@ -39,8 +39,11 @@ API
 
 
 <%def name="page_content()" filter="trim">
-        <h2>Exemple d'utilisation de l'API en Python</h2>
+        <h2>Exemples d'utilisation de l'API en Python</h2>
         <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+	<br>
+	<br>
+	<span class="glyphicon glyphicon-plus"></span><span class="label"><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/"><i><u>Plus d'exemples</u></i></a></span>
 
         <h2>Exemple d'utilisation de l'API en JavaScript</h2>
         <h3>Cadre célibataire sans enfant</h3>
