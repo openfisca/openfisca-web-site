@@ -59,7 +59,6 @@ API
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Description</th>
                         <th>Montant</th>
                     </tr>
                 </thead>
@@ -67,7 +66,6 @@ API
                     {{#columns}}
                     <tr>
                         <td>{{name}}</td>
-                        <td>{{description}}</td>
                         <td>{{(value).toFixed(2)}}</td>
                     </tr>
                     {{/columns}}
@@ -84,21 +82,21 @@ API
 var valueIndex = 0;
 
 
-function extractColumnsFromTree(columns, node, baseValue, code) {
+function extractColumnsFromTree(columns, node, baseValue) {
     var children = node['children'];
     if (children) {
         var childBaseValue = baseValue;
-        for (var childCode in children) {
-            var child = children[childCode];
-            extractColumnsFromTree(columns, child, childBaseValue, childCode);
+        for (var childIndex = 0; childIndex < children.length; childIndex++) {
+            var child = children[childIndex];
+            extractColumnsFromTree(columns, child, childBaseValue);
             childBaseValue += child['values'][valueIndex];
         }
     }
     value = node['values'][valueIndex];
-    if (value != 0 && code != null) {
+    if (value != 0) {
         var column = {
             baseValue: baseValue,
-            code: code,
+            code: node.code,
             value: value
         };
         for (key in node) {
@@ -119,18 +117,20 @@ var ractive = new Ractive({
 });
 ractive.observe('sali', function (newValue, oldValue) {
     var scenario = {
-        familles: [{parents: ['ind0']}],
-        foyers_fiscaux: [{declarants: ['ind0']}],
-        individus: [{
-            activite: 'Actif occupé',
-            birth: '1970-01-01',
-            cadre: true,
-            id: 'ind0',
-            sali: parseFloat(newValue),
-            statmarit: 'Célibataire'
-        }],
+        test_case: {
+            familles: [{parents: ['ind0']}],
+            foyers_fiscaux: [{declarants: ['ind0']}],
+            individus: [{
+                activite: 'Actif occupé',
+                birth: '1970-01-01',
+                cadre: true,
+                id: 'ind0',
+                sali: parseFloat(newValue),
+                statmarit: 'Célibataire'
+            }],
+            menages: [{personne_de_reference: 'ind0'}]
+        },
         legislation_url: ${urlparse.urljoin(conf['api.url'], '/api/1/default-legislation') | n, js},
-        menages: [{personne_de_reference: 'ind0'}],
         year: 2013
     };
     $.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/simulate') | n, js}, {
@@ -146,7 +146,7 @@ ractive.observe('sali', function (newValue, oldValue) {
     })
     .done(function (data, textStatus, jqXHR) {
         var columns = [];
-        extractColumnsFromTree(columns, data['value'][0], 0, null);
+        extractColumnsFromTree(columns, data['value'], 0);
         ractive.set({columns: columns});
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
