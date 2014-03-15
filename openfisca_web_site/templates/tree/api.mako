@@ -67,8 +67,12 @@ API <small>Différents tests utilisant l'<a href="http://nbviewer.ipython.org/gi
 	##  	</ul>
 	##</div>
 
-        <h2>Exemple d'utilisation de l'API en JavaScript</h2>
-        <h3>Cadre célibataire sans enfant</h3>
+        <h2>Exemples d'utilisation de l'API en JavaScript</h2>
+        <ul>
+            <li><a href="graphe-formules">Graphe des dépendances des formules socio-fiscales</a></li>
+            <li><a href="#exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</a></li>
+        </ul>
+        <h3 id="exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</h3>
         <div id="container1"></div>
         <script id="template1" type="text/ractive">
             <form role="form">
@@ -177,5 +181,6 @@ ractive.observe('sali', function (newValue, oldValue) {
         console.log(textStatus);
         console.log(errorThrown);
     });
-});    </script>
+});
+    </script>
 </%def>

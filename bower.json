@@ -29,6 +29,7 @@
     "html5shiv": "~3",
     "jquery": "~1",
     "ractive": "~0",
-    "respond": "~1"
+    "respond": "~1",
+    "vis": "~0"
   }
 }
