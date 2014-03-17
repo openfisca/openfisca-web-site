@@ -276,12 +276,12 @@ $(function () {
         </div>
         <div class="collapse navbar-collapse navbar-topbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="presentation">${u"Présentation"}</a></li>
-                <li><a href="telechargement">${u"Téléchargement"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'telechargement')}">${u"Téléchargement"}</a></li>
                 <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
-                <li><a href="api">${u"API"}</a></li>
-                <li><a href="contact">${u"Contact"}</a></li>
-                <li><a href="a-propos">${u"À propos"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
             </ul>
         </div>
 </%def>
