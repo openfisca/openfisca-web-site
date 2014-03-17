@@ -37,7 +37,7 @@ from openfisca_web_site import urls
 
 
 <%def name="page_content()" filter="trim">
-    % if node.parameters or node.source:
+    % if node.source:
         <h2>Formule</h2>
         % if node.parameters:
 
@@ -58,6 +58,22 @@ from openfisca_web_site import urls
         <h3>Source</h3>
         <pre><code data-language="python">${node.source}</code></pre>
         % endif
+    % else:
+        <h2>Variable</h2>
+    % endif
+    % if node.consumers:
+
+        <h3>Formules dépendantes</h3>
+        <ul>
+        % for consumer in node.consumers:
+            <li>
+                <a href="${consumer['name']}">${consumer['name']}</a>
+            % if consumer.get('label'):
+                : ${consumer['label']}
+            % endif
+             </li>
+        % endfor
+        </ul>
     % endif
 </%def>
 

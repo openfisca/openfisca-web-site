@@ -62,6 +62,7 @@ class Node(model.Page):
 
 class Variable(model.Page):
     comments = None
+    consumers = None
     doc = None
     line_number = None
     module_name = None
@@ -96,6 +97,9 @@ class Variable(model.Page):
             comments = self_json.get('comments')
             if comments:
                 self.comments = comments
+            consumers = self_json.get('consumers')
+            if consumers:
+                self.consumers = consumers
             doc = self_json.get('doc')
             if doc:
                 self.doc = doc
