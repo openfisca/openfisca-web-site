@@ -69,7 +69,8 @@ API <small>Différents tests utilisant l'<a href="http://nbviewer.ipython.org/gi
 
         <h2>Exemples d'utilisation de l'API en JavaScript</h2>
         <ul>
-            <li><a href="graphe-formules">Graphe des dépendances des formules socio-fiscales</a></li>
+            <li><a href="graphe-formules">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
+            <li><a href="variables">Visualisation des variables et des formules socio-fiscales</a></li>
             <li><a href="#exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</a></li>
         </ul>
         <h3 id="exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</h3>
