@@ -323,10 +323,7 @@ class Directory(AbstractNode):
         if http_error is not None:
             return http_error(environ, start_response)
 
-        router = urls.make_router(
-            ('GET', '^/?$', self.view),
-            (None, '^/(?P<name>[^/]+)(?=/|$)', self.route_child),
-            )
+        router = urls.make_router(*self.routings)
         return router(environ, start_response)
 
     def route_child(self, environ, start_response):
@@ -341,6 +338,13 @@ class Directory(AbstractNode):
             return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
 
         return child.route(environ, start_response)
+
+    @property
+    def routings(self):
+        return (
+            ('GET', '^/?$', self.view),
+            (None, '^/(?P<name>[^/]+)(?=/|$)', self.route_child),
+            )
 
     @property
     def template(self):
@@ -373,10 +377,14 @@ class File(AbstractNode):
         if http_error is not None:
             return http_error(environ, start_response)
 
-        router = urls.make_router(
+        router = urls.make_router(*self.routings)
+        return router(environ, start_response)
+
+    @property
+    def routings(self):
+        return (
             ('GET', '^/?$', self.view),
             )
-        return router(environ, start_response)
 
     @property
     def template_path(self):
@@ -513,10 +521,7 @@ class Folder(AbstractNode):
         if http_error is not None:
             return http_error(environ, start_response)
 
-        router = urls.make_router(
-            ('GET', '^/?$', self.view),
-            (None, '^/(?P<name>[^/]+)(?=/|$)', self.route_child),
-            )
+        router = urls.make_router(*self.routings)
         return router(environ, start_response)
 
     def route_child(self, environ, start_response):
@@ -535,6 +540,13 @@ class Folder(AbstractNode):
             return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
 
         return child.route(environ, start_response)
+
+    @property
+    def routings(self):
+        return (
+            ('GET', '^/?$', self.view),
+            (None, '^/(?P<name>[^/]+)(?=/|$)', self.route_child),
+            )
 
     @property
     def template_path(self):
@@ -556,10 +568,14 @@ class Page(AbstractNode):
         if http_error is not None:
             return http_error(environ, start_response)
 
-        router = urls.make_router(
+        router = urls.make_router(*self.routings)
+        return router(environ, start_response)
+
+    @property
+    def routings(self):
+        return (
             ('GET', '^/?$', self.view),
             )
-        return router(environ, start_response)
 
     @property
     def template_path(self):
