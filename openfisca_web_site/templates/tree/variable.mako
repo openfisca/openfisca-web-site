@@ -55,7 +55,9 @@ from openfisca_web_site import urls
         % endif
         % if node.source:
 
-        <h3>Source</h3>
+        <h3>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/${
+                node.module_name.replace(u'.', u'/')}.py#L${node.line_number}-${
+                node.line_number + len(node.source.strip().split(u'\n')) - 1}">Voir dans GitHub</a></h3>
         <pre><code data-language="python">${node.source}</code></pre>
         % endif
     % else:
