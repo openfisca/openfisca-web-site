@@ -64,11 +64,13 @@ class Variable(model.Page):
     comments = None
     consumers = None
     doc = None
+    labels = None
     line_number = None
     module_name = None
     name = None
     parameters = None
     source = None
+    type = None
 
     @staticmethod
     def from_node(ctx, parent = None, unique_name = None):
@@ -94,6 +96,9 @@ class Variable(model.Page):
         else:
             response_json = json.loads(response.read(), object_pairs_hook = collections.OrderedDict)
             self_json = response_json['value']
+            type = self_json.get('@type')
+            if type:
+                self.type = type
             comments = self_json.get('comments')
             if comments:
                 self.comments = comments
@@ -103,6 +108,9 @@ class Variable(model.Page):
             doc = self_json.get('doc')
             if doc:
                 self.doc = doc
+            labels = self_json.get('labels')
+            if labels:
+                self.labels = labels
             line_number = self_json.get('line_number')
             if line_number is not None:
                 self.line_number = line_number

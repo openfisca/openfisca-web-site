@@ -61,6 +61,25 @@ from openfisca_web_site import urls
     % else:
         <h2>Variable</h2>
     % endif
+    % if node.type:
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Type</b></div>
+            <div class="panel-body">${node.type}</div>
+        </div>
+    % endif
+    % if node.labels:
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Valeurs possibles</b></div>
+            <ol class="list-group">
+        % for index, label in node.labels.iteritems():
+                <li class="list-group-item">
+                    <span class="badge">${index}</span>
+                    ${label}
+                </li>
+        % endfor
+            </ol>
+        </div>
+    % endif
     % if node.consumers:
 
         <h3>Formules dépendantes</h3>
