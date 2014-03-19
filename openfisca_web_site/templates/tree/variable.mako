@@ -39,8 +39,18 @@ from openfisca_web_site import urls
 <%def name="page_content()" filter="trim">
     % if node.source:
         <h2>Formule</h2>
+        % if node.survey_only:
+        <div class="alert alert-warning">
+            <strong>Attention !</strong> Cette formule est utilisée uniquement pour les données d'enquêtes.
+        </div>
+        % endif
     % else:
         <h2>Variable</h2>
+        % if node.survey_only:
+        <div class="alert alert-warning">
+            <strong>Attention !</strong> Cette variable est utile uniquement pour les données d'enquêtes.
+        </div>
+        % endif
     % endif
 
         <h3>Propriétés</h3>

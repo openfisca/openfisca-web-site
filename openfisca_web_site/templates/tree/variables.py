@@ -75,6 +75,7 @@ class Variable(model.Page):
     parameters = None
     source = None
     start = None
+    survey_only = False
     type = None
 
     @staticmethod
@@ -145,6 +146,9 @@ class Variable(model.Page):
             start = self_json.get('start')
             if start:
                 self.start = start
+            survey_only = self_json.get('survey_only', False)
+            if survey_only:
+                self.survey_only = survey_only
             self.title = u'{} ({})'.format(label, self_json['name']) if label else self_json['name']
 
     def route(self, environ, start_response):
