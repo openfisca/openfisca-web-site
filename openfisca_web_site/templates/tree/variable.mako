@@ -52,16 +52,16 @@ from openfisca_web_site import urls
                     <td>${node.info}</td>
                 </tr>
     % endif
-    % if node.doc:
-                <tr>
-                    <th>Documentation</th>
-                    <td>${node.doc}</td>
-                </tr>
-    % endif
+##    % if node.doc:
+##                <tr>
+##                    <th>Documentation</th>
+##                    <td><pre>${node.doc}</pre></td>
+##                </tr>
+##    % endif
     % if node.comments:
                 <tr>
                     <th>Commentaires</th>
-                    <td>${node.comments}</td>
+                    <td><pre>${node.comments}</pre></td>
                 </tr>
     % endif
     % if node.type:
