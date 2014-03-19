@@ -39,6 +39,67 @@ from openfisca_web_site import urls
 <%def name="page_content()" filter="trim">
     % if node.source:
         <h2>Formule</h2>
+    % else:
+        <h2>Variable</h2>
+    % endif
+
+        <h3>Propriétés</h3>
+        <table class="table">
+            <tbody>
+    % if node.info:
+                <tr>
+                    <th>Information</th>
+                    <td>${node.info}</td>
+                </tr>
+    % endif
+    % if node.doc:
+                <tr>
+                    <th>Documentation</th>
+                    <td>${node.doc}</td>
+                </tr>
+    % endif
+    % if node.comments:
+                <tr>
+                    <th>Commentaires</th>
+                    <td>${node.comments}</td>
+                </tr>
+    % endif
+    % if node.type:
+                <tr>
+                    <th>Type</th>
+                    <td>${node.type}</td>
+                </tr>
+    % endif
+    % if node.labels:
+                <tr>
+                    <th>Valeurs possibles</th>
+                    <td>
+                        <ol class="list-group">
+        % for index, label in node.labels.iteritems():
+                            <li class="list-group-item">
+                                <span class="badge">${index}</span>
+                                ${label}
+                            </li>
+        % endfor
+                        </ol>
+                    </td>
+                </tr>
+    % endif
+    % if node.default is not None:
+                <tr>
+                    <th>Valeur par défaut</th>
+                    <td><code>${node.default}</code></td>
+                </tr>
+    % endif
+    % if node.start or node.end:
+                <tr>
+                    <th>Date de validité</th>
+                    <td>${u' - '.join([node.start or u'...', node.end or u'...'])}</td>
+                </tr>
+    % endif
+            </tbody>
+        </table>
+    % if node.source:
         % if node.parameters:
 
         <h3>Paramètres</h3>
@@ -60,27 +121,6 @@ from openfisca_web_site import urls
                 node.line_number + len(node.source.strip().split(u'\n')) - 1}">Voir dans GitHub</a></h3>
         <pre><code data-language="python">${node.source}</code></pre>
         % endif
-    % else:
-        <h2>Variable</h2>
-    % endif
-    % if node.type:
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Type</b></div>
-            <div class="panel-body">${node.type}</div>
-        </div>
-    % endif
-    % if node.labels:
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Valeurs possibles</b></div>
-            <ol class="list-group">
-        % for index, label in node.labels.iteritems():
-                <li class="list-group-item">
-                    <span class="badge">${index}</span>
-                    ${label}
-                </li>
-        % endfor
-            </ol>
-        </div>
     % endif
     % if node.consumers:
 

@@ -61,15 +61,20 @@ class Node(model.Page):
 
 
 class Variable(model.Page):
+    cerfa_field = None
     comments = None
     consumers = None
+    default = None
     doc = None
+    end = None
+    info = None
     labels = None
     line_number = None
     module_name = None
     name = None
     parameters = None
     source = None
+    start = None
     type = None
 
     @staticmethod
@@ -99,15 +104,27 @@ class Variable(model.Page):
             type = self_json.get('@type')
             if type:
                 self.type = type
+            cerfa_field = self_json.get('cerfa_field')
+            if cerfa_field:
+                self.cerfa_field = cerfa_field
             comments = self_json.get('comments')
             if comments:
                 self.comments = comments
             consumers = self_json.get('consumers')
             if consumers:
                 self.consumers = consumers
+            default = self_json.get('default')
+            if default is not None:
+                self.default = default
             doc = self_json.get('doc')
             if doc:
                 self.doc = doc
+            end = self_json.get('end')
+            if end:
+                self.end = end
+            info = self_json.get('info')
+            if info:
+                self.info = info
             labels = self_json.get('labels')
             if labels:
                 self.labels = labels
@@ -125,6 +142,9 @@ class Variable(model.Page):
             if source:
                 self.source = source
             label = self_json.get('label')
+            start = self_json.get('start')
+            if start:
+                self.start = start
             self.title = u'{} ({})'.format(label, self_json['name']) if label else self_json['name']
 
     def route(self, environ, start_response):
