@@ -61,22 +61,8 @@ class Node(model.Page):
 
 
 class Variable(model.Page):
-    cerfa_field = None
-    comments = None
-    consumers = None
-    default = None
-    doc = None
-    end = None
-    info = None
-    labels = None
-    line_number = None
-    module_name = None
+    holder = None
     name = None
-    parameters = None
-    source = None
-    start = None
-    survey_only = False
-    type = None
 
     @staticmethod
     def from_node(ctx, parent = None, unique_name = None):
@@ -101,55 +87,10 @@ class Variable(model.Page):
             pass
         else:
             response_json = json.loads(response.read(), object_pairs_hook = collections.OrderedDict)
-            self_json = response_json['value']
-            type = self_json.get('@type')
-            if type:
-                self.type = type
-            cerfa_field = self_json.get('cerfa_field')
-            if cerfa_field:
-                self.cerfa_field = cerfa_field
-            comments = self_json.get('comments')
-            if comments:
-                self.comments = comments
-            consumers = self_json.get('consumers')
-            if consumers:
-                self.consumers = consumers
-            default = self_json.get('default')
-            if default is not None:
-                self.default = default
-            doc = self_json.get('doc')
-            if doc:
-                self.doc = doc
-            end = self_json.get('end')
-            if end:
-                self.end = end
-            info = self_json.get('info')
-            if info:
-                self.info = info
-            labels = self_json.get('labels')
-            if labels:
-                self.labels = labels
-            line_number = self_json.get('line_number')
-            if line_number is not None:
-                self.line_number = line_number
-            module_name = self_json.get('module')
-            if module_name:
-                self.module_name = module_name
-            self.name = self_json['name']
-            parameters = self_json.get('parameters')
-            if parameters:
-                self.parameters = parameters
-            source = self_json.get('source')
-            if source:
-                self.source = source
-            label = self_json.get('label')
-            start = self_json.get('start')
-            if start:
-                self.start = start
-            survey_only = self_json.get('survey_only', False)
-            if survey_only:
-                self.survey_only = survey_only
-            self.title = u'{} ({})'.format(label, self_json['name']) if label else self_json['name']
+            self.holder = holder = response_json['value']
+            label = holder.get('label')
+            self.name = holder['name']
+            self.title = u'{} ({})'.format(label, holder['name']) if label else holder['name']
 
     def route(self, environ, start_response):
         req = webob.Request(environ)

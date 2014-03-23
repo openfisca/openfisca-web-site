@@ -36,85 +36,50 @@ from openfisca_web_site import urls
 </%def>
 
 
-<%def name="page_content()" filter="trim">
-    % if node.source:
-        <h2>Formule</h2>
-        % if node.survey_only:
-        <div class="alert alert-warning">
-            <strong>Attention !</strong> Cette formule est utilisée uniquement pour les données d'enquêtes.
-        </div>
-        % endif
-    % else:
-        <h2>Variable</h2>
-        % if node.survey_only:
-        <div class="alert alert-warning">
-            <strong>Attention !</strong> Cette variable est utile uniquement pour les données d'enquêtes.
-        </div>
-        % endif
-    % endif
+<%def name="formula_block_content(formula, heading_level, indent)" filter="trim">
+<%
+    type = formula.get('@type')
+%>\
+    % if type == 'AlternativeFormula':
 
-        <h3>Propriétés</h3>
-        <table class="table">
-            <tbody>
-    % if node.info:
-                <tr>
-                    <th>Information</th>
-                    <td>${node.info}</td>
-                </tr>
-    % endif
-##    % if node.doc:
+${' ' * indent}<h${heading_level}>Choix de fonctions <small>(${type})</small></h${heading_level}>
+${' ' * indent}<ul>
+        % for alternative_formula in formula['alternative_formulas']:
+${' ' * indent}    <li>
+${' ' * indent}        <%self:formula_block_content formula="${alternative_formula}" heading_level="${
+                            heading_level + 1}" indent="${indent + 8}"/>
+${' ' * indent}    </li>
+        % endfor
+${' ' * indent}</ul>
+    % else:
+<%
+        assert type == 'SimpleFormula'
+        comments = formula.get('comments')
+#        doc = formula.get('doc')
+        line_number = formula.get('line_number')
+        module = formula.get('module')
+        parameters = formula.get('parameters')
+        source = formula.get('source')
+%>\
+
+${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_level}>
+##        % if doc:
 ##                <tr>
 ##                    <th>Documentation</th>
-##                    <td><pre>${node.doc}</pre></td>
+##                    <td><pre>${doc}</pre></td>
 ##                </tr>
-##    % endif
-    % if node.comments:
+##        % endif
+        % if comments:
                 <tr>
                     <th>Commentaires</th>
-                    <td><pre>${node.comments}</pre></td>
+                    <td><pre>${comments}</pre></td>
                 </tr>
-    % endif
-    % if node.type:
-                <tr>
-                    <th>Type</th>
-                    <td>${node.type}</td>
-                </tr>
-    % endif
-    % if node.labels:
-                <tr>
-                    <th>Valeurs possibles</th>
-                    <td>
-                        <ol class="list-group">
-        % for index, label in node.labels.iteritems():
-                            <li class="list-group-item">
-                                <span class="badge">${index}</span>
-                                ${label}
-                            </li>
-        % endfor
-                        </ol>
-                    </td>
-                </tr>
-    % endif
-    % if node.default is not None:
-                <tr>
-                    <th>Valeur par défaut</th>
-                    <td><code>${node.default}</code></td>
-                </tr>
-    % endif
-    % if node.start or node.end:
-                <tr>
-                    <th>Date de validité</th>
-                    <td>${u' - '.join([node.start or u'...', node.end or u'...'])}</td>
-                </tr>
-    % endif
-            </tbody>
-        </table>
-    % if node.source:
-        % if node.parameters:
+        % endif
+        % if parameters:
 
-        <h3>Paramètres</h3>
+        <h${heading_level + 1}>Paramètres</h${heading_level + 1}>
         <ul>
-            % for parameter in node.parameters:
+            % for parameter in parameters:
             <li>
                 <a href="${parameter['name']}">${parameter['name']}</a>
                 % if parameter.get('label'):
@@ -124,19 +89,100 @@ from openfisca_web_site import urls
             % endfor
         </ul>
         % endif
-        % if node.source:
 
-        <h3>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/${
-                node.module_name.replace(u'.', u'/')}.py#L${node.line_number}-${
-                node.line_number + len(node.source.strip().split(u'\n')) - 1}">Voir dans GitHub</a></h3>
-        <pre><code data-language="python">${node.source}</code></pre>
+        <h${heading_level + 1}>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/${
+                module.replace(u'.', u'/')}.py#L${line_number}-${
+                line_number + len(source.strip().split(u'\n')) - 1}">Voir dans GitHub</a></h${heading_level + 1}>
+        <pre><code data-language="python">${source}</code></pre>
+    % endif
+</%def>
+
+
+<%def name="page_content()" filter="trim">
+<%
+    holder = node.holder
+    consumers = holder.get('consumers')
+    default = holder.get('default')
+    end = holder.get('end')
+    formula = holder.get('formula')
+    info = holder.get('info')
+    labels = holder.get('labels')
+    start = holder.get('start')
+    survey_only = holder.get('survey_only')
+    type = holder.get('@type')
+%>\
+    % if formula is None:
+        <h2>Variable</h2>
+        % if survey_only:
+        <div class="alert alert-warning">
+            <strong>Attention !</strong> Cette variable est utile uniquement pour les données d'enquêtes.
+        </div>
+        % endif
+    % else:
+        <h2>Formule</h2>
+        % if survey_only:
+        <div class="alert alert-warning">
+            <strong>Attention !</strong> Cette formule est utilisée uniquement pour les données d'enquêtes.
+        </div>
         % endif
     % endif
-    % if node.consumers:
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Propriétés</h3>
+            </div>
+            <table class="table">
+                <tbody>
+    % if info:
+                    <tr>
+                        <th>Information</th>
+                        <td>${info}</td>
+                    </tr>
+    % endif
+    % if type:
+                    <tr>
+                        <th>Type</th>
+                        <td>${type}</td>
+                    </tr>
+    % endif
+    % if labels:
+                    <tr>
+                        <th>Valeurs possibles</th>
+                        <td>
+                            <ol class="list-group">
+        % for index, label in labels.iteritems():
+                                <li class="list-group-item">
+                                    <span class="badge">${index}</span>
+                                    ${label}
+                                </li>
+        % endfor
+                            </ol>
+                        </td>
+                    </tr>
+    % endif
+    % if default is not None:
+                    <tr>
+                        <th>Valeur par défaut</th>
+                        <td><code>${default}</code></td>
+                    </tr>
+    % endif
+    % if start or end:
+                    <tr>
+                        <th>Date de validité</th>
+                        <td>${u' - '.join([start or u'...', end or u'...'])}</td>
+                    </tr>
+    % endif
+                </tbody>
+            </table>
+        </div>
+    % if formula is not None:
+        <%self:formula_block_content formula="${formula}" heading_level="${3}" indent="${8}"/>
+    % endif
+    % if consumers:
 
         <h3>Formules dépendantes</h3>
         <ul>
-        % for consumer in node.consumers:
+        % for consumer in consumers:
             <li>
                 <a href="${consumer['name']}">${consumer['name']}</a>
             % if consumer.get('label'):
