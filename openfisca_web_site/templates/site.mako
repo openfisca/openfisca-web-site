@@ -285,6 +285,7 @@ $(function () {
             <ul class="nav navbar-nav">
                 <li><a href="presentation">${u"Présentation"}</a></li>
                 <li><a href="telechargement">${u"Téléchargement"}</a></li>
+				<li><a href="installation-web-openfisca">${u"Documentation"}</a></li>
                 <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
                 <li><a href="api">${u"API"}</a></li>
                 <li><a href="contact">${u"Contact"}</a></li>
