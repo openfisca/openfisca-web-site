@@ -5832,6 +5832,7 @@ header p.slogan {
   padding: 5px 20px;
 }
 div.intro {
+  margin-top: -20px;
   height: 450px;
   margin-bottom: 60px;
   background: url(../images/introbg.png) no-repeat center left #c7edfa;
