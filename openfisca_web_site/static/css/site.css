@@ -9,3 +9,14 @@ a.partner {
 img.partner {
     max-height: 100px;
 }
+
+div.c-wrapper{
+    width: 80%; /* for example */
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img {
+    margin: auto;
+    width: 100%; /* use this, or not */
+}
