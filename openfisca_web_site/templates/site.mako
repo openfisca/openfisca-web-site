@@ -74,7 +74,8 @@ ${conf['realm']}
 
 
 <%def name="css()" filter="trim">
-    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" media="screen" rel="stylesheet">
+##    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" media="screen" rel="stylesheet">
+    <link href="${urls.get_url(ctx, u'/css/bootstrap.css')}" media="screen" rel="stylesheet">
     <link href="${urls.get_url(ctx, u'/css/site.css')}" media="screen" rel="stylesheet">
 </%def>
 
@@ -106,20 +107,14 @@ ${conf['realm']}
 
 
 <%def name="footer()" filter="trim">
-        <hr>
-        <footer class="footer">
-            <p>
-                ${_('{0}:').format(_('Software'))}
-                <a href="https://github.com/openfisca" rel="external">OpenFisca</a>
-                &mdash;
-                <span>${_(u'Copyright © {} OpenFisca Team').format(u', '.join(
-                    unicode(year)
-                    for year in range(2011, datetime.date.today().year + 1)
-                    ))}</span>
-                &mdash;
-                <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(
-                    u'GNU Affero General Public License')}</a>
-            </p>
+        <footer class="footer navbar-default">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Licence</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
         </footer>
 </%def>
 
@@ -258,33 +253,43 @@ $(function () {
 
 
 <%def name="topbar()" filter="trim">
-    <nav class="navbar navbar-default" role="navigation">
-        <%self:topbar_content/>
-    </nav>
+        <header class="container">
+            <h1 id="logo">
+                <a href="${urls.get_url(ctx)}">OpenFisca</a> 
+            </h1>
+            <p class="slogan">Logiciel libre de simulation du système socio-fiscal</p>
+        </header>
+        <nav class="navbar navbar-default" role="navigation">
+            <%self:topbar_content/>
+        </nav>
 </%def>
 
 
 <%def name="topbar_content()" filter="trim">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topbar-collapse">
-                <span class="sr-only">${_(u'Toggle navigation')}</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${self.brand_url()}"><%self:brand/> <span class="label label-warning">pre-alpha</span></a>
-        </div>
-        <div class="collapse navbar-collapse navbar-topbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'telechargement')}">${u"Téléchargement"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'installation-web-openfisca')}">${u"Documentation"}</a></li>
-                <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
-            </ul>
-        </div>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">${_(u'Toggle navigation')}</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="${urls.get_url(ctx)}"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'telechargement')}">${u"Téléchargement"}</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="${urls.get_url(ctx, 'installation-web-openfisca')}">${u"Documentation"}</a></li>
+                        <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
+                    </ul>
+                </div>
+            </div>
 </%def>
 
 
