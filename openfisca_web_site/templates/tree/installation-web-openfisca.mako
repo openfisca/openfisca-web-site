@@ -70,8 +70,6 @@ $ python setup.py install
 $ cd ../openfisca-web-api
 $ python setup.py compile_catalog
 $ python setup.py install</pre>
-      <li>Dans le dossier openfisca-web-api, modifier le fichier <em>development.ini</em>, changer sur la ligne <code>biryani1_i18n.dir = [ici le chemin de biryani/in18]</code>
-		(ici le chemin de biryani devrait être <code>C:\Users\[le nom de votre machine]\Desktop\openfisca\biryani\biryani1\i18n</code>)</li>
 	</ul>
 <h3>Lancer le serveur</h3>
 	<ul>
