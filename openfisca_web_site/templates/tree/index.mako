@@ -24,9 +24,12 @@
 
 
 <%!
+import datetime
 import json
 import urllib2
 import urlparse
+
+import babel.dates
 
 from openfisca_web_site import conf
 %>
@@ -92,7 +95,17 @@ from openfisca_web_site import conf
                                         <p>${visualization['title']}</p>
                                         <div class="info">
 ##                                            <img src="${visualization['thumbnailUrl']}">
-                                            <p><a href="${visualization['sourceUrl']}">${visualization['url']}</a><br>20 mars 2014</p>
+                                            <p>
+                                                <a href="${visualization['sourceUrl']}">${visualization['url']}</a>
+                                                <br>
+                                                ${babel.dates.format_date(
+                                                    datetime.date(*[
+                                                        int(number)
+                                                        for number in visualization['updated'].split('T')[0].split('-')
+                                                        ]),
+                                                    format = 'short',
+                                                    )}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
