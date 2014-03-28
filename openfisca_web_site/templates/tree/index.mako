@@ -73,7 +73,8 @@ from openfisca_web_site import conf
                     </div>
                     <div class="col-md-8 slider">
 <%
-    response = urllib2.urlopen(urlparse.urljoin(conf['ui.url'], 'api/1/visualizations/search?featured=1'))
+    response = urllib2.urlopen(urlparse.urljoin(conf['ui.url'],
+        'api/1/visualizations/search?enabled=1&featured=1&iframe=0'))
     visualizations = json.loads(response.read())
 %>\
     % if visualizations:
