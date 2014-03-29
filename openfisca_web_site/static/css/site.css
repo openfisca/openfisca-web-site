@@ -19,8 +19,25 @@ div.c-wrapper{
     margin: auto;
 }
 
-.carousel-inner > .item > img, 
-.carousel-inner > .item > a > img {
+.carousel-inner > .item {
+    height: 400px;
+    overflow: hidden;
+}
+
+.carousel-inner > .item a {
+    color: white;
+    text-decoration: none;
+}
+
+.carousel-inner > div.item > img, 
+.carousel-inner > div.item > a > img {
     margin: auto;
-/*    width: 100%; // use this, or not */
+    /* width: 100%; use this, or not */
+}
+
+.carousel-inner > div.item > div.overlay > div.info > img {
+    height: 32px;
+    margin: 5px 10px;
+    padding: 0px;
+    width: 32px;
 }

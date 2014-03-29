@@ -25,13 +25,10 @@
 
 <%!
 import datetime
-import json
-import urllib2
-import urlparse
 
 import babel.dates
 
-from openfisca_web_site import conf
+from openfisca_web_site import conf, urls
 %>
 
 
@@ -47,14 +44,14 @@ from openfisca_web_site import conf
                     </div>
                     <div class="col-md-6">
                         <div class="buttons">
-                            <a class="btn first btn-lg">
-                                <span class="glyphicon glyphicon-cog"></span> utiliser l’api
+                            <a class="btn first btn-lg" href="${urls.get_url(ctx, 'api')}">
+                                <span class="glyphicon glyphicon-cog"></span> Utiliser l’API
                             </a>
                             <a class="btn second btn-lg">
-                                <span class="glyphicon glyphicon-plus"></span> poster une réutilisation
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter une utilisation
                             </a>
-                            <a class="btn btn-lg">
-                                <span class="glyphicon glyphicon-eye-open"></span> Découvrir les réutilisations
+                            <a class="btn btn-lg" href="${urls.get_url(ctx, 'utilisations')}">
+                                <span class="glyphicon glyphicon-eye-open"></span> Découvrir les utilisations
                             </a>
                         </div>
                     </div>
@@ -73,17 +70,16 @@ from openfisca_web_site import conf
                     </div>
                     <div class="col-md-8 slider">
 <%
-    response = urllib2.urlopen(urlparse.urljoin(conf['ui.url'],
-        'api/1/visualizations/search?enabled=1&featured=1&iframe=0'))
-    visualizations = json.loads(response.read())
+    visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
+    visualizations = visualizations_node.get_visualizations(xtx)
 %>\
     % if visualizations:
-                        <h3>Les meilleures réutilisations</h3>
+                        <h3>Les meilleures utilisations</h3>
                         <div class="carousel slide" data-ride="carousel" id="carousel">
                             ## Indicators
                             <ol class="carousel-indicators">
         % for visualization in visualizations:
-                                <li data-target="#carousel" data-slide-to="${loop.index}"${
+                                <li data-target="carousel" data-slide-to="${loop.index}"${
                                         u' class="active"' if loop.first else u'' | n}></li>
         % endfor
                             </ol>
@@ -91,13 +87,15 @@ from openfisca_web_site import conf
                             <div class="carousel-inner">
         % for visualization in visualizations:
                                 <div class="item${u' active' if loop.first else u''}">
-                                    <img alt="Copie d'écran : ${visualization['title']}" src="${visualization['thumbnailUrl']}">
+                                    <img alt="Copie d'écran : ${visualization['title']}" src="${visualization['thumbnail_url']}">
                                     <div class="overlay">
-                                        <p>${visualization['title']}</p>
+                                        <p><a href="${visualization['source_url']}">${visualization['title']}</a></p>
                                         <div class="info">
-##                                            <img src="${visualization['thumbnailUrl']}">
+            % if visualization.get('logo_url') is not None:
+                                            <img src="${visualization['logo_url']}">
+            % endif
                                             <p>
-                                                <a href="${visualization['sourceUrl']}">${visualization['url']}</a>
+                                                ${visualization['owner']}
                                                 <br>
                                                 ${babel.dates.format_date(
                                                     datetime.date(*[
@@ -119,8 +117,8 @@ from openfisca_web_site import conf
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
                         </div>
+                        <a class="voir" href="${urls.get_url(ctx, 'utilisations')}">Voir toutes les utilisations <span class="glyphicon glyphicon-chevron-right"></span></a>
     % endif
-                        <a class="voir" href="#">Voir toutes les réutilisations <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
             </div>
