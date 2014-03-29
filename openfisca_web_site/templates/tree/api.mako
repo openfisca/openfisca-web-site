@@ -40,32 +40,31 @@ API <small>Différents tests utilisant l'<a href="http://nbviewer.ipython.org/gi
 
 <%def name="page_content()" filter="trim">
 
-	<h2>Exemples d'utilisation de l'API en Python</h2>
-	<i>Notebooks IPython</i> testant différents profils avec l'API: 
-		<a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
-	<p>
-	</p>
-	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	    		<span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
-	  	</button>
-	  	<ul class="dropdown-menu" role="menu">
-	   		<li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/">Exemples en python - Stanislas Rybak</a></li>
-	  	</ul>
-	</div>
-	  
-	<h2>Exemples d'utilisation de l'API en R</h2>
-	<i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
-	<p>
-	</p>
-	##<div class="btn-group">
-	##	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	##    		<span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
-	##  	</button>
-	##  	<ul class="dropdown-menu" role="menu">
-	##   		<li><a href="#">Exemples en R - </a></li>
-	##  	</ul>
-	##</div>
+    <h2>Exemples d'utilisation de l'API en Python</h2>
+    <i>Notebooks IPython</i> testant différents profils avec l'API :
+        <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+    <p>
+    </p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/">Exemples en Python - Stanislas Rybak</a></li>
+        </ul>
+    </div>
+
+    <h2>Exemples d'utilisation de l'API en R</h2>
+    <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
+
+##    <div class="btn-group">
+##        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+##            <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
+##        </button>
+##        <ul class="dropdown-menu" role="menu">
+##            <li><a href="#">Exemples en R </a></li>
+##        </ul>
+##    </div>
 
         <h2>Exemples d'utilisation de l'API en JavaScript</h2>
         <ul>
