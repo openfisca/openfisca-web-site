@@ -39,7 +39,6 @@ API <small>Différents tests utilisant l'<a href="http://nbviewer.ipython.org/gi
 
 
 <%def name="page_content()" filter="trim">
-
     <h2>Exemples d'utilisation de l'API en Python</h2>
     <i>Notebooks IPython</i> testant différents profils avec l'API :
         <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
