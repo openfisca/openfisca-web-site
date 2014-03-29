@@ -154,7 +154,7 @@ ${conf['realm']}
 <%def name="partners()" filter="trim">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.strategie.gouv.fr/">
                         <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="images/logo-cgsp.png"></img>
                     </a>
@@ -177,7 +177,7 @@ ${conf['realm']}
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.etalab.gouv.fr/">
                         <img alt="Logo d'Etalab" class="partner" src="images/logo-etalab.png"></img>
                     </a>
@@ -189,7 +189,7 @@ ${conf['realm']}
                         la plateforme française Open Data <a href="http://data.gouv.fr">data.gouv.fr</a>
                     </p>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.idep-fr.org/">
                         <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="images/logo-idep.png"></img>
                     </a>
@@ -214,7 +214,7 @@ ${conf['realm']}
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.ipp.eu/">
                         <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="images/logo-ipp.png"></img>
                     </a>
