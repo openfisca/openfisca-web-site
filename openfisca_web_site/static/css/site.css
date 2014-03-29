@@ -10,6 +10,10 @@ img.partner {
     max-height: 100px;
 }
 
+
+// Center images in carousel:
+// http://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive
+
 div.c-wrapper{
     width: 80%; /* for example */
     margin: auto;
@@ -18,5 +22,5 @@ div.c-wrapper{
 .carousel-inner > .item > img, 
 .carousel-inner > .item > a > img {
     margin: auto;
-    width: 100%; /* use this, or not */
+/*    width: 100%; // use this, or not */
 }
