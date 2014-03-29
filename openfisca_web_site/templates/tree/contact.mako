@@ -32,6 +32,14 @@ Contact
 
 
 <%def name="page_content()" filter="trim">
-        <h2>Pour nous contacter</h2>
-        contact@openfisca.fr
+        <h2>Contacter l'équipe OpenFisca</h2>
+        <ul>
+            <li>Courriel : <a href="mailto:contact@openfisca.fr">contact@openfisca.fr</a></li>
+            <li>Twitter : <a href="https://twitter.com/OpenFisca">@OpenFisca</a></li>
+        </ul>
+        <h2>Contacter l'équipe Etalab</h2>
+        <ul>
+            <li>Courriel : <a href="mailto:info@data.gouv.fr">info@data.gouv.fr</a></li>
+            <li>Twitter : <a href="https://twitter.com/etalab">@etalab</a></li>
+        </ul>
 </%def>

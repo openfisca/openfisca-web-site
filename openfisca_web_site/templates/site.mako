@@ -118,6 +118,7 @@ ${conf['realm']}
             </ul>
     % endif
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
                 <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
             </ul>
         </div>
@@ -291,7 +292,6 @@ $(function () {
                         <li><a href="${urls.get_url(ctx, 'installation-web-openfisca')}">${u"Documentation"}</a></li>
                         <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
                         <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
                         <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
                     </ul>
                 </div>
