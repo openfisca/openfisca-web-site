@@ -160,59 +160,6 @@ ${_(u'Home')}
 </%def>
 
 
-<%def name="jumbotron()" filter="trim">
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="carousel slide" data-ride="carousel" id="carousel" style="width: 460px; margin: 0 auto">
-                        ## Indicators
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel" data-slide-to="1"></li>
-                            <li data-target="#carousel" data-slide-to="2"></li>
-                            <li data-target="#carousel" data-slide-to="3"></li>
-                            <li data-target="#carousel" data-slide-to="4"></li>
-                        </ol>
-                        ## Wrapper for slides
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img alt="Copie d'écran OpenFisca-QT : Saisie de la composition du ménage" src="carousel/composition-menage.png">
-                            </div>
-                            <div class="item">
-                                <img alt="Copie d'écran OpenFisca-QT : Saisie du logement" src="carousel/logement.png">
-                            </div>
-                            <div class="item">
-                                <img alt="Copie d'écran OpenFisca-QT : Saisie des salaires" src="carousel/salaires.png">
-                            </div>
-                            <div class="item">
-                                <img alt="Copie d'écran OpenFisca-QT : Courbe waterfall" src="carousel/waterfall.png">
-                            </div>
-                            <div class="item">
-                                <img alt="Copie d'écran OpenFisca-QT : Courbe des barèmes" src="carousel/bareme.png">
-                            </div>
-                        </div>
-                        ## Controls
-                        <a class="carousel-control left" href="#carousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="carousel-control right" href="#carousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    ## <h2>${_(u"Welcome to OpenFisca")}</h2>
-                    <img alt="Logo OpenFisca" src="images/logo-openfisca.png" title="OpenFisca" />
-                    <p>
-                        OpenFisca est un logiciel libre de simulation du système socio-fiscal français.
-                    </p>
-                    <p><a class="btn btn-primary btn-lg" href="${conf['ui.url']}"role="button">${_(u"Try it online")}</a></p>
-                </div>
-            </div>
-        </div>
-</%def>
-
-
 <%def name="title_content()" filter="trim">
 <%self:brand/>
 </%def>
