@@ -34,11 +34,10 @@
         % else:
                 ${ancestor.title}
         % endif
-                <span class="divider">/</span>
             </li>
         
     % endfor
-            <li>${node.title}</li>
+            <li class="active">${node.title}</li>
 </%def>
 
 

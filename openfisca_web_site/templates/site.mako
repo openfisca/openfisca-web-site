@@ -37,10 +37,12 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="body_content()" filter="trim">
-    <div class="container"><div class="row">
-        <%self:breadcrumb/>
-        <%self:container_content/>
-    </div></div>
+    <div class="container">
+        <div class="row">
+            <%self:breadcrumb/>
+            <%self:container_content/>
+        </div>
+    </div>
     <%self:footer/>
 </%def>
 
@@ -63,7 +65,7 @@ ${conf['realm']}
 
 
 <%def name="breadcrumb_content()" filter="trim">
-            <li><a href="${urls.get_url(ctx)}">${_('Home')}</a> <span class="divider">/</span></li>
+            <li><a href="${urls.get_url(ctx)}">${_('Home')}</a></li>
 </%def>
 
 
