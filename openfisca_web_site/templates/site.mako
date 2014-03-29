@@ -111,6 +111,12 @@ ${conf['realm']}
 <%def name="footer()" filter="trim">
     <footer class="footer navbar-default">
         <div class="container">
+    % if node is not None and template is not None:
+            <ul class="nav navbar-nav">
+                <li><a href="https://github.com/openfisca/openfisca-web-site/tree/master/openfisca_web_site/templates${
+                        node.template_path}">Source de la page</a></li>
+            </ul>
+    % endif
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
             </ul>
