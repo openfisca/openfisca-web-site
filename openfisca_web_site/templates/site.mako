@@ -164,7 +164,7 @@ ${conf['realm']}
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.strategie.gouv.fr/">
-                        <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="images/logo-cgsp.png"></img>
+                        <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="logos-partenaires/logo-cgsp.png"></img>
                     </a>
                     <a href="http://www.strategie.gouv.fr/">
                         <h4>Commissariat général à la stratégie et à la prospective</h4>
@@ -187,7 +187,7 @@ ${conf['realm']}
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.etalab.gouv.fr/">
-                        <img alt="Logo d'Etalab" class="partner" src="images/logo-etalab.png"></img>
+                        <img alt="Logo d'Etalab" class="partner" src="logos-partenaires/logo-etalab.png"></img>
                     </a>
                     <a href="http://www.etalab.gouv.fr/">
                         <h4>Etalab</h4>
@@ -199,7 +199,7 @@ ${conf['realm']}
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.idep-fr.org/">
-                        <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="images/logo-idep.png"></img>
+                        <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="logos-partenaires/logo-idep.png"></img>
                     </a>
                     <a href="http://www.idep-fr.org/">
                         <h4>Institut d'économie publique</h4>
@@ -224,7 +224,7 @@ ${conf['realm']}
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <a class="partner" href="http://www.ipp.eu/">
-                        <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="images/logo-ipp.png"></img>
+                        <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="logos-partenaires/logo-ipp.png"></img>
                     </a>
                     <a href="http://www.ipp.eu/">
                         <h4>Institut des politiques publiques</h4>

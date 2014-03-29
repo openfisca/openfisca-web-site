@@ -128,22 +128,22 @@ from openfisca_web_site import conf, urls
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
                         <a href="http://www.strategie.gouv.fr/">
-                            <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" src="images/logo-cgsp.png"></img>
+                            <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" src="logos-partenaires/logo-cgsp.png"></img>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <a href="http://www.etalab.gouv.fr/">
-                            <img alt="Logo d'Etalab" src="images/logo-etalab.png"></img>
+                            <img alt="Logo d'Etalab" src="logos-partenaires/logo-etalab.png"></img>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <a href="http://www.idep-fr.org/">
-                            <img alt="Logo de l'Institut d'économie publique (IDEP)" src="images/logo-idep.png"></img>
+                            <img alt="Logo de l'Institut d'économie publique (IDEP)" src="logos-partenaires/logo-idep.png"></img>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <a href="http://www.ipp.eu/">
-                            <img alt="Logo de l'Institut des politiques publiques (IPP)" src="images/logo-ipp.png"></img>
+                            <img alt="Logo de l'Institut des politiques publiques (IPP)" src="logos-partenaires/logo-ipp.png"></img>
                         </a>
                     </div>
                 </div>
