@@ -40,8 +40,8 @@ from openfisca_web_site import conf, urls
     <div class="container"><div class="row">
         <%self:breadcrumb/>
         <%self:container_content/>
-        <%self:footer/>
     </div></div>
+    <%self:footer/>
 </%def>
 
 
@@ -107,15 +107,13 @@ ${conf['realm']}
 
 
 <%def name="footer()" filter="trim">
-        <footer class="footer navbar-default">
-            <div class="container">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Licence</a></li>
-                    <li><a href="#">Mentions légales</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </footer>
+    <footer class="footer navbar-default">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
+            </ul>
+        </div>
+    </footer>
 </%def>
 
 
