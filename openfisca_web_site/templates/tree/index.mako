@@ -133,7 +133,7 @@ from openfisca_web_site import conf
                             <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" src="images/logo-cgsp.png"></img>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-sm-6 ">
+                    <div class="col-lg-3 col-sm-6">
                         <a href="http://www.etalab.gouv.fr/">
                             <img alt="Logo d'Etalab" src="images/logo-etalab.png"></img>
                         </a>
