@@ -265,7 +265,7 @@ $(function () {
             <h1 id="logo">
                 <a href="${urls.get_url(ctx)}">OpenFisca</a> 
             </h1>
-            <p class="slogan">Logiciel libre de simulation du système socio-fiscal</p>
+            <p class="slogan">Moteur ouvert de simulation du système socio-fiscal français</p>
         </header>
         <nav class="navbar navbar-default" role="navigation">
             <%self:topbar_content/>
