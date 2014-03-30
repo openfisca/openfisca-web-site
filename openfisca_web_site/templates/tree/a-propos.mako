@@ -48,8 +48,10 @@ ${_(u'About OpenFisca')}
             unicode(year)
             for year in range(2011, datetime.date.today().year + 1)
             ))}</p>
-        <h2>${_(u'License')}</h2>
-        <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>
+
+        <h2 id="licence">${_(u'License')}</h2>
+        OpenFisca est un logiciel libre sous licence <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>.
+
         <h2>${_(u'Source Code')}</h2>
         <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
 
