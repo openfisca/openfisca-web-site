@@ -24,7 +24,7 @@
 
 
 <%def name="h1_content()" filter="trim">
-Utilisations d'OpenFisca
+Exemples d'utilisations
 </%def>
 
 

@@ -33,40 +33,63 @@ ${_(u"Presentation")}
 
 <%def name="page_content()" filter="trim">
         <h2>Qu’est-ce qu’OpenFisca</h2>
+
         <p>
-            OpenFisca est un logiciel libre de simulation du système socio-fiscal français. Il permet de visualiser simplement un grand nombre de prestations sociales et d’impôts payés, par les ménages, et de simuler l’impact de réformes sur le budget des ménages. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
+            OpenFisca est un moteur ouvert de simulation du système socio-fiscal. Il permet de calculer simplement un grand nombre de prestations sociales et d’impôts payés, par les ménages, et de simuler l’impact de réformes sur leur budget.
         </p>
         <p>
-            À terme, OpenFisca intégrera l’ensemble du système socio-fiscal français et son évolution et permettra de calculer l’impact de réformes sur le budget de l’État.
+            Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
         </p>
 
-        <h2>Vidéo de présentation d'OpenFisca</h2>
-        <object type="application/x-shockwave-flash" data="videos/player.swf" width="900" height="506">
-            <param name="movie" value="videos/player.swf" />
-            <param name="allowFullScreen" value="true" />
-            <param name="FlashVars" value="flv=videos/video.flv&amp;width=900&amp;height=506" />
-        </object>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2 class="panel-title">Avertissement</h2>
+            </div>
+            <div class="panel-body">
+                <p>OpenFisca calcule les montants des impôts et des prestations à partir :</p>
+                <ul>
+                    <li>d'informations patrimoniales fournies par les utilisateurs</li>
+                    <li>d'un modèle <strong>simplifié</strong> et <strong>approximatif</strong> de la législation socio-fiscale</li>
+                </ul>
+                <p>Ces montants sont donnés à titre indicatif et peuvent être différents de ceux déterminés par les différentes administrations lors de l'étude des dossiers réels.</p>
+            </div>
+        </div>
 
-        <h2>Comment contribuer à OpenFisca</h2>
+        <h2>Historique d'OpenFisca</h2>
+
         <p>
-            OpenFisca est un projet en cours de développement sous licence GPLv3 ou supérieure. Le code source est librement accessible et modifiable. Certains pans de la législation ne sont pas encore intégrés. Étant donné l’ampleur de la tâche, notre ambition est de constituer une communauté de développeurs, d’économistes et de spécialistes de la fiscalité ou des prestations sociales pour maintenir et améliorer le programme.
+            Initialement OpenFisca a été développé sous forme d'application bureautique intégrée (en QT) avec une API Python.
         </p>
         <p>
-            Nous invitons les utilisateurs à nous transmettre leur remarques, les imprécisions ou erreurs identifiées, ainsi que les éventuelles propositions d’amélioration. Si vous voulez participer plus activement à l’évolution du programme, vous pouvez télécharger le code source sur GitHub et/ou nous contacter.
+            Fin 2013, début 2014, quand Etalab s'est investi dans le développement d'OpenFisca, il a été décidé de :
+        </p>
+        <ul>
+            <li>
+                séparer le moteur du simulateur de son interface utilisateur (en QT)
+            </li>
+            <li>
+                proposer une <strong>API web</strong> en plus de son API Python et de privilégier cette API web
+            </li>
+            <li>
+                démontrer l'intérêt de l'API web en développant des exemples d'utilisation et notamment une interface web de simulation de cas personnels
+            </li>
+            <li>
+                proposer un <strong>accès public à cette API web</strong>, ouvert à tous, administrations, chercheurs, citoyens, etc.
+            </li>
+        </ul>
+        <p>
+            Depuis cette date, le logiciel est développé intensivement par Etalab. Parallèlement le <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>, appuyé par l'<abbr title="Institut d'économie publique">IDEP</abbr> et l'<abbr title="Institut des politiques publiques">IPP</abbr>, améliore le modèle économique et actualise la législation socio-fiscale française.
+        </p>
+        <p>
+            Actuellement (mars 2014), la version QT n'est plus maintenue et seule la version web fait l'objet de développements.
         </p>
 
-        <h2>Télécharger et installer OpenFisca pour Windows</h2>
-        <p>
-            Avant de commencer à utiliser OpenFisca, lire l’avertissement. Ensuite, cliquer sur le lien télécharger et enregistrer le fichier sur votre ordinateur. Dé-zipper le dossier, l’ouvrir et double-cliquer sur “OpenFisca.exe”. C’est tout, aucune installation préalable n’est nécessaire. Vous devrez peut être disposer de droits d’administrateur pour exécuter le programme.
-        </p>
-        <p>
-            Pour un tutoriel rapide, regarder la vidéo.
-        </p>
-        <h3>Configuration recommandée</h3>
-        Windows XP/Vista/7 avec 3 Go de RAM
+        <h2>Versions non françaises d'OpenFisca</h2>
 
-        <h2>Pour les systèmes GNU/Linux</h2>
         <p>
-            Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
+            Le moteur d'OpenFisca est totalement indépendant de la législation socio-fiscale et une version tunisienne d'OpenFisca a été commencée.
+        </p>
+        <p>
+            Cette version tunisienne est actuellement (mars 2014) bien moins avancée que la version française. Mais c'est uniquement pas manque de bras pour saisir et actualiser la législation socio-fiscale tunisienne.
         </p>
 </%def>

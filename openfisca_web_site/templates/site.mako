@@ -289,8 +289,8 @@ $(function () {
                         <li><a href="${urls.get_url(ctx)}"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
                         <li><a href="${urls.get_url(ctx, 'utilisations')}">${u"Exemples"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'installation-web-openfisca')}">${u"Documentation"}</a></li>
-##                        <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'documentation')}">${u"Documentation"}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
