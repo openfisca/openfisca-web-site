@@ -30,7 +30,17 @@ class Node(model.Folder):
     def get_visualizations(self, ctx):
         return [
             dict(
-                description = u"'Proposition de réforme du statut du quotient conjugal",
+                description = u"Les aides que l'État peut apporter, en fonction de la situation des personnes",
+                logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
+                source_url = u'http://openfisca-dss.herokuapp.com/',
+                owner = u"Équipe hackathon",
+                title = u"Dossier social simplifié",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-dossier-social-simplifie.png'),
+                updated = u'2014-03-14T19:19:00',
+                ),
+            dict(
+                description = u"Proposition de réforme du statut du quotient conjugal",
+                featured = True,
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
                 source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/quotient-conjugal/'),
                 owner = u"Équipe hackathon",
@@ -39,13 +49,24 @@ class Node(model.Folder):
                 updated = u'2014-03-24T19:19:00',
                 ),
             dict(
-                description = u"'Évolution du taux effectif d'imposition en fonction du salaire et du capital",
+                description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
+                featured = True,
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
                 source_url = u'http://nbviewer.ipython.org/urls/raw.githubusercontent.com/regardscitoyens/openfisca-web-notebook/master/calcul_taux_effectif.ipynb',
                 owner = u"Regards citoyens",
                 title = u"Taux effectif d'imposition",
                 thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-effectif.png'),
                 updated = u'2014-03-25T09:13:00',
+                ),
+            dict(
+                description = u"Différence des taux d’imposition en fonction des revenus du capital et du travail",
+                featured = True,
+                logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
+                source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/taux-imposition-capital-travail.pdf'),
+                owner = u"Équipe hackathon",
+                title = u"Taux d’imposition du capital et du travail",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-imposition-capital-travail.png'),
+                updated = u'2014-03-24T19:19:00',
                 ),
             dict(
                 description = u"Graphe dynamique des dépendances entre les formules socio-fiscales d'OpenFisca",
@@ -58,6 +79,7 @@ class Node(model.Folder):
                 ),
             dict(
                 description = u"Représentation du revenu net et des ses composantes en faisant varier le salaire imposable",
+                featured = True,
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
                 owner = u"Etalab",
                 source_url = u'http://localhost:2015/bareme.html',

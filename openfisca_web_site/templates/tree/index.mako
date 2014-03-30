@@ -71,21 +71,25 @@ from openfisca_web_site import conf, urls
                     <div class="col-md-8 slider">
 <%
     visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
-    visualizations = visualizations_node.get_visualizations(xtx)
+    featured_visualizations = [
+        visualization
+        for visualization in visualizations_node.get_visualizations(ctx)
+        if visualization.get('featured', False)
+        ]
 %>\
-    % if visualizations:
+    % if featured_visualizations:
                         <h3>Les meilleures utilisations</h3>
                         <div class="carousel slide" data-ride="carousel" id="carousel">
                             ## Indicators
                             <ol class="carousel-indicators">
-        % for visualization in visualizations:
+        % for visualization in featured_visualizations:
                                 <li data-target="carousel" data-slide-to="${loop.index}"${
                                         u' class="active"' if loop.first else u'' | n}></li>
         % endfor
                             </ol>
                             ## Wrapper for slides
                             <div class="carousel-inner">
-        % for visualization in visualizations:
+        % for visualization in featured_visualizations:
                                 <div class="item${u' active' if loop.first else u''}">
                                     <img alt="Copie d'écran : ${visualization['title']}" src="${visualization['thumbnail_url']}">
                                     <div class="overlay">
