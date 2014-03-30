@@ -62,10 +62,18 @@ from openfisca_web_site import conf, urls
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 telechar">
-                        <h3>Téléchargement</h3>
-                        <img src="images/telechar.png">
-                        <a class="btn second btn-lg">
-                            <span class="glyphicon glyphicon-download"></span> télécharger
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">Présentation</a>
+                            <a href="${urls.get_url(ctx, 'actualites')}" class="list-group-item">Actualités</a>
+                            <a href="#" class="list-group-item">Exemples d'utilisation</a>
+                            <a href="#" class="list-group-item">API</a>
+                            <a href="#" class="list-group-item">Formules socio-fiscales</a>
+                            <a href="#" class="list-group-item">Installation</a>
+                            <a href="https://github.com/openfisca" class="list-group-item">Code source</a>
+                            <a href="#" class="list-group-item">Licence</a>
+                        </div>
+                        <a class="btn second btn-lg" href="${urls.get_url(ctx, 'telechargement')}">
+                            <span class="glyphicon glyphicon-wrench"></span> Contribuer
                         </a>
                     </div>
                     <div class="col-md-8 slider">
@@ -78,7 +86,7 @@ from openfisca_web_site import conf, urls
         ]
 %>\
     % if featured_visualizations:
-                        <h3>Les meilleures utilisations</h3>
+##                        <h3>Les meilleures utilisations</h3>
                         <div class="carousel slide" data-ride="carousel" id="carousel">
                             ## Indicators
                             <ol class="carousel-indicators">
