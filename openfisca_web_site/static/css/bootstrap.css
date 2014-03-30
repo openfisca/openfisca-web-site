@@ -5796,9 +5796,6 @@ header h1 a {
   color: transparent;
   background: url(../images/logo.png) no-repeat center center;
 }
-header p.slogan {
-  display: inline-block;
-}
 .no-padding {
   padding: 0;
 }
