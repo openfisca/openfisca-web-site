@@ -115,7 +115,7 @@ ${conf['realm']}
             <ul class="nav navbar-nav">
                 <li><a href="https://github.com/openfisca/openfisca-web-site/tree/master/openfisca_web_site/templates${
                         node.template_path}">Source de la page</a></li>
-                <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">${u"Stats du site"}</a></li>
+                <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">${u"Statistiques du site"}</a></li>
             </ul>
     % endif
             <ul class="nav navbar-nav navbar-right">
