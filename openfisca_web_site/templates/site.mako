@@ -315,6 +315,9 @@ try {
     % if conf['piwik.key'] is not None:
     <script type="text/javascript">
 var _paq = _paq || [];
+_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+_paq.push(["setCookieDomain", "*.openfisca.fr"]);
+_paq.push(["setDomains", ["*.openfisca.fr","*.ui.openfisca.fr","*.www.openfisca.fr"]]);
 _paq.push(["trackPageView"]);
 _paq.push(["enableLinkTracking"]);
 
