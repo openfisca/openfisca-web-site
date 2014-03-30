@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_web_site import model, urls
+from openfisca_web_site import conf, model, urls
 
 
 class Node(model.Folder):
@@ -78,13 +78,23 @@ class Node(model.Folder):
                 updated = u'2014-03-28T07:26:00',
                 ),
             dict(
-                description = u"Représentation du revenu net et des ses composantes en faisant varier le salaire imposable",
                 featured = True,
+                description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+                source_url = urls.get_full_url(ctx, self.url_path, '../variables/revdisp'),
                 owner = u"Etalab",
-                source_url = u'http://localhost:2015/bareme.html',
-                title = u"Barème",
-                thumbnail_url = u'http://localhost:2015/bareme.png',
+                title = u"Formules socio-fiscales",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
                 updated = u'2014-03-28T07:26:00',
+                ),
+            dict(
+                featured = True,
+                description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
+                logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+                source_url = conf['ui.url'],
+                owner = u"Etalab",
+                title = u"Simulateur en ligne",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-ui.png'),
+                updated = u'2014-03-01T07:26:00',
                 ),
             ]
