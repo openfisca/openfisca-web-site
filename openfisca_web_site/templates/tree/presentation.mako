@@ -56,8 +56,8 @@ this program.  If not, see <http://www.gnu.org/licenses/>.
 peuvent être différents de ceux déterminés par les différentes
 administrations lors de l'étude des dossiers réels. Les résultats
 fournis ne sauraient engager l'administration, votre Caf ou plus
-généralement n'importe quel organisme préléveur ou verseur sur le
-montant définitif des impôts et des cotisattions à acquitter ou des
+généralement n'importe quel organisme préleveur ou verseur sur le
+montant définitif des impôts et des cotisations à acquitter ou des
 prestations versées. En effet, votre situation familiale et/ou vos
 ressources ou celles de l’un des membres de votre famille peuvent
 changer ou ne pas avoir été prises en compte lors de la simulation et
@@ -69,7 +69,7 @@ certaines hypothèses simplificatrices ont été effectuées. </p>
 
         <p>
           Le développement d'OpenFisca a débuté au <abbr title="Centre
-d'analyse stratégiquee">CAS</abbr>,
+d'analyse stratégique">CAS</abbr>,
 rebaptisé <abbr title="Commissariat général à la stratégie et à la
 prospective">CGSP</abbr> au printemps 2013, en mai 2011 avec le
 soutien de l'<abbr title="Institut d'économie
@@ -123,8 +123,7 @@ forme d'application bureautique intégrée (en Qt) avec une API Python.
             Le moteur d'OpenFisca est générique. Il est donc
             totalement indépendant de la législation socio-fiscale. Il
             est donc possible de simuler n'importe quel système
-            socio-fiscal. Une version tunisienne d'OpenFisca a été
-            commencée.
+            socio-fiscal. Une version tunisienne d'OpenFisca est ainsi en cours de développement.
         </p>
         <p>
             Cette version tunisienne est actuellement (mars 2014) bien
