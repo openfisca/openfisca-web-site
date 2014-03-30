@@ -71,6 +71,7 @@ ${_(u'About OpenFisca')}
             <li>Victor Le Breton</li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
+            <li>Stanislas Rybak</li>
             <li>Jérôme Santoul</li>
             <li>Clément Schaff</li>
             <li>Romain Soufflet</li>
