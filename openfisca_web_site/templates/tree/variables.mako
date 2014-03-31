@@ -205,13 +205,13 @@ Variables socio-fiscales
             </li>
             <li>
                 <li>
-                <a href="#variables-en-sortie">Variables en sortie</a>
-                <ul class="nav">
-                    <li><a href="#variables-en-sortie-individus">Individus</a></li>
-                    <li><a href="#variables-en-sortie-familles">Familles</a></li>
-                    <li><a href="#variables-en-sortie-foyers-fiscaux">Foyers fiscaux</a></li>
-                    <li><a href="#variables-en-sortie-menages">Ménages</a></li>
-                </ul>
+                    <a href="#variables-en-sortie">Variables en sortie</a>
+                    <ul class="nav">
+                        <li><a href="#variables-en-sortie-individus">Individus</a></li>
+                        <li><a href="#variables-en-sortie-familles">Familles</a></li>
+                        <li><a href="#variables-en-sortie-foyers-fiscaux">Foyers fiscaux</a></li>
+                        <li><a href="#variables-en-sortie-menages">Ménages</a></li>
+                    </ul>
                 </li>
             </li>
         </ul>
