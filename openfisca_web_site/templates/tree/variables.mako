@@ -36,6 +36,11 @@ from openfisca_web_site import conf, urls
 <%inherit file="/page.mako"/>
 
 
+<%def name="body_attributes()" filter="trim">
+data-spy="scroll" data-target="#sommaire"
+</%def>
+
+
 <%def name="h1_content()" filter="trim">
 Variables socio-fiscales
 </%def>
@@ -53,9 +58,10 @@ Variables socio-fiscales
         raise
     response_json = json.loads(response.read(), object_pairs_hook = collections.OrderedDict)
 %>\
-        <h2>Variables en entrée</h2>
+    <div class="col-md-9" role="main">
+        <h2 id="variables-en-entree">Variables en entrée</h2>
 
-        <h3>Variables en entrée pour les individus</h3>
+        <h3 id="variables-en-entree-individus">Variables en entrée pour les individus</h3>
         <ul>
     % for name, variable in response_json['columns'].iteritems():
 <%
@@ -71,7 +77,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en entrée pour les familles</h3>
+        <h3 id="variables-en-entree-familles">Variables en entrée pour les familles</h3>
         <ul>
     % for name, variable in response_json['columns'].iteritems():
 <%
@@ -87,7 +93,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en entrée pour les foyers fiscaux</h3>
+        <h3 id="variables-en-entree-foyers-fiscaux">Variables en entrée pour les foyers fiscaux</h3>
         <ul>
     % for name, variable in response_json['columns'].iteritems():
 <%
@@ -103,7 +109,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en entrée pour les ménages</h3>
+        <h3 id="variables-en-entree-menages">Variables en entrée pour les ménages</h3>
         <ul>
     % for name, variable in response_json['columns'].iteritems():
 <%
@@ -119,9 +125,9 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h2>Variables en sortie</h2>
+        <h2 id="variables-en-sortie">Variables en sortie</h2>
 
-        <h3>Variables en sortie pour les individus</h3>
+        <h3 id="variables-en-sortie-individus">Variables en sortie pour les individus</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -137,7 +143,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en sortie pour les familles</h3>
+        <h3 id="variables-en-sortie-familles">Variables en sortie pour les familles</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -153,7 +159,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en sortie pour les foyers fiscaux</h3>
+        <h3 id="variables-en-sortie-foyers-fiscaux">Variables en sortie pour les foyers fiscaux</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -169,7 +175,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3>Variables en sortie pour les ménages</h3>
+        <h3 id="variables-en-sortie-menages">Variables en sortie pour les ménages</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -184,4 +190,30 @@ Variables socio-fiscales
              </li>
     % endfor
         </ul>
+    </div>
+
+    <div class="col-md-3 hidden-print sidebar" id="sommaire" role="complementary">
+        <ul class="nav sidenav" data-offset-top="60" data-spy="affix">
+            <li>
+                <a href="#variables-en-entree">Variables en entrée</a>
+                <ul class="nav">
+                    <li><a href="#variables-en-entree-individus">Individus</a></li>
+                    <li><a href="#variables-en-entree-familles">Familles</a></li>
+                    <li><a href="#variables-en-entree-foyers-fiscaux">Foyers fiscaux</a></li>
+                    <li><a href="#variables-en-entree-menages">Ménages</a></li>
+                </ul>
+            </li>
+            <li>
+                <li>
+                <a href="#variables-en-sortie">Variables en sortie</a>
+                <ul class="nav">
+                    <li><a href="#variables-en-sortie-individus">Individus</a></li>
+                    <li><a href="#variables-en-sortie-familles">Familles</a></li>
+                    <li><a href="#variables-en-sortie-foyers-fiscaux">Foyers fiscaux</a></li>
+                    <li><a href="#variables-en-sortie-menages">Ménages</a></li>
+                </ul>
+                </li>
+            </li>
+        </ul>
+    </div>
 </%def>

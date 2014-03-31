@@ -36,6 +36,10 @@ from openfisca_web_site import conf, urls
 %>
 
 
+<%def name="body_attributes()" filter="trim">
+</%def>
+
+
 <%def name="body_content()" filter="trim">
     <div class="container">
         <div class="row">
@@ -344,7 +348,7 @@ _paq.push(["enableLinkTracking"]);
     <%self:feeds/>
     <%self:ie_scripts/>
 </head>
-<body>
+<body ${self.body_attributes() | n}>
     <%self:topbar/>
     <%self:body_content/>
     <%self:scripts/>
