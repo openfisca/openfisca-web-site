@@ -60,8 +60,27 @@ Contribuer à OpenFisca
             socio-fiscal.
         </p>
 
+
         <p>
-           Tester et rapporter les erreurs (web, API ou bibliothèque)  
+           Utiliser et aider au développement de l'API web
+
+	   - Partager vos utilisations : vous êtes invités à nous
+	   tenir informer des utilisations que vous faîtes de l'API et
+	   notamment des visualisations que vous pourriez
+	   produire. Nous serions ravis de pouvoir les recenser sur le
+	   site d'OpenFisca.
+
+	   - Suggérer des fonctionnalités : n'hésitez pas à nous
+	   faire part des améliorations à apporter à l'API afin qu'elle
+	   puisse répondre au mieux à vos besoins.
+
+	   - Participer directement au développement de l'API
+	   https://github.com/openfisca/openfisca-web-api
+        
+	</p>
+
+        <p>
+           Tester et rapporter les erreurs (API-web)  
 	   
 	   Vous pouvez contribuer au développement d'OpenFisca en
 	   rapportant les erreurs sur le calcul des prestations ou des
@@ -80,29 +99,10 @@ Contribuer à OpenFisca
 	   les formules disponibles ici TODO:
            
 	   - Rapporter l'erreur accompagnée éventuellement
-             d'informations complémentaires en ouvrant une nouvelle
-             "issue" github en fournissant si possible le code
-             permettant de reproduire l'erreur ou le fichier json du
-             cas type considéré.
-        </p>
-
-
-        <p>
-           Utiliser et aider au développement de l'API web
-
-	   - Partager vos utilisations : vous êtes invités à nous
-	   tenir informer des utilisations que vous faîtes de l'API et
-	   notamment des visualisations que vous pourriez
-	   produire. Nous serions ravis de pouvoir les recenser sur le
-	   site d'OpenFisca.
-
-	   - Demander des fonctionnalités : n'hésitez pas à nous
-	   suggérer des améliorations à apporter à l'API afin qu'elle
-	   puisse répondre au mieux à vos besoins.
-
-	   - Participer directement au développement de l'API
-	   https://github.com/openfisca/openfisca-web-api
-        
+           d'informations complémentaires en ouvrant une nouvelle
+           "issue" github en fournissant si possible le code
+           permettant de reproduire l'erreur ou le fichier json du cas
+           type considéré.        
 	</p>
 
 
@@ -110,26 +110,22 @@ Contribuer à OpenFisca
 	  Compléter le microsimulateur du système socio-fiscal français
           - Identifier les prestations ou les impôts incomplets ou manquants
           - Rassembler la documentation nécessaire à l'écriture des formules permettant de les calculer
-	  - Proposer les correctifs implémentant 
-        
+	  - Proposer les correctifs implémentant les prestations et les impôts incomplet ou manquant (voir documentation)
 	</p>
 
+        <!-- <p> -->
+	<!--   Compléter les paramètres de la législation LAwToCode
+        <!-- </p> -->
+
+
+        <!-- <p> -->
+	<!--   Proposer des réformes: à venir -->
+        <!-- </p> -->
 
         <p>
-           Documenter: 
-           - Participer à la documentation sphinx.
-        </p>
-
-
-        <p>
-	  Proposer des réformes
-        </p>
-
-
-
-        <p>
-           Vous pouvez également participer à d'autres projets faisant usage d'OpenFisca 
-	   - r-openfisca https://github.com/blaquans/ropenfisca
+           Vous pouvez également participer à d'autres projets faisant usage d'OpenFisca: 
+	   - Une utilisation d'OpenFisca à travers R:  https://github.com/blaquans/ropenfisca
+	   - Participer au développement d'autres systèmes sociaux fiscaux. Le travail est entamé pour le cas de la Tunisie 
         </p>
 
 
