@@ -295,12 +295,7 @@ $ paster serve --reload development.ini</pre></li>
             </li>
 
             <li>
-                <li>
-                <a href="#version-initiale">Version initiale</a>
-            </li>
-
-
-            <li><a class="back-to-top" href="#top">Back to top</a></li>
+                <li><a href="#version-initiale">Version initiale</a></li>
             </li>
         </ul>
     </div>
