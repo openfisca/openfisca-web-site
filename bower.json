@@ -28,6 +28,7 @@
     "bootstrap": "~3",
     "html5shiv": "~3",
     "jquery": "~1",
+    "jQuery.dotdotdot": "~1",
     "ractive": "~0",
     "rainbow": "~1",
     "respond": "~1",

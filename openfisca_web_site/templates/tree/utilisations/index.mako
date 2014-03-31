@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import urls
+%>
+
+
 <%def name="h1_content()" filter="trim">
 Exemples d'utilisations
 </%def>
@@ -38,17 +43,30 @@ Exemples d'utilisations
     % if visualizations:
         <div class="row">
         % for visualization in visualizations:
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
-              <div class="caption">
-                <h3>${visualization['title']}</h3>
-                <p>${visualization['description']}</p>
-                <p><a href="${visualization['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
-              </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
+                    <div class="caption">
+                        <div class="ellipsis" style="height: 120px">
+                            <h3>${visualization['title']}</h3>
+                            <p>${visualization['description']}</p>
+                        </div>
+                        <p><a href="${visualization['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+                    </div>
+                </div>
             </div>
-          </div>
         % endfor
         </div>
     % endif
+</%def>
+
+
+<%def name="scripts()" filter="trim">
+    <%parent:scripts/>
+    <script src="${urls.get_url(ctx, u'/bower/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js')}"></script>
+    <script>
+$(function () {
+    $(".ellipsis").dotdotdot();
+});
+    </script>
 </%def>
