@@ -5832,7 +5832,7 @@ div.intro {
   margin-top: -20px;
   height: 450px;
   margin-bottom: 20px;
-  background: url(../images/introbg.png) no-repeat center left #c7edfa;
+  background: url(../images/introbg.png) repeat center left #c7edfa;
 }
 div.intro a.btn {
   position: relative;
