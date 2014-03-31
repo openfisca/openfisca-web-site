@@ -35,12 +35,102 @@ Contribuer à OpenFisca
         <h2>Comment contribuer à OpenFisca</h2>
 
         <p>
-            OpenFisca est un projet en cours de développement sous licence GPLv3 ou supérieure. Le code source est librement accessible et modifiable.
+            OpenFisca est un projet en cours de développement sous
+            licence GPLv3 ou supérieure. Le code source est librement
+            accessible et modifiable.
         </p>
+
         <p>
-            Certains pans de la législation ne sont pas encore intégrés. Étant donné l’ampleur de la tâche, notre ambition est de constituer une communauté de développeurs, d’économistes et de spécialistes de la fiscalité ou des prestations sociales pour maintenir et améliorer le programme.
+            Certains pans de la législation ne sont pas encore
+            intégrés. Étant donné l’ampleur de la tâche, notre
+            ambition est de constituer une communauté de développeurs,
+            d’économistes et de spécialistes de la fiscalité ou des
+            prestations sociales pour maintenir et améliorer le
+	    logiciel.
         </p>
+
         <p>
-            Nous invitons les utilisateurs à nous transmettre leur remarques, les imprécisions ou erreurs identifiées, ainsi que les éventuelles propositions d’amélioration. Si vous voulez participer plus activement à l’évolution du programme, vous pouvez télécharger le code source sur GitHub et/ou nous contacter.
+            Nous invitons les utilisateurs à nous transmettre leur
+            remarques, les imprécisions ou erreurs identifiées, ainsi
+            que les éventuelles propositions d’amélioration. Si vous
+            voulez participer plus activement à l’évolution du
+            programme, sachez qu'il est possible de contribuer de multiples façons au
+            projet OpenFisca: tester, développer le noyau et l'API, compléter
+            le système socio-fiscal français ou créer un autre système
+            socio-fiscal.
         </p>
+
+        <p>
+           Tester et rapporter les erreurs (web, API ou bibliothèque)  
+	   
+	   Vous pouvez contribuer au développement d'OpenFisca en
+	   rapportant les erreurs sur le calcul des prestations ou des
+	   impôts que vous constateriez.  Afin de permettre aux
+	   développeurs d'OpenFisca de résoudre les problèmes
+	   rapidement, veuillez essayer de suivre la procédure
+	   suivante:
+	   
+	   - Essayer de réaliser un cas-type minimal permettant de
+	   mettre en évidence l'erreur rencontrée
+           
+	   - Vérifier que cette erreur n'est pas déjà répertoriée dans
+	   les "issues" github  https://github.com/openfisca/openfisca-france/issues
+	   
+	   - Tenter d'identifier la source de l'erreur en inspectant
+	   les formules disponibles ici TODO:
+           
+	   - Rapporter l'erreur accompagnée éventuellement
+             d'informations complémentaires en ouvrant une nouvelle
+             "issue" github en fournissant si possible le code
+             permettant de reproduire l'erreur ou le fichier json du
+             cas type considéré.
+        </p>
+
+
+        <p>
+           Utiliser et aider au développement de l'API web
+
+	   - Partager vos utilisations : vous êtes invités à nous
+	   tenir informer des utilisations que vous faîtes de l'API et
+	   notamment des visualisations que vous pourriez
+	   produire. Nous serions ravis de pouvoir les recenser sur le
+	   site d'OpenFisca.
+
+	   - Demander des fonctionnalités : n'hésitez pas à nous
+	   suggérer des améliorations à apporter à l'API afin qu'elle
+	   puisse répondre au mieux à vos besoins.
+
+	   - Participer directement au développement de l'API
+	   https://github.com/openfisca/openfisca-web-api
+        
+	</p>
+
+
+        <p>
+	  Compléter le microsimulateur du système socio-fiscal français
+          - Identifier les prestations ou les impôts incomplets ou manquants
+          - Rassembler la documentation nécessaire à l'écriture des formules permettant de les calculer
+	  - Proposer les correctifs implémentant 
+        
+	</p>
+
+
+        <p>
+           Documenter: 
+           - Participer à la documentation sphinx.
+        </p>
+
+
+        <p>
+	  Proposer des réformes
+        </p>
+
+
+
+        <p>
+           Vous pouvez également participer à d'autres projets faisant usage d'OpenFisca 
+	   - r-openfisca https://github.com/blaquans/ropenfisca
+        </p>
+
+
 </%def>
