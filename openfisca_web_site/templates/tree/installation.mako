@@ -34,12 +34,12 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="h1_content()" filter="trim">
-Installation Web d'OpenFisca <a href="#linux">GNU/Linux</a> - <a href="#windows">Windows</a>
+Installation d'OpenFisca
 </%def>
 
 
 <%def name="page_content()" filter="trim">
-<h2 id="linux">Installation sous  <strong>GNU/Linux</strong></h2>
+<h2 id="gnu-linux">Installation sous  <strong>GNU/Linux</strong></h2>
 <h3>Installation de l'API Web d'OpenFisca</h3>
     <ul>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
@@ -220,4 +220,34 @@ $ paster serve --reload development.ini</pre></li>
     <li>Pour ouvrir l'interface utilisateur, il vous suffit d'ouvrir votre navigateur internet et d'aller à l'adresse du lien suivant : <kbd>http://localhost:2015</kbd></li>
   </ul>
   <hr>
+
+        <h2>Télécharger et installer la version initiale d'OpenFisca pour Windows</h2>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2 class="panel-title">Avertissement</h2>
+            </div>
+            <div class="panel-body">
+                <p>
+                    La version initiale d'OpenFisca est désormais <strong>obsolète</strong>, n'est plus maintenue et son modèle socio-fiscal n'a pas été actualisé pour la législation à partir de 2013.
+                </p>
+                <p>
+                    Cette version dispose toutefois de fonctionnalités non encore présentes dans la nouvelle version web, en particulier pour la gestion des données d'enquêtes. Ce qui peut justifier son utilisation dans certains cas à des fins de démonstration.
+                </p>
+            </div>
+        </div>
+
+        <p>
+            Avant de commencer à utiliser OpenFisca, lire l’avertissement. Ensuite, cliquer sur le lien télécharger et enregistrer le fichier sur votre ordinateur. Dé-zipper le dossier, l’ouvrir et double-cliquer sur “OpenFisca.exe”. C’est tout, aucune installation préalable n’est nécessaire. Vous devrez peut être disposer de droits d’administrateur pour exécuter le programme.
+        </p>
+        <p>
+            Pour un tutoriel rapide, regarder la vidéo.
+        </p>
+        <h3>Configuration recommandée</h3>
+        Windows XP/Vista/7 avec 3 Go de RAM
+
+        <h2>Pour les systèmes GNU/Linux</h2>
+        <p>
+            Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
+        </p>
 </%def>
