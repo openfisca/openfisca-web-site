@@ -141,7 +141,7 @@ Contribuer à OpenFisca
 	    <a href="https://github.com/openfisca/openfisca-tunisia"> Tunisie </a> 
 	    <a href="https://github.com/openfisca/openfisca-tunisia-pension">
 	    et les pensions tunisiennes </a>.
-	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfiscahttps://github.com/blaquans/ropenfisca"> R</a>.	     
+	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca> R</a>.	     
 	   </ul>
         </p>
 
