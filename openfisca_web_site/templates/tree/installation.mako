@@ -32,9 +32,12 @@ from openfisca_web_site import conf, urls
 
 <%inherit file="/page.mako"/>
 
+<div class="col-md-9">
+
 <%def name="body_attributes()" filter="trim">
 data-spy="scroll" data-target="#sommaire"
 </%def>
+
 
 <%def name="h1_content()" filter="trim">
 Installation d'OpenFisca
@@ -42,63 +45,62 @@ Installation d'OpenFisca
 
 
 <%def name="page_content()" filter="trim">
-<div class="row">
 
 
 ##Installation Debian GNU/Linux
 
 
-    <div class="col-md-9" role="main">
+<div role="main col-md-9">
     <h2 id="gnu-linux">Installation sous  <strong>Debian GNU/Linux</strong></h2>
     <h3 id="noyau-gnu-linux">Installation du noyau d'OpenFisca</h3>
     <ul>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
-            <pre># apt-get install gettext
-# apt-get install git
-# apt-get install python-babel
-# apt-get install python-dateutil
-# apt-get install python-isodate
-# apt-get install python-pandas
-# apt-get install python-pastescript
-# apt-get install python-pymongo
-# apt-get install python-setuptools
-# apt-get install python-scipy
-# apt-get install python-requests
-# apt-get install python-weberror</pre></li>
+            <pre>sudo apt-get install gettext
+sudo apt-get install git
+sudo apt-get install python-babel
+sudo apt-get install python-dateutil
+sudo apt-get install python-isodate
+sudo apt-get install python-pandas
+sudo apt-get install python-pastescript
+sudo apt-get install python-pymongo
+sudo apt-get install python-setuptools
+sudo apt-get install python-scipy
+sudo apt-get install python-requests
+sudo apt-get install python-weberror</pre></li>
     </ul>
     <h4 id="ensuite-gnu-linux">Oui, mais ensuite ?</h4>
     <ul>
         <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :</li>
-            <pre>$ cd Documents
-$ mkdir openfisca
-$ cd openfisca</pre>
+            <pre>cd Documents
+mkdir openfisca
+cd openfisca</pre>
         <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
-            <pre>$ git clone https://github.com/etalab/biryani.git
-$ git clone http://github.com/openfisca/openfisca-core.git
-$ git clone http://github.com/openfisca/openfisca-france.git</pre>
+            <pre>git clone https://github.com/etalab/biryani.git
+git clone http://github.com/openfisca/openfisca-core.git
+git clone http://github.com/openfisca/openfisca-france.git</pre>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
-            <pre>$ cd biryani
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd openfisca-core
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd ../openfisca-france
-# python setup.py develop --no-deps</pre>
+            <pre>cd biryani
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd openfisca-core
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd ../openfisca-france
+sudo python setup.py develop --no-deps</pre>
     </ul>
     <h3 id="install-gnu-linux">Installation de l'API Web d'OpenFisca</h3>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ cd ../openfisca-web-api
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps</pre>
+            <pre>cd ../openfisca-web-api
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps</pre>
     </ul>
     <h4 id="serveur-gnu-linux">Lancer le serveur</h4>
     <ul>
         <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>$ paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development.ini</pre>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
     </ul>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
@@ -110,35 +112,35 @@ $ python setup.py compile_catalog
     <h3 id="install-ui-gnu-linux">Installation de l'Interface Utilisateur <small>(non indispensable pour faire tourner l'API Web)</small></h3>
     <ul>
         <li>Pour installer l'UI, il faut ouvrir un nouvel onglet (<kbd>ctrl + shift + T</kbd>), aller dans son dossier openfisca et installer les paquets essentiels :
-            <pre>$ cd Documents/openfisca
-# apt-get install python-formencode
-# apt-get install nodejs-legacy
-# apt-get install npm
-$ npm install -g bower
-$ git clone https://git.gitorious.org/korma/korma.git@dev
-$ cd korma.git@dev
-# python setup.py develop --no-deps
-$ cd ../
-$ git clone https://github.com/openfisca/openfisca-web-ui.git
-$ cd openfisca-web-ui
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps</pre></li>
+            <pre>cd Documents/openfisca
+sudo apt-get install python-formencode
+sudo apt-get install nodejs-legacy
+sudo apt-get install npm
+npm install -g bower
+git clone https://git.gitorious.org/korma/korma.git@dev
+cd korma.git@dev
+sudo python setup.py develop --no-deps
+cd ../
+git clone https://github.com/openfisca/openfisca-web-ui.git
+cd openfisca-web-ui
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps</pre></li>
         <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>$ cd Documents/openfisca/openfisca-web-ui
-$ bower install</pre>
+            <pre>cd Documents/openfisca/openfisca-web-ui
+bower install</pre>
         </li>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :</p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
-            <pre>$ cd Documents/openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Documents/openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Enusite, dans un deuxième onglet, lancer MongoDB (ici installé dans le dossier openfisca) :
-            <pre># service mongodb start</pre></li>
+            <pre>sudo service mongodb start</pre></li>
         <li>Enfin, dans un troisième onglet, lancer le serveur de l'Interface utilisateur :
-            <pre>$ cd Documents/openfisca/openfisca-web-ui
-$ ./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Documents/openfisca/openfisca-web-ui
+./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="interface-linux">Ouvrir l'interface</h4>
     <ul>
@@ -147,21 +149,21 @@ $ paster serve --reload development.ini</pre></li>
     <h3 id="install-site-gnu-linux">Installation du site OpenFisca</h3>
     <ul>
         <li>Pour installer le site, il faut ouvrir un nouvel onglet (<kbd>ctrl + shift + T</kbd>), aller dans son dossier openfisca et installer les fichiers git :
-            <pre>$ cd Documents/openfisca
-$ git clone https://github.com/openfisca/openfisca-web-site.git
-$ cd openfisca-web-site
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ bower install</pre>
+            <pre>cd Documents/openfisca
+git clone https://github.com/openfisca/openfisca-web-site.git
+cd openfisca-web-site
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+bower install</pre>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
-            <pre>$ cd Documents/openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Documents/openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Ensuite, dans un deuxième onglet, lancer le serveur du site :
-            <pre>$ cd Documents/openfisca/openfisca-web-site
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Documents/openfisca/openfisca-web-site
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="site-linux">Ouvrir le site</h4>
     <ul>
@@ -184,21 +186,21 @@ $ paster serve --reload development.ini</pre></li>
     <ul>
         <li>Tout d'abord, il faut ouvrir la commande Windows, le plus simple étant de faire la touche <kbd>Windows + R</kbd>, de taper <kbd>cmd</kbd> puis ok.
         </li><li>Si vous voulez mettre vos fichiers sur le bureau, effectuer les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :</li>
-            <pre>$ cd Desktop
-$ mkdir openfisca
-$ cd openfisca</pre>
+            <pre>cd Desktop
+mkdir openfisca
+cd openfisca</pre>
         <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-core.git
-$ git clone http://github.com/openfisca/openfisca-france.git
-$ git clone https://github.com/etalab/biryani.git</pre>
+            <pre>git clone http://github.com/openfisca/openfisca-core.git
+git clone http://github.com/openfisca/openfisca-france.git
+git clone https://github.com/etalab/biryani.git</pre>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
-            <pre>$ pip install python gettext
-$ pip install PasteScript
-$ cd openfisca-core
-$ python setup.py compile_catalog
-$ python setup.py install
-$ cd ../openfisca-france
-$ python setup.py install</pre>
+            <pre>pip install python gettext
+pip install PasteScript
+cd openfisca-core
+python setup.py compile_catalog
+python setup.py install
+cd ../openfisca-france
+python setup.py install</pre>
     </ul>
 
 
@@ -206,18 +208,18 @@ $ python setup.py install</pre>
     <h3 id="install-windows">Installation de l'API Web d'OpenFisca</h3>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ cd ../openfisca-web-api
-$ python setup.py compile_catalog
-$ python setup.py install</pre>
+            <pre>cd ../openfisca-web-api
+python setup.py compile_catalog
+python setup.py install</pre>
     </ul>
     <h4 id="serveur-windows">Lancer le serveur</h4>
     <ul>
         <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>$ paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development.ini</pre>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
     </ul>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
@@ -229,37 +231,37 @@ $ python setup.py install</pre>
     <h3 id="install-ui-windows">Installation de l'Interface Utilisateur <small>(non indispensable pour faire tourner l'API Web)</small></h3>
     <ul>
         <li>Pour installer l'UI, il faut ouvrir une nouvelle commande (<kbd>Windows + R</kbd> -&gt; <kbd>cmd</kbd> -&gt; OK) et aller dans son dossier openfisca :
-            <pre>$ cd Desktop/openfisca
-$ git clone https://git.gitorious.org/korma/korma.git@dev
-$ cd korma.git@dev
-$ python setup.py install
-$ cd ../
-$ git clone https://github.com/openfisca/openfisca-web-ui.git
-$ cd openfisca-web-ui
-$ python setup.py compile_catalog
-$ python setup.py install
-$ pip install FormEncode</pre></li>
+            <pre>cd Desktop/openfisca
+git clone https://git.gitorious.org/korma/korma.git@dev
+cd korma.git@dev
+python setup.py install
+cd ../
+git clone https://github.com/openfisca/openfisca-web-ui.git
+cd openfisca-web-ui
+python setup.py compile_catalog
+python setup.py install
+pip install FormEncode</pre></li>
         <li>Télécharger ensuite <a href="http://nodejs.org/download/">nodejs</a> et executer le .exe</li>
         <li> une fois l'installation terminée, il faut télécharger <a href="https://www.mongodb.org/downloads">MongoDB</a> et l'installer</li>
         <li>Vous aurez surement besoin de redémmarer votre machine afin de prendre certains paramètres en compte</li>
         <li>installer bower :
-            <pre>$ npm install -g bower</pre></li>
+            <pre>npm install -g bower</pre></li>
         <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>$ cd Desktop/openfisca/openfisca-web-ui
-$ bower install</pre></li>
+            <pre>cd Desktop/openfisca/openfisca-web-ui
+bower install</pre></li>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :</p>
     <ul>
         <li>Tout d'abord, dans une première console, lancer l'API :
-            <pre>$ cd Desktop/openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Desktop/openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Enusite, dans une deuxième console, lancer MongoDB (ici installé dans le dossier openfisca) :
-            <pre>$ cd Desktop/openfisca/mongodb/bin
-$ mongod.exe</pre></li>
+            <pre>cd Desktop/openfisca/mongodb/bin
+mongod.exe</pre></li>
         <li>Enfin, dans une troisième console, lancer le serveur de l'Interface utilisateur :
-            <pre>$ cd Desktop/openfisca/openfisca-web-ui
-$ ./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Desktop/openfisca/openfisca-web-ui
+./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="interface-windows">Ouvrir l'interface</h4>
     <ul>
@@ -268,21 +270,21 @@ $ paster serve --reload development.ini</pre></li>
     <h3 id="install-site-Windows">Installation du site OpenFisca</h3>
     <ul>
         <li>Pour installer le site, il faut ouvrir une nouvelle commande (<kbd>Windows + R</kbd> -&gt; <kbd>cmd</kbd> -&gt; OK), aller dans son dossier openfisca et installer les fichiers git :
-            <pre>$ cd Desktop/openfisca
-$ git clone https://github.com/openfisca/openfisca-web-site.git
-$ cd openfisca-web-site
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ bower install</pre>
+            <pre>cd Desktop/openfisca
+git clone https://github.com/openfisca/openfisca-web-site.git
+cd openfisca-web-site
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+bower install</pre>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
         <li>Tout d'abord, dans une premiere console, lancer l'API :
-            <pre>$ cd Desktop/openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Desktop/openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Ensuite, dans une deuxième console, lancer le serveur du site :
-            <pre>$ cd Desktop/openfisca/openfisca-web-site
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd Desktop/openfisca/openfisca-web-site
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="site-windows">Ouvrir le site</h4>
     <ul>
@@ -294,61 +296,61 @@ $ paster serve --reload development.ini</pre></li>
 ##Installation Mac
 
 
-    <h2 id="mac">Installation sous <strong>Mac</strong></h2>
+    <h2 id="mac">Installation sous <strong>Mac OS</strong></h2>
     <h3 id="noyau-mac">Installation du noyau d'OpenFisca</h3>
     <ul>
         <li>Installer <a href="http://brew.sh/index_fr.html">Homebrew</a></li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
-            <pre># brew install gfortran
-# brew install nodejs
-# brew install mongodb
-# brew install pip
-# brew install git
-# pip install python-gettext
-# pip install python-babel
-# pip install python-dateutil
-# pip install python-isodate
-# pip install python-pandas
-# pip install python-pastescript
-# pip install python-pymongo
-# pip install python-setuptools
-# pip install python-scipy
-# pip install python-numpy
-# pip install python-requests
-# pip isntall python-weberror</pre></li>
+            <pre>sudo brew install git
+sudo brew install gfortran
+sudo brew install mongodb
+sudo brew install nodejs
+sudo pip install babel
+sudo pip install isodate
+sudo pip install pandas
+sudo pip install pastescript
+sudo pip install pymongo
+sudo pip install python-dateutil
+sudo pip install python-gettext
+sudo pip install python-magic
+sudo pip install python-setuptools
+sudo pip install scipy
+sudo pip install numpy
+sudo pip install requests
+sudo pip isntall weberror</pre></li>
     </ul>
     <h4 id="ensuite-gnu-mac">Oui, mais ensuite ?</h4>
     <ul>
         <li>Si vous voulez mettre vos fichiers a la racine, effectuer les commandes suivantes dans le terminal :</li>
-            <pre>$ mkdir openfisca
-$ cd openfisca</pre>
+            <pre>mkdir openfisca
+cd openfisca</pre>
         <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
-            <pre>$ git clone https://github.com/etalab/biryani.git
-$ git clone http://github.com/openfisca/openfisca-core.git
-$ git clone http://github.com/openfisca/openfisca-france.git</pre>
+            <pre>git clone https://github.com/etalab/biryani.git
+git clone http://github.com/openfisca/openfisca-core.git
+git clone http://github.com/openfisca/openfisca-france.git</pre>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
-            <pre>$ cd biryani
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd openfisca-core
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd ../openfisca-france
-# python setup.py develop --no-deps</pre>
+            <pre>cd biryani
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd openfisca-core
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd ../openfisca-france
+sudo python setup.py develop --no-deps</pre>
     </ul>
     <h3 id="install-mac">Installation de l'API Web d'OpenFisca</h3>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ cd ../openfisca-web-api
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps</pre>
+            <pre>cd ../openfisca-web-api
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps</pre>
     </ul>
     <h4 id="serveur-mac">Lancer le serveur</h4>
     <ul>
         <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>$ paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development.ini</pre>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
     </ul>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
@@ -360,35 +362,35 @@ $ python setup.py compile_catalog
     <h3 id="install-ui-mac">Installation de l'Interface Utilisateur <small>(non indispensable pour faire tourner l'API Web)</small></h3>
     <ul>
         <li>Pour installer l'UI, il faut ouvrir un nouvel onglet (<kbd>ctrl + shift + T</kbd>), aller dans son dossier openfisca et installer les paquets essentiels :
-            <pre>$ cd /openfisca
-# pip install python-formencode
-# pip install nodejs-legacy
-# pip install npm
-$ npm install -g bower
-$ git clone https://git.gitorious.org/korma/korma.git@dev
-$ cd korma.git@dev
-# python setup.py develop --no-deps
-$ cd ../
-$ git clone https://github.com/openfisca/openfisca-web-ui.git
-$ cd openfisca-web-ui
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps</pre></li>
+            <pre>cd /openfisca
+sudo pip install python-formencode
+sudo pip install nodejs-legacy
+sudo pip install npm
+npm install -g bower
+git clone https://git.gitorious.org/korma/korma.git@dev
+cd korma.git@dev
+sudo python setup.py develop --no-deps
+cd ../
+git clone https://github.com/openfisca/openfisca-web-ui.git
+cd openfisca-web-ui
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps</pre></li>
         <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>$ cd /openfisca/openfisca-web-ui
-$ bower install</pre>
+            <pre>cd /openfisca/openfisca-web-ui
+bower install</pre>
         </li>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :</p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
-            <pre>$ cd /openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd /openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Enusite, dans un deuxième onglet, lancer MongoDB (ici installé dans le dossier openfisca) :
-            <pre>$ mongod</pre></li>
+            <pre>mongod</pre></li>
         <li>Enfin, dans un troisième onglet, lancer le serveur de l'Interface utilisateur :
-            <pre>$ cd /openfisca/openfisca-web-ui
-$ ./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd /openfisca/openfisca-web-ui
+./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="interface-mac">Ouvrir l'interface</h4>
     <ul>
@@ -397,21 +399,21 @@ $ paster serve --reload development.ini</pre></li>
     <h3 id="install-site-mac">Installation du site OpenFisca</h3>
     <ul>
         <li>Pour installer le site, il faut ouvrir un nouvel onglet (<kbd>ctrl + shift + T</kbd>), aller dans son dossier openfisca et installer les fichiers git :
-            <pre>$ cd /openfisca
-$ git clone https://github.com/openfisca/openfisca-web-site.git
-$ cd openfisca-web-site
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ bower install</pre>
+            <pre>cd /openfisca
+git clone https://github.com/openfisca/openfisca-web-site.git
+cd openfisca-web-site
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+bower install</pre>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
-            <pre>$ cd /openfisca/openfisca-web-api
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd /openfisca/openfisca-web-api
+paster serve --reload development.ini</pre></li>
         <li>Ensuite, dans un deuxième onglet, lancer le serveur du site :
-            <pre>$ cd /openfisca/openfisca-web-site
-$ paster serve --reload development.ini</pre></li>
+            <pre>cd /openfisca/openfisca-web-site
+paster serve --reload development.ini</pre></li>
     </ul>
     <h4 id="site-mac">Ouvrir le site</h4>
     <ul>
@@ -453,8 +455,10 @@ $ paster serve --reload development.ini</pre></li>
             Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
         </p>
     </div>
-    <div class="col-md-3 hidden-print sidebar affix-top bs-docs-sidebar" id="sommaire" role="complementary">
-        <ul class="nav sidenav" data-offset-top="60" data-spy="affix">
+</div>
+<div class="col-md-3" id="sommaire" role="complementary">
+    <div class=" hidden-print sidebar affix bs-docs-sidebar" data-offset-top="20">
+        <ul class="nav sidenav">
             <li>
                 <a href="#gnu-linux">Installation Debian GNU/Linux</a>
                 <ul class="nav">
@@ -476,7 +480,7 @@ $ paster serve --reload development.ini</pre></li>
             </li>
             <li>
                 <li>
-                <a href="#mac">Installation Mac</a>
+                <a href="#mac">Installation Mac OS</a>
                 <ul class="nav">
                     <li><a href="#noyau-mac">Noyau OpenFisca</a></li>
                     <li><a href="#install-mac">API Web OpenFisca</a></li>

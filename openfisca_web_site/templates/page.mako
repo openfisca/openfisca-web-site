@@ -40,7 +40,6 @@
             <li class="active">${node.title}</li>
 </%def>
 
-
 <%def name="h1_content()" filter="trim">
 ${node.title}
 </%def>
