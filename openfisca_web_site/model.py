@@ -139,7 +139,7 @@ class AbstractNode(objects.Initable):
             article_elements = html_element.xpath('.//article')
             if len(article_elements) == 0:
                 body_content_elements = html_element.xpath(
-                    'body/div[@class="container-fluid"]/div[@class="row-fluid"]')
+                    'body/div[@class="container"]/div[@class="row"]')
                 if body_content_elements:
                     body_content_element = body_content_elements[0]
                     for breadcrumb_element in body_content_element.xpath('*[@class="breadcrumb"]'):
