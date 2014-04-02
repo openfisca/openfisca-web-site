@@ -30,13 +30,7 @@ from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/page.mako"/>
-
-<div class="col-md-9">
-
-<%def name="body_attributes()" filter="trim">
-data-spy="scroll" data-target="#sommaire"
-</%def>
+<%inherit file="/page-avec-nav.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
@@ -50,7 +44,7 @@ Installation d'OpenFisca
 ##Installation Debian GNU/Linux
 
 
-<div role="main col-md-9">
+<div role="main">
     <h2 id="gnu-linux">Installation sous  <strong>Debian GNU/Linux</strong></h2>
     <h3 id="noyau-gnu-linux">Installation du noyau d'OpenFisca</h3>
     <ul>
@@ -70,15 +64,15 @@ sudo apt-get install python-weberror</pre></li>
     </ul>
     <h4 id="ensuite-gnu-linux">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :</li>
+        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :
             <pre>cd Documents
 mkdir openfisca
-cd openfisca</pre>
-        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
+cd openfisca</pre></li>
+        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :
             <pre>git clone https://github.com/etalab/biryani.git
 git clone http://github.com/openfisca/openfisca-core.git
-git clone http://github.com/openfisca/openfisca-france.git</pre>
-        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
+git clone http://github.com/openfisca/openfisca-france.git</pre></li>
+        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
             <pre>cd biryani
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
@@ -86,21 +80,21 @@ cd openfisca-core
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 cd ../openfisca-france
-sudo python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre></li>
     </ul>
     <h3 id="install-gnu-linux">Installation de l'API Web d'OpenFisca</h3>
     <ul>
-        <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
+        <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre></li>
+        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
             <pre>cd ../openfisca-web-api
 python setup.py compile_catalog
-sudo python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre></li>
     </ul>
     <h4 id="serveur-gnu-linux">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>paster serve --reload development.ini</pre>
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+            <pre>paster serve --reload development.ini</pre></li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
     </ul>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
@@ -185,22 +179,22 @@ paster serve --reload development.ini</pre></li>
     <h4 id="ensuite-windows">Oui, mais ensuite ?</h4>
     <ul>
         <li>Tout d'abord, il faut ouvrir la commande Windows, le plus simple étant de faire la touche <kbd>Windows + R</kbd>, de taper <kbd>cmd</kbd> puis ok.
-        </li><li>Si vous voulez mettre vos fichiers sur le bureau, effectuer les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :</li>
+        </li><li>Si vous voulez mettre vos fichiers sur le bureau, effectuer les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :
             <pre>cd Desktop
 mkdir openfisca
-cd openfisca</pre>
-        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
+cd openfisca</pre></li>
+        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :
             <pre>git clone http://github.com/openfisca/openfisca-core.git
 git clone http://github.com/openfisca/openfisca-france.git
-git clone https://github.com/etalab/biryani.git</pre>
-        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
+git clone https://github.com/etalab/biryani.git</pre></li>
+        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
             <pre>pip install python gettext
 pip install PasteScript
 cd openfisca-core
 python setup.py compile_catalog
 python setup.py install
 cd ../openfisca-france
-python setup.py install</pre>
+python setup.py install</pre></li>
     </ul>
 
 
@@ -321,14 +315,14 @@ sudo pip isntall weberror</pre></li>
     </ul>
     <h4 id="ensuite-gnu-mac">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers a la racine, effectuer les commandes suivantes dans le terminal :</li>
+        <li>Si vous voulez mettre vos fichiers a la racine, effectuer les commandes suivantes dans le terminal :
             <pre>mkdir openfisca
-cd openfisca</pre>
-        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
+cd openfisca</pre></li>
+        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :
             <pre>git clone https://github.com/etalab/biryani.git
 git clone http://github.com/openfisca/openfisca-core.git
-git clone http://github.com/openfisca/openfisca-france.git</pre>
-        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
+git clone http://github.com/openfisca/openfisca-france.git</pre></li>
+        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
             <pre>cd biryani
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
@@ -336,21 +330,21 @@ cd openfisca-core
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 cd ../openfisca-france
-sudo python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre></li>
     </ul>
     <h3 id="install-mac">Installation de l'API Web d'OpenFisca</h3>
     <ul>
-        <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
+        <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
+            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre></li>
+        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
             <pre>cd ../openfisca-web-api
 python setup.py compile_catalog
-sudo python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre></li>
     </ul>
     <h4 id="serveur-mac">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>paster serve --reload development.ini</pre>
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+            <pre>paster serve --reload development.ini</pre></li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
     </ul>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
@@ -404,7 +398,7 @@ git clone https://github.com/openfisca/openfisca-web-site.git
 cd openfisca-web-site
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
-bower install</pre>
+bower install</pre></li>
     </ul>
     <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
@@ -455,10 +449,10 @@ paster serve --reload development.ini</pre></li>
             Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
         </p>
     </div>
-</div>
-<div class="col-md-3" id="sommaire" role="complementary">
-    <div class=" hidden-print sidebar affix bs-docs-sidebar" data-offset-top="20">
-        <ul class="nav sidenav">
+</%def>
+
+
+<%def name="nav_content()" filter="trim">
             <li>
                 <a href="#gnu-linux">Installation Debian GNU/Linux</a>
                 <ul class="nav">
@@ -492,7 +486,4 @@ paster serve --reload development.ini</pre></li>
             <li>
                 <li><a href="#version-initiale">Version initiale</a></li>
             </li>
-        </ul>
-    </div>
-</div>
 </%def>

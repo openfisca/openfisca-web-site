@@ -42,7 +42,7 @@ from openfisca_web_site import conf, urls
 
 <%def name="body_content()" filter="trim">
     <div class="container">
-        <div class="row col-md-9">
+        <div class="row">
             <%self:breadcrumb/>
             <%self:container_content/>
         </div>
@@ -158,7 +158,9 @@ ${conf['realm']}
 
 
 <%def name="page_header()" filter="trim">
-    <h1><%self:h1_content/></h1>
+    <div class="page-header">
+        <h1><%self:h1_content/></h1>
+    </div>
 </%def>
 
 

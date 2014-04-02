@@ -41,6 +41,33 @@
 </%def>
 
 
+<%def name="body_content()" filter="trim">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <%self:breadcrumb/>
+                <%self:container_content/>
+            </div>
+            <div class="col-md-3">
+                <div id="sommaire" role="complementary">
+                    <div class="hidden-print sidebar affix bs-docs-sidebar" data-offset-top="20">
+                        <ul class="nav sidenav">
+                            <%self:nav_content/>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%self:footer/>
+</%def>
+
+
+<%def name="body_attributes()" filter="trim">
+data-spy="scroll" data-target="#sommaire"
+</%def>
+
+
 <%def name="h1_content()" filter="trim">
 ${node.title}
 </%def>
