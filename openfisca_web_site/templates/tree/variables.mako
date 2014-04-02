@@ -33,7 +33,7 @@ from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/page.mako"/>
+<%inherit file="/page-avec-nav.mako"/>
 
 
 <%def name="body_attributes()" filter="trim">
@@ -191,9 +191,10 @@ Variables socio-fiscales
     % endfor
         </ul>
     </div>
+</%def>
 
-    <div class="col-md-3 hidden-print sidebar" id="sommaire" role="complementary">
-        <ul class="nav sidenav" data-offset-top="60" data-spy="affix">
+
+<%def name="nav_content()" filter="trim">
             <li>
                 <a href="#variables-en-entree">Variables en entrée</a>
                 <ul class="nav">
@@ -214,6 +215,4 @@ Variables socio-fiscales
                     </ul>
                 </li>
             </li>
-        </ul>
-    </div>
 </%def>
