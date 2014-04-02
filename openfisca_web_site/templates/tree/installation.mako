@@ -80,18 +80,19 @@ $ git clone http://github.com/openfisca/openfisca-france.git</pre>
             <pre>$ cd biryani
 $ python setup.py compile_catalog
 # python setup.py develop --no-deps
-$ cd openfisca-core
+$ cd ../openfisca-core
 $ python setup.py compile_catalog
 # python setup.py develop --no-deps
 $ cd ../openfisca-france
-# python setup.py develop --no-deps</pre>
+# python setup.py develop --no-deps
+$ cd ..</pre>
     </ul>
     <h3 id="install-gnu-linux">Installation de l'API Web d'OpenFisca</h3>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
             <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ cd ../openfisca-web-api
+            <pre>$ cd openfisca-web-api
 $ python setup.py compile_catalog
 # python setup.py develop --no-deps</pre>
     </ul>
