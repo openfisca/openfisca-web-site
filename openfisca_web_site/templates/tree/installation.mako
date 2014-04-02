@@ -65,40 +65,22 @@ sudo apt-get install python-weberror</pre>
     </ul>
     <h4 id="ensuite-gnu-linux">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :</li>
-            <pre>$ cd Documents
-$ mkdir openfisca
-$ cd openfisca</pre>
-        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :</li>
-            <pre>$ git clone https://github.com/etalab/biryani.git
-$ git clone http://github.com/openfisca/openfisca-core.git
-$ git clone http://github.com/openfisca/openfisca-france.git</pre>
-        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :</li>
-            <pre>$ cd biryani
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd ../openfisca-core
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps
-$ cd ../openfisca-france
-# python setup.py develop --no-deps
-$ cd ..</pre>
-    </ul>
-    <h3 id="install-gnu-linux">Installation de l'API Web d'OpenFisca</h3>
-    <ul>
-        <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :</li>
-            <pre>$ git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :</li>
-            <pre>$ cd openfisca-web-api
-$ python setup.py compile_catalog
-# python setup.py develop --no-deps</pre>
-    </ul>
-    <h4 id="serveur-gnu-linux">Lancer le serveur</h4>
-    <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :</li>
-            <pre>$ paster serve --reload development.ini</pre>
-        <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd></li>
-    </ul>
+        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :
+            <pre>cd Documents
+mkdir openfisca
+cd openfisca</pre>
+        </li>
+        <li>Pour cloner les fichiers openfisca sur votre machine, effectuez les 3 commandes suivantes :
+            <pre>git clone https://github.com/etalab/biryani.git
+git clone http://github.com/openfisca/openfisca-core.git
+git clone http://github.com/openfisca/openfisca-france.git</pre>
+        </li>
+        <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
+            <pre>cd biryani
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd openfisca-core
+python setup.py co
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
