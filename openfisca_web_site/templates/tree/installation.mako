@@ -46,6 +46,7 @@ Installation d'OpenFisca
 
 <div role="main">
     <h2 id="gnu-linux">Installation sous  <strong>Debian GNU/Linux</strong></h2>
+    <div class="alert alert-danger"><strong>Attention :</strong> cette installation est valable pour les versions testing et unstable de Debian</div>
     <h3 id="noyau-gnu-linux">Installation du noyau d'OpenFisca</h3>
     <ul>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
@@ -65,7 +66,7 @@ sudo apt-get install python-weberror</pre>
     </ul>
     <h4 id="ensuite-gnu-linux">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuer les commandes suivantes dans le terminal :
+        <li>Si vous voulez mettre vos fichiers dans "Documents", effectuez les commandes suivantes dans le terminal :
             <pre>cd Documents
 mkdir openfisca
 cd openfisca</pre>
@@ -84,7 +85,7 @@ python setup.py install
 cd ../openfisca-france
 python setup.py install</pre>
         </li>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -112,7 +113,7 @@ sudo python setup.py develop --no-deps</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -143,7 +144,7 @@ python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 bower install</pre>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -180,7 +181,7 @@ paster serve --reload development.ini</pre>
     <ul>
         <li>Tout d'abord, il faut ouvrir la commande Windows, le plus simple étant de faire la touche <kbd>Windows + R</kbd>, de taper <kbd>cmd</kbd> puis ok.
         </li>
-        <li>Si vous voulez mettre vos fichiers sur le bureau, effectuer les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :
+        <li>Si vous voulez mettre vos fichiers sur le bureau, effectuez les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :
             <pre>cd Desktop
 mkdir openfisca
 cd openfisca</pre>
@@ -219,13 +220,13 @@ python setup.py install</pre>
     </ul>
     <h4 id="serveur-windows">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api") lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -256,7 +257,7 @@ pip install FormEncode</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans une première console, lancer l'API :
@@ -289,7 +290,7 @@ sudo python setup.py develop --no-deps
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
         <li>Tout d'abord, dans une premiere console, lancer l'API :
             <pre>cd Desktop/openfisca/openfisca-web-api
@@ -338,7 +339,7 @@ sudo pip isntall weberror</pre>
     </ul>
     <h4 id="ensuite-gnu-mac">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers a la racine, effectuer les commandes suivantes dans le terminal :
+        <li>Si vous voulez mettre vos fichiers a la racine, effectuez les commandes suivantes dans le terminal :
             <pre>mkdir openfisca
 cd openfisca</pre>
         </li>
@@ -371,13 +372,13 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
     <h4 id="serveur-mac">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api") lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -405,7 +406,7 @@ sudo python setup.py develop --no-deps</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -437,7 +438,7 @@ sudo python setup.py develop --no-deps
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -542,13 +543,13 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
     <h4 id="serveur-gnu-linux">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api") lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -576,7 +577,7 @@ sudo python setup.py develop --no-deps</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -607,7 +608,7 @@ python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 bower install</pre>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -644,7 +645,7 @@ paster serve --reload development.ini</pre>
     <ul>
         <li>Tout d'abord, il faut ouvrir la commande Windows, le plus simple étant de faire la touche <kbd>Windows + R</kbd>, de taper <kbd>cmd</kbd> puis ok.
         </li>
-        <li>Si vous voulez mettre vos fichiers sur le bureau, effectuer les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :
+        <li>Si vous voulez mettre vos fichiers sur le bureau, effectuez les commandes suivantes dans la <abbr title="windows command prompt">CMD</abbr> :
             <pre>cd Desktop
 mkdir openfisca
 cd openfisca</pre>
@@ -683,13 +684,13 @@ python setup.py install</pre>
     </ul>
     <h4 id="serveur-windows">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api") lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -720,7 +721,7 @@ pip install FormEncode</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans une première console, lancer l'API :
@@ -753,7 +754,7 @@ sudo python setup.py develop --no-deps
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :</p>
     <ul>
         <li>Tout d'abord, dans une premiere console, lancer l'API :
             <pre>cd Desktop/openfisca/openfisca-web-api
@@ -802,7 +803,7 @@ sudo pip isntall weberror</pre>
     </ul>
     <h4 id="ensuite-gnu-mac">Oui, mais ensuite ?</h4>
     <ul>
-        <li>Si vous voulez mettre vos fichiers a la racine, effectuer les commandes suivantes dans le terminal :
+        <li>Si vous voulez mettre vos fichiers a la racine, effectuez les commandes suivantes dans le terminal :
             <pre>mkdir openfisca
 cd openfisca</pre>
         </li>
@@ -835,13 +836,13 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
     <h4 id="serveur-mac">Lancer le serveur</h4>
     <ul>
-        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api" lancer la commande suivante :
+        <li>Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez dans le dossier "openfisca-web-api") lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
-    <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
+    <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
             <li>http://api.openfisca.fr/api/1/default-legislation  --&gt;  http://localhost:2014/api/1/default-legislation</li>
@@ -869,7 +870,7 @@ sudo python setup.py develop --no-deps</pre>
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api et MongoDB dans des consoles différentes :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
@@ -901,7 +902,7 @@ sudo python setup.py develop --no-deps
 bower install</pre>
         </li>
     </ul>
-    <p class="alert alert-danger">ATTENTION : pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
+    <p class="alert alert-danger"><strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de l'api dans une console différente :
     </p>
     <ul>
         <li>Tout d'abord, dans un premier onglet, lancer l'API :
