@@ -26,6 +26,10 @@
 <%inherit file="/page.mako"/>
 
 
+<%def name="body_attributes()" filter="trim">
+data-spy="scroll" data-target="#sommaire"
+</%def>
+
 <%def name="body_content()" filter="trim">
     <div class="container">
         <div class="row">
@@ -46,5 +50,3 @@
     </div>
     <%self:footer/>
 </%def>
-
-
