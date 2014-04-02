@@ -76,11 +76,14 @@ git clone http://github.com/openfisca/openfisca-core.git
 git clone http://github.com/openfisca/openfisca-france.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>cd biryani
-python setup.py compile_catalog
-sudo python setup.py develop --no-deps
+            <pre>pip install python gettext
+pip install PasteScript
 cd openfisca-core
-python setup.py co
+python setup.py compile_catalog
+python setup.py install
+cd ../openfisca-france
+python setup.py install</pre>
+        </li>
     <div class="alert alert-danger">ATTENTION : pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>http://api.openfisca.fr/api/1/simulate  --&gt;  http://localhost:2014/api/1/simulate</li>
