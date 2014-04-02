@@ -26,11 +26,6 @@
 <%inherit file="/page.mako"/>
 
 
-<%def name="body_attributes()" filter="trim">
-data-spy="scroll" data-target="#sommaire"
-</%def>
-
-
 <%def name="h1_content()" filter="trim">
 Documentation
 </%def>
