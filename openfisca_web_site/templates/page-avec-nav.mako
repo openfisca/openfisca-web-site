@@ -23,22 +23,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/site.mako"/>
-
-
-<%def name="breadcrumb_content()" filter="trim">
-    % for ancestor in reversed(list(node.iter_ancestors(skip_self = True))):
-            <li>
-        % if ancestor.has_view:
-                <a href="${ancestor.url_path}">${ancestor.title}</a>
-        % else:
-                ${ancestor.title}
-        % endif
-            </li>
-        
-    % endfor
-            <li class="active">${node.title}</li>
-</%def>
+<%inherit file="/page.mako"/>
 
 
 <%def name="body_content()" filter="trim">
@@ -59,20 +44,7 @@
             </div>
         </div>
     </div>
-<%self:footer/>
+    <%self:footer/>
 </%def>
 
 
-<%def name="body_attributes()" filter="trim">
-data-spy="scroll" data-target="#sommaire"
-</%def>
-
-
-<%def name="h1_content()" filter="trim">
-${node.title}
-</%def>
-
-
-<%def name="title_content()" filter="trim">
-${node.title} &mdash; ${parent.title_content()}
-</%def>

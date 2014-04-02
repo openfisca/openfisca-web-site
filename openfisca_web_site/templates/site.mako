@@ -158,9 +158,9 @@ ${conf['realm']}
 
 
 <%def name="page_header()" filter="trim">
-    <div class="page-header">
-        <h1><%self:h1_content/></h1>
-    </div>
+        <div class="page-header">
+            <h1><%self:h1_content/></h1>
+        </div>
 </%def>
 
 
