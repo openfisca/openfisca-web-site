@@ -34,7 +34,7 @@ Documentation
 <%def name="page_content()" filter="trim">
         <ul>
             <li><a href="api">Utilisation de l'API</a></li>
-            <li><a href="variables">Formules socio-fiscales</a></li>
+            <li><a href="variables">Variables et formules socio-fiscales</a></li>
             <li><a href="installation">Installation sur votre PC</a></li>
             <li><a href="contribuer">Contribuer à OpenFisca</a></li>
         </ul>

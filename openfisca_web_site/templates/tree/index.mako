@@ -67,7 +67,7 @@ from openfisca_web_site import conf, urls
                             <a href="${urls.get_url(ctx, 'actualites')}" class="list-group-item">Actualités</a>
                             <a href="${urls.get_url(ctx, 'utilisations')}" class="list-group-item">Exemples d'utilisation</a>
                             <a href="${urls.get_url(ctx, 'api')}" class="list-group-item">API</a>
-                            <a href="${urls.get_url(ctx, 'variables')}" class="list-group-item">Formules socio-fiscales</a>
+                            <a href="${urls.get_url(ctx, 'variables')}" class="list-group-item">Variables et formules socio-fiscales</a>
                             <a href="${urls.get_url(ctx, 'installation')}" class="list-group-item">Installation</a>
                             <a href="https://github.com/openfisca" class="list-group-item">Code source</a>
                             <a href="${urls.get_url(ctx, 'a-propos')}#licence" class="list-group-item">Licence</a>
