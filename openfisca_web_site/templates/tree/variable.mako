@@ -51,9 +51,21 @@ ${' ' * indent}        <%self:formula_block_content formula="${alternative_formu
 ${' ' * indent}    </li>
         % endfor
 ${' ' * indent}</ul>
+    % elif type == 'DatedFormula':
+
+${' ' * indent}<h${heading_level}>Fonctions datées <small>(${type})</small></h${heading_level}>
+${' ' * indent}<ul>
+        % for dated_formula in formula['dated_formulas']:
+${' ' * indent}    <li>
+${' ' * indent}        <span class="lead">${dated_formula['start']} - ${dated_formula['end']}</span>
+${' ' * indent}        <%self:formula_block_content formula="${dated_formula['formula']}" heading_level="${
+                            heading_level + 1}" indent="${indent + 8}"/>
+${' ' * indent}    </li>
+        % endfor
+${' ' * indent}</ul>
     % else:
 <%
-        assert type == 'SimpleFormula'
+        assert type == 'SimpleFormula', type
         comments = formula.get('comments')
 #        doc = formula.get('doc')
         line_number = formula.get('line_number')
