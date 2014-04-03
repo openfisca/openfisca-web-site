@@ -42,7 +42,7 @@ data-spy="scroll" data-target="#sommaire"
 
 
 <%def name="h1_content()" filter="trim">
-Variables socio-fiscales
+Variables et formules socio-fiscales
 </%def>
 
 
@@ -127,7 +127,7 @@ Variables socio-fiscales
 
         <h2 id="variables-en-sortie">Variables en sortie</h2>
 
-        <h3 id="variables-en-sortie-individus">Variables en sortie pour les individus</h3>
+        <h3 id="variables-en-sortie-individus">Variables en sortie (formules) pour les individus</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -143,7 +143,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3 id="variables-en-sortie-familles">Variables en sortie pour les familles</h3>
+        <h3 id="variables-en-sortie-familles">Variables en sortie (formules) pour les familles</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -159,7 +159,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3 id="variables-en-sortie-foyers-fiscaux">Variables en sortie pour les foyers fiscaux</h3>
+        <h3 id="variables-en-sortie-foyers-fiscaux">Variables en sortie (formules) pour les foyers fiscaux</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -175,7 +175,7 @@ Variables socio-fiscales
     % endfor
         </ul>
 
-        <h3 id="variables-en-sortie-menages">Variables en sortie pour les ménages</h3>
+        <h3 id="variables-en-sortie-menages">Variables en sortie (formules) pour les ménages</h3>
         <ul>
     % for name, variable in response_json['prestations'].iteritems():
 <%
@@ -206,7 +206,7 @@ Variables socio-fiscales
             </li>
             <li>
                 <li>
-                    <a href="#variables-en-sortie">Variables en sortie</a>
+                    <a href="#variables-en-sortie">Formules</a>
                     <ul class="nav">
                         <li><a href="#variables-en-sortie-individus">Individus</a></li>
                         <li><a href="#variables-en-sortie-familles">Familles</a></li>

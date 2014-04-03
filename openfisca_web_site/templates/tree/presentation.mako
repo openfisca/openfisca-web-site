@@ -61,7 +61,7 @@ montant définitif des impôts et des cotisations à acquitter ou des
 prestations versées. En effet, votre situation familiale et/ou vos
 ressources ou celles de l’un des membres de votre famille peuvent
 changer ou ne pas avoir été prises en compte lors de la simulation et
-certaines hypothèses simplificatrices ont été effectuées. </p>
+certaines hypothèses simplificatrices ont été effectuées.</p>
             </div>
         </div>
 
