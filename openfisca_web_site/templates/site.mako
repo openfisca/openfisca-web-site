@@ -168,10 +168,10 @@ ${conf['realm']}
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.strategie.gouv.fr/">
+                    <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
                         <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="logos-partenaires/logo-cgsp.png"></img>
                     </a>
-                    <a href="http://www.strategie.gouv.fr/">
+                    <a href="http://www.strategie.gouv.fr/" target="_blank">
                         <h4>Commissariat général à la stratégie et à la prospective</h4>
                     </a>
                     <p>
@@ -191,22 +191,22 @@ ${conf['realm']}
                     </ul>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.etalab.gouv.fr/">
+                    <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
                         <img alt="Logo d'Etalab" class="partner" src="logos-partenaires/logo-etalab.png"></img>
                     </a>
-                    <a href="http://www.etalab.gouv.fr/">
+                    <a href="http://www.etalab.gouv.fr/" target="_blank">
                         <h4>Etalab</h4>
                     </a>
                     <p>
                         Service du premier ministre chargé de l'ouverture des données publiques et du développement de
-                        la plateforme française Open Data <a href="http://data.gouv.fr">data.gouv.fr</a>
+                        la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
                     </p>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.idep-fr.org/">
+                    <a class="partner" href="http://www.idep-fr.org/" target="_blank">
                         <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="logos-partenaires/logo-idep.png"></img>
                     </a>
-                    <a href="http://www.idep-fr.org/">
+                    <a href="http://www.idep-fr.org/" target="_blank">
                         <h4>Institut d'économie publique</h4>
                     </a>
                     <p>
@@ -228,18 +228,18 @@ ${conf['realm']}
                     </ul>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.ipp.eu/">
+                    <a class="partner" href="http://www.ipp.eu/" target="_blank">
                         <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="logos-partenaires/logo-ipp.png"></img>
                     </a>
-                    <a href="http://www.ipp.eu/">
+                    <a href="http://www.ipp.eu/" target="_blank">
                         <h4>Institut des politiques publiques</h4>
                     </a>
                     <p>
                         L’Institut des politiques publiques (IPP) est développé dans le cadre d’un partenariat
                         scientifique entre
-                        <a href="http://www.parisschoolofeconomics.eu/"><abbr title="Paris School of Economics">PSE</abbr></a>
+                        <a href="http://www.parisschoolofeconomics.eu/" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
                         et le
-                        <a href="http://www.crest.fr/"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
+                        <a href="http://www.crest.fr/" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
                         L’IPP vise à promouvoir l’analyse et l’évaluation  quantitatives des politiques publiques en
                         s’appuyant sur les méthodes les plus récentes de la recherche en économie.
                     </p>
@@ -292,12 +292,12 @@ $(function () {
                     <ul class="nav navbar-nav">
                         <li><a href="${urls.get_url(ctx)}"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'utilisations')}">${u"Exemples"}</a></li>
+                        <li><a href="${urls.get_url(ctx, 'utilisations')}">${u"Utilisations"}</a></li>
                         <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
                         <li><a href="${urls.get_url(ctx, 'documentation')}">${u"Documentation"}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="${conf['ui.url']}">${u"Simulation en ligne"}</a></li>
+                        <li><a href="${conf['ui.url']}" target="_blank">${u"Simulation en ligne"}</a></li>
                     </ul>
                 </div>
             </div>

@@ -65,7 +65,7 @@ from openfisca_web_site import conf, urls
                         <div class="list-group">
                             <a href="${urls.get_url(ctx, 'presentation')}" class="list-group-item">Présentation</a>
                             <a href="${urls.get_url(ctx, 'actualites')}" class="list-group-item">Actualités</a>
-                            <a href="${urls.get_url(ctx, 'utilisations')}" class="list-group-item">Exemples d'utilisation</a>
+                            <a href="${urls.get_url(ctx, 'utilisations')}" class="list-group-item">Exemples d'utilisations</a>
                             <a href="${urls.get_url(ctx, 'api')}" class="list-group-item">API</a>
                             <a href="${urls.get_url(ctx, 'variables')}" class="list-group-item">Variables et formules socio-fiscales</a>
                             <a href="${urls.get_url(ctx, 'installation')}" class="list-group-item">Installation</a>

@@ -829,7 +829,7 @@ Content-Type: application/json; charset=utf-8
 
         <h3 id="exemples-python">Exemples d'utilisation de l'API en Python</h3>
         <i>Notebooks IPython</i> testant différents profils avec l'API :
-            <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+            <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
         <p>
         </p>
         <div class="btn-group">
@@ -837,12 +837,12 @@ Content-Type: application/json; charset=utf-8
                 <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/">Exemples en Python - Stanislas Rybak</a></li>
+                <li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/" target="_blank">Exemples en Python - Stanislas Rybak</a></li>
             </ul>
         </div>
 
         <h3 id="exemples-r">Exemples d'utilisation de l'API en R</h3>
-        <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
+        <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
 
     ##    <div class="btn-group">
     ##        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

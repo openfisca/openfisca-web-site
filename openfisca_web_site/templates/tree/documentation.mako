@@ -34,8 +34,20 @@ Documentation
 <%def name="page_content()" filter="trim">
         <ul>
             <li><a href="api">Utilisation de l'API</a></li>
+                <ul>
+                    <li><a href="api#exemples">Exemples d'utilisation de l'API web</a></li>
+                </ul>
             <li><a href="variables">Variables et formules socio-fiscales</a></li>
+                <ul>
+                    <li><a href="variables#variables-en-entree">Variables</a></li>
+                    <li><a href="variables#variables-en-sortie">Formules</a></li>
+                </ul>
             <li><a href="installation">Installation sur votre PC</a></li>
+                <ul>
+                    <li><a href="installation#gnu-linux">Debian GNU/Linux</a></li>
+                    <li><a href="installation#windows">Windows</a></li>
+                    <li><a href="installation#mac">Mac OS</a></li>
+                </ul>
             <li><a href="contribuer">Contribuer à OpenFisca</a></li>
         </ul>
 </%def>
