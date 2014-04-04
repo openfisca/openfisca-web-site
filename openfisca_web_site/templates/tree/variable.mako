@@ -63,6 +63,18 @@ ${' ' * indent}        <%self:formula_block_content formula="${dated_formula['fo
 ${' ' * indent}    </li>
         % endfor
 ${' ' * indent}</ul>
+    % elif type == 'SelectFormula':
+
+${' ' * indent}<h${heading_level}>Choix de fonctions <small>(${type})</small></h${heading_level}>
+${' ' * indent}<ul>
+        % for main_variable, select_formula in formula['formula_by_main_variable'].iteritems():
+${' ' * indent}    <li>
+${' ' * indent}        <span class="lead">${main_variable}</span>
+${' ' * indent}        <%self:formula_block_content formula="${select_formula}" heading_level="${
+                            heading_level + 1}" indent="${indent + 8}"/>
+${' ' * indent}    </li>
+        % endfor
+${' ' * indent}</ul>
     % else:
 <%
         assert type == 'SimpleFormula', type
