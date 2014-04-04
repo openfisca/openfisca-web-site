@@ -801,6 +801,41 @@ Content-Type: application/json; charset=utf-8
             <li><a href="#exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</a></li>
         </ul>
         <h3 id="exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</h3>
+
+
+        <h4 id="exemple-js-cadre-celibataire-code">Code JavaScript</h4>
+            <pre>${u"""
+    <script id="template1" type="text/ractive">
+        <form role="form">
+            <div class="form-group">
+                <label for="sali">Salaire imposable</label>
+                <input class="form-control" id="sali" min="0" step="1" type="number" value="{{sali}}">
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#columns}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{(value).toFixed(2)}}</td>
+                </tr>
+                {{/columns}}
+            </tbody>
+        </table>
+    </script>
+"""}</pre>
+
+
+
+
+
+
         <div id="container1"></div>
         <script id="template1" type="text/ractive">
             <form role="form">
