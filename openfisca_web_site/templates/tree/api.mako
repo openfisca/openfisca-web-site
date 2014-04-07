@@ -793,7 +793,7 @@ Content-Type: application/json; charset=utf-8
         </ul>
 
         <h2 id="exemples">Exemples d'utilisation de l'API web</h2>
-            <p>Des exemples d'utilisation de l'API web sont disponibles ici : <a href="${urls.get_url(ctx, 'exemples')}">exemples</a>
+            <p>Des exemples d'utilisation de l'API web sont <a href="${urls.get_url(ctx, 'exemples')}">disponibles ici</a>   
 </%def>
 
 
@@ -808,4 +808,6 @@ Content-Type: application/json; charset=utf-8
                     <li><a href="#simulate"><code>simulate</code></a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#exemples">Exemples</a>
 </%def>

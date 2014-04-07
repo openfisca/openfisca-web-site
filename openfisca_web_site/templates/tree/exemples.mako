@@ -22,6 +22,7 @@
 ## You should have received a copy of the GNU Affero General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
 <%!
 import urlparse
 
@@ -42,16 +43,15 @@ Exemples d'utilisation de l'API web
         <ul>
             <li><a href="graphe-formules">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
             <li><a href="variables">Visualisation des variables et des formules socio-fiscales</a></li>
-            <li><a href="#exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</a></li>
         </ul>
-        <h2 id="exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</h3>
+        <h3 id="exemple-js-cadre-celibataire">Simulateur pour un cadre célibataire sans enfant</h3>
 
-        <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
+        <div class="exemple_javascript">
+            <ul id="code_javascript" class="nav nav-tabs">
+                <li class="active"><a href="#profile" data-toggle="tab">Interface</a></li>
                 <li class=""><a href="#home" data-toggle="tab">Code JavaScript</a></li>
-                <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
             </ul>
-            <div id="myTabContent" class="tab-content">
+            <div id="interface_javascript" class="tab-content">
                 <div class="tab-pane fade" id="home">
                     <p>
                         <strong>Interface :</strong>
