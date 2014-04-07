@@ -33,8 +33,7 @@ Documentation
 
 <%def name="page_content()" filter="trim">
         <ul>
-            <li><a href="api">Utilisation de l'API</a></li>
-            <li><a href="variables">Variables et formules socio-fiscales</a>
+            <li><a href="api">Utilisation de l'API</a>
                 <ul>
                     <li><a href="api#exemples">Exemples d'utilisation de l'API web</a></li>
                 </ul>
