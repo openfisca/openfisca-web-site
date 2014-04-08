@@ -86,7 +86,7 @@ API
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/default-legislation HTTP/1.1
-Host: www.openfisca.fr
+Host: api.openfisca.fr
                  """.strip()}</code></pre>
                 <p>Réponse :</p>
                 <pre><code>${u"""
@@ -170,7 +170,7 @@ Content-Type: application/json; charset=utf-8
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/field?variable=revdisp HTTP/1.1
-Host: www.openfisca.fr
+Host: api.openfisca.fr
                  """.strip()}</code></pre>
                 <p>Réponse :</p>
                 <pre><code data-language="javascript">${u"""
@@ -185,7 +185,7 @@ Content-Type: application/json; charset=utf-8
   "params": {
     "variable": "revdisp"
   },
-  "url": "http://www.openfisca.fr/api/1/field?variable=revdisp",
+  "url": "http://api.openfisca.fr/api/1/field?variable=revdisp",
   "value": {
     "@type": "Float",
     "default": 0,
@@ -311,7 +311,7 @@ Content-Type: application/json; charset=utf-8
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/fields HTTP/1.1
-Host: www.openfisca.fr
+Host: api.openfisca.fr
                  """.strip()}</code></pre>
                 <p>Réponse :</p>
                 <pre><code>${u"""
@@ -686,7 +686,7 @@ Content-Type: application/json; charset=utf-8
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/graph?variable=zone_apl HTTP/1.1
-Host: www.openfisca.fr
+Host: api.openfisca.fr
                  """.strip()}</code></pre>
                 <p>Réponse :</p>
                 <pre><code>${u"""
