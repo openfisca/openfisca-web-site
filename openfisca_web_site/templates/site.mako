@@ -80,9 +80,9 @@ ${conf['realm']}
 
 
 <%def name="css()" filter="trim">
-##    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" media="screen" rel="stylesheet">
-    <link href="${urls.get_url(ctx, u'/css/bootstrap.css')}" media="screen" rel="stylesheet">
-    <link href="${urls.get_url(ctx, u'/css/site.css')}" media="screen" rel="stylesheet">
+##    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" rel="stylesheet">
+    <link href="${urls.get_url(ctx, u'/css/bootstrap.css')}" rel="stylesheet">
+    <link href="${urls.get_url(ctx, u'/css/site.css')}" rel="stylesheet">
 </%def>
 
 
