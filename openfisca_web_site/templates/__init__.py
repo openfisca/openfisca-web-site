@@ -100,6 +100,7 @@ def render(ctx, template_path, custom_name = None, **kw):
         js = js,
         N_ = lambda message: message,
         qp = qp,
+        node = None,
         req = ctx.req,
         **kw).strip()
 
@@ -111,5 +112,6 @@ def render_def(ctx, template_path, def_name, custom_name = None, **kw):
         js = js,
         N_ = lambda message: message,
         qp = qp,
+        node = None,
         req = ctx.req,
         **kw).strip()
