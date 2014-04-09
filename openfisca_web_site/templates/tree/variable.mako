@@ -128,6 +128,7 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
     consumers = holder.get('consumers')
     default = holder.get('default')
     end = holder.get('end')
+    entity = holder.get('entity')
     formula = holder.get('formula')
     info = holder.get('info')
     labels = holder.get('labels')
@@ -161,6 +162,12 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
                     <tr>
                         <th>Information</th>
                         <td>${info}</td>
+                    </tr>
+    % endif
+    % if entity:
+                    <tr>
+                        <th>Entité</th>
+                        <td>${entity}</td>
                     </tr>
     % endif
     % if type:
