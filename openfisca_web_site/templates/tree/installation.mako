@@ -307,7 +307,7 @@ paster serve --reload development.ini</pre>
         <li>Pour ouvrir l'interface utilisateur, il vous suffit d'ouvrir votre navigateur internet et d'aller à l'adresse du lien suivant : <kbd>http://localhost:2015</kbd>
         </li>
     </ul>
-    <h3 id="install-site-Windows">Installation du site OpenFisca</h3>
+    <h3 id="install-site-windows">Installation du site OpenFisca</h3>
     <ul>
         <li>Pour installer le site, il faut ouvrir une nouvelle commande (<kbd>Windows + R</kbd> -&gt; <kbd>cmd</kbd> -&gt; OK), aller dans son dossier openfisca et installer les fichiers git :
             <pre>cd Desktop/openfisca
@@ -347,9 +347,9 @@ paster serve --reload development.ini</pre>
         </li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
             <pre>brew install git
-brew install gfortran
-brew install mongodb
-brew install nodejs
+install gfortran
+install mongodb
+install nodejs
 sudo pip install babel
 sudo pip install isodate
 sudo pip install pandas
