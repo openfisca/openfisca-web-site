@@ -346,7 +346,7 @@ paster serve --reload development.ini</pre>
         <li>Installer <a href="http://brew.sh/index_fr.html">Homebrew</a>
         </li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
-            <pre>sudo brew install git
+            <pre>brew install git
 brew install gfortran
 brew install mongodb
 brew install nodejs
