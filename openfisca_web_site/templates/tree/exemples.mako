@@ -113,7 +113,7 @@ Exemples d'utilisation de l'API web
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/rainbow.min.js')}"></script>
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/generic.js')}"></script>
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
-    <script src="${urls.get_url(ctx, u'/bower/ractive/Ractive.js')}"></script>
+    <script src="${urls.get_url(ctx, u'/bower/ractive/ractive.js')}"></script>
     <script>
 var valueIndex = 0;
 
