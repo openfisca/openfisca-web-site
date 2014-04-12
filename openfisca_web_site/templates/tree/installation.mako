@@ -319,9 +319,9 @@ paster serve --reload development.ini</pre>
         </li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
             <pre>sudo brew install git
-sudo brew install gfortran
-sudo brew install mongodb
-sudo brew install nodejs
+brew install gfortran
+brew install mongodb
+brew install nodejs
 sudo pip install babel
 sudo pip install isodate
 sudo pip install pandas
@@ -782,10 +782,10 @@ paster serve --reload development.ini</pre>
         <li>Installer <a href="http://brew.sh/index_fr.html">Homebrew</a>
         </li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
-            <pre>sudo brew install git
-sudo brew install gfortran
-sudo brew install mongodb
-sudo brew install nodejs
+            <pre>brew install git
+brew install gfortran
+brew install mongodb
+brew install nodejs
 sudo pip install babel
 sudo pip install isodate
 sudo pip install pandas
