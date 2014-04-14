@@ -69,7 +69,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -85,7 +85,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -101,7 +101,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -117,7 +117,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -135,7 +135,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -151,7 +151,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -167,7 +167,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
@@ -183,7 +183,7 @@ Variables et formules socio-fiscales
             continue
 %>\
             <li>
-                <a href="variables/${variable['name']}">${variable['name']}</a>
+                <a href="${urls.get_url(ctx, 'variables', variable['name'])}">${variable['name']}</a>
         % if variable.get('label'):
                 : ${variable['label']}
         % endif
