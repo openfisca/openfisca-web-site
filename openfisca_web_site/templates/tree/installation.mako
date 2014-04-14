@@ -362,7 +362,7 @@ sudo pip install python-setuptools
 sudo pip install scipy
 sudo pip install numpy
 sudo pip install requests
-sudo pip isntall weberror</pre>
+sudo pip install weberror</pre>
         </li>
     </ul>
     <h4 id="ensuite-gnu-mac">Oui, mais ensuite ?</h4>
@@ -380,7 +380,7 @@ git clone http://github.com/openfisca/openfisca-france.git</pre>
             <pre>cd biryani
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
-cd openfisca-core
+cd ../openfisca-core
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 cd ../openfisca-france
