@@ -412,7 +412,7 @@ class File(AbstractNode):
 
 
 class Folder(AbstractNode):
-    hidden_slugs = [
+    hidden_names = [
         u'index',  # Skip index in children.
         ]
 
@@ -473,8 +473,11 @@ class Folder(AbstractNode):
             yield self.child_from_node(ctx, unique_name = child_unique_name)
 
     def iter_children_unique_name(self, reverse = False):
-        children_unique_name = set(self.hidden_slugs)
+        children_unique_name = set(self.hidden_names)
         for filename in sorted(os.listdir(self.path), reverse = reverse):
+            if filename.startswith('.'):
+                # Skip hidden files.
+                continue
             if filename.endswith('~'):
                 # Skip backup files.
                 continue
@@ -528,15 +531,11 @@ class Folder(AbstractNode):
         req = webob.Request(environ)
         ctx = contexts.Ctx(req)
 
-        slug, error = conv.pipe(
-            conv.input_to_slug,
-            conv.not_none,
-            conv.test_equals(req.urlvars.get('name')),
-            )(req.urlvars.get('name'), state = ctx)
-        child = self.child_from_node(ctx, unique_name = slug or req.urlvars.get('name'))
+        name, error = conv.not_none(req.urlvars.get('name'), state = ctx)
+        child = self.child_from_node(ctx, unique_name = name or u'')
         if error is not None:
             return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
-        if slug in self.hidden_slugs:
+        if name in self.hidden_names:
             return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
 
         return child.route(environ, start_response)
