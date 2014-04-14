@@ -84,7 +84,7 @@ class Variable(model.Page):
         try:
             response = urllib2.urlopen(request)
         except urllib2.HTTPError as response:
-            pass
+            self.title = self.unique_name
         else:
             response_json = json.loads(response.read(), object_pairs_hook = collections.OrderedDict)
             self.holder = holder = response_json['value']
