@@ -140,6 +140,16 @@ ractive.on('activate', function () {
     });
 });
     </script>
+    
+    <script type="text/javascript">
+        function affCache(idDiv) {
+            var div = document.getElementById(idDiv);
+            if (div.style.display  == "")
+                div.style.display  = "none";
+            else
+                div.style.display  = "";
+        }
+    </script> 
 </%def>
 
 
@@ -157,8 +167,9 @@ ractive.on('activate', function () {
             </p>
         </div>
         <div class="row">
+            <p>Afficher le Json sous forme de String <input type="checkbox" onclick="affCache('div1');" value=""/></p>
             <p>
-                <pre>{{JSON.stringify(tracebacks)}}</pre>
+                <pre id="div1" style="display:none;">{{JSON.stringify(tracebacks)}}</pre>
             </p>
         </div>
         <div class="row">
