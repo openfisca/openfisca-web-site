@@ -52,24 +52,22 @@ from openfisca_web_site import conf, urls
         </div>
         <div class="row">
             {{#tracebacks}}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Libelé</th>
-                        <th>Valeur</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#.:name}}
-                    <tr>
-                        <td><a href="variables/{{name}}" target="_blank">{{name}}</a></td>
-                        <td>{{label}}</td>
-                        <td>{{array}}</td>
-                    </tr>
+                {{#.:name}}
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading row">
+                        <div class="col-md-4"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{name}}">{{name}}</a></div>
+                        <div class="col-md-4">{{array}}</div>
+                        <div class="col-md-4">{{label}}</div>
+                    </div>
+                    <div id="collapse-{{name}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            HELLO
+                        </div>
+                    </div>
+                </div>
+            </div>
                     {{/.}}
-                </tbody>
-            </table>
             {{/tracebacks}}
         </div>
     </script>
