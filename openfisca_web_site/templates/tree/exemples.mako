@@ -63,7 +63,7 @@ from openfisca_web_site import conf, urls
                 <tbody>
                     {{#.:name}}
                     <tr>
-                        <td>{{name}}</td>
+                        <td><a href="variables/{{name}}" target="_blank" onclick="window.open(this.href, 'variable', 'resizable=no, location=no, width=550, height=400, left=50, top=30, menubar=no, status=no, scrollbars=no, menubar=no');">{{name}}</a></td>
                         <td>{{label}}</td>
                         <td>{{array}}</td>
                     </tr>
@@ -111,97 +111,102 @@ Exemples d'utilisation de l'API web
 
 
 <%def name="page_content()" filter="trim">
-        <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h3>
-        <ul>
-            <li><a href="graphe-formules">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
-            <li><a href="variables">Visualisation des variables et des formules socio-fiscales</a></li>
+<div role="main">
+    <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h2>
+    <ul>
+        <li><a href="graphe-formules">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
+        <li><a href="variables">Visualisation des variables et des formules socio-fiscales</a></li>
+    </ul>
+
+    <h3 id="exemple-simulation">Simulation</h3>
+    <div class="simulation">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#interface-simulation" data-toggle="tab">Interface</a></li>
+            <li><a href="#code-simulation" data-toggle="tab">Code JavaScript</a></li>
         </ul>
-        <h3 id="exemple-simulation">Simulation</h3>
-
-        <div class="simulation">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#interface-simulation" data-toggle="tab">Interface</a></li>
-                <li><a href="#code-simulation" data-toggle="tab">Code JavaScript</a></li>
-            </ul>
-            <div id="interface_javascript" class="tab-content">
-                <div class="tab-pane fade" id="code-simulation">
-                    <p>
-                        <strong>Interface :</strong>
-                        <pre>${capture(self.block_simulation)}</pre>
-                        <strong>code  :</strong>
-                        <pre>${capture(self.script_simulation)}</pre>
-                    </p>
-                </div>
-                <div class="tab-pane fade active in" id="interface-simulation">
-                    <p>
-                        <%self:block_simulation/>
-                    </p>
-                </div>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="code-simulation">
+                <p>
+                    <strong>Interface :</strong>
+                    <pre>${capture(self.block_simulation)}</pre>
+                    <strong>code  :</strong>
+                    <pre>${capture(self.script_simulation)}</pre>
+                </p>
+            </div>
+            <div class="tab-pane fade active in" id="interface-simulation">
+                <p>
+                    <%self:block_simulation/>
+                </p>
             </div>
         </div>
-        
-        <h3 id="exemple-decomposition">Décomposition de Simulation</h3>
-
-        <div class="decomposition">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#interface-decomposition" data-toggle="tab">Interface</a></li>
-                <li><a href="#code-decomposition" data-toggle="tab">Code JavaScript</a></li>
-            </ul>
-            <div id="interface_javascript" class="tab-content">
-                <div class="tab-pane fade" id="code-decomposition">
-                    <p>
-                        <strong>Interface :</strong>
-                        <pre>${capture(self.block_decomposition)}</pre>
-                        <strong>code  :</strong>
-                        <pre>${capture(self.script_decomposition)}</pre>
-                    </p>
-                </div>
-                <div class="tab-pane fade active in" id="interface-decomposition">
-                    <p>
-                        <%self:block_decomposition/>
-                    </p>
-                </div>
+    </div>
+    
+    <h3 id="exemple-decomposition">Décomposition de Simulation</h3>
+    <div class="decomposition">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#interface-decomposition" data-toggle="tab">Interface</a></li>
+            <li><a href="#code-decomposition" data-toggle="tab">Code JavaScript</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="code-decomposition">
+                <p>
+                    <strong>Interface :</strong>
+                    <pre>${capture(self.block_decomposition)}</pre>
+                    <strong>code  :</strong>
+                    <pre>${capture(self.script_decomposition)}</pre>
+                </p>
+            </div>
+            <div class="tab-pane fade active in" id="interface-decomposition">
+                <p>
+                    <%self:block_decomposition/>
+                </p>
             </div>
         </div>
+    </div>
 
-        <h2 id="exemples-python">Exemples d'utilisation de l'API en Python</h3>
-        <i>Notebooks IPython</i> testant différents profils avec l'API :
-            <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
-        <p>
-        </p>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/" target="_blank">Exemples en Python - Stanislas Rybak</a></li>
-            </ul>
-        </div>
+    <h2 id="exemples-python">Exemples d'utilisation de l'API en Python</h2>
+    <i>Notebooks IPython</i> testant différents profils avec l'API :
+        <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
+    <p>
+    </p>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="http://nbviewer.ipython.org/github/stanislasrybak/openfisca-web-notebook-tests/tree/master/" target="_blank">Exemples en Python - Stanislas Rybak</a></li>
+        </ul>
+    </div>
 
-        <h2 id="exemples-r">Exemples d'utilisation de l'API en R</h3>
-        <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
+    <h2 id="exemples-r">Exemples d'utilisation de l'API en R</h2>
+    <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
 
-    ##    <div class="btn-group">
-    ##        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    ##            <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
-    ##        </button>
-    ##        <ul class="dropdown-menu" role="menu">
-    ##            <li><a href="#">Exemples en R </a></li>
-    ##        </ul>
-    ##    </div>
+##    <div class="btn-group">
+##        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+##            <span class="glyphicon glyphicon-plus"></span> Autres exemples <span class="caret"></span>
+##        </button>
+##        <ul class="dropdown-menu" role="menu">
+##            <li><a href="#">Exemples en R </a></li>
+##        </ul>
+##    </div>
+</div>
 </%def>
 
 
 <%def name="nav_content()" filter="trim">
+    <li>
+        <a href="#exemples-javascript">Exemples JavaScript</a>
+        <ul class="nav">
             <li>
-                <a href="#exemples-javascript">Exemples JavaScript</a>
-                <ul class="nav">
-                    <li><a href="#exemple-simulation">Simulation</a></li>
-                    <li><a href="#exemple-decomposition">Décomposition de Simulation</a></li>
-                </ul>
-                <a href="#exemples-python">Exemples Python</a>
-                <a href="#exemples-r">Exemples R</a>
+                <a href="#exemple-simulation">Simulation</a>
             </li>
+            <li>
+                <a href="#exemple-decomposition">Décomposition de Simulation</a>
+            </li>
+        </ul>
+        <a href="#exemples-python">Exemples Python</a>
+        <a href="#exemples-r">Exemples R</a>
+    </li>
 </%def>
 
 
@@ -225,7 +230,6 @@ function affCache(idDiv) {
     else
         div.style.display  = "";
 }
-
 
 var decompositionRactive = new Ractive({
     el: 'decomposition-container',

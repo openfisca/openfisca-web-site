@@ -549,7 +549,7 @@ heroku open</pre>
         <p>
             Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
         </p>
-    </div>
+</div>
 </%def>
 
 
