@@ -242,10 +242,6 @@ python setup.py develop --no-deps</pre>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
             <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        </li>
-        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        </li>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
             <pre>cd ../openfisca-web-api
 python setup.py compile_catalog
