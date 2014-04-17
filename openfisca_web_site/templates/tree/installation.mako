@@ -56,7 +56,6 @@ sudo apt-get install python-babel
 sudo apt-get install python-dateutil
 sudo apt-get install python-gettext
 sudo apt-get install python-isodate
-sudo apt-get install python-pandas
 sudo apt-get install python-pastescript
 sudo apt-get install python-pymongo
 sudo apt-get install python-setuptools
@@ -78,12 +77,14 @@ git clone http://github.com/openfisca/openfisca-core.git
 git clone http://github.com/openfisca/openfisca-france.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>
-cd openfisca-core
+            <pre>cd biryani
 python setup.py compile_catalog
-python setup.py install
+sudo python setup.py develop --no-deps
+cd ../openfisca-core
+python setup.py compile_catalog
+python setup.py develop --no-deps
 cd ../openfisca-france
-python setup.py install</pre>
+python setup.py develop --no-deps</pre>
         </li>
     <div class="alert alert-danger"><strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les liens de simulation et de législation par vos liens locaux :
         <ul>
@@ -102,7 +103,7 @@ python setup.py install</pre>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
             <pre>cd ../openfisca-web-api
 python setup.py compile_catalog
-python setup.py install</pre>
+python setup.py develop --no-deps</pre>
         </li>
     </ul>
     <h4 id="serveur-gnu-linux">Lancer le serveur</h4>
@@ -202,7 +203,7 @@ paster serve --reload development.ini</pre>
         </li>
         <li>Installer <a href="git-scm.com/download/win">Git</a>, ouvrir le .exe et choisissez tout par defaut sauf "adjusting yout PATH environent" et selectionnez "run Git from the Windows Command PromEt aussi pour openfisca-web-ui, plutôt que d'installer à la main :pt"
         </li>
-        <li>Télécharger les <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools">outils python</a> dans leur version pour Python 2.7
+        <li>Télécharger les <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a> dans leur version pour Python 2.7
         </li>
     </ul>
     <h4 id="ensuite-windows">Oui, mais ensuite ?</h4>
@@ -220,18 +221,16 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>cd biryani
+            <pre>pip install python-gettext
+pip install PasteScript
+cd biryani
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
-cd ..
-pip install babel
-pip install python-gettext
-pip install PasteScript
-cd openfisca-core
+cd ../openfisca-core
 python setup.py compile_catalog
-python setup.py install
+python setup.py develop --no-deps
 cd ../openfisca-france
-python setup.py install</pre>
+python setup.py develop --no-deps</pre>
         </li>
     </ul>
 
@@ -241,14 +240,10 @@ python setup.py install</pre>
     <ul>
         <li>Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
             <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        </li>
-        <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        </li>
         <li>Afin d'installer l'API, effectuez les commandes dans l'ordre :
             <pre>cd ../openfisca-web-api
 python setup.py compile_catalog
-python setup.py install</pre>
+python setup.py develop --no-deps</pre>
         </li>
     </ul>
     <h4 id="serveur-windows">Lancer le serveur</h4>
@@ -271,12 +266,12 @@ python setup.py install</pre>
             <pre>cd Desktop/openfisca
 git clone https://git.gitorious.org/korma/korma.git@dev
 cd korma.git@dev
-python setup.py install
+python setup.py develop --no-deps
 cd ../
 git clone https://github.com/openfisca/openfisca-web-ui.git
 cd openfisca-web-ui
 python setup.py compile_catalog
-python setup.py install
+python setup.py develop --no-deps
 pip install FormEncode</pre>
         </li>
         <li>Télécharger ensuite <a href="http://nodejs.org/download/">nodejs</a> et executer le .exe</li>
@@ -357,7 +352,6 @@ install mongodb
 install nodejs
 sudo pip install babel
 sudo pip install isodate
-sudo pip install pandas
 sudo pip install pastescript
 sudo pip install pymongo
 sudo pip install python-dateutil
@@ -554,7 +548,7 @@ heroku open</pre>
         <p>
             Télécharger le code source sur GitHub et exécuter OpenFisca.pyw. Vous aurez peut-être à rajouter le répertoire src dans votre PYTHONPATH et à installer les packages PyQt, Matplotlib, Numpy. OpenFisca a été développé et testé avec Python 2.7.
         </p>
-    </div>
+</div>
 </%def>
 
 
