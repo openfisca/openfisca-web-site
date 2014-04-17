@@ -51,23 +51,26 @@ from openfisca_web_site import conf, urls
             <pre id="div1" style="display:none;">{{JSON.stringify(tracebacks)}}</pre>
         </div>
         <div class="row">
+            <p>Masquer les valeurs par défaut <input type="checkbox" onclick="affCache('div2');" value=""/></p>
+        </div>
+        <div class="row">
             {{#tracebacks}}
                 {{#.:name}}
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading row">
-                        <div class="col-md-4"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{name}}">{{name}}</a></div>
-                        <div class="col-md-4">{{array}}</div>
-                        <div class="col-md-4">{{label}}</div>
-                    </div>
-                    <div id="collapse-{{name}}" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            HELLO
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading row">
+                            <div class="col-md-3"><a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{name}}">{{name}}</a></div>
+                            <div class="col-md-3">{{array}}</div>
+                            <div class="col-md-6">{{label}}</div>
+                        </div>
+                        <div id="collapse-{{name}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                    <a href="variables/{{name}}" target="_blank">{{label}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                    {{/.}}
+                {{/.}}
             {{/tracebacks}}
         </div>
     </script>
@@ -192,7 +195,7 @@ Exemples d'utilisation de l'API web
 
 
 <%def name="nav_content()" filter="trim">
-    <li class="active">
+    <li>
         <a href="#exemples-javascript">Exemples JavaScript</a>
         <ul class="nav">
             <li>
