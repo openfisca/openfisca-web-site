@@ -77,9 +77,7 @@ git clone http://github.com/openfisca/openfisca-core.git
 git clone http://github.com/openfisca/openfisca-france.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>pip install python gettext
-pip install PasteScript
-cd biryani
+            <pre>cd biryani
 python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 cd ../openfisca-core
@@ -205,7 +203,7 @@ paster serve --reload development.ini</pre>
         </li>
         <li>Installer <a href="git-scm.com/download/win">Git</a>, ouvrir le .exe et choisissez tout par defaut sauf "adjusting yout PATH environent" et selectionnez "run Git from the Windows Command PromEt aussi pour openfisca-web-ui, plutôt que d'installer à la main :pt"
         </li>
-        <li>Télécharger les <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools">outils python</a> dans leur version pour Python 2.7
+        <li>Télécharger les <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a> dans leur version pour Python 2.7
         </li>
     </ul>
     <h4 id="ensuite-windows">Oui, mais ensuite ?</h4>
