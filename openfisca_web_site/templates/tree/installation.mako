@@ -54,6 +54,7 @@ Installation d'OpenFisca
 sudo apt-get install git
 sudo apt-get install python-babel
 sudo apt-get install python-dateutil
+sudo apt-get install python-gettext
 sudo apt-get install python-isodate
 sudo apt-get install python-pandas
 sudo apt-get install python-pastescript
@@ -77,8 +78,7 @@ git clone http://github.com/openfisca/openfisca-core.git
 git clone http://github.com/openfisca/openfisca-france.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>pip install python gettext
-pip install PasteScript
+            <pre>
 cd openfisca-core
 python setup.py compile_catalog
 python setup.py install
@@ -220,7 +220,12 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>pip install python gettext
+            <pre>cd biryani
+python setup.py compile_catalog
+sudo python setup.py develop --no-deps
+cd ..
+pip install babel
+pip install python-gettext
 pip install PasteScript
 cd openfisca-core
 python setup.py compile_catalog
