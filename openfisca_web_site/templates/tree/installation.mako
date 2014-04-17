@@ -54,6 +54,7 @@ Installation d'OpenFisca
 sudo apt-get install git
 sudo apt-get install python-babel
 sudo apt-get install python-dateutil
+sudo apt-get install python-gettext
 sudo apt-get install python-isodate
 sudo apt-get install python-pastescript
 sudo apt-get install python-pymongo
