@@ -223,7 +223,7 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
-            <pre>pip install python gettext
+            <pre>pip install python-gettext
 pip install PasteScript
 cd biryani
 python setup.py compile_catalog
