@@ -111,7 +111,7 @@ Exemples d'utilisation de l'API web
 
 
 <%def name="page_content()" filter="trim">
-        <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h3>
+        <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h2>
         <ul>
             <li><a href="graphe-formules">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
             <li><a href="variables">Visualisation des variables et des formules socio-fiscales</a></li>
@@ -164,7 +164,7 @@ Exemples d'utilisation de l'API web
             </div>
         </div>
 
-        <h2 id="exemples-python">Exemples d'utilisation de l'API en Python</h3>
+        <h2 id="exemples-python">Exemples d'utilisation de l'API en Python</h2>
         <i>Notebooks IPython</i> testant différents profils avec l'API :
             <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/</a>
         <p>
@@ -178,7 +178,7 @@ Exemples d'utilisation de l'API web
             </ul>
         </div>
 
-        <h2 id="exemples-r">Exemples d'utilisation de l'API en R</h3>
+        <h2 id="exemples-r">Exemples d'utilisation de l'API en R</h2>
         <i>Notebooks IPython</i> testant différents profils avec l'API : <a href="http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/" target="_blank">http://nbviewer.ipython.org/github/openfisca/openfisca-web-notebook/tree/master/R/</a>
 
     ##    <div class="btn-group">
