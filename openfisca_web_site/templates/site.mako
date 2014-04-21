@@ -152,8 +152,8 @@ ${conf['realm']}
 <%def name="metas()" filter="trim">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    ## Make sure Internet Explorer can't use Compatibility Mode, as this will break Persona.
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    ## Disable old Internet Explorer compatibility modes.
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </%def>
 
 
