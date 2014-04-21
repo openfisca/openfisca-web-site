@@ -331,7 +331,12 @@ waterfallRactive.on('toggle-variable', function (event) {
                 <div class="row">
                     <div class="col-md-10">
                         <span class="glyphicon glyphicon-euro" style="cursor: default"></span>
-                        {{name}}
+                        {{#.url}}
+                            <a href="{{url}}" target="_blank">{{name}}</a>
+                        {{/.url}}
+                        {{^.url}}
+                            {{name}}
+                        {{/.url}}
                     </div>
                     <div class="col-md-2 text-right">
                         {{Math.round(value)}}
@@ -344,33 +349,43 @@ waterfallRactive.on('toggle-variable', function (event) {
     <!-- {{>childrenTree}} -->
     {{# .children && (variableOpenedByCode[.code] || .depth === 0)}}
         {{#children}}
-            {{# .value}}
+            {{#.value}}
                 {{# .children && variableOpenedByCode[.code]}}
                     <div class="row">
                         <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
                             <span class="glyphicon glyphicon-minus" on-click="toggle-variable" style="cursor: pointer"></span>
-                            {{name}}
+                            {{#.url}}
+                                <a href="{{url}}" target="_blank">{{name}}</a>
+                            {{/.url}}
+                            {{^.url}}
+                                {{name}}
+                            {{/.url}}
                         </div>
                     </div>
                     {{>childrenTree}}
                 {{/ .children && variableOpenedByCode[.code]}}
-                {{# ! .children || ! variableOpenedByCode[.code]}}
+                {{^ .children && variableOpenedByCode[.code]}}
                     <div class="row">
                         <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
                             {{# !! .children}}
                                 <span class="glyphicon glyphicon-plus" on-click="toggle-variable" style="cursor: pointer"></span>
                             {{/ !! .children}}
-                            {{# ! .children}}
+                            {{^.children}}
                                 <span class="glyphicon glyphicon-ok" style="cursor: default"></span>
-                            {{/ ! .children}}
-                            {{name}}
+                            {{/.children}}
+                            {{#.url}}
+                                <a href="{{url}}" target="_blank">{{name}}</a>
+                            {{/.url}}
+                            {{^.url}}
+                                {{name}}
+                            {{/.url}}
                         </div>
                         <div class="col-md-2 text-right">
                             {{Math.round(value)}}
                         </div>
                     </div>
-                {{/ ! .children || ! variableOpenedByCode[.code]}}
-            {{/ .value}}
+                {{/ .children && variableOpenedByCode[.code]}}
+            {{/.value}}
         {{/children}}
     {{/ .children && (variableOpenedByCode[.code] || .depth === 0)}}
     <!-- {{/childrenTree}} -->
