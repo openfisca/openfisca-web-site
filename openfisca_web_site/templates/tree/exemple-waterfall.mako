@@ -211,7 +211,7 @@ var waterfallRactive = new Ractive({
         ## are updated by OpenFisca API.
         variableOpenedByCode: {},
         variablesTree: null,
-        width: 590,
+        width: 600,
         y0: 0,
         yAxisLabels: null
     }
@@ -280,7 +280,7 @@ waterfallRactive.on('toggle-variable', function (event) {
     </form>
     <div class="row">
         <div class="col-md-6">
-            <svg height="{{height}}" width="{{width}}">
+            <svg height="400" preserveAspectRatio="xMinYMin" viewBox="0 0 {{width}} {{height}}" width="100%">
             {{# bars !== null}}
                 ## X-axis
                 <g transform="translate(0, {{y0}})">
