@@ -133,6 +133,8 @@ function computeBars(variableOpenedByCode, variablesTree) {
         var variable = variableByCode[code];
         bars.push({
             baseValue: variable.baseValue,
+            code: variable.code,
+            hasChildren: variable.children ? true : false,
             height: Math.abs(variable.value) * unitHeight,
             name: variable.name,
             type: variable.type,
@@ -264,8 +266,8 @@ waterfallRactive.observe({
     }
 });
 waterfallRactive.on('toggle-variable', function (event) {
-    var variable = this.get(event.keypath);
-    this.toggle('variableOpenedByCode.' + variable.code);
+    var variableOrBar = this.get(event.keypath);
+    this.toggle('variableOpenedByCode.' + variableOrBar.code);
 });
 </%def>
 
@@ -321,10 +323,10 @@ waterfallRactive.on('toggle-variable', function (event) {
                 ## Vertical bars
                 {{#bars:barIndex}}
                     {{# type === 'bar'}}
-                        <rect stroke="{{blueStrokeColor}}" fill="{{blueFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
+                        <rect stroke="{{blueStrokeColor}}" fill="{{blueFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}" on-click="{{hasChildren ? 'toggle-variable' : ''}}"/>
                     {{/ type === 'bar'}}
                     {{# type === 'var'}}
-                        <rect stroke="{{value > baseValue ? greenStrokeColor : redStrokeColor}}" fill="{{value > baseValue ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
+                        <rect stroke="{{value > baseValue ? greenStrokeColor : redStrokeColor}}" fill="{{value > baseValue ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}" on-click="{{hasChildren ? 'toggle-variable' : ''}}"/>
                     {{/ type === 'var'}}
                 {{/bars:barIndex}}
             {{/ bars !== null}}
