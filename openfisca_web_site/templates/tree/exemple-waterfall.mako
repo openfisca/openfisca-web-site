@@ -108,29 +108,73 @@ function calculateStepSize(range, stepsCount) {
 };
 
 
-function extractVariablesFromTree(columns, node, baseValue) {
+function computeBars(variableOpenedByCode, variablesTree) {
+    var variableByCode = {};
+    extractVariablesFromTree(variableByCode, variableOpenedByCode, variablesTree, 0, 0);
+    var valueMax = 0;
+    var valueMin = 0;
+    for (code in variableByCode) {
+        var variable = variableByCode[code];
+        var value = variable.baseValue + variable.value;
+        if (value > valueMax) {
+            valueMax = value;
+        } else if (value < valueMin) {
+            valueMin = value;
+        }
+    }
+    var tickValue = calculateStepSize(valueMax - valueMin, 8);
+    valueMax = Math.round(valueMax / tickValue + 0.5) * tickValue;
+    valueMin = Math.round(valueMin / tickValue - 0.5) * tickValue;
+    var unitHeight = waterfallRactive.get('gridHeight') / (valueMax - valueMin);
+
+    var bars = [];
+    var y0 = waterfallRactive.get('marginTop') + (valueMax > 0 ? unitHeight * valueMax : 0);
+    for (code in variableByCode) {
+        var variable = variableByCode[code];
+        bars.push({
+            baseValue: variable.baseValue,
+            height: Math.abs(variable.value) * unitHeight,
+            name: variable.name,
+            type: variable.type,
+            value: variable.value,
+            y: y0 - Math.max(variable.baseValue, variable.baseValue + variable.value) * unitHeight
+        });
+    }
+
+    var yAxisLabels = [];
+    for (var value = valueMin; value <= valueMax; value += tickValue) {
+        yAxisLabels.push(value.toString());
+    }
+
+    waterfallRactive.set({
+        bars: bars,
+        tickHeight: tickValue * unitHeight,
+        tickWidth: waterfallRactive.get('gridWidth') / bars.length,
+        y0: y0,
+        yAxisLabels: yAxisLabels
+    });
+}
+
+
+function extractVariablesFromTree(variableByCode, variableOpenedByCode, node, baseValue, depth, hidden) {
     var children = node['children'];
+    var opened = variableOpenedByCode[node.code] || depth === 0;
     if (children) {
         var childBaseValue = baseValue;
         for (var childIndex = 0; childIndex < children.length; childIndex++) {
             var child = children[childIndex];
-            extractVariablesFromTree(columns, child, childBaseValue);
+            extractVariablesFromTree(variableByCode, variableOpenedByCode, child, childBaseValue, depth + 1,
+                hidden || ! opened);
             childBaseValue += child['values'][valueIndex];
         }
     }
     value = node['values'][valueIndex];
-    if (value != 0) {
-        var column = {
-            baseValue: baseValue,
-            type: children ? 'bar' : 'var',
-            value: baseValue + value
-        };
-        for (key in node) {
-            if (! (key in column)) {
-                column[key] = node[key];
-            }
-        }
-        columns.push(column);
+    node.baseValue = baseValue;
+    node.depth = depth;
+    node.value = value;
+    if (! hidden && value != 0) {
+        node.type = opened && children ? 'bar' : 'var';
+        variableByCode[node.code] = node;
     }
 }
 
@@ -162,90 +206,66 @@ var waterfallRactive = new Ractive({
         sali: 15000,
         tickHeight: 0,
         tickWidth: 0,
+        ## The flags indicating whether a variable (with children) is closed or open (default).
+        ## This is stored in a separate dictionnary, to ensure that the flag will not be lost each time the variables
+        ## are updated by OpenFisca API.
+        variableOpenedByCode: {},
+        variablesTree: null,
         width: 590,
         y0: 0,
         yAxisLabels: null
     }
 });
-waterfallRactive.observe('sali', function (newValue, oldValue) {
-    var scenario = {
-        test_case: {
-            familles: [{parents: ['ind0']}],
-            foyers_fiscaux: [{declarants: ['ind0']}],
-            individus: [{
-                activite: 'Actif occupé',
-                birth: '1970-01-01',
-                cadre: true,
-                id: 'ind0',
-                sali: parseFloat(newValue),
-                statmarit: 'Célibataire'
-            }],
-            menages: [{personne_de_reference: 'ind0'}]
-        },
-        legislation_url: ${urlparse.urljoin(conf['api.url'], '/api/1/default-legislation') | n, js},
-        year: 2013
-    };
-    $.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/simulate') | n, js}, {
-        contentType: 'application/json',
-        data: JSON.stringify({
-            scenarios: [scenario]
-        }),
-        dataType: 'json',
-        type: 'POST',
-        xhrFields: {
-            withCredentials: true
-        }
-    })
-    .done(function (data, textStatus, jqXHR) {
-        var variables = [];
-        extractVariablesFromTree(variables, data['value'], 0);
-        var valueMax = 0;
-        var valueMin = 0;
-        variables.forEach(function (variable) {
-            var value = variable.value;
-            if (value > valueMax) {
-                valueMax = value;
-            } else if (value < valueMin) {
-                valueMin = value;
+waterfallRactive.observe({
+    'sali': function (newValue) {
+        var scenario = {
+            test_case: {
+                familles: [{parents: ['ind0']}],
+                foyers_fiscaux: [{declarants: ['ind0']}],
+                individus: [{
+                    activite: 'Actif occupé',
+                    birth: '1970-01-01',
+                    cadre: true,
+                    id: 'ind0',
+                    sali: parseFloat(newValue),
+                    statmarit: 'Célibataire'
+                }],
+                menages: [{personne_de_reference: 'ind0'}]
+            },
+            legislation_url: ${urlparse.urljoin(conf['api.url'], '/api/1/default-legislation') | n, js},
+            year: 2013
+        };
+        $.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/simulate') | n, js}, {
+            contentType: 'application/json',
+            data: JSON.stringify({
+                scenarios: [scenario]
+            }),
+            dataType: 'json',
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
             }
+        })
+        .done(function (data, textStatus, jqXHR) {
+            waterfallRactive.set('variablesTree', data['value']);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log('fail');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         });
-        var tickValue = calculateStepSize(valueMax - valueMin, 8);
-        valueMax = Math.round(valueMax / tickValue + 0.5) * tickValue;
-        valueMin = Math.round(valueMin / tickValue - 0.5) * tickValue;
-        var unitHeight = waterfallRactive.get('gridHeight') / (valueMax - valueMin);
-
-        var bars = [];
-        var y0 = waterfallRactive.get('marginTop') + (valueMax > 0 ? unitHeight * valueMax : 0);
-        variables.forEach(function (variable) {
-            bars.push({
-                baseValue: variable.baseValue,
-                height: Math.abs(variable.value - variable.baseValue) * unitHeight,
-                name: variable.name,
-                type: variable.type,
-                value: variable.value,
-                y: y0 - Math.max(variable.baseValue, variable.value) * unitHeight
-            });
-        });
-
-        var yAxisLabels = [];
-        for (var value = valueMin; value <= valueMax; value += tickValue) {
-            yAxisLabels.push(value.toString());
-        }
-
-        waterfallRactive.set({
-            bars: bars,
-            tickHeight: tickValue * unitHeight,
-            tickWidth: waterfallRactive.get('gridWidth') / bars.length,
-            y0: y0,
-            yAxisLabels: yAxisLabels
-        });
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log('fail');
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-    });
+    },
+    'variablesTree': function (variablesTree) {
+        computeBars(this.get('variableOpenedByCode'), variablesTree);
+    },
+    'variableOpenedByCode': function (variableOpenedByCode) {
+        computeBars(variableOpenedByCode, this.get('variablesTree'));
+    }
+});
+waterfallRactive.on('toggle-variable', function (event) {
+    var variable = this.get(event.keypath);
+    this.toggle('variableOpenedByCode.' + variable.code);
 });
 </%def>
 
@@ -258,49 +278,101 @@ waterfallRactive.observe('sali', function (newValue, oldValue) {
             <input class="form-control" id="sali" min="0" step="1" type="number" value="{{sali}}">
         </div>
     </form>
-    <svg height="{{height}}" width="{{width}}">
-    {{# bars !== null}}
-        ## X-axis
-        <g transform="translate(0, {{y0}})">
-            <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M{{marginLeft}},6V0H{{width - marginRight}}V6"></path>
-            {{#bars:barIndex}}
-                <g transform="translate({{marginLeft + barIndex * tickWidth}}, 0)" style="opacity: 1;">
-                    <line style="fill: none; stroke: black; shape-rendering: crispedges;" x2="0" y2="6"/>
+    <div class="row">
+        <div class="col-md-6">
+            <svg height="{{height}}" width="{{width}}">
+            {{# bars !== null}}
+                ## X-axis
+                <g transform="translate(0, {{y0}})">
+                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M{{marginLeft}},6V0H{{width - marginRight}}V6"></path>
+                    {{#bars:barIndex}}
+                        <g transform="translate({{marginLeft + barIndex * tickWidth}}, 0)" style="opacity: 1;">
+                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" x2="0" y2="6"/>
+                        </g>
+                    {{/bars:barIndex}}
                 </g>
-            {{/bars:barIndex}}
-        </g>
 
-        ## X-axis labels
-        <g transform="translate(0, {{marginTop + gridHeight + 5}})">
-            {{#bars:barIndex}}
-                <g transform="translate({{marginLeft + barIndex * tickWidth + tickWidth / 2}}, 0)" style="opacity: 1;">
-                    <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".71em" transform="rotate(-45)">{{name}}</text>
+                ## X-axis labels
+                <g transform="translate(0, {{marginTop + gridHeight + 5}})">
+                    {{#bars:barIndex}}
+                        <g transform="translate({{marginLeft + barIndex * tickWidth + tickWidth / 2}}, 0)" style="opacity: 1;">
+                            <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".71em" transform="rotate(-45)">{{name}}</text>
+                        </g>
+                    {{/bars:barIndex}}
                 </g>
-            {{/bars:barIndex}}
-        </g>
 
-        ## Y-axis
-        <g transform="translate(60, 0)">
-            <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M-6,{{marginTop}}H0V{{height - marginBottom}}H-6"></path>
-            {{#yAxisLabels:yAxisIndex}}
-                <g transform="translate(0, {{height - marginBottom - yAxisIndex * tickHeight}})" style="opacity: 1;">
-                    <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".32em" x="-9" y="0">{{.}}</text>
-                    <line style="fill: none; stroke: black; shape-rendering: crispedges;" y2="0" x2="-6"/>
-                    <line style="fill: none; stroke: lightgray; opacity: 0.8;" y2="0" x2="{{width - marginLeft - marginRight}}"/>
+                ## Y-axis
+                <g transform="translate(60, 0)">
+                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M-6,{{marginTop}}H0V{{height - marginBottom}}H-6"></path>
+                    {{#yAxisLabels:yAxisIndex}}
+                        <g transform="translate(0, {{height - marginBottom - yAxisIndex * tickHeight}})" style="opacity: 1;">
+                            <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".32em" x="-9" y="0">{{.}}</text>
+                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" y2="0" x2="-6"/>
+                            <line style="fill: none; stroke: lightgray; opacity: 0.8;" y2="0" x2="{{width - marginLeft - marginRight}}"/>
+                        </g>
+                    {{/yAxisLabels:yAxisIndex}}
                 </g>
-            {{/yAxisLabels:yAxisIndex}}
-        </g>
 
-        ## Vertical bars
-        {{#bars:barIndex}}
-            {{# type === 'bar'}}
-                <rect stroke="{{blueStrokeColor}}" fill="{{blueFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
-            {{/ type === 'bar'}}
-            {{# type === 'var'}}
-                <rect stroke="{{value > baseValue ? greenStrokeColor : redStrokeColor}}" fill="{{value > baseValue ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
-            {{/ type === 'var'}}
-        {{/bars:barIndex}}
-    {{/ bars !== null}}
-    </svg>
+                ## Vertical bars
+                {{#bars:barIndex}}
+                    {{# type === 'bar'}}
+                        <rect stroke="{{blueStrokeColor}}" fill="{{blueFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
+                    {{/ type === 'bar'}}
+                    {{# type === 'var'}}
+                        <rect stroke="{{value > baseValue ? greenStrokeColor : redStrokeColor}}" fill="{{value > baseValue ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}"/>
+                    {{/ type === 'var'}}
+                {{/bars:barIndex}}
+            {{/ bars !== null}}
+            </svg>
+        </div>
+        {{#variablesTree}}
+            <div class="col-md-6">
+                {{>childrenTree}}
+                <div class="row">
+                    <div class="col-md-10">
+                        <span class="glyphicon glyphicon-euro" style="cursor: default"></span>
+                        {{name}}
+                    </div>
+                    <div class="col-md-2 text-right">
+                        {{Math.round(value)}}
+                    </div>
+                </div>
+            </div>
+        {{/variablesTree}}
+    </div>
+
+    <!-- {{>childrenTree}} -->
+    {{# .children && (variableOpenedByCode[.code] || .depth === 0)}}
+        {{#children}}
+            {{# .value}}
+                {{# .children && variableOpenedByCode[.code]}}
+                    <div class="row">
+                        <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
+                            <span class="glyphicon glyphicon-minus" on-click="toggle-variable" style="cursor: pointer"></span>
+                            {{name}}
+                        </div>
+                    </div>
+                    {{>childrenTree}}
+                {{/ .children && variableOpenedByCode[.code]}}
+                {{# ! .children || ! variableOpenedByCode[.code]}}
+                    <div class="row">
+                        <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
+                            {{# !! .children}}
+                                <span class="glyphicon glyphicon-plus" on-click="toggle-variable" style="cursor: pointer"></span>
+                            {{/ !! .children}}
+                            {{# ! .children}}
+                                <span class="glyphicon glyphicon-ok" style="cursor: default"></span>
+                            {{/ ! .children}}
+                            {{name}}
+                        </div>
+                        <div class="col-md-2 text-right">
+                            {{Math.round(value)}}
+                        </div>
+                    </div>
+                {{/ ! .children || ! variableOpenedByCode[.code]}}
+            {{/ .value}}
+        {{/children}}
+    {{/ .children && (variableOpenedByCode[.code] || .depth === 0)}}
+    <!-- {{/childrenTree}} -->
 </script>
 </%def>
