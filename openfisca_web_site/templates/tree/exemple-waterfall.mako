@@ -196,10 +196,10 @@ var waterfallRactive = new Ractive({
         blueStrokeColor: '#6B94B0',
         greenFillColor: '#B3DE69',
         greenStrokeColor: '#95B957',
-        height: 400,
-        marginBottom: 150,
-        marginLeft: 60,
-        marginRight: 20,
+        height: 398,
+        marginBottom: 160,
+        marginLeft: 100,
+        marginRight: 0,
         marginTop: 10,
         redFillColor: '#FB8072',
         redStrokeColor: '#D26B5F',
@@ -211,7 +211,7 @@ var waterfallRactive = new Ractive({
         ## are updated by OpenFisca API.
         variableOpenedByCode: {},
         variablesTree: null,
-        width: 600,
+        width: 598,
         y0: 0,
         yAxisLabels: null
     }
@@ -272,45 +272,50 @@ waterfallRactive.on('toggle-variable', function (event) {
 
 <%def name="waterfall_template()" filter="trim">
 <script id="waterfall-template" type="text/ractive">
-    <form role="form">
+    <h2>Décomposition en cascade du revenu disponible</h2>
+    <form class="form-horizontal" role="form">
+        <p class="lead">Indiquez votre salaire imposable, pour connaître la décomposition de votre revenu.</p>
+        <p><em>Cliquez sur les différents éléments pour les décomposer ou les regrouper.</em></p>
         <div class="form-group">
-            <label for="sali">Salaire imposable</label>
-            <input class="form-control" id="sali" min="0" step="1" type="number" value="{{sali}}">
+            <label class="col-sm-2 control-label" for="sali">Salaire imposable :</label>
+            <div class="col-sm-2">
+                <input class="form-control" id="sali" min="0" step="1" type="number" value="{{sali}}">
+            </div>
         </div>
     </form>
     <div class="row">
         <div class="col-md-6">
             <svg height="400" preserveAspectRatio="xMinYMin" viewBox="0 0 {{width}} {{height}}" width="100%">
             {{# bars !== null}}
-                ## X-axis
-                <g transform="translate(0, {{y0}})">
-                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M{{marginLeft}},6V0H{{width - marginRight}}V6"></path>
-                    {{#bars:barIndex}}
-                        <g transform="translate({{marginLeft + barIndex * tickWidth}}, 0)" style="opacity: 1;">
-                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" x2="0" y2="6"/>
+                ## Y-axis
+                <g transform="translate({{marginLeft}}, 0)">
+                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M-6,{{marginTop}}H0V{{height - marginBottom}}H-6"/>
+                    {{#yAxisLabels:yAxisIndex}}
+                        <g transform="translate(0, {{height - marginBottom - yAxisIndex * tickHeight}})" style="opacity: 1;">
+                            <text style="text-anchor: end; font-family: sans-serif; font-size: 12px;" dy=".32em" x="-9" y="0">{{.}}</text>
+                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" y2="0" x2="-6"/>
+                            <line style="fill: none; stroke: lightgray; opacity: 0.8;" y2="0" x2="{{width - marginLeft - marginRight}}"/>
                         </g>
-                    {{/bars:barIndex}}
+                    {{/yAxisLabels:yAxisIndex}}
                 </g>
 
                 ## X-axis labels
                 <g transform="translate(0, {{marginTop + gridHeight + 5}})">
                     {{#bars:barIndex}}
                         <g transform="translate({{marginLeft + barIndex * tickWidth + tickWidth / 2}}, 0)" style="opacity: 1;">
-                            <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".71em" transform="rotate(-45)">{{name}}</text>
+                            <text style="text-anchor: end; font-family: sans-serif; font-size: 12px;" dy=".71em" transform="rotate(-45)">{{name}}</text>
                         </g>
                     {{/bars:barIndex}}
                 </g>
 
-                ## Y-axis
-                <g transform="translate(60, 0)">
-                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M-6,{{marginTop}}H0V{{height - marginBottom}}H-6"></path>
-                    {{#yAxisLabels:yAxisIndex}}
-                        <g transform="translate(0, {{height - marginBottom - yAxisIndex * tickHeight}})" style="opacity: 1;">
-                            <text style="text-anchor: end; font-family: sans-serif; font-size: 10px;" dy=".32em" x="-9" y="0">{{.}}</text>
-                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" y2="0" x2="-6"/>
-                            <line style="fill: none; stroke: lightgray; opacity: 0.8;" y2="0" x2="{{width - marginLeft - marginRight}}"/>
+                ## X-axis
+                <g transform="translate(0, {{y0}})">
+                    <path style="fill: none; stroke: black; shape-rendering: crispedges;" d="M{{marginLeft}},6V0H{{width - marginRight}}V6"/>
+                    {{#bars:barIndex}}
+                        <g transform="translate({{marginLeft + barIndex * tickWidth}}, 0)" style="opacity: 1;">
+                            <line style="fill: none; stroke: black; shape-rendering: crispedges;" x2="0" y2="6"/>
                         </g>
-                    {{/yAxisLabels:yAxisIndex}}
+                    {{/bars:barIndex}}
                 </g>
 
                 ## Vertical bars
@@ -327,21 +332,24 @@ waterfallRactive.on('toggle-variable', function (event) {
         </div>
         {{#variablesTree}}
             <div class="col-md-6">
-                {{>childrenTree}}
-                <div class="row">
-                    <div class="col-md-10">
-                        <span class="glyphicon glyphicon-euro" style="cursor: default"></span>
-                        {{#.url}}
-                            <a href="{{url}}" target="_blank">{{name}}</a>
-                        {{/.url}}
-                        {{^.url}}
-                            {{name}}
-                        {{/.url}}
-                    </div>
-                    <div class="col-md-2 text-right">
-                        {{Math.round(value)}}
-                    </div>
-                </div>
+                <table class="table table-hover">
+                    <tbody>
+                        {{>childrenTree}}
+                        <tr>
+                            <th>
+                                <span style="cursor: default">
+                                    <span class="glyphicon glyphicon-euro"></span> {{name}}
+                                </span>
+                                {{#.url}}
+                                    <a class="btn btn-default btn-xs" href="{{url}}" target="_blank" title="Explication sur {{name}}">?</a>
+                                {{/.url}}
+                            </th>
+                            <td class="text-right">
+                                {{Math.round(value)}} €
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         {{/variablesTree}}
     </div>
@@ -351,39 +359,41 @@ waterfallRactive.on('toggle-variable', function (event) {
         {{#children}}
             {{#.value}}
                 {{# .children && variableOpenedByCode[.code]}}
-                    <div class="row">
-                        <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
-                            <span class="glyphicon glyphicon-minus" on-click="toggle-variable" style="cursor: pointer"></span>
+                    <tr>
+                        <th>
+                            <span on-click="toggle-variable" style="cursor: pointer; padding-left: {{(depth - 1) * 20}}px">
+                                <span class="glyphicon glyphicon-minus"></span> {{name}}
+                            </span>
                             {{#.url}}
-                                <a href="{{url}}" target="_blank">{{name}}</a>
+                                <a class="btn btn-default btn-xs" href="{{url}}" target="_blank" title="Explication sur {{name}}">?</a>
                             {{/.url}}
-                            {{^.url}}
-                                {{name}}
-                            {{/.url}}
-                        </div>
-                    </div>
+                        </th>
+                        <td class="text-right">
+                        </td>
+                    </tr>
                     {{>childrenTree}}
                 {{/ .children && variableOpenedByCode[.code]}}
                 {{^ .children && variableOpenedByCode[.code]}}
-                    <div class="row">
-                        <div class="col-md-{{11 - depth}} col-md-offset-{{depth - 1}}">
+                    <tr>
+                        <th>
                             {{# !! .children}}
-                                <span class="glyphicon glyphicon-plus" on-click="toggle-variable" style="cursor: pointer"></span>
+                                <span on-click="toggle-variable" style="cursor: pointer; padding-left: {{(depth - 1) * 20}}px">
+                                    <span class="glyphicon glyphicon-plus"></span> {{name}}
+                                </span>
                             {{/ !! .children}}
                             {{^.children}}
-                                <span class="glyphicon glyphicon-ok" style="cursor: default"></span>
+                                <span style="cursor: default; padding-left: {{(depth - 1) * 20}}px">
+                                    <span class="glyphicon glyphicon-ok"></span> {{name}}
+                                </span>
                             {{/.children}}
                             {{#.url}}
-                                <a href="{{url}}" target="_blank">{{name}}</a>
+                                <a class="btn btn-default btn-xs" href="{{url}}" target="_blank" title="Explication sur {{name}}">?</a>
                             {{/.url}}
-                            {{^.url}}
-                                {{name}}
-                            {{/.url}}
-                        </div>
-                        <div class="col-md-2 text-right">
-                            {{Math.round(value)}}
-                        </div>
-                    </div>
+                        </th>
+                        <td class="text-right">
+                            {{Math.round(value)}} €
+                        </td>
+                    </tr>
                 {{/ .children && variableOpenedByCode[.code]}}
             {{/.value}}
         {{/children}}
