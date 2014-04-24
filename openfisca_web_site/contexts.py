@@ -124,28 +124,28 @@ class Ctx(conv.State):
 
     def lang_del(self):
         del self._lang
-        if self.req is not None and self.req.environ.get('openfisca-web-ui') is not None \
-                and '_lang' in self.req.environ['openfisca-web-ui']:
-            del self.req.environ['openfisca-web-ui']['_lang']
+        if self.req is not None and self.req.environ.get('openfisca-web-site') is not None \
+                and '_lang' in self.req.environ['openfisca-web-site']:
+            del self.req.environ['openfisca-web-site']['_lang']
 
     def lang_get(self):
         if self._lang is None:
             self._lang = ['fr-FR', 'fr']
             if self.req is not None:
-                self.req.environ.setdefault('openfisca-web-ui', {})['_lang'] = self._lang
+                self.req.environ.setdefault('openfisca-web-site', {})['_lang'] = self._lang
         return self._lang
 
     def lang_set(self, lang):
         self._lang = lang
         if self.req is not None:
-            self.req.environ.setdefault('openfisca-web-ui', {})['_lang'] = self._lang
+            self.req.environ.setdefault('openfisca-web-site', {})['_lang'] = self._lang
         # Reinitialize translator for new languages.
         if self._translator is not None:
             # Don't del self._translator, because attribute _translator can be defined in a parent.
             self._translator = None
-            if self.req is not None and self.req.environ.get('openfisca-web-ui') is not None \
-                    and '_translator' in self.req.environ['openfisca-web-ui']:
-                del self.req.environ['openfisca-web-ui']['_translator']
+            if self.req is not None and self.req.environ.get('openfisca-web-site') is not None \
+                    and '_translator' in self.req.environ['openfisca-web-site']:
+                del self.req.environ['openfisca-web-site']['_translator']
 
     lang = property(lang_get, lang_set, lang_del)
 
