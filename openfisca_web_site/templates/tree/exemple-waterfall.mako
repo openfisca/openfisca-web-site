@@ -326,7 +326,7 @@ waterfallRactive.on('toggle-variable', function (event) {
                         <rect stroke="{{blueStrokeColor}}" fill="{{blueFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}" on-click="{{hasChildren ? 'toggle-variable' : ''}}"/>
                     {{/ type === 'bar'}}
                     {{# type === 'var'}}
-                        <rect stroke="{{value > baseValue ? greenStrokeColor : redStrokeColor}}" fill="{{value > baseValue ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}" on-click="{{hasChildren ? 'toggle-variable' : ''}}"/>
+                        <rect stroke="{{value > 0 ? greenStrokeColor : redStrokeColor}}" fill="{{value > 0 ? greenFillColor : redFillColor}}" opacity="0.8" height="{{height}}" width="{{tickWidth * 0.8}}" x="{{marginLeft + barIndex * tickWidth + 0.1 * tickWidth}}" y="{{y}}" on-click="{{hasChildren ? 'toggle-variable' : ''}}"/>
                     {{/ type === 'var'}}
                 {{/bars:barIndex}}
             {{/ bars !== null}}
