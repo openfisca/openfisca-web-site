@@ -39,11 +39,15 @@ Installation d'OpenFisca
 
 
 <%def name="page_content()" filter="trim">
+    <%self:block_debian/>
+    <%self:block_windows/>
+    <%self:block_mac/>
+    <%self:block_heroku/>
+    <%self:block_initial/>
+</%def>
 
 
-##Installation Debian GNU/Linux
-
-
+<%def name="block_debian()" filter="trim">
 <div role="main">
     <h2 id="gnu-linux">Installation sous  <strong>Debian GNU/Linux</strong></h2>
     <div class="alert alert-danger"><strong>Attention :</strong> cette installation est valable pour les versions testing et unstable de Debian</div>
@@ -191,11 +195,10 @@ paster serve --reload development.ini</pre>
         </li>
     </ul>
     <hr>
+</%def>
 
 
-##Installation Windows
-
-
+<%def name="block_windows()" filter="trim">
     <h2 id="windows">Installation sous <strong>Windows</strong></h2>
     <h3 id="noyau-windows">Installation du noyau d'OpenFisca</h3>
     <ul>
@@ -335,11 +338,10 @@ paster serve --reload development.ini</pre>
         </li>
     </ul>
     <hr>
+</%def>
 
 
-##Installation Mac
-
-
+<%def name="block_mac()" filter="trim">
     <h2 id="mac">Installation sous <strong>Mac OS</strong></h2>
     <h3 id="noyau-mac">Installation du noyau d'OpenFisca</h3>
     <ul>
@@ -347,9 +349,9 @@ paster serve --reload development.ini</pre>
         </li>
         <li>Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes suivantes :
             <pre>brew install git
-install gfortran
-install mongodb
-install nodejs
+brew install gfortran
+brew install mongodb
+brew install nodejs
 sudo pip install babel
 sudo pip install isodate
 sudo pip install pastescript
@@ -483,10 +485,10 @@ paster serve --reload development.ini</pre>
     </li>
     </ul>
     <hr>
+</%def>
 
 
-##Installation Heroku
-
+<%def name="block_heroku()" filter="trim">
     <h2 id="heroku">Installation sur Heroku</h2>
 
     <ul>
@@ -514,11 +516,10 @@ heroku open</pre>
         </ul>
     </div>
     <hr>
+</%def>
 
 
-##Installation version initiale
-
-
+<%def name="block_initial()" filter="trim">
         <h2 id="version-initiale">Télécharger et installer la version initiale d'OpenFisca pour Windows</h2>
 
         <div class="panel panel-warning">
