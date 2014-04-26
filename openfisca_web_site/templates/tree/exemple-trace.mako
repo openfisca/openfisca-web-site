@@ -223,7 +223,7 @@ traceRactive.fire('submit-form');
         {{#.:name}}
             {{# showDefaultFormulas || ! .default_arguments}}
                 <div class="panel panel-default" on-click="toggle-variable-panel">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="cursor: pointer">
                         <div class="row">
                             <div class="col-sm-2"><code>{{name}}</code></div>
                             <div class="col-sm-8">{{label}}</div>
