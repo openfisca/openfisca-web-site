@@ -30,6 +30,15 @@ class Node(model.Folder):
     def get_visualizations(self, ctx):
         return [
             dict(
+                description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",
+                logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+                source_url = urls.get_full_url(ctx, self.url_path, '../exemple-waterfall'),
+                owner = u"Etalab",
+                title = u"Diagramme en cascade",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-waterfall.png'),
+                updated = u'2014-04-21T07:00:00',
+                ),
+            dict(
                 description = u"Les aides que l'État peut apporter, en fonction de la situation des personnes",
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
                 source_url = u'http://openfisca-dss.herokuapp.com/',

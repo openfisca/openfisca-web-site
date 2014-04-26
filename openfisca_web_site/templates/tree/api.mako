@@ -39,7 +39,7 @@ API
 
 
 <%def name="page_content()" filter="trim">
-        <h2 id="api-web">API web</h2>
+        <h2 id="presentation">Présentation de l'API web</h2>
 
         <p>L'API web OpenFisca est constituée de quelques fonctions principales :</p>
         <ul>
@@ -65,6 +65,8 @@ API
                 fonctions ci-dessous.
             </p>
         </div>
+
+        <h2 id="detail">Détail des fonctions de l'API web</h2>
 
         <ul>
             <li>
@@ -781,8 +783,11 @@ Content-Type: application/json; charset=utf-8
                     </tbody>
                 </table>
 
-                <h4>Exemple d'appel</h4>
-                <p>Vous trouverez ci-dessous d'autres exemples plus simples dans différents langages.</p>
+                <h4>Exemples d'appels</h4>
+                <p>
+                    Une <a href="exemples">page dédiée</a> recense différents exemples d'appel de l'API
+                    <code>simulate</code>, écrits dans divers langages de programmation.
+                </p>
 
                 <h4>Exemples d'utilisations</h4>
                 <p>
@@ -791,15 +796,13 @@ Content-Type: application/json; charset=utf-8
                 </p>
             </li>
         </ul>
-
-        <h2 id="exemples">Exemples d'utilisation de l'API web</h2>
-            <p>Des exemples d'utilisation de l'API web sont <a href="${urls.get_url(ctx, 'exemples')}">disponibles ici</a>   
 </%def>
 
 
 <%def name="nav_content()" filter="trim">
+            <li><a href="#presentation">Présentation de l'API</a></li>
             <li>
-                <a href="#api-web">API web</a>
+                <a href="#detail">Détail des fonctions de l'API</a>
                 <ul class="nav">
                     <li><a href="#default-legislation"><code>default-legislation</code></a></li>
                     <li><a href="#field"><code>field</code></a></li>
@@ -808,6 +811,4 @@ Content-Type: application/json; charset=utf-8
                     <li><a href="#simulate"><code>simulate</code></a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#exemples">Exemples</a>
 </%def>
