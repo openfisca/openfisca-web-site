@@ -44,11 +44,13 @@ Documentation
                     <li><a href="variables#variables-en-sortie">Formules</a></li>
                 </ul>
             </li>
-            <li><a href="installation">Installation sur votre PC</a>
+            <li><a href="installation">Installation</a>
                 <ul>
                     <li><a href="installation#gnu-linux">Debian GNU/Linux</a></li>
-                    <li><a href="installation#windows">Windows</a></li>
+                    <li><a href="installation#heroku">Heroku</a></li>
                     <li><a href="installation#mac">Mac OS</a></li>
+                    <li><a href="installation#windows">Windows</a></li>
+                    <li><a href="installation#version-initiale">Version initiale</a></li>
                 </ul>
             </li>
             <li><a href="contribuer">Contribuer à OpenFisca</a></li>
