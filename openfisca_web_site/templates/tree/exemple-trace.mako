@@ -86,9 +86,13 @@ var traceRactive = new Ractive({
         getEntityBackgroundColor: function (step) {
             return {
                 'fam': 'bg-success',
+                'familles': 'bg-success',
                 'foy': 'bg-info',
+                'foyers_fiscaux': 'bg-info',
                 'ind': 'bg-primary',
-                'men': 'bg-warning'
+                'individus': 'bg-primary',
+                'men': 'bg-warning',
+                'menages': 'bg-warning'
             }[step.entity] || step.entity;
         },
         getEntityKeyPlural: function (step) {
@@ -238,7 +242,7 @@ traceRactive.fire('submit-form');
     </form>
     {{#tracebacks:tracebackIndex}}
         {{#.:name}}
-            {{# showDefaultFormulas || ! .default_arguments}}
+            {{# .is_computed && (showDefaultFormulas || ! .default_arguments)}}
                 <div class="panel panel-default" on-click="toggle-variable-panel">
                     <div class="panel-heading" style="cursor: pointer">
                         <div class="row">
@@ -250,9 +254,11 @@ traceRactive.fire('submit-form');
                             <div class="col-sm-6">{{label}}</div>
                             <div class="col-sm-1 {{getEntityBackgroundColor(.)}}">{{getEntityKeyPlural(.)}}</div>
                             <div class="col-sm-2">
-                                {{#array}}
-                                    <div class="text-right">{{.}}</div>
-                                {{/array}}
+                                <ul class="list-unstyled">
+                                    {{#array}}
+                                        <li class="text-right">{{.}}</li>
+                                    {{/array}}
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -266,7 +272,7 @@ traceRactive.fire('submit-form');
                         </div>
                     {{/variableOpenedByCode[name]}}
                 </div>
-            {{/ showDefaultFormulas || ! .default_arguments}}
+            {{/ .is_computed && (showDefaultFormulas || ! .default_arguments)}}
         {{/.}}
     {{/tracebacks}}
 
@@ -309,20 +315,32 @@ traceRactive.fire('submit-form');
     {{# getType(.) === 'SimpleFormula'}}
         <h3>Fonction <small>{{@type}}</small></h3>
         <h4>Paramètres</h4>
-        <ul>
-            {{#.parameters}}
-                <li>
-                    {{.name}}
-                    {{#.label}}« <i>{{label}}</i> »{{/.label}}
-                    =
-                    <ul class="list-inline" style="display: inline">
-                        {{#tracebacks[tracebackIndex][.name].array}}
-                            <li class="text-right">{{.}}</li>
-                        {{/tracebacks[tracebackIndex][.name].array}}
-                    </ul>
-                </li>
-            {{/.parameters}}
-        </ul>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Libellé</th>
+                        <th>Entité</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#.parameters}}
+                        <tr>
+                            <td><code>{{.name}}</code></td>
+                            <td>{{.label != .name ? .label : ''}}</td>
+                            <td class="{{getEntityBackgroundColor(.)}}">{{.entity}}</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {{#tracebacks[tracebackIndex][.name].array}}
+                                        <li class="text-right">{{.}}</li>
+                                    {{/tracebacks[tracebackIndex][.name].array}}
+                                </ul>
+                            </td>
+                        </tr>
+                    {{/.parameters}}
+                </tbody>
+            </table>
         <h4>Code source</h4>
         <pre><code data-language="python">{{source}}</code></pre>
     {{/ getType(.) === 'SimpleFormula'}}
