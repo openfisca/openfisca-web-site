@@ -116,7 +116,7 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
 
         <h${heading_level + 1}>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/${
                 module.replace(u'.', u'/')}.py#L${line_number}-${
-                line_number + len(source.strip().split(u'\n')) - 1}">Voir dans GitHub</a></h${heading_level + 1}>
+                line_number + len(source.strip().split(u'\n')) - 1}" target="_blank">Voir dans GitHub</a></h${heading_level + 1}>
         <pre><code data-language="python">${source}</code></pre>
     % endif
 </%def>

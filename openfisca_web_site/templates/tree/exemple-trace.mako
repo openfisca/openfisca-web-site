@@ -247,8 +247,8 @@ traceRactive.fire('submit-form');
     {{#tracebacks:tracebackIndex}}
         {{#.:name}}
             {{# .is_computed && (showDefaultFormulas || ! .default_arguments)}}
-                <div class="panel panel-default" on-click="toggle-variable-panel">
-                    <div class="panel-heading" style="cursor: pointer">
+                <div class="panel panel-default">
+                    <div class="panel-heading" on-click="toggle-variable-panel" style="cursor: pointer">
                         <div class="row">
                             <div class="col-sm-3">
                                 <span class="glyphicon {{variableOpenedByCode[name] ? 'glyphicon-minus'
@@ -345,7 +345,9 @@ traceRactive.fire('submit-form');
                     {{/.parameters}}
                 </tbody>
             </table>
-        <h4>Code source</h4>
+        <h4>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/{{
+                module.split('.').join('/')}}.py#L{{line_number}}-{{
+                line_number + source.trim().split('\n').length - 1}}" target="_blank">Voir dans GitHub</a></h4>
         <pre><code data-language="python">{{source}}</code></pre>
     {{/ getType(.) === 'SimpleFormula'}}
     <!-- {{/formulaContent}} -->
