@@ -72,6 +72,7 @@ Exemples de tableau
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/generic.js')}"></script>
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/html.js')}"></script>
     <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
+    <script src="${urls.get_url(ctx, u'/bower/rainbow/js/language/python.js')}"></script>
     <script>
 <%self:trace_script_content/>
     </script>
@@ -164,7 +165,10 @@ traceRactive.on({
                 }
             })
             .done(function (data, textStatus, jqXHR) {
-                traceRactive.set('variableHolderByCode.' + name, data.value);
+                traceRactive.set('variableHolderByCode.' + name, data.value).then(function () {
+                    ## Colorize code in variable.
+                    Rainbow.color();
+                });
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log('fail');
