@@ -83,6 +83,22 @@ var traceRactive = new Ractive({
     el: 'trace-container',
     template: '#trace-template',
     data: {
+        getEntityBackgroundColor: function (step) {
+            return {
+                'fam': 'bg-success',
+                'foy': 'bg-info',
+                'ind': 'bg-primary',
+                'men': 'bg-warning'
+            }[step.entity] || step.entity;
+        },
+        getEntityKeyPlural: function (step) {
+            return {
+                'fam': 'familles',
+                'foy': 'foyers fiscaux',
+                'ind': 'individus',
+                'men': 'ménages'
+            }[step.entity] || step.entity;
+        },
         getType: function (object) {
             return object['@type'];
         },
@@ -206,7 +222,8 @@ traceRactive.fire('submit-form');
         </p>
         <div class="form-group">
             <label class="control-label" for="simulation">Simulation :</label>
-            <textarea class="form-control" placeholder="Mettez ici la simulation au format JSON" rows="10" value="{{simulationText}}"></textarea>
+            <textarea class="form-control" placeholder="Mettez ici la simulation au format JSON" rows="10" value="{{
+                    simulationText}}"></textarea>
             {{#simulationError}}
                 <pre><code data-language="javascript">{{simulationError}}</pre>
             {{/simulationError}}
@@ -215,7 +232,7 @@ traceRactive.fire('submit-form');
         <div class="checkbox">
             <label>
                 <input checked="{{showDefaultFormulas}}" type="checkbox">
-                Afficher aussi les formules ayant les valeurs par défaut
+                Afficher aussi les formules appelées avec les valeurs par défaut
             </label>
         </div>
     </form>
@@ -225,8 +242,13 @@ traceRactive.fire('submit-form');
                 <div class="panel panel-default" on-click="toggle-variable-panel">
                     <div class="panel-heading" style="cursor: pointer">
                         <div class="row">
-                            <div class="col-sm-2"><code>{{name}}</code></div>
-                            <div class="col-sm-8">{{label}}</div>
+                            <div class="col-sm-3">
+                                <span class="glyphicon {{variableOpenedByCode[name] ? 'glyphicon-minus'
+                                        : 'glyphicon-plus'}}"></span>
+                                <code>{{name}}</code>
+                            </div>
+                            <div class="col-sm-6">{{label}}</div>
+                            <div class="col-sm-1 {{getEntityBackgroundColor(.)}}">{{getEntityKeyPlural(.)}}</div>
                             <div class="col-sm-2">
                                 {{#array}}
                                     <div class="text-right">{{.}}</div>
@@ -294,13 +316,14 @@ traceRactive.fire('submit-form');
                     {{#.label}}« <i>{{label}}</i> »{{/.label}}
                     =
                     <ul class="list-inline" style="display: inline">
-                        {{#tracebacks[tracebackIndex][name].array}}
+                        {{#tracebacks[tracebackIndex][.name].array}}
                             <li class="text-right">{{.}}</li>
-                        {{/tracebacks[tracebackIndex][name].array}}
+                        {{/tracebacks[tracebackIndex][.name].array}}
                     </ul>
                 </li>
             {{/.parameters}}
         </ul>
+        <h4>Code source</h4>
         <pre><code data-language="python">{{source}}</code></pre>
     {{/ getType(.) === 'SimpleFormula'}}
     <!-- {{/formulaContent}} -->
