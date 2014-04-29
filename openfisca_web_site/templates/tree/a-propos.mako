@@ -71,6 +71,7 @@ ${_(u'About OpenFisca')}
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
             <li>Victor Le Breton</li>
+            <li>Adrien Pacifico <span class="label label-success">Nouveau !</span></li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
             <li>Stanislas Rybak</li>
@@ -83,6 +84,7 @@ ${_(u'About OpenFisca')}
         <h2>Remerciements</h2>
         <ul>
             <li>Antoine Bozio</li>
+            <li>Fabien Dell <span class="label label-success">Nouveau !</span></li>
             <li>Alain Trannoy</li>
         </ul>
 
