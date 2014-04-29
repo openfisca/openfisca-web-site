@@ -30,6 +30,15 @@ class Node(model.Folder):
     def get_visualizations(self, ctx):
         return [
             dict(
+                description = u"""Outil web de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",
+                logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+                source_url = urls.get_full_url(ctx, self.url_path, '../exemple-trace'),
+                owner = u"Etalab",
+                title = u"Débogueur",
+                thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-trace.png'),
+                updated = u'2014-04-27T11:00:00',
+                ),
+            dict(
                 description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",
                 logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
                 source_url = urls.get_full_url(ctx, self.url_path, '../exemple-waterfall'),
