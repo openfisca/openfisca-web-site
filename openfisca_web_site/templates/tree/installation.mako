@@ -50,13 +50,13 @@ from openfisca_web_site import conf, urls
 sudo apt-get install git
 sudo apt-get install python-babel
 sudo apt-get install python-dateutil
-sudo apt-get install python-gettext
 sudo apt-get install python-isodate
 sudo apt-get install python-pastescript
 sudo apt-get install python-pymongo
+sudo apt-get install python-requests
 sudo apt-get install python-setuptools
 sudo apt-get install python-scipy
-sudo apt-get install python-requests
+sudo apt-get install python-tz
 sudo apt-get install python-weberror</pre>
         </li>
     </ul>
@@ -82,9 +82,9 @@ python setup.py compile_catalog
 sudo python setup.py develop --no-deps
 cd ../openfisca-core
 python setup.py compile_catalog
-python setup.py develop --no-deps
+sudo python setup.py develop --no-deps
 cd ../openfisca-france
-python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre>
         </li>
     </ul>
 
@@ -107,18 +107,14 @@ python setup.py develop --no-deps</pre>
 
     <ul>
         <li>
-            Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
+            Afin d'installer l'API web, effectuez les commandes dans l'ordre :
             <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         </li>
         <li>
             Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
-        </li>
-        <li>
-            Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>cd ../openfisca-web-api
+            <pre>cd openfisca-web-api
 python setup.py compile_catalog
-python setup.py develop --no-deps</pre>
+sudo python setup.py develop --no-deps</pre>
         </li>
     </ul>
 
@@ -156,8 +152,7 @@ python setup.py develop --no-deps</pre>
 
     <ul>
         <li>
-            Pour installer l'UI, il faut ouvrir un nouvel onglet (<kbd>ctrl + shift + T</kbd>), aller dans son dossier
-            openfisca et installer les paquets essentiels :
+            Pour installer l'UI, il faut  aller dans son dossier openfisca et installer les paquets nécessaires :
             <pre>cd Documents/openfisca
 sudo apt-get install python-formencode
 sudo apt-get install nodejs-legacy

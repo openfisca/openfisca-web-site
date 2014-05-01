@@ -41,13 +41,12 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="body_content()" filter="trim">
-    <div class="container">
+    <div class="container" id="content">
         <div class="row">
             <%self:breadcrumb/>
             <%self:container_content/>
         </div>
     </div>
-    <%self:footer/>
 </%def>
 
 
@@ -80,8 +79,8 @@ ${conf['realm']}
 
 
 <%def name="css()" filter="trim">
-##    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" rel="stylesheet">
-    <link href="${urls.get_url(ctx, u'/css/bootstrap.css')}" rel="stylesheet">
+    <link href="${urls.get_url(ctx, u'/bower/bootstrap/dist/css/bootstrap.min.css')}" rel="stylesheet">
+##    <link href="${urls.get_url(ctx, u'/css/bootstrap.css')}" rel="stylesheet">
     <link href="${urls.get_url(ctx, u'/css/site.css')}" rel="stylesheet">
 </%def>
 
@@ -113,7 +112,7 @@ ${conf['realm']}
 
 
 <%def name="footer()" filter="trim">
-    <footer class="footer navbar-default">
+    <footer class="footer navbar-inverse" style="margin-top: 15px">
         <div class="container">
     % if node is not None and template is not None:
             <ul class="nav navbar-nav">
@@ -122,11 +121,6 @@ ${conf['realm']}
                 <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">${u"Statistiques du site"}</a></li>
             </ul>
     % endif
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
-            </ul>
         </div>
     </footer>
 </%def>
@@ -165,87 +159,89 @@ ${conf['realm']}
 
 
 <%def name="partners()" filter="trim">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
-                        <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="logos-partenaires/logo-cgsp.png"></img>
-                    </a>
-                    <a href="http://www.strategie.gouv.fr/" target="_blank">
-                        <h4>Commissariat général à la stratégie et à la prospective</h4>
-                    </a>
-                    <p>
-                        le Commissariat général à la stratégie et à la prospective, lieu transversal de concertation et
-                        de réflexion, s'attache à :
-                    </p>
-                    <ul>
-                        <li>
-                            Renouveler l’approche de la stratégie et de la prospective afin d’éclairer les pouvoirs
-                            publics sur les trajectoires possibles à moyen et long termes pour la France en matière
-                            économique, sociale, culturelle et environnementale.
-                        </li>
-                        <li>
-                            Redonner vigueur à la concertation avec les partenaires sociaux et développer le dialogue
-                            avec les acteurs de la société civile.
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
-                        <img alt="Logo d'Etalab" class="partner" src="logos-partenaires/logo-etalab.png"></img>
-                    </a>
-                    <a href="http://www.etalab.gouv.fr/" target="_blank">
-                        <h4>Etalab</h4>
-                    </a>
-                    <p>
-                        Service du premier ministre chargé de l'ouverture des données publiques et du développement de
-                        la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
-                    </p>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.idep-fr.org/" target="_blank">
-                        <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="logos-partenaires/logo-idep.png"></img>
-                    </a>
-                    <a href="http://www.idep-fr.org/" target="_blank">
-                        <h4>Institut d'économie publique</h4>
-                    </a>
-                    <p>
-                         L'IDEP est un réseau de chercheurs. Il a trois missions :
-                    </p>
-                    <ul>
-                        <li>
-                            Fournir une expertise en matière de politiques publiques concernant notamment la fiscalité,
-                            les systèmes sociaux, le marché du travail, l'environnement, le logement, la santé et
-                            l'éducation.
-                        </li>
-                        <li>
-                            Assurer la diffusion des savoirs à la fois en termes de valorisation et d'édition.
-                        </li>
-                        <li>
-                            Assurer une mission pédagogique en direction des lycéens, des étudiants et dans le cadre de
-                            la formation tout au long de la vie.
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <a class="partner" href="http://www.ipp.eu/" target="_blank">
-                        <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="logos-partenaires/logo-ipp.png"></img>
-                    </a>
-                    <a href="http://www.ipp.eu/" target="_blank">
-                        <h4>Institut des politiques publiques</h4>
-                    </a>
-                    <p>
-                        L’Institut des politiques publiques (IPP) est développé dans le cadre d’un partenariat
-                        scientifique entre
-                        <a href="http://www.parisschoolofeconomics.eu/" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
-                        et le
-                        <a href="http://www.crest.fr/" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
-                        L’IPP vise à promouvoir l’analyse et l’évaluation  quantitatives des politiques publiques en
-                        s’appuyant sur les méthodes les plus récentes de la recherche en économie.
-                    </p>
-                </div>
-            </div>
+    <div class="row">
+##        <div class="col-lg-3 col-sm-6" style="height: 160px">
+        <div class="col-lg-3 col-sm-6" style="text-align: center">
+            <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
+                <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="logos-partenaires/logo-cgsp.png"></img>
+            </a>
+##            <a href="http://www.strategie.gouv.fr/" target="_blank">
+##                <h4>Commissariat général à la stratégie et à la prospective</h4>
+##            </a>
+##            <p>
+##                le Commissariat général à la stratégie et à la prospective, lieu transversal de concertation et
+##                de réflexion, s'attache à :
+##            </p>
+##            <ul>
+##                <li>
+##                    Renouveler l’approche de la stratégie et de la prospective afin d’éclairer les pouvoirs
+##                    publics sur les trajectoires possibles à moyen et long termes pour la France en matière
+##                    économique, sociale, culturelle et environnementale.
+##                </li>
+##                <li>
+##                    Redonner vigueur à la concertation avec les partenaires sociaux et développer le dialogue
+##                    avec les acteurs de la société civile.
+##                </li>
+##            </ul>
         </div>
+##        <div class="col-lg-3 col-sm-6" style="height: 160px">
+        <div class="col-lg-3 col-sm-6" style="text-align: center">
+            <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
+                <img alt="Logo d'Etalab" class="partner" src="logos-partenaires/logo-etalab.png"></img>
+            </a>
+##            <a href="http://www.etalab.gouv.fr/" target="_blank">
+##                <h4>Etalab</h4>
+##            </a>
+##            <p>
+##                Service du premier ministre chargé de l'ouverture des données publiques et du développement de
+##                la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
+##            </p>
+        </div>
+##        <div class="col-lg-3 col-sm-6" style="height: 160px">
+        <div class="col-lg-3 col-sm-6" style="text-align: center">
+            <a class="partner" href="http://www.idep-fr.org/" target="_blank">
+                <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="logos-partenaires/logo-idep.png"></img>
+            </a>
+##            <a href="http://www.idep-fr.org/" target="_blank">
+##                <h4>Institut d'économie publique</h4>
+##            </a>
+##            <p>
+##                 L'IDEP est un réseau de chercheurs. Il a trois missions :
+##            </p>
+##            <ul>
+##                <li>
+##                    Fournir une expertise en matière de politiques publiques concernant notamment la fiscalité,
+##                    les systèmes sociaux, le marché du travail, l'environnement, le logement, la santé et
+##                    l'éducation.
+##                </li>
+##                <li>
+##                    Assurer la diffusion des savoirs à la fois en termes de valorisation et d'édition.
+##                </li>
+##                <li>
+##                    Assurer une mission pédagogique en direction des lycéens, des étudiants et dans le cadre de
+##                    la formation tout au long de la vie.
+##                </li>
+##            </ul>
+        </div>
+##        <div class="col-lg-3 col-sm-6" style="height: 160px">
+        <div class="col-lg-3 col-sm-6" style="text-align: center">
+            <a class="partner" href="http://www.ipp.eu/" target="_blank">
+                <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="logos-partenaires/logo-ipp.png"></img>
+            </a>
+##            <a href="http://www.ipp.eu/" target="_blank">
+##                <h4>Institut des politiques publiques</h4>
+##            </a>
+##            <p>
+##                L’Institut des politiques publiques (IPP) est développé dans le cadre d’un partenariat
+##                scientifique entre
+##                <a href="http://www.parisschoolofeconomics.eu/" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
+##                et le
+##                <a href="http://www.crest.fr/" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
+##                L’IPP vise à promouvoir l’analyse et l’évaluation  quantitatives des politiques publiques en
+##                s’appuyant sur les méthodes les plus récentes de la recherche en économie.
+##            </p>
+        </div>
+    </div>
 </%def>
 
 
@@ -261,46 +257,51 @@ $(function () {
 
 
 <%def name="title_content()" filter="trim">
-<%self:brand/>
+    <%self:brand/>
 </%def>
 
 
 <%def name="topbar()" filter="trim">
-        <header class="container">
-            <h1 id="logo">
-                <a href="${urls.get_url(ctx)}">OpenFisca</a> 
-            </h1>
-            <p class="lead slogan">Moteur ouvert de simulation du système socio-fiscal</p>
-        </header>
-        <nav class="navbar navbar-default" role="navigation">
-            <%self:topbar_content/>
-        </nav>
+##    <header>
+##        <div class="container">
+##            <h1 id="logo">
+##                <a href="${urls.get_url(ctx)}">OpenFisca</a>
+##                <small>Moteur ouvert de simulation du système socio-fiscal</small>
+##            </h1>
+##        </div>
+##        <nav class="navbar navbar-static-top" role="navigation">
+##            <%self:topbar_content/>
+##        </nav>
+##    </header>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <%self:topbar_content/>
+    </div>
 </%def>
 
 
 <%def name="topbar_content()" filter="trim">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                        <span class="sr-only">${_(u'Toggle navigation')}</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse navbar-responsive-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="${urls.get_url(ctx)}"><span class="glyphicon glyphicon-home"></span></a></li>
-                        <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'utilisations')}">${u"Utilisations"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'api')}">${u"API"}</a></li>
-                        <li><a href="${urls.get_url(ctx, 'documentation')}">${u"Documentation"}</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="${conf['ui.url']}" target="_blank">${u"Simulation en ligne"}</a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+                <span class="sr-only">${_(u'Toggle navigation')}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="${urls.get_url(ctx)}">OpenFisca</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'documentation')}">${u"Documentation"}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
+            </ul>
+        </div>
+    </div>
 </%def>
 
 
@@ -349,8 +350,10 @@ _paq.push(["enableLinkTracking"]);
     <%self:ie_scripts/>
 </head>
 <body ${self.body_attributes() | n}>
+    <a class="sr-only" href="#content">${_(u'Skip to main content')}</a>
     <%self:topbar/>
     <%self:body_content/>
+    <%self:footer/>
     <%self:scripts/>
     <%self:trackers/>
 </body>

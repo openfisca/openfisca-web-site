@@ -29,7 +29,7 @@ from openfisca_web_site import urls
 
 
 <%def name="h1_content()" filter="trim">
-Exemples d'utilisations
+Utilisations
 </%def>
 
 
@@ -37,27 +37,22 @@ Exemples d'utilisations
 
 
 <%def name="page_content()" filter="trim">
-<%
-    visualizations = node.get_visualizations(xtx)
-%>\
-    % if visualizations:
-        <div class="row">
-        % for visualization in visualizations:
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
-                    <div class="caption">
-                        <div class="ellipsis" style="height: 120px">
-                            <h3>${visualization['title']}</h3>
-                            <p>${visualization['description']}</p>
-                        </div>
-                        <p><a href="${visualization['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+    <div class="row">
+    % for visualization in node.iter_visualizations(xtx):
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${visualization['title']}</h3>
+                        <p>${visualization['description']}</p>
                     </div>
+                    <p><a href="${visualization['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
                 </div>
             </div>
-        % endfor
         </div>
-    % endif
+    % endfor
+    </div>
 </%def>
 
 

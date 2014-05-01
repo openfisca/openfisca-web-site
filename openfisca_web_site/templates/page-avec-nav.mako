@@ -30,8 +30,9 @@
 data-spy="scroll" data-target="#sommaire"
 </%def>
 
+
 <%def name="body_content()" filter="trim">
-    <div class="container">
+    <div class="container" id="content">
         <div class="row">
             <div class="col-md-9">
                 <%self:breadcrumb/>
@@ -48,5 +49,4 @@ data-spy="scroll" data-target="#sommaire"
             </div>
         </div>
     </div>
-    <%self:footer/>
 </%def>

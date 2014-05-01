@@ -24,15 +24,15 @@ div.c-wrapper{
     margin: auto;
 }
 
-.carousel-inner > .item {
-    height: 400px;
+.carousel-inner > div.item {
+    height: 350px;
     overflow: hidden;
 }
 
-.carousel-inner > .item a {
-    color: white;
-    text-decoration: none;
-}
+/*.carousel-inner > div.item a {*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*}*/
 
 .carousel-inner > div.item > img, 
 .carousel-inner > div.item > a > img {
@@ -40,7 +40,7 @@ div.c-wrapper{
     /* width: 100%; use this, or not */
 }
 
-.carousel-inner > div.item > div.overlay > div.info > img {
+.carousel-inner > div.item > div.carousel-caption > p > img {
     height: 32px;
     margin: 5px 10px;
     padding: 0px;
