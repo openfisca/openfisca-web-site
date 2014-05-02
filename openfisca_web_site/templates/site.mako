@@ -42,10 +42,8 @@ from openfisca_web_site import conf, urls
 
 <%def name="body_content()" filter="trim">
     <div class="container" id="content">
-        <div class="row">
-            <%self:breadcrumb/>
-            <%self:container_content/>
-        </div>
+        <%self:breadcrumb/>
+        <%self:container_content/>
     </div>
 </%def>
 
@@ -262,17 +260,6 @@ $(function () {
 
 
 <%def name="topbar()" filter="trim">
-##    <header>
-##        <div class="container">
-##            <h1 id="logo">
-##                <a href="${urls.get_url(ctx)}">OpenFisca</a>
-##                <small>Moteur ouvert de simulation du système socio-fiscal</small>
-##            </h1>
-##        </div>
-##        <nav class="navbar navbar-static-top" role="navigation">
-##            <%self:topbar_content/>
-##        </nav>
-##    </header>
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
         <%self:topbar_content/>
     </div>

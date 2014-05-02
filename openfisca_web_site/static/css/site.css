@@ -1,11 +1,50 @@
+.btn-jumbotron {
+  color: #ffffff;
+  background-color: #2b6a8d;
+  border-color: #2b6a8d;
+}
+.btn-jumbotron:hover,
+.btn-jumbotron:focus,
+.btn-jumbotron:active,
+.btn-jumbotron.active,
+.open .dropdown-toggle.btn-jumbotron {
+  color: #ffffff;
+  background-color: #21526e;
+  border-color: #1d475e;
+}
+.btn-jumbotron:active,
+.btn-jumbotron.active,
+.open .dropdown-toggle.btn-jumbotron {
+  background-image: none;
+}
+.btn-jumbotron.disabled,
+.btn-jumbotron[disabled],
+fieldset[disabled] .btn-jumbotron,
+.btn-jumbotron.disabled:hover,
+.btn-jumbotron[disabled]:hover,
+fieldset[disabled] .btn-jumbotron:hover,
+.btn-jumbotron.disabled:focus,
+.btn-jumbotron[disabled]:focus,
+fieldset[disabled] .btn-jumbotron:focus,
+.btn-jumbotron.disabled:active,
+.btn-jumbotron[disabled]:active,
+fieldset[disabled] .btn-jumbotron:active,
+.btn-jumbotron.disabled.active,
+.btn-jumbotron[disabled].active,
+fieldset[disabled] .btn-jumbotron.active {
+  background-color: #2b6a8d;
+  border-color: #2b6a8d;
+}
+.btn-jumbotron .badge {
+  color: #2b6a8d;
+  background-color: #ffffff;
+}
+
+
 .break-word {
     word-wrap: break-word;
 }
 
-header p.slogan {
-    display: inline-block;
-    font-style:italic;
-}
 
 a.partner {
     line-height: 100px;
@@ -29,22 +68,19 @@ div.c-wrapper{
     overflow: hidden;
 }
 
-/*.carousel-inner > div.item a {*/
-/*    color: white;*/
-/*    text-decoration: none;*/
-/*}*/
-
 .carousel-inner > div.item > img, 
 .carousel-inner > div.item > a > img {
     margin: auto;
     /* width: 100%; use this, or not */
 }
 
-.carousel-inner > div.item > div.carousel-caption > p > img {
-    height: 32px;
-    margin: 5px 10px;
-    padding: 0px;
-    width: 32px;
+.carousel-caption {
+    background-color: #21526e;
+    left: 0px;
+    bottom: 0px;
+    opacity: 0.7;
+    padding-bottom: 60px;
+    right: 0px;
 }
 
 

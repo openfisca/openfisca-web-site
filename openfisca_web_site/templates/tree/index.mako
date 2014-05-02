@@ -37,73 +37,18 @@ from openfisca_web_site import conf, urls
 <%inherit file="/index.mako"/>
 
 
-##<%def name="body_content()" filter="trim">
-##        <div class="intro" id="content">
-##            <div class="container">
-##                <div class="row">
-##                    <div class="col-md-6">
-##                        <a class="logo" href="/">Open Fisca</a>
-##                    </div>
-##                    <div class="col-md-6">
-##                        <div class="buttons">
-##                            <a class="btn first btn-lg" href="${urls.get_url(ctx, 'api')}">
-##                                <span class="glyphicon glyphicon-cog"></span> Utiliser l’API
-##                            </a>
-##                            <a class="btn second btn-lg">
-##                                <span class="glyphicon glyphicon-plus"></span> Ajouter une utilisation
-##                            </a>
-##                            <a class="btn btn-lg" href="${urls.get_url(ctx, 'utilisations')}">
-##                                <span class="glyphicon glyphicon-eye-open"></span> Découvrir les utilisations
-##                            </a>
-##                        </div>
-##                    </div>
-##                </div>
-##            </div>
-##        </div>
-##        <div class="home-boxes">
-##            <div class="container">
-##                <div class="row">
-##                    <div class="col-md-4 telechar">
-##                        <div class="list-group">
-##                            <a href="${urls.get_url(ctx, 'presentation')}" class="list-group-item">Présentation</a>
-##                            <a href="${urls.get_url(ctx, 'actualites')}" class="list-group-item">Actualités</a>
-##                            <a href="${urls.get_url(ctx, 'utilisations')}" class="list-group-item">Exemples d'utilisations</a>
-##                            <a href="${urls.get_url(ctx, 'api')}" class="list-group-item">API</a>
-##                            <a href="${urls.get_url(ctx, 'variables')}" class="list-group-item">Variables et formules socio-fiscales</a>
-##                            <a href="${urls.get_url(ctx, 'installation')}" class="list-group-item">Installation</a>
-##                            <a href="https://github.com/openfisca" class="list-group-item">Code source</a>
-##                            <a href="${urls.get_url(ctx, 'a-propos')}#licence" class="list-group-item">Licence</a>
-##                        </div>
-##                        <a class="btn second btn-lg" href="${urls.get_url(ctx, 'contribuer')}">
-##                            <span class="glyphicon glyphicon-wrench"></span> Contribuer
-##                        </a>
-##                    </div>
-##                    <div class="col-md-8 slider">
-##                        </div>
-##                        <a class="voir" href="${urls.get_url(ctx, 'utilisations')}">Voir toutes les utilisations <span class="glyphicon glyphicon-chevron-right"></span></a>
-##    % endif
-##                    </div>
-##                </div>
-##            </div>
-##        </div>
-##</%def>
-
-
-<%def name="breadcrumb()" filter="trim">
-</%def>
-
-
-<%def name="container_content()" filter="trim">
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-lg-4" style="margin-bottom: 15px">
-                <p>
-                    <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'images', 'logo-big.png')}">
-                </p>
-                <p class="lead">Moteur ouvert de simulation du système socio-fiscal</p>
-                <div><a class="btn btn-primary btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
-            </div>
-            <div class="col-lg-8">
+<%def name="body_content()" filter="trim">
+    <div class="jumbotron" id="content" style="background: url(../images/bulles.png) repeat center left #c7edfa; margin-top: -20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4" style="margin-bottom: 15px">
+                    <p>
+                        <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'images', 'logo-big.png')}">
+                    </p>
+                    <p class="lead">Moteur ouvert de simulation du système socio-fiscal</p>
+                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
+                </div>
+                <div class="col-lg-8">
 <%
     visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
     featured_visualizations = [
@@ -113,47 +58,55 @@ from openfisca_web_site import conf, urls
         ]
 %>\
     % if featured_visualizations:
-                <div class="carousel slide" data-ride="carousel" id="carousel">
-                    ## Indicators
-                    <ol class="carousel-indicators">
+                    <div class="carousel slide" data-ride="carousel" id="carousel">
+                        ## Indicators
+                        <ol class="carousel-indicators">
         % for visualization in featured_visualizations:
-                        <li data-target="#carousel" data-slide-to="${loop.index}"${
-                                u' class="active"' if loop.first else u'' | n}></li>
+                            <li data-target="#carousel" data-slide-to="${loop.index}"${
+                                    u' class="active"' if loop.first else u'' | n}></li>
         % endfor
-                    </ol>
-                    ## Wrapper for slides
-                    <div class="carousel-inner">
+                        </ol>
+                        ## Wrapper for slides
+                        <div class="carousel-inner">
         % for visualization in featured_visualizations:
-                        <div class="item${u' active' if loop.first else u''}">
-                            <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
-                                    visualization['title']}" src="${visualization['thumbnail_url']}"></a>
-                            <div class="carousel-caption">
-                                <h4>${visualization['title']}</h4>
-                                ${visualization['owner']}
-                                ${babel.dates.format_date(
-                                    datetime.date(*[
-                                        int(number)
-                                        for number in visualization['updated'].split('T')[0].split('-')
-                                        ]),
-                                    format = 'short',
-                                    locale = ctx.lang[0][:2],
-                                    )}
+                            <div class="item${u' active' if loop.first else u''}">
+                                <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
+                                        visualization['title']}" src="${visualization['thumbnail_url']}"></a>
+                                <div class="carousel-caption">
+                                    <h4>${visualization['title']}</h4>
+                                    ${visualization['owner']}
+                                    ${babel.dates.format_date(
+                                        datetime.date(*[
+                                            int(number)
+                                            for number in visualization['updated'].split('T')[0].split('-')
+                                            ]),
+                                        format = 'short',
+                                        locale = ctx.lang[0][:2],
+                                        )}
+                                </div>
                             </div>
-                        </div>
         % endfor
+                        </div>
+                        <a class="carousel-control left" href="index.html#carousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="carousel-control right" href="index.html#carousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
                     </div>
-                    <a class="carousel-control left" href="index.html#carousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="carousel-control right" href="index.html#carousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
-                </div>
     % endif
+                </div>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <%self:container_content/>
+    </div>
+</%def>
+
+
+<%def name="container_content()" filter="trim">
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 240px">
             <h4>API web</h4>
@@ -261,6 +214,7 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
+    visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
     last_visualizations = list(itertools.islice(visualizations_node.iter_visualizations(ctx), 3))
 %>\
     <div class="page-header">
