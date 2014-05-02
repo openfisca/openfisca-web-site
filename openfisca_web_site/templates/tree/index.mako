@@ -286,8 +286,8 @@ from openfisca_web_site import conf, urls
     % endfor
     </div>
     <div class="text-right">
+        <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Fil d'actualité</span></a>
         <a href="${urls.get_url(ctx, 'actualites')}">Voir toutes les actualités...</a>
-        (<a href="${urls.get_url(ctx, 'atom')}">Fil d'actualité</a>)
     </div>
 
     <div class="page-header">
