@@ -133,7 +133,7 @@ from openfisca_web_site import conf, urls
                 Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
                 développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'contribuer')}" role="button" target="_blank">Contribuer</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
@@ -157,7 +157,7 @@ from openfisca_web_site import conf, urls
             <p>
                 Inspirez-vous de ces exemples pour réaliser vos propres projets.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button" target="_blank">Étudier les exemples</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button">Étudier les exemples</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
@@ -171,7 +171,7 @@ from openfisca_web_site import conf, urls
                 Nous déployons de gros efforts afin qu'OpenFisca puisse fonctionner sur de plus en plus de
                 systèmes différents.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'installation')}" role="button" target="_blank">Installer les logiciels</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
@@ -184,7 +184,7 @@ from openfisca_web_site import conf, urls
             <p>
                 Une seule contrainte : Les travaux dérivés d'OpenFisca doivent eux aussi être libres.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'a-propos')}" role="button" target="_blank">Connaître la licence</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
