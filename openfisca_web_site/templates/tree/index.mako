@@ -210,7 +210,7 @@ from openfisca_web_site import conf, urls
         </div>
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'documentation')}">Voir toute la documentation...</span></a>
+        <a href="${urls.get_url(ctx, 'documentation')}">Voir toute la documentation...</a>
     </div>
 
 <%
@@ -237,7 +237,7 @@ from openfisca_web_site import conf, urls
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}">Voir toutes les utilisations...</span></a>
+        <a href="${urls.get_url(ctx, 'utilisations')}">Voir toutes les utilisations...</a>
     </div>
 
 <%
@@ -257,7 +257,7 @@ from openfisca_web_site import conf, urls
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'projets')}">Voir tous les projets...</span></a>
+        <a href="${urls.get_url(ctx, 'projets')}">Voir tous les projets...</a>
     </div>
 
 <%
@@ -286,7 +286,7 @@ from openfisca_web_site import conf, urls
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'actualites')}">Voir toutes les actualités...</span></a>
+        <a href="${urls.get_url(ctx, 'actualites')}">Voir toutes les actualités...</a>
         (<a href="${urls.get_url(ctx, 'atom')}">Fil d'actualité</a>)
     </div>
 
