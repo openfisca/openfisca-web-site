@@ -111,7 +111,7 @@ from openfisca_web_site import conf, urls
 
 <%def name="container_content()" filter="trim">
     <div class="row">
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>API web</h4>
             <p>
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
@@ -123,7 +123,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Communauté</h4>
             <p>
                 OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
@@ -136,7 +136,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Débogueur en ligne</h4>
             <p>
                 Un débogueur en ligne permet de visualiser les formules intervenant lors du calcul d'un cas type,
@@ -148,7 +148,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'exemple-trace')}" role="button">Déboguer en ligne</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Exemples</h4>
             <p>
                 Pour vous permettre d'adapter OpenFisca à vos propres besoins, l'équipe OpenFisca développe et
@@ -160,7 +160,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button">Étudier les exemples</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Installation</h4>
             <p>
                 Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
@@ -174,7 +174,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Logiciel libre</h4>
             <p>
                 OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
@@ -187,7 +187,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Utilisations</h4>
             <p>
                 OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
@@ -199,7 +199,7 @@ from openfisca_web_site import conf, urls
             <p><a class="btn btn-default" href="${urls.get_url(ctx, 'utilisations')}" role="button">Découvrir les utilisations</a></p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 240px">
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Variables et formules socio-fiscales</h4>
             <p>
                 Nous vous proposons un petit outil web permettant de naviguer dans l'ensemble des variables et
