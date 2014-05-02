@@ -241,6 +241,26 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
+    projects_node = node.child_from_node(ctx, unique_name = 'projets')
+    last_projects = list(itertools.islice(projects_node.iter_projects(ctx), 3))
+%>\
+    <div class="page-header">
+        <h2>Derniers projets</h2>
+    </div>
+    <div class="row">
+    % for project in last_projects:
+        <div class="col-md-4 col-sm-6" style="height: 180px">
+            <h4>${project['title']}</h4>
+            <p>${project['description']}</p>
+            <p><a class="btn btn-default" href="${project['source_url']}" role="button">Voir le projet</a></p>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'projets')}">Voir tous les projets...</span></a>
+    </div>
+
+<%
     last_articles = list(itertools.islice(node.iter_latest_articles(ctx), 3))
 %>\
     <div class="page-header">
