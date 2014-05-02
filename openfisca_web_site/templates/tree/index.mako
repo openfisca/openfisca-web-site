@@ -51,11 +51,14 @@ from openfisca_web_site import conf, urls
                 <div class="col-lg-8">
 <%
     visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
-    featured_visualizations = [
-        visualization
-        for visualization in visualizations_node.iter_visualizations(ctx)
-        if visualization.get('featured', False)
-        ]
+    featured_visualizations = sorted(
+        (
+            visualization
+            for visualization in visualizations_node.iter_visualizations(ctx)
+            if visualization.get('featured') is not None
+            ),
+        key = lambda visualization: visualization['featured']
+        )
 %>\
     % if featured_visualizations:
                     <div class="carousel slide" data-ride="carousel" id="carousel">

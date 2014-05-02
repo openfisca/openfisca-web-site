@@ -57,7 +57,7 @@ class Node(model.Folder):
             )
         yield dict(
             description = u"Proposition de réforme du statut du quotient conjugal",
-            featured = True,
+            featured = 3,
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/quotient-conjugal/'),
             owner = u"Équipe hackathon",
@@ -67,7 +67,7 @@ class Node(model.Folder):
             )
         yield dict(
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
-            featured = True,
+            featured = 2,
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
             source_url = u'http://nbviewer.ipython.org/urls/raw.githubusercontent.com/regardscitoyens/openfisca-web-notebook/master/calcul_taux_effectif.ipynb',
             owner = u"Regards citoyens",
@@ -77,7 +77,7 @@ class Node(model.Folder):
             )
         yield dict(
             description = u"Différence des taux d’imposition en fonction des revenus du capital et du travail",
-            featured = True,
+            featured = 4,
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/taux-imposition-capital-travail.pdf'),
             owner = u"Équipe hackathon",
@@ -95,7 +95,7 @@ class Node(model.Folder):
             updated = u'2014-03-28T07:26:00',
             )
         yield dict(
-            featured = True,
+            featured = 5,
             description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             source_url = urls.get_full_url(ctx, self.url_path, '../variables/revdisp'),
@@ -105,7 +105,7 @@ class Node(model.Folder):
             updated = u'2014-03-28T07:26:00',
             )
         yield dict(
-            featured = True,
+            featured = 1,
             description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             source_url = conf['ui.url'],
