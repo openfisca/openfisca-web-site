@@ -117,7 +117,7 @@ from openfisca_web_site import conf, urls
                 Grâce aux serveurs publics mis à votre disposition par Etalab, vous pouvez utiliser pour illustrer
                 un sujet de recherche, un article économique, réaliser une infographie dynamique.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'api')}" role="button">Étudier l'API web</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
@@ -154,7 +154,7 @@ from openfisca_web_site import conf, urls
             <p>
                 Inspirez-vous de ces exemples pour réaliser vos propres projets.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button" target="_blank">Parcourir les exemples</a></p>
+            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button" target="_blank">Étudier les exemples</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 240px">
