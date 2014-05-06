@@ -44,7 +44,7 @@ from openfisca_web_site import conf, urls
                 <div class="col-lg-4" style="margin-bottom: 15px">
                     <p>
                         <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'images', 'logo-big.png')
-                                }" title="Openfisca, le bonheur autour de soi !">
+                                }" title="OpenFisca, le bonheur autour de soi !">
                     </p>
                     <p class="lead">Moteur ouvert de simulation du système socio-fiscal</p>
                     <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
