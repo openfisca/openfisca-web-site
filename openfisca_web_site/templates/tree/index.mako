@@ -118,8 +118,9 @@ from openfisca_web_site import conf, urls
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
             </p>
             <p class="text-justify">
-                Grâce aux serveurs publics mis à votre disposition par Etalab, vous pouvez utiliser pour illustrer
-                un sujet de recherche, un article économique, réaliser une infographie dynamique.
+                Grâce aux serveurs mis à votre disposition sur Internet par
+                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
+                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
             </p>
             <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
         </div>
@@ -152,8 +153,8 @@ from openfisca_web_site import conf, urls
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Exemples</h4>
             <p class="text-justify">
-                Pour vous permettre d'adapter OpenFisca à vos propres besoins, l'équipe OpenFisca développe et
-                documente différents exemples, en essayant de recouvrir les différents cas d'usages possibles 
+                Pour vous permettre d'adapter OpenFisca à vos besoins, l'équipe OpenFisca développe et
+                documente différents exemples, en essayant de couvrir les différents cas d'usages possibles.
             </p>
             <p class="text-justify">
                 Inspirez-vous de ces exemples pour réaliser vos propres projets.
