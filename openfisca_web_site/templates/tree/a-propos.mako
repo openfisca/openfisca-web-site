@@ -88,7 +88,7 @@ ${_(u'About OpenFisca')}
             <li>Alain Trannoy</li>
         </ul>
 
-        <h2>${_('Partners')}</h2>
+        <h2>Porteurs du projet</h2>
         <%self:partners/>
 </%def>
 

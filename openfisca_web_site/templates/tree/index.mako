@@ -297,7 +297,7 @@ from openfisca_web_site import conf, urls
     </div>
 
     <div class="page-header">
-        <h2>Partenaires</h2>
+        <h2>Porteurs du projet</h2>
     </div>
     <%self:partners/>
 </%def>
