@@ -114,103 +114,103 @@ from openfisca_web_site import conf, urls
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>API web</h4>
-            <p>
+            <p class="text-justify">
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
             </p>
-            <p>
+            <p class="text-justify">
                 Grâce aux serveurs publics mis à votre disposition par Etalab, vous pouvez utiliser pour illustrer
                 un sujet de recherche, un article économique, réaliser une infographie dynamique.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Communauté</h4>
-            <p>
+            <p class="text-justify">
                 OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
                 ne pourra pas réussir sans l'aide du plus grand nombre.
             </p>
-            <p>
+            <p class="text-justify">
                 Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
                 développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Débogueur en ligne</h4>
-            <p>
+            <p class="text-justify">
                 Un débogueur en ligne permet de visualiser les formules intervenant lors du calcul d'un cas type,
                 de connaître leur ordre d'exécution, les valeurs de leurs paramètres et leur résultat.
             </p>
-            <p>
+            <p class="text-justify">
                 Comprendre le système socio-fiscal ou corriger le simulateur n'a jamais été aussi facile.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'exemple-trace')}" role="button">Déboguer en ligne</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'exemple-trace')}" role="button">Déboguer en ligne</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Exemples</h4>
-            <p>
+            <p class="text-justify">
                 Pour vous permettre d'adapter OpenFisca à vos propres besoins, l'équipe OpenFisca développe et
                 documente différents exemples, en essayant de recouvrir les différents cas d'usages possibles 
             </p>
-            <p>
+            <p class="text-justify">
                 Inspirez-vous de ces exemples pour réaliser vos propres projets.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'documentation')}" role="button">Étudier les exemples</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation')}" role="button">Étudier les exemples</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Installation</h4>
-            <p>
+            <p class="text-justify">
                 Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
                 logiciels qui composent OpenFisca sur votre propre ordinateur, sur des serveurs ou même dans les
                 nuages.
             </p>
-            <p>
+            <p class="text-justify">
                 Nous déployons de gros efforts afin qu'OpenFisca puisse fonctionner sur de plus en plus de
                 systèmes différents.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Logiciel libre</h4>
-            <p>
+            <p class="text-justify">
                 OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
                 OpenFisca, de l'installer, d'étudier son code source, de le modifier et devle redistribuer comme bon
                 vous semble.
             </p>
-            <p>
+            <p class="text-justify">
                 Une seule contrainte : Les travaux dérivés d'OpenFisca doivent eux aussi être libres.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Utilisations</h4>
-            <p>
+            <p class="text-justify">
                 OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
                 recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
             </p>
-            <p>
+            <p class="text-justify">
                 Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'utilisations')}" role="button">Découvrir les utilisations</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'utilisations')}" role="button">Découvrir les utilisations</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h4>Variables et formules socio-fiscales</h4>
-            <p>
+            <p class="text-justify">
                 Nous vous proposons un petit outil web permettant de naviguer dans l'ensemble des variables et
                 formules socio-fiscales implémentez dans OpenFisca.
             </p>
-            <p>
+            <p class="text-justify">
                 Découvrez les dépendances entre formules, naviguez de l'une à l'autre, parcourez leur code source et
                 même aidez-nous à les améliorer.
             </p>
-            <p><a class="btn btn-default" href="${urls.get_url(ctx, 'variables')}" role="button">Explorer les formules socio-fiscales</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'variables')}" role="button">Explorer les formules socio-fiscales</a></p>
         </div>
     </div>
     <div class="text-right">
@@ -232,9 +232,9 @@ from openfisca_web_site import conf, urls
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h4>${visualization['title']}</h4>
-                        <p>${visualization['description']}</p>
+                        <p class="text-justify">${visualization['description']}</p>
                     </div>
-                    <p><a class="btn btn-default" href="${visualization['source_url']}" role="button">Voir</a></p>
+                    <p><a class="btn btn-jumbotron" href="${visualization['source_url']}" role="button">Voir</a></p>
                 </div>
             </div>
         </div>
@@ -255,8 +255,8 @@ from openfisca_web_site import conf, urls
     % for project in last_projects:
         <div class="col-md-4 col-sm-6" style="height: 180px">
             <h4>${project['title']}</h4>
-            <p>${project['description']}</p>
-            <p><a class="btn btn-default" href="${project['source_url']}" role="button">Voir le projet</a></p>
+            <p class="text-justify">${project['description']}</p>
+            <p><a class="btn btn-jumbotron" href="${project['source_url']}" role="button">Voir le projet</a></p>
         </div>
     % endfor
     </div>
@@ -268,12 +268,12 @@ from openfisca_web_site import conf, urls
     last_articles = list(itertools.islice(node.iter_latest_articles(ctx), 3))
 %>\
     <div class="page-header">
-        <h2>Actualité récente</h2>
+        <h2>Actualité</h2>
     </div>
     <div class="row">
     % for article in last_articles:
         <article class="col-md-4 col-sm-6">
-            <div class="ellipsis" style="height: 180px">
+            <div class="ellipsis" style="height: 190px">
         % if article.get('title_url') is None:
                 <h4>${article['title']}</h4>
         % else:
@@ -284,7 +284,7 @@ from openfisca_web_site import conf, urls
         % endfor
             </div>
             <p>
-                <a class="btn btn-default" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Lire la suite</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Lire la suite</a>
             </p>
         </article>
     % endfor

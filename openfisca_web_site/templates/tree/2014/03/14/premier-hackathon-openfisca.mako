@@ -32,11 +32,11 @@ Premier hackathon OpenFisca<small> le 14 mars 2014 chez Simplon.co</small>
 
 
 <%def name="page_content()" filter="trim">
-        <p>Etalab en partenariat avec le CGSP et l'IPP organise un hackathon consacré au projet OpenFisca.</p>
+        <p class="text-justify">Etalab en partenariat avec le CGSP et l'IPP organise un hackathon consacré au projet OpenFisca.</p>
 
         <h4>Présentation d'OpenFisca</h4>
 
-        <p>OpenFisca est un logiciel libre de simulation du système socio-fiscal. Il permet de calculer un grand nombre d'impôts, de taxes, de prestations sociales et de minima sociaux, payés ou reçus par les ménages. Il est à la fois :</p>
+        <p class="text-justify">OpenFisca est un logiciel libre de simulation du système socio-fiscal. Il permet de calculer un grand nombre d'impôts, de taxes, de prestations sociales et de minima sociaux, payés ou reçus par les ménages. Il est à la fois :</p>
         <ul>
             <li>Un service en ligne utilisant ce logiciel et permettant aux français de simuler leur situation. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.</li>
             <li>Une API permettant à tout site internet (blog, journal en ligne, article scientifique, etc.) de proposer simplement des simulations, infographies, cas types, etc, insérées dans leurs propres pages web.</li>
@@ -49,11 +49,11 @@ Premier hackathon OpenFisca<small> le 14 mars 2014 chez Simplon.co</small>
             </li>
         </ul>
 
-        <p>OpenFisca est encore en pleine phase de développement.</p>
+        <p class="text-justify">OpenFisca est encore en pleine phase de développement.</p>
 
         <h4>Objectif du hackathon</h4>
 
-        <p>
+        <p class="text-justify">
             Ce hackathon constitue la première étape d'ouverture du projet, dans le but de constituer le premier cercle d'une communauté bienveillante. Ses objectifs sont :
         </p>
         <ul>
@@ -62,9 +62,9 @@ Premier hackathon OpenFisca<small> le 14 mars 2014 chez Simplon.co</small>
             <li>S'intéresser à de nouveaux pans de la législation pour continuer à développer OpenFisca</li>
         </ul>
 
-        <p>Le hackathon aura lieu le 14 mars 2014 à Montreuil chez Simplon.co. Il s'adresse principalement aux chercheurs en sciences sociales (économistes, sociologues, etc), journalistes, développeurs et infographistes, mais toutes les bonnes volontés intéressées pas la modélisation socio-fiscale sont les bienvenues.</p>
-        <p>L'objectif est que tous les participants contribuent à un projet durant la journée.</p>
-        <p>Venez avec votre ordinateur. Nous fournissons tables, chaises, accès wifi, boisson et nourriture.</p>
+        <p class="text-justify">Le hackathon aura lieu le 14 mars 2014 à Montreuil chez Simplon.co. Il s'adresse principalement aux chercheurs en sciences sociales (économistes, sociologues, etc), journalistes, développeurs et infographistes, mais toutes les bonnes volontés intéressées pas la modélisation socio-fiscale sont les bienvenues.</p>
+        <p class="text-justify">L'objectif est que tous les participants contribuent à un projet durant la journée.</p>
+        <p class="text-justify">Venez avec votre ordinateur. Nous fournissons tables, chaises, accès wifi, boisson et nourriture.</p>
 
         <h4>Planning</h4>
 

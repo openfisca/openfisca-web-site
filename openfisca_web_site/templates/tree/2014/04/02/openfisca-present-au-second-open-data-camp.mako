@@ -32,8 +32,8 @@ OpenFisca présent au second <i>Open Data Camp</i> <small> le mercredi 16 avril 
 
 
 <%def name="page_content()" filter="trim">
-        <p>Un atelier OpenFisca se tiendra durant le second <i>Open Data Camp</i> organisé par Etalab chez <a href="http://www.devoxx.fr/open-data-camp-2014/">Devoxx France</a>.</p>
-        <p>
+        <p class="text-justify">Un atelier OpenFisca se tiendra durant le second <i>Open Data Camp</i> organisé par Etalab chez <a href="http://www.devoxx.fr/open-data-camp-2014/">Devoxx France</a>.</p>
+        <p class="text-justify">
             Le sujet : Quand la loi est transcrite en données et en logiciel libres : À partir des paramètres de la législation socio-fiscale fournies par l'<abbr title="Institut des Politiques Publiques">IPP</abbr>, l'atelier produira un référentiel utilisé en premier lieu par OpenFisca et l'IPP et qui sera proposé à tous les autres simulateurs sociaux et/ou fiscaux de l'administration.
         </p>
 </%def>
