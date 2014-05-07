@@ -61,17 +61,18 @@ ${_(u'About OpenFisca')}
 
         <h2>Contributeurs au code (<em>OpenFisca Team</em>)</h2>
         <ul>
-            <li>Mahdi Ben Jelloul</li>
+            <li>Mahdi Ben Jelloul <span class="label label-error">Périmé !</span></li>
             <li>Christophe Benz</li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
             <li>Pierre-Yves Cusset</li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
+            <li>Adrien Fabre <span class="label label-success">Nouveau !</span></li>
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
             <li>Victor Le Breton</li>
-            <li>Adrien Pacifico <span class="label label-success">Nouveau !</span></li>
+            <li>Adrien Pacifico</li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
             <li>Stanislas Rybak</li>
