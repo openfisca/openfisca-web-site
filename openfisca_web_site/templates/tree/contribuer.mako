@@ -49,8 +49,8 @@ Contribuer à OpenFisca
         <p>
             Nous invitons les utilisateurs à nous transmettre leur
             remarques, les imprécisions ou erreurs identifiées, ainsi
-            que les éventuelles propositions d’amélioration. Si vous
-            voulez participer plus activement à l’évolution du
+            que les éventuelles propositions d'amélioration. Si vous
+            voulez participer plus activement à l'évolution du
             programme, sachez qu'il est possible de contribuer de
             multiples façons au projet OpenFisca.
         </p>
@@ -104,9 +104,9 @@ Contribuer à OpenFisca
 	<h2> Compléter l'implémentation du système socio-fiscal français </h2>
         <p>
             Certains pans de la législation ne sont pas encore
-            intégrés. Étant donné l’ampleur de la tâche, notre
+            intégrés. Étant donné l'ampleur de la tâche, notre
             ambition est de constituer une communauté de développeurs,
-            d’économistes et de spécialistes de la fiscalité ou des
+            d'économistes et de spécialistes de la fiscalité ou des
             prestations sociales pour maintenir et améliorer le
 	    logiciel. Vous pouvez y contribuer en suivant les étapes suivantes : 
 

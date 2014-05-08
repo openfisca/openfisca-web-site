@@ -1,39 +1,46 @@
 ## -*- coding: utf-8 -*-
 
 
-## OpenFisca -- A versatile microsimulation software ## By: OpenFisca
-Team <contact@openfisca.fr> ## ## Copyright (C) 2011, 2012, 2013, 2014
-OpenFisca Team ## https://github.com/openfisca ## ## This file is part
-of OpenFisca.  ## ## OpenFisca is free software; you can redistribute
-it and/or modify ## it under the terms of the GNU Affero General
-Public License as ## published by the Free Software Foundation, either
-version 3 of the ## License, or (at your option) any later version.
-## ## OpenFisca is distributed in the hope that it will be useful, ##
-but WITHOUT ANY WARRANTY; without even the implied warranty of ##
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ## GNU
-Affero General Public License for more details.  ## ## You should have
-received a copy of the GNU Affero General Public License ## along with
-this program.  If not, see <http://www.gnu.org/licenses/>.
+## OpenFisca -- A versatile microsimulation software
+## By: OpenFisca Team <contact@openfisca.fr>
+##
+## Copyright (C) 2011, 2012, 2013, 2014 OpenFisca Team
+## https://github.com/openfisca
+##
+## This file is part of OpenFisca.
+##
+## OpenFisca is free software; you can redistribute it and/or modify
+## it under the terms of the GNU Affero General Public License as
+## published by the Free Software Foundation, either version 3 of the
+## License, or (at your option) any later version.
+##
+## OpenFisca is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU Affero General Public License for more details.
+##
+## You should have received a copy of the GNU Affero General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 <%inherit file="/page.mako"/>
 
 
-<%def name="h1_content()" filter="trim"> ${_(u"Présentation")} </%def>
+<%def name="h1_content()" filter="trim">Présentation</%def>
 
 
 <%def name="page_content()" filter="trim">
-        <h2>Qu’est-ce qu’OpenFisca</h2>
+        <h2>Qu'est-ce qu'OpenFisca</h2>
 
         <p>
             OpenFisca est un moteur ouvert de microsimulation du
             système socio-fiscal français. Il permet de calculer
             simplement un grand nombre de prestations sociales et
-            d’impôts payés, par les ménages, et de simuler l’impact de
+            d'impôts payés, par les ménages, et de simuler l'impact de
             réformes sur leur budget.
         </p>
         <p>
-            Il s’agit d’un outil à vocation pédagogique pour aider les
+            Il s'agit d'un outil à vocation pédagogique pour aider les
             citoyens à mieux comprendre le système socio-fiscal.
         </p>
 
@@ -59,7 +66,7 @@ fournis ne sauraient engager l'administration, votre Caf ou plus
 généralement n'importe quel organisme préleveur ou verseur sur le
 montant définitif des impôts et des cotisations à acquitter ou des
 prestations versées. En effet, votre situation familiale et/ou vos
-ressources ou celles de l’un des membres de votre famille peuvent
+ressources ou celles de l'un des membres de votre famille peuvent
 changer ou ne pas avoir été prises en compte lors de la simulation et
 certaines hypothèses simplificatrices ont été effectuées.</p>
             </div>

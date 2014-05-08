@@ -76,12 +76,12 @@ class Node(model.Folder):
             updated = u'2014-03-25T09:13:00',
             )
         yield dict(
-            description = u"Différence des taux d’imposition en fonction des revenus du capital et du travail",
+            description = u"Différence des taux d'imposition en fonction des revenus du capital et du travail",
             featured = 4,
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/taux-imposition-capital-travail.pdf'),
             owner = u"Équipe hackathon",
-            title = u"Taux d’imposition du capital et du travail",
+            title = u"Taux d'imposition du capital et du travail",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-imposition-capital-travail.png'),
             updated = u'2014-03-24T19:19:00',
             )

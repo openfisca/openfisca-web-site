@@ -305,10 +305,10 @@ heroku open</pre>
     </div>
 
     <p>
-        Avant de commencer à utiliser OpenFisca, lire l’avertissement. Ensuite, cliquer sur le lien télécharger et
-        enregistrer le fichier sur votre ordinateur. Dé-zipper le dossier, l’ouvrir et double-cliquer sur
-        <code>OpenFisca.exe</code>. C’est tout, aucune installation préalable n’est nécessaire. Vous devrez peut être
-        disposer de droits d’administrateur pour exécuter le programme.
+        Avant de commencer à utiliser OpenFisca, lire l'avertissement. Ensuite, cliquer sur le lien télécharger et
+        enregistrer le fichier sur votre ordinateur. Dé-zipper le dossier, l'ouvrir et double-cliquer sur
+        <code>OpenFisca.exe</code>. C'est tout, aucune installation préalable n'est nécessaire. Vous devrez peut être
+        disposer de droits d'administrateur pour exécuter le programme.
     </p>
     <p>
         Pour un tutoriel rapide, regarder la vidéo.

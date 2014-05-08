@@ -38,13 +38,13 @@ Premier hackathon OpenFisca<small> le 14 mars 2014 chez Simplon.co</small>
 
         <p class="text-justify">OpenFisca est un logiciel libre de simulation du système socio-fiscal. Il permet de calculer un grand nombre d'impôts, de taxes, de prestations sociales et de minima sociaux, payés ou reçus par les ménages. Il est à la fois :</p>
         <ul>
-            <li>Un service en ligne utilisant ce logiciel et permettant aux français de simuler leur situation. Il s’agit d’un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.</li>
+            <li>Un service en ligne utilisant ce logiciel et permettant aux français de simuler leur situation. Il s'agit d'un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.</li>
             <li>Une API permettant à tout site internet (blog, journal en ligne, article scientifique, etc.) de proposer simplement des simulations, infographies, cas types, etc, insérées dans leurs propres pages web.</li>
             <li>Un outil de modélisation performant :
                 <ul>
                     <li>capable de simuler aussi bien sur des cas individuels que des données d'enquêtes portant sur des dizaines de milliers de ménages</li>
                     <li>adaptable aux différentes législations des systèmes socio-fiscaux nationaux (une version pour la Tunisie est en cours de développement)</li>
-                    <li>permettant de simuler l’impact de réformes sur le revenu disponible des ménages</li>
+                    <li>permettant de simuler l'impact de réformes sur le revenu disponible des ménages</li>
                 </ul>
             </li>
         </ul>

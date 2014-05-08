@@ -171,7 +171,7 @@ ${conf['realm']}
 ##            </p>
 ##            <ul>
 ##                <li>
-##                    Renouveler l’approche de la stratégie et de la prospective afin d’éclairer les pouvoirs
+##                    Renouveler l'approche de la stratégie et de la prospective afin d'éclairer les pouvoirs
 ##                    publics sur les trajectoires possibles à moyen et long termes pour la France en matière
 ##                    économique, sociale, culturelle et environnementale.
 ##                </li>
@@ -229,13 +229,13 @@ ${conf['realm']}
 ##                <h4>Institut des politiques publiques</h4>
 ##            </a>
 ##            <p>
-##                L’Institut des politiques publiques (IPP) est développé dans le cadre d’un partenariat
+##                L'Institut des politiques publiques (IPP) est développé dans le cadre d'un partenariat
 ##                scientifique entre
 ##                <a href="http://www.parisschoolofeconomics.eu/" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
 ##                et le
 ##                <a href="http://www.crest.fr/" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
-##                L’IPP vise à promouvoir l’analyse et l’évaluation  quantitatives des politiques publiques en
-##                s’appuyant sur les méthodes les plus récentes de la recherche en économie.
+##                L'IPP vise à promouvoir l'analyse et l'évaluation  quantitatives des politiques publiques en
+##                s'appuyant sur les méthodes les plus récentes de la recherche en économie.
 ##            </p>
         </div>
     </div>
