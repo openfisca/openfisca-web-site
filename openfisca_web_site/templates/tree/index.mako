@@ -76,7 +76,7 @@ from openfisca_web_site import conf, urls
                                 <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
                                         visualization['title']}" src="${visualization['thumbnail_url']}"></a>
                                 <div class="carousel-caption">
-                                    <h4>${visualization['title']}</h4>
+                                    <h3>${visualization['title']}</h3>
                                     ${visualization['owner']}
                                     ${babel.dates.format_date(
                                         datetime.date(*[
@@ -112,7 +112,7 @@ from openfisca_web_site import conf, urls
 <%def name="container_content()" filter="trim">
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>API web</h4>
+            <h3>API web</h3>
             <p class="text-justify">
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
             </p>
@@ -125,7 +125,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Communauté</h4>
+            <h3>Communauté</h3>
             <p class="text-justify">
                 OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
                 ne pourra pas réussir sans l'aide du plus grand nombre.
@@ -138,7 +138,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Débogueur en ligne</h4>
+            <h3>Débogueur en ligne</h3>
             <p class="text-justify">
                 Un débogueur en ligne permet de visualiser les formules intervenant lors du calcul d'un cas type,
                 de connaître leur ordre d'exécution, les valeurs de leurs paramètres et leur résultat.
@@ -150,7 +150,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Exemples</h4>
+            <h3>Exemples</h3>
             <p class="text-justify">
                 Pour vous permettre d'adapter OpenFisca à vos besoins, l'équipe OpenFisca développe et
                 documente différents exemples, en essayant de couvrir les différents cas d'usages possibles.
@@ -162,7 +162,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Installation</h4>
+            <h3>Installation</h3>
             <p class="text-justify">
                 Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
                 logiciels qui composent OpenFisca sur votre propre ordinateur, sur des serveurs ou même dans les
@@ -176,7 +176,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Logiciel libre</h4>
+            <h3>Logiciel libre</h3>
             <p class="text-justify">
                 OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
                 OpenFisca, de l'installer, d'étudier son code source, de le modifier et devle redistribuer comme bon
@@ -189,7 +189,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Utilisations</h4>
+            <h3>Utilisations</h3>
             <p class="text-justify">
                 OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
                 recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
@@ -201,7 +201,7 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h4>Variables et formules socio-fiscales</h4>
+            <h3>Variables et formules socio-fiscales</h3>
             <p class="text-justify">
                 Nous vous proposons un petit outil web permettant de naviguer dans l'ensemble des variables et
                 formules socio-fiscales implémentez dans OpenFisca.
@@ -231,7 +231,7 @@ from openfisca_web_site import conf, urls
                 <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h4>${visualization['title']}</h4>
+                        <h3>${visualization['title']}</h3>
                         <p class="text-justify">${visualization['description']}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${visualization['source_url']}" role="button">Voir</a></p>
@@ -254,7 +254,7 @@ from openfisca_web_site import conf, urls
     <div class="row">
     % for project in last_projects:
         <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h4>${project['title']}</h4>
+            <h3>${project['title']}</h3>
             <p class="text-justify">${project['description']}</p>
             <p><a class="btn btn-jumbotron" href="${project['source_url']}" role="button">Voir le projet</a></p>
         </div>
@@ -275,9 +275,9 @@ from openfisca_web_site import conf, urls
         <article class="col-md-4 col-sm-6">
             <div class="ellipsis" style="height: 190px">
         % if article.get('title_url') is None:
-                <h4>${article['title']}</h4>
+                <h3>${article['title']}</h3>
         % else:
-                <a href="${article['title_url']}" target="_blank"><h4>${article['title']}</h4></a>
+                <a href="${article['title_url']}" target="_blank"><h3>${article['title']}</h3></a>
         % endif
         % for child_element in article['element']:
                 ${lxml.html.tostring(child_element, encoding = unicode) | n}

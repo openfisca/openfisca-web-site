@@ -1,43 +1,51 @@
-.btn-jumbotron {
-  color: #ffffff;
-  background-color: #2b6a8d;
-  border-color: #2b6a8d;
+@font-face {
+    font-family: 'Raleway Bold';
+    src: url('../fonts/raleway-bold/raleway-bold-webfont.eot');
+    src: url('../fonts/raleway-bold/raleway-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-bold/raleway-bold-webfont.woff') format('woff'),
+         url('../fonts/raleway-bold/raleway-bold-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-bold/raleway-bold-webfont.svg#ralewaybold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
-.btn-jumbotron:hover,
-.btn-jumbotron:focus,
-.btn-jumbotron:active,
-.btn-jumbotron.active,
-.open .dropdown-toggle.btn-jumbotron {
-  color: #ffffff;
-  background-color: #21526e;
-  border-color: #1d475e;
+
+@font-face {
+    font-family: 'Raleway Medium';
+    src: url('../fonts/raleway-medium/raleway-medium-webfont.eot');
+    src: url('../fonts/raleway-medium/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/raleway-medium/raleway-medium-webfont.woff') format('woff'),
+         url('../fonts/raleway-medium/raleway-medium-webfont.ttf') format('truetype'),
+         url('../fonts/raleway-medium/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
-.btn-jumbotron:active,
-.btn-jumbotron.active,
-.open .dropdown-toggle.btn-jumbotron {
-  background-image: none;
+
+h1,
+h2,
+/*h3,*/
+h4,
+h5,
+h6,
+.h1,
+.h2,
+/*.h3,*/
+.h4,
+.h5,
+.h6,
+.lead,
+.nav,
+.navbar-brand {
+    font-family: 'Raleway Medium', Helvetica, Arial, sans-serif!important;
 }
-.btn-jumbotron.disabled,
-.btn-jumbotron[disabled],
-fieldset[disabled] .btn-jumbotron,
-.btn-jumbotron.disabled:hover,
-.btn-jumbotron[disabled]:hover,
-fieldset[disabled] .btn-jumbotron:hover,
-.btn-jumbotron.disabled:focus,
-.btn-jumbotron[disabled]:focus,
-fieldset[disabled] .btn-jumbotron:focus,
-.btn-jumbotron.disabled:active,
-.btn-jumbotron[disabled]:active,
-fieldset[disabled] .btn-jumbotron:active,
-.btn-jumbotron.disabled.active,
-.btn-jumbotron[disabled].active,
-fieldset[disabled] .btn-jumbotron.active {
-  background-color: #2b6a8d;
-  border-color: #2b6a8d;
-}
-.btn-jumbotron .badge {
-  color: #2b6a8d;
-  background-color: #ffffff;
+
+h3,
+.h3 {
+    font-family: 'Raleway Bold', Helvetica, Arial, sans-serif!important;
+    font-size: 18px;
+    font-variant: small-caps;
+/*    text-transform: uppercase;*/
 }
 
 
@@ -46,17 +54,9 @@ fieldset[disabled] .btn-jumbotron.active {
 }
 
 
-a.partner {
-    line-height: 100px;
-}
-
-img.partner {
-    max-height: 100px;
-}
-
-
-// Center images in carousel:
-// http://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive
+/* Carousel */
+/* Center images in carousel: */
+/* http://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive */
 
 div.c-wrapper{
     width: 80%; /* for example */
@@ -84,7 +84,67 @@ div.c-wrapper{
 }
 
 
-// Sidebar
+/* Jumbotron button */
+
+.btn-jumbotron {
+    color: #ffffff;
+    background-color: #2b6a8d;
+    border-color: #2b6a8d;
+}
+
+.btn-jumbotron:hover,
+.btn-jumbotron:focus,
+.btn-jumbotron:active,
+.btn-jumbotron.active,
+.open .dropdown-toggle.btn-jumbotron {
+    color: #ffffff;
+    background-color: #21526e;
+    border-color: #1d475e;
+}
+
+.btn-jumbotron:active,
+.btn-jumbotron.active,
+.open .dropdown-toggle.btn-jumbotron {
+    background-image: none;
+}
+
+.btn-jumbotron.disabled,
+.btn-jumbotron[disabled],
+fieldset[disabled] .btn-jumbotron,
+.btn-jumbotron.disabled:hover,
+.btn-jumbotron[disabled]:hover,
+fieldset[disabled] .btn-jumbotron:hover,
+.btn-jumbotron.disabled:focus,
+.btn-jumbotron[disabled]:focus,
+fieldset[disabled] .btn-jumbotron:focus,
+.btn-jumbotron.disabled:active,
+.btn-jumbotron[disabled]:active,
+fieldset[disabled] .btn-jumbotron:active,
+.btn-jumbotron.disabled.active,
+.btn-jumbotron[disabled].active,
+fieldset[disabled] .btn-jumbotron.active {
+    background-color: #2b6a8d;
+    border-color: #2b6a8d;
+}
+
+.btn-jumbotron .badge {
+    color: #2b6a8d;
+    background-color: #ffffff;
+}
+
+
+/* Partners */
+
+a.partner {
+    line-height: 100px;
+}
+
+img.partner {
+    max-height: 100px;
+}
+
+
+/* Sidebar */
 
 /* First level of nav */
 .sidenav {
@@ -125,4 +185,3 @@ div.c-wrapper{
     padding-left: 30px;
     font-size: 90%;
 }
-
