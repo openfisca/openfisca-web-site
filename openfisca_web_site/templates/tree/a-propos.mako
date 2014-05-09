@@ -61,7 +61,7 @@ ${_(u'About OpenFisca')}
 
         <h2>Contributeurs au code (<em>OpenFisca Team</em>)</h2>
         <ul>
-            <li>Mahdi Ben Jelloul <span class="label label-danger">Périmé !</span></li>
+            <li>Mahdi Ben Jelloul</li>
             <li>Christophe Benz</li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
