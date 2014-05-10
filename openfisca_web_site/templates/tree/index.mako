@@ -333,7 +333,7 @@ twitter_statuses_updated = None
     <div class="page-header">
         <h2>Projets</h2>
     </div>
-    <div class="row">
+    <div class="row" style="margin-bottom: 20px">
     % for item in items:
         <div class="col-md-4 col-sm-6" style="height: 180px">
             <h3>${item['title']}</h3>
@@ -404,7 +404,7 @@ twitter_statuses_updated = None
     </div>
             % for status_index, status in enumerate(twitter_statuses):
                 % if status_index % 3 == 0:
-    <div class="row" style="height: 120px">
+    <div class="row" style="margin-bottom: 20px">
                 % endif
         <div class="col-md-4 col-sm-6">
             <p>${twitter_parser.parse(status.text).html | n}</p>
@@ -431,10 +431,10 @@ twitter_statuses_updated = None
     <div class="page-header">
         <h2>Actualités</h2>
     </div>
-    <div class="row">
+    <div class="row" style="margin-bottom: 20px">
     % for article in last_articles:
         <article class="col-md-4 col-sm-6">
-            <div class="ellipsis" style="height: 190px">
+            <div class="ellipsis" style="height: 195px">
         % if article.get('title_url') is None:
                 <h3>${article['title']}</h3>
         % else:

@@ -156,7 +156,7 @@ ${conf['realm']}
 
 
 <%def name="partners()" filter="trim">
-    <div class="row">
+    <div class="row" style="margin-bottom: 20px">
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
             <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
