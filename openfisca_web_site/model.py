@@ -581,6 +581,38 @@ class Page(AbstractNode):
         return os.path.join(os.sep, 'tree', self.tree_path + '.mako')
 
 
+class Redirect(AbstractNode):
+    code = 301  # Moved Permanently
+    in_toc = False
+    location = None
+
+    def get_location(self, ctx):
+        return self.location
+
+    @wsgihelpers.wsgify
+    def redirect(self, req):
+        ctx = contexts.Ctx(req)
+
+        return wsgihelpers.redirect(ctx, code = self.code, location = self.get_location(ctx))
+
+    def route(self, environ, start_response):
+        req = webob.Request(environ)
+        ctx = contexts.Ctx(req)
+
+        http_error = self.can_access(ctx, check = True)
+        if http_error is not None:
+            return http_error(environ, start_response)
+
+        router = urls.make_router(*self.routings)
+        return router(environ, start_response)
+
+    @property
+    def routings(self):
+        return (
+            ('GET', '^/?$', self.redirect),
+            )
+
+
 def get_element_time(element, default = None):
     for time_element in element.xpath('.//time[@pubdate]'):
         for ancestor_element in iter_element_ancestors(time_element, skip_self = True):

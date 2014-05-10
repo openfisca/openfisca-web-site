@@ -45,8 +45,8 @@ from openfisca_web_site import conf, urls
                     <p>
                         <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'images', 'logo-big.png')}">
                     </p>
-                    <p class="lead"><em style="color: white; font-size: 24px">Moteur ouvert de simulation du système socio-fiscal</em></p>
-                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
+                    <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
+##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
 <%
@@ -73,8 +73,10 @@ from openfisca_web_site import conf, urls
                         <div class="carousel-inner">
         % for visualization in featured_visualizations:
                             <div class="item${u' active' if loop.first else u''}">
-                                <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
-                                        visualization['title']}" src="${visualization['thumbnail_url']}"></a>
+##                                <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
+##                                        visualization['title']}" src="${visualization['thumbnail_url']}"></a>
+                                <img alt="Copie d'écran : ${visualization['title']}" src="${
+                                        visualization['thumbnail_url']}">
                                 <div class="carousel-caption">
                                     <h3>${visualization['title']}</h3>
                                     ${visualization['owner']}
@@ -112,6 +114,20 @@ from openfisca_web_site import conf, urls
 <%def name="container_content()" filter="trim">
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 260px">
+            <h3>Présentation</h3>
+            <p class="text-justify">
+                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal français. Il permet de
+                 calculer simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de
+                 simuler l'impact de réformes sur leur budget.
+            </p>
+            <p class="text-justify">
+                Il s'agit d'un outil à <strong>vocation pédagogique</strong> pour aider les
+                citoyens à mieux comprendre le système socio-fiscal.
+            </p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Lire la suite</a></p>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="height: 260px">
             <h3>API web</h3>
             <p class="text-justify">
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
@@ -125,40 +141,16 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h3>Communauté</h3>
+            <h3>Démonstration</h3>
             <p class="text-justify">
-                OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
-                ne pourra pas réussir sans l'aide du plus grand nombre.
+                Pour illustrer les possibilités offertes par l'API web, nous avons réalisé un simulateur en ligne.
             </p>
             <p class="text-justify">
-                Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
-                développement. Toutes les bonnes volontés sont les bienvenues.
+                Grâce à ce <strong>démonstrateur</strong>, décrivez votre situation familiale, saisissez vos revenus et
+                votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
+                découvrez votre niveau de vie, etc.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h3>Débogueur en ligne</h3>
-            <p class="text-justify">
-                Un débogueur en ligne permet de visualiser les formules intervenant lors du calcul d'un cas type,
-                de connaître leur ordre d'exécution, les valeurs de leurs paramètres et leur résultat.
-            </p>
-            <p class="text-justify">
-                Comprendre le système socio-fiscal ou corriger le simulateur n'a jamais été aussi facile.
-            </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'exemple-trace')}" role="button">Déboguer en ligne</a></p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h3>Exemples</h3>
-            <p class="text-justify">
-                Pour vous permettre d'adapter OpenFisca à vos besoins, l'équipe OpenFisca développe et
-                documente différents exemples, en essayant de couvrir les différents cas d'usages possibles.
-            </p>
-            <p class="text-justify">
-                Inspirez-vous de ces exemples pour réaliser vos propres projets.
-            </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation')}" role="button">Étudier les exemples</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Simuler un cas type en ligne</a></p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
@@ -189,32 +181,109 @@ from openfisca_web_site import conf, urls
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h3>Utilisations</h3>
+            <h3>Communauté</h3>
             <p class="text-justify">
-                OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
-                recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
+                OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
+                ne pourra pas réussir sans l'aide du plus grand nombre.
             </p>
             <p class="text-justify">
-                Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
+                Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
+                développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'utilisations')}" role="button">Découvrir les utilisations</a></p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 260px">
-            <h3>Variables et formules socio-fiscales</h3>
-            <p class="text-justify">
-                Nous vous proposons un petit outil web permettant de naviguer dans l'ensemble des variables et
-                formules socio-fiscales implémentez dans OpenFisca.
-            </p>
-            <p class="text-justify">
-                Découvrez les dépendances entre formules, naviguez de l'une à l'autre, parcourez leur code source et
-                même aidez-nous à les améliorer.
-            </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'variables')}" role="button">Explorer les formules socio-fiscales</a></p>
+            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
         </div>
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'documentation')}">Voir toute la documentation...</a>
+        <a href="${urls.get_url(ctx, 'documentation')}"><em class="lead">Voir toute la documentation...</em></a>
+    </div>
+
+<%
+    examples_node = node.child_from_node(ctx, unique_name = 'exemples')
+    last_examples = list(itertools.islice(examples_node.iter_examples(ctx), 3))
+%>\
+    <div class="page-header">
+        <h2>Exemples</h2>
+    </div>
+    <p class="text-justify">
+        Pour vous permettre d'adapter OpenFisca à vos besoins, l'équipe OpenFisca développe et
+        documente différents exemples, en essayant de couvrir les différents cas d'usages possibles.
+    </p>
+    <p class="text-justify">
+        Vous pouvez vous inspirer de ces exemples pour réaliser vos propres projets.
+    </p>
+    <div class="row">
+    % for example in last_examples:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${example['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${example['title']}</h3>
+                        <p class="text-justify">${example['description']}</p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${example['source_url']}" role="button">Étudier</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">Voir tous les exemples...</em></a>
+    </div>
+
+<%
+    tools_node = node.child_from_node(ctx, unique_name = 'outils')
+    last_tools = list(itertools.islice(tools_node.iter_tools(ctx), 3))
+%>\
+    <div class="page-header">
+        <h2>Outils</h2>
+    </div>
+    <p class="text-justify">
+        Pour vous aider à mieux comprendre le fonctionnement d'OpenFisca, à améliorer ses formules socio-fiscales,
+        à compléter la législation, etc, nous développons différents outils web de visualisation, d'exploration et de
+        déboguage.
+    </p>
+    <p class="text-justify">
+        Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API OpenFisca.
+    </p>
+    <div class="row">
+    % for tool in last_tools:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${tool['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${tool['title']}</h3>
+                        <p class="text-justify">${tool['description']}</p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${tool['source_url']}" role="button">Utiliser</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Voir tous les outils...</em></a>
+    </div>
+
+<%
+    projects_node = node.child_from_node(ctx, unique_name = 'projets')
+    last_projects = list(itertools.islice(projects_node.iter_projects(ctx), 3))
+%>\
+    <div class="page-header">
+        <h2>Projets</h2>
+    </div>
+    <div class="row">
+    % for project in last_projects:
+        <div class="col-md-4 col-sm-6" style="height: 180px">
+            <h3>${project['title']}</h3>
+            <p class="text-justify">${project['description']}</p>
+            <p><a class="btn btn-jumbotron" href="${project['source_url']}" role="button">En savoir plus</a></p>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Voir tous les projets...</em></a>
     </div>
 
 <%
@@ -222,8 +291,15 @@ from openfisca_web_site import conf, urls
     last_visualizations = list(itertools.islice(visualizations_node.iter_visualizations(ctx), 3))
 %>\
     <div class="page-header">
-        <h2>Dernières utilisations</h2>
+        <h2>Utilisations</h2>
     </div>
+    <p class="text-justify">
+        OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
+        recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
+    </p>
+    <p class="text-justify">
+        Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
+    </p>
     <div class="row">
     % for visualization in last_visualizations:
         <div class="col-md-4">
@@ -234,41 +310,21 @@ from openfisca_web_site import conf, urls
                         <h3>${visualization['title']}</h3>
                         <p class="text-justify">${visualization['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${visualization['source_url']}" role="button">Voir</a></p>
+                    <p><a class="btn btn-jumbotron" href="${visualization['source_url']}" role="button">En savoir plus</a></p>
                 </div>
             </div>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}">Voir toutes les utilisations...</a>
-    </div>
-
-<%
-    projects_node = node.child_from_node(ctx, unique_name = 'projets')
-    last_projects = list(itertools.islice(projects_node.iter_projects(ctx), 3))
-%>\
-    <div class="page-header">
-        <h2>Derniers projets</h2>
-    </div>
-    <div class="row">
-    % for project in last_projects:
-        <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h3>${project['title']}</h3>
-            <p class="text-justify">${project['description']}</p>
-            <p><a class="btn btn-jumbotron" href="${project['source_url']}" role="button">Voir le projet</a></p>
-        </div>
-    % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'projets')}">Voir tous les projets...</a>
+        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Voir toutes les utilisations...</em></a>
     </div>
 
 <%
     last_articles = list(itertools.islice(node.iter_latest_articles(ctx), 3))
 %>\
     <div class="page-header">
-        <h2>Actualité</h2>
+        <h2>Actualités</h2>
     </div>
     <div class="row">
     % for article in last_articles:
@@ -290,7 +346,7 @@ from openfisca_web_site import conf, urls
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'actualites')}">Voir toutes les actualités...</a>
+        <a href="${urls.get_url(ctx, 'actualites')}"><em class="lead">Voir toutes les actualités...</em></a>
         <br>
         <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Fil d'actualité</span></a>
     </div>

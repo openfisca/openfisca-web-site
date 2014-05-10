@@ -27,15 +27,8 @@ from openfisca_web_site import model, urls
 
 
 class Node(model.Redirect):
-    title = u"Variables et formules socio-fiscales"
+    title = u"Trace"
 
     def get_location(self, ctx):
-        req = ctx.req
-        return urls.get_url(ctx, 'outils', 'variables', req.urlvars.get('variable_name'), **req.GET)
-
-    @property
-    def routings(self):
-        return super(Node, self).routings + (
-            (None, '^/(?P<variable_name>[^/]+)(?=/|$)', self.redirect),
-            )
+        return urls.get_url(ctx, 'outils', 'trace')
 

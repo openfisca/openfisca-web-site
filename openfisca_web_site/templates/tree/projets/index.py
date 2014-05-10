@@ -38,6 +38,16 @@ class Node(model.Folder):
 #            updated = u'2014-05-02T07:00:00',
 #            )
         yield dict(
+            description = textwrap.dedent(u"""\
+                Un convertisseur des fichiers au format SAS7BDAT en fichiers au format HDF5, importables dans OpenFisca
+                en utilisant la bibliothèque Pandas
+                """).strip(),
+            source_url = u'https://github.com/openfisca/sas7bdat',
+            owner = u"OpenFisca Team",
+            title = u"sas7bdat",
+            updated = u'2014-05-09T19:00:00',
+            )
+        yield dict(
             description = u"""La version tunisienne d'OpenFisca, sans web et sans interface utilisateur""",
             source_url = u'https://github.com/openfisca/openfisca-tunisia',
             owner = u"OpenFisca Team",

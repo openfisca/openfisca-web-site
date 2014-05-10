@@ -23,19 +23,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from openfisca_web_site import model, urls
+from openfisca_web_site import model
 
 
-class Node(model.Redirect):
-    title = u"Variables et formules socio-fiscales"
-
-    def get_location(self, ctx):
-        req = ctx.req
-        return urls.get_url(ctx, 'outils', 'variables', req.urlvars.get('variable_name'), **req.GET)
-
-    @property
-    def routings(self):
-        return super(Node, self).routings + (
-            (None, '^/(?P<variable_name>[^/]+)(?=/|$)', self.redirect),
-            )
-
+class Node(model.Directory):
+    hidden_filenames = model.Directory.hidden_filenames + ['index.py']

@@ -158,7 +158,7 @@ arrayRactive.observe('sali', function (newValue, oldValue) {
 
 
 <%def name="h1_content()" filter="trim">
-Exemples de tableau
+Exemple de tableau
 </%def>
 
 

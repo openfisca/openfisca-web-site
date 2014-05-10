@@ -29,24 +29,6 @@ from openfisca_web_site import conf, model, urls
 class Node(model.Folder):
     def iter_visualizations(self, ctx):
         yield dict(
-            description = u"""Outil web de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemple-trace'),
-            owner = u"Etalab",
-            title = u"Débogueur",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-trace.png'),
-            updated = u'2014-04-27T11:00:00',
-            )
-        yield dict(
-            description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemple-waterfall'),
-            owner = u"Etalab",
-            title = u"Diagramme en cascade",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-waterfall.png'),
-            updated = u'2014-04-21T07:00:00',
-            )
-        yield dict(
             description = u"Les aides que l'État peut apporter, en fonction de la situation des personnes",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             source_url = u'http://openfisca-dss.herokuapp.com/',
@@ -84,25 +66,6 @@ class Node(model.Folder):
             title = u"Taux d'imposition du capital et du travail",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-imposition-capital-travail.png'),
             updated = u'2014-03-24T19:19:00',
-            )
-        yield dict(
-            description = u"Graphe dynamique des dépendances entre les formules socio-fiscales d'OpenFisca",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            source_url = urls.get_full_url(ctx, self.url_path, '../graphe-formules'),
-            owner = u"Etalab",
-            title = u"Interdépendance des formules d'OpenFisca",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-graphe-formules.png'),
-            updated = u'2014-03-28T07:26:00',
-            )
-        yield dict(
-            featured = 5,
-            description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            source_url = urls.get_full_url(ctx, self.url_path, '../variables/revdisp'),
-            owner = u"Etalab",
-            title = u"Formules socio-fiscales",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
-            updated = u'2014-03-28T07:26:00',
             )
         yield dict(
             featured = 1,

@@ -40,7 +40,7 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="h1_content()" filter="trim">
-Exemples de tableau
+Trace
 </%def>
 
 
