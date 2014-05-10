@@ -109,6 +109,7 @@ Documentation
             </ul>
         </li>
         <li><a href="${urls.get_url(ctx, 'contribuer')}">Contribuer à OpenFisca</a></li>
+        <li><a href="${urls.get_url(ctx, 'a-propos')}">À propos d'OpenFisca</a></li>
         <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
     </ul>
 </%def>
