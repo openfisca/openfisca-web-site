@@ -155,7 +155,7 @@ twitter_statuses_updated = None
     items_node = node.child_from_node(ctx, unique_name = 'elements')
 %>\
     <div class="row">
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Présentation</h3>
             <p class="text-justify">
                  OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal français. Il permet de
@@ -166,10 +166,12 @@ twitter_statuses_updated = None
                 Il s'agit d'un outil à <strong>vocation pédagogique</strong> pour aider les
                 citoyens à mieux comprendre le système socio-fiscal.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Lire la suite</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Lire la suite</a>
+            </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>API web</h3>
             <p class="text-justify">
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
@@ -179,10 +181,12 @@ twitter_statuses_updated = None
                 <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
                 illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a>
+            </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Démonstration</h3>
             <p class="text-justify">
                 Pour illustrer les possibilités offertes par l'API web, nous avons réalisé un simulateur en ligne.
@@ -192,10 +196,12 @@ twitter_statuses_updated = None
                 votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
                 découvrez votre niveau de vie, etc.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Simuler un cas type en ligne</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Simuler un cas type en ligne</a>
+            </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Installation</h3>
             <p class="text-justify">
                 Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
@@ -206,10 +212,12 @@ twitter_statuses_updated = None
                 Nous déployons de gros efforts afin qu'OpenFisca puisse fonctionner sur de plus en plus de
                 systèmes différents.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a>
+            </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Logiciel libre</h3>
             <p class="text-justify">
                 OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
@@ -219,10 +227,12 @@ twitter_statuses_updated = None
             <p class="text-justify">
                 Une seule contrainte : Les travaux dérivés d'OpenFisca doivent eux aussi être libres.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a>
+            </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 260px">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Communauté</h3>
             <p class="text-justify">
                 OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
@@ -232,7 +242,9 @@ twitter_statuses_updated = None
                 Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
                 développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
-            <p><a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a>
+            </p>
         </div>
     </div>
     <div class="text-right">
@@ -338,7 +350,9 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 180px">
             <h3>${item['title']}</h3>
             <p class="text-justify">${item['description']}</p>
-            <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a>
+            </p>
         </div>
     % endfor
     </div>
@@ -402,11 +416,9 @@ twitter_statuses_updated = None
     <div class="page-header">
         <h2>Tweets <small>@OpenFisca</small></h2>
     </div>
-            % for status_index, status in enumerate(twitter_statuses):
-                % if status_index % 3 == 0:
     <div class="row" style="margin-bottom: 20px">
-                % endif
-        <div class="col-md-4 col-sm-6">
+            % for status_index, status in enumerate(twitter_statuses):
+        <div class="col-md-4 col-sm-6" style="height: 120px">
             <p>${twitter_parser.parse(status.text).html | n}</p>
             <div class="text-muted text-right">
                 ${babel.dates.format_date(
@@ -415,10 +427,8 @@ twitter_statuses_updated = None
                     )}
             </div>
         </div>
-                % if status_index % 3 == 2:
-    </div>
-                % endif
             % endfor
+    </div>
     <div class="text-right">
         <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
     </div>
@@ -434,7 +444,7 @@ twitter_statuses_updated = None
     <div class="row" style="margin-bottom: 20px">
     % for article in last_articles:
         <article class="col-md-4 col-sm-6">
-            <div class="ellipsis" style="height: 195px">
+            <div class="ellipsis" style="height: 190px">
         % if article.get('title_url') is None:
                 <h3>${article['title']}</h3>
         % else:
@@ -444,7 +454,16 @@ twitter_statuses_updated = None
                 ${lxml.html.tostring(child_element, encoding = unicode) | n}
         % endfor
             </div>
-            <p>
+            <div class="text-muted text-right">
+                ${babel.dates.format_date(
+                    datetime.date(*(
+                        int(fragment)
+                        for fragment in article['updated'].split(u'-')
+                        )),
+                    locale = ctx.lang[0][:2],
+                    )}
+            </div>
+            <p style="margin-top: 10px">
                 <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Lire la suite</a>
             </p>
         </article>
