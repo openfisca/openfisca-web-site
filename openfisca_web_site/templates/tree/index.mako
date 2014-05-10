@@ -121,13 +121,11 @@ twitter_statuses_updated = None
                                 <img alt="Copie d'écran : ${item['title']}" src="${item['thumbnail_url']}">
                                 <div class="carousel-caption">
                                     <h3>${item['title']}</h3>
-                                    ${item['owner']}
-                                    ${babel.dates.format_date(
+                                    ${item['owner']}, ${babel.dates.format_date(
                                         datetime.date(*[
                                             int(number)
                                             for number in item['updated'].split('T')[0].split('-')
                                             ]),
-                                        format = 'short',
                                         locale = ctx.lang[0][:2],
                                         )}
                                 </div>
