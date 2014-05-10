@@ -26,11 +26,51 @@
 <%!
 import datetime
 import itertools
+import urllib
 
 import babel.dates
 import lxml.html
+import logging
+from ttp import ttp
+import twitter
 
 from openfisca_web_site import conf, urls
+
+
+log = logging.getLogger(__name__)
+if conf['twitter.consumer_key'] is None:
+    twitter_api = None
+    twitter_parser = None
+else:
+    twitter_api = twitter.Api(
+        consumer_key = conf['twitter.consumer_key'],
+        consumer_secret = conf['twitter.consumer_secret'],
+        access_token_key = conf['twitter.access_token_key'],
+        access_token_secret = conf['twitter.access_token_secret'],
+        )
+
+    class TwitterParser(ttp.Parser):
+        def format_list(self, at_char, user, list_name):
+            '''Return formatted HTML for a list.'''
+            return '<a href="http://twitter.com/%s/%s" target="_blank">%s%s/%s</a>' % (user, list_name, at_char, user,
+                list_name)
+
+        def format_tag(self, tag, text):
+            '''Return formatted HTML for a hashtag.'''
+            return '<a href="http://search.twitter.com/search?q=%s" target="_blank">%s%s</a>' % (
+                urllib.quote('#' + text.encode('utf-8')), tag, text)
+
+        def format_url(self, url, text):
+            '''Return formatted HTML for a url.'''
+            return '<a href="%s" target="_blank">%s</a>' % (ttp.escape(url), text)
+
+        def format_username(self, at_char, user):
+            '''Return formatted HTML for a username.'''
+            return '<a href="http://twitter.com/%s" target="_blank">%s%s</a>' % (user, at_char, user)
+
+    twitter_parser = TwitterParser()
+twitter_statuses = None
+twitter_statuses_updated = None
 %>
 
 
@@ -347,6 +387,45 @@ from openfisca_web_site import conf, urls
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Voir toutes les utilisations...</em></a>
     </div>
+
+    % if twitter_api is not None:
+<%
+        global twitter_statuses, twitter_statuses_updated
+        if twitter_statuses_updated is None \
+                or twitter_statuses_updated + datetime.timedelta(minutes = 5) < datetime.datetime.utcnow():
+            try:
+                twitter_statuses = twitter_api.GetUserTimeline('OpenFisca', count = 9)
+            except:
+                log.exception(u"An error occurred while calling twitter_api.GetUserTimeline('OpenFisca')")
+                twitter_statuses = []
+            twitter_statuses_updated = datetime.datetime.utcnow()
+%>\
+        % if twitter_statuses:
+    <div class="page-header">
+        <h2>Tweets <small>@OpenFisca</small></h2>
+    </div>
+            % for status_index, status in enumerate(twitter_statuses):
+                % if status_index % 3 == 0:
+    <div class="row" style="height: 120px">
+                % endif
+        <div class="col-md-4 col-sm-6">
+            <p>${twitter_parser.parse(status.text).html | n}</p>
+            <div class="text-muted text-right">
+                ${babel.dates.format_date(
+                    datetime.date.fromtimestamp(status.created_at_in_seconds),
+                    locale = ctx.lang[0][:2],
+                    )}
+            </div>
+        </div>
+                % if status_index % 3 == 2:
+    </div>
+                % endif
+            % endfor
+    <div class="text-right">
+        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
+    </div>
+        % endif
+    % endif
 
 <%
     last_articles = list(itertools.islice(node.iter_latest_articles(ctx), 3))

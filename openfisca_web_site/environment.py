@@ -84,6 +84,10 @@ def load_environment(global_conf, app_conf):
             # Whether this application serves its own static files.
             'static_files': conv.pipe(conv.guess_bool, conv.default(True)),
             'static_files_dir': conv.default(os.path.join(app_dir, 'static')),
+            'twitter.access_token_key': conv.cleanup_line,
+            'twitter.access_token_secret': conv.cleanup_line,
+            'twitter.consumer_key': conv.cleanup_line,
+            'twitter.consumer_secret': conv.cleanup_line,
             'ui.url': conv.pipe(
                 conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
                     full = True),
