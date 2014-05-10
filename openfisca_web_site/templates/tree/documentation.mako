@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import urls
+%>
+
+
 <%inherit file="/page.mako"/>
 
 
@@ -32,28 +37,78 @@ Documentation
 
 
 <%def name="page_content()" filter="trim">
-        <ul>
-            <li>API web</li>
-                <ul>
-                    <li><a href="api">Description de l'API web</a></li>
-                    <li><a href="exemples">Exemples d'utilisation de l'API web</a></li>
-                </ul>
-            </li>
-            <li><a href="variables">Variables et formules socio-fiscales</a>
-                <ul>
-                    <li><a href="variables#variables-en-entree">Variables</a></li>
-                    <li><a href="variables#variables-en-sortie">Formules</a></li>
-                </ul>
-            </li>
-            <li><a href="installation">Installation</a>
-                <ul>
-                    <li><a href="installation#gnu-linux">Debian GNU/Linux</a></li>
-                    <li><a href="installation#heroku">Heroku</a></li>
-                    <li><a href="installation#mac">Mac OS</a></li>
-                    <li><a href="installation#windows">Windows</a></li>
-                    <li><a href="installation#version-initiale">Version initiale</a></li>
-                </ul>
-            </li>
-            <li><a href="contribuer">Contribuer à OpenFisca</a></li>
-        </ul>
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+%>\
+    <ul>
+        <li><a href="${urls.get_url(ctx, 'presentation')}">Présentation</a></li>
+        <li><a href="${urls.get_url(ctx, 'api')}">API web</a></li>
+        <li><a href="${urls.get_url(ctx, 'exemples')}">Exemples d'utilisation de l'API web</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'exemple' in (item.get('tags') or [])
+        )
+%>\
+            <ul>
+    % for item in items_iter:
+                <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+            </ul>
+        </li>
+        <li><a href="${urls.get_url(ctx, 'outils')}">Outils</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'outil' in (item.get('tags') or [])
+        )
+%>\
+            <ul>
+    % for item in items_iter:
+                <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+            </ul>
+        </li>
+        <li><a href="${urls.get_url(ctx, 'installation')}">Installation</a>
+            <ul>
+                <li><a href="${urls.get_url(ctx, 'installation')}#gnu-linux">Debian GNU/Linux</a></li>
+                <li><a href="${urls.get_url(ctx, 'installation')}#heroku">Heroku</a></li>
+                <li><a href="${urls.get_url(ctx, 'installation')}#mac">Mac OS</a></li>
+                <li><a href="${urls.get_url(ctx, 'installation')}#windows">Windows</a></li>
+                <li><a href="${urls.get_url(ctx, 'installation')}#version-initiale">Version initiale</a></li>
+            </ul>
+        </li>
+        <li><a href="${urls.get_url(ctx, 'projets')}">Projets</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'projet' in (item.get('tags') or [])
+        )
+%>\
+            <ul>
+    % for item in items_iter:
+                <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+            </ul>
+        </li>
+        <li><a href="${urls.get_url(ctx, 'utilisations')}">Utilisations</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'utilisation' in (item.get('tags') or [])
+        )
+%>\
+            <ul>
+    % for item in items_iter:
+                <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+            </ul>
+        </li>
+        <li><a href="${urls.get_url(ctx, 'contribuer')}">Contribuer à OpenFisca</a></li>
+        <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
+    </ul>
 </%def>

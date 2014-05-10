@@ -37,12 +37,20 @@ Projets
 
 
 <%def name="page_content()" filter="trim">
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'projet' in (item.get('tags') or [])
+        )
+%>\
     <div class="row">
-    % for project in node.iter_projects(xtx):
+    % for item in items_iter:
         <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h3>${project['title']}</h3>
-            <p>${project['description']}</p>
-            <p><a class="btn btn-primary" href="${project['source_url']}" role="button">Voir le projet</a></p>
+            <h3>${item['title']}</h3>
+            <p>${item['description']}</p>
+            <p><a class="btn btn-primary" href="${item['source_url']}" role="button">En savoir plus</a></p>
         </div>
     % endfor
     </div>

@@ -38,25 +38,25 @@ Exemples d'utilisation de l'API web
 
 <%def name="page_content()" filter="trim">
     <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h2>
-    <ul>
-        <li><a href="${urls.get_url(ctx, 'exemples', 'tableau')}">Exemple de tableau de décomposition du revenu disponible</a></li>
-        <li><a href="${urls.get_url(ctx, 'exemples', 'waterfall')}">Exemple de waterfall du revenu disponible</a></li>
-        <li><a href="${urls.get_url(ctx, 'outils', 'trace')}">Exemple de trace d'une simulation</a></li>
-        <li><a href="${urls.get_url(ctx, 'exemples', 'graphe-formules')}">Graphe des dépendances des variables et des formules socio-fiscales</a></li>
-        <li><a href="${urls.get_url(ctx, 'outils', 'variables')}">Visualisation des variables et des formules socio-fiscales</a></li>
-    </ul>
-
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'exemple' in (item.get('tags') or [])
+        )
+%>\
     <div class="row">
-    % for example in node.iter_examples(xtx):
+    % for item in items_iter:
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="${example['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h3>${example['title']}</h3>
-                        <p>${example['description']}</p>
+                        <h3>${item['title']}</h3>
+                        <p>${item['description']}</p>
                     </div>
-                    <p><a href="${example['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Étudier</a></p>
                 </div>
             </div>
         </div>

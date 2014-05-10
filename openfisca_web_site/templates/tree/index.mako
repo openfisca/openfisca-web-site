@@ -38,59 +38,61 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="body_content()" filter="trim">
-    <div class="jumbotron" id="content" style="background: url(../images/bulles.png) repeat center left #c7edfa; margin-top: -20px">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+%>\
+    <div class="jumbotron" id="content" style="background: url(${urls.get_url(ctx, 'elements', 'images', 'bulles.png')
+            }) repeat center left #c7edfa; margin-top: -20px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4" style="margin-bottom: 15px">
                     <p>
-                        <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'images', 'logo-big.png')}">
+                        <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'elements', 'images',
+                                'logo-openfisca-280x200.png')}">
                     </p>
                     <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
 <%
-    visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
-    featured_visualizations = sorted(
+    items = sorted(
         (
-            visualization
-            for visualization in visualizations_node.iter_visualizations(ctx)
-            if visualization.get('featured') is not None
+            item
+            for item in items_node.iter_items(ctx)
+            if item.get('carousel_rank') is not None
             ),
-        key = lambda visualization: visualization['featured']
+        key = lambda item: item['carousel_rank']
         )
 %>\
-    % if featured_visualizations:
                     <div class="carousel slide" data-ride="carousel" id="carousel">
                         ## Indicators
                         <ol class="carousel-indicators">
-        % for visualization in featured_visualizations:
+    % for item in items:
                             <li data-target="#carousel" data-slide-to="${loop.index}"${
                                     u' class="active"' if loop.first else u'' | n}></li>
-        % endfor
+    % endfor
                         </ol>
                         ## Wrapper for slides
                         <div class="carousel-inner">
-        % for visualization in featured_visualizations:
+    % for item in items:
                             <div class="item${u' active' if loop.first else u''}">
-##                                <a href="${visualization['source_url']}"><img alt="Copie d'écran : ${
-##                                        visualization['title']}" src="${visualization['thumbnail_url']}"></a>
-                                <img alt="Copie d'écran : ${visualization['title']}" src="${
-                                        visualization['thumbnail_url']}">
+##                                <a href="${item['source_url']}"><img alt="Copie d'écran : ${item['title']}" src="${
+##                                        item['thumbnail_url']}"></a>
+                                <img alt="Copie d'écran : ${item['title']}" src="${item['thumbnail_url']}">
                                 <div class="carousel-caption">
-                                    <h3>${visualization['title']}</h3>
-                                    ${visualization['owner']}
+                                    <h3>${item['title']}</h3>
+                                    ${item['owner']}
                                     ${babel.dates.format_date(
                                         datetime.date(*[
                                             int(number)
-                                            for number in visualization['updated'].split('T')[0].split('-')
+                                            for number in item['updated'].split('T')[0].split('-')
                                             ]),
                                         format = 'short',
                                         locale = ctx.lang[0][:2],
                                         )}
                                 </div>
                             </div>
-        % endfor
+    % endfor
                         </div>
                         <a class="carousel-control left" href="index.html#carousel" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -99,7 +101,6 @@ from openfisca_web_site import conf, urls
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </div>
-    % endif
                 </div>
             </div>
         </div>
@@ -112,6 +113,9 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="container_content()" filter="trim">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+%>\
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 260px">
             <h3>Présentation</h3>
@@ -198,8 +202,14 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
-    examples_node = node.child_from_node(ctx, unique_name = 'exemples')
-    last_examples = list(itertools.islice(examples_node.iter_examples(ctx), 3))
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items(ctx)
+            if u'exemple' in (item.get('tags') or []) and u'outil' not in (item.get('tags') or [])
+            ),
+        3,
+        ))
 %>\
     <div class="page-header">
         <h2>Exemples</h2>
@@ -212,16 +222,16 @@ from openfisca_web_site import conf, urls
         Vous pouvez vous inspirer de ces exemples pour réaliser vos propres projets.
     </p>
     <div class="row">
-    % for example in last_examples:
+    % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="${example['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h3>${example['title']}</h3>
-                        <p class="text-justify">${example['description']}</p>
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${example['source_url']}" role="button">Étudier</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Étudier</a></p>
                 </div>
             </div>
         </div>
@@ -232,8 +242,14 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
-    tools_node = node.child_from_node(ctx, unique_name = 'outils')
-    last_tools = list(itertools.islice(tools_node.iter_tools(ctx), 3))
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items(ctx)
+            if u'outil' in (item.get('tags') or [])
+            ),
+        3,
+        ))
 %>\
     <div class="page-header">
         <h2>Outils</h2>
@@ -247,16 +263,16 @@ from openfisca_web_site import conf, urls
         Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API OpenFisca.
     </p>
     <div class="row">
-    % for tool in last_tools:
+    % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="${tool['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h3>${tool['title']}</h3>
-                        <p class="text-justify">${tool['description']}</p>
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${tool['source_url']}" role="button">Utiliser</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
                 </div>
             </div>
         </div>
@@ -267,18 +283,24 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
-    projects_node = node.child_from_node(ctx, unique_name = 'projets')
-    last_projects = list(itertools.islice(projects_node.iter_projects(ctx), 3))
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items(ctx)
+            if u'projet' in (item.get('tags') or [])
+            ),
+        3,
+        ))
 %>\
     <div class="page-header">
         <h2>Projets</h2>
     </div>
     <div class="row">
-    % for project in last_projects:
+    % for item in items:
         <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h3>${project['title']}</h3>
-            <p class="text-justify">${project['description']}</p>
-            <p><a class="btn btn-jumbotron" href="${project['source_url']}" role="button">En savoir plus</a></p>
+            <h3>${item['title']}</h3>
+            <p class="text-justify">${item['description']}</p>
+            <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
         </div>
     % endfor
     </div>
@@ -287,8 +309,14 @@ from openfisca_web_site import conf, urls
     </div>
 
 <%
-    visualizations_node = node.child_from_node(ctx, unique_name = 'utilisations')
-    last_visualizations = list(itertools.islice(visualizations_node.iter_visualizations(ctx), 3))
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items(ctx)
+            if u'utilisation' in (item.get('tags') or [])
+            ),
+        3,
+        ))
 %>\
     <div class="page-header">
         <h2>Utilisations</h2>
@@ -301,16 +329,16 @@ from openfisca_web_site import conf, urls
         Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
     </p>
     <div class="row">
-    % for visualization in last_visualizations:
+    % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="${visualization['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h3>${visualization['title']}</h3>
-                        <p class="text-justify">${visualization['description']}</p>
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${visualization['source_url']}" role="button">En savoir plus</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
                 </div>
             </div>
         </div>

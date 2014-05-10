@@ -37,17 +37,25 @@ Outils
 
 
 <%def name="page_content()" filter="trim">
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items(ctx)
+        if u'outil' in (item.get('tags') or [])
+        )
+%>\
     <div class="row">
-    % for tool in node.iter_tools(xtx):
+    % for item in items_iter:
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="${tool['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
-                        <h3>${tool['title']}</h3>
-                        <p>${tool['description']}</p>
+                        <h3>${item['title']}</h3>
+                        <p>${item['description']}</p>
                     </div>
-                    <p><a href="${tool['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
                 </div>
             </div>
         </div>
