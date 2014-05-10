@@ -134,8 +134,8 @@ ${conf['realm']}
 
 <%def name="ie_scripts()" filter="trim">
     <!--[if lt IE 9]>
-    <script src="${urls.get_url(ctx, u'/bower/html5shiv/src/html5shiv.js')}"></script>
-    <script src="${urls.get_url(ctx, u'/bower/respond/respond.src.js')}"></script>
+    <script src="${urls.get_url(ctx, u'/bower/html5shiv/dist/html5shiv.js')}"></script>
+    <script src="${urls.get_url(ctx, u'/bower/respond/dest/respond.min.js')}"></script>
     <![endif]-->
 </%def>
 
