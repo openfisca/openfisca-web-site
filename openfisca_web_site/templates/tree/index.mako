@@ -197,7 +197,7 @@ twitter_statuses_updated = None
                 découvrez votre niveau de vie, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Simuler un cas type en ligne</a>
+                <a class="btn btn-jumbotron" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a>
             </p>
         </div>
 
