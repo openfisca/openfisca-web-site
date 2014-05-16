@@ -27,5 +27,4 @@ from openfisca_web_site import model
 
 
 class Node(model.Directory):
-    hidden_filenames = model.Directory.hidden_filenames + ['index.py']
     title = u'Réforme du quotient conjugal'
