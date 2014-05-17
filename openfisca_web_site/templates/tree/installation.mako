@@ -151,7 +151,6 @@ sudo python setup.py develop --no-deps</pre>
     </h3>
 
     <ul>
-<<<<<<< HEAD
         <li>
             Pour installer l'UI, il faut  aller dans son dossier openfisca et installer les paquets nécessaires :
             <pre>cd Documents/openfisca
