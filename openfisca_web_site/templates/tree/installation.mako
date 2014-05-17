@@ -114,9 +114,9 @@ $ python setup.py compile_catalog
 # apt-get install python-formencode
 # apt-get install nodejs-legacy
 # apt-get install npm
-$ npm install -g bower
-$ git clone https://git.gitorious.org/korma/korma.git@dev
+$ sudo npm install -g bower
 $ cd korma.git@dev
+$ git clone https://git.gitorious.org/korma/korma.git@dev
 # python setup.py develop --no-deps
 $ cd ../
 $ git clone https://github.com/openfisca/openfisca-web-ui.git
@@ -125,7 +125,7 @@ $ python setup.py compile_catalog
 # python setup.py develop --no-deps
 $ ./openfisca_web_ui/scripts/setup.py development.ini #création des index dans la base de donnée</pre></li>
         <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>$ cd Documents/openfisca/openfisca-web-ui
+            <pre>$ cd ~/Documents/openfisca/openfisca-web-ui
 $ bower install</pre>
         </li>
     </ul>
