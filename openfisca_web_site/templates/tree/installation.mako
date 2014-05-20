@@ -157,9 +157,9 @@ sudo python setup.py develop --no-deps</pre>
 sudo apt-get install python-formencode
 sudo apt-get install nodejs-legacy
 sudo apt-get install npm
-npm install -g bower
-cd korma.git@dev
+sudo npm install -g bower
 git clone https://git.gitorious.org/korma/korma.git@dev
+cd korma.git@dev
 sudo python setup.py develop --no-deps
 cd ../
 git clone https://github.com/openfisca/openfisca-web-ui.git
@@ -168,7 +168,7 @@ python setup.py compile_catalog
 sudo python setup.py develop --no-deps</pre>
         </li>
         <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>cd Documents/openfisca/openfisca-web-ui
+            <pre>cd ~/Documents/openfisca/openfisca-web-ui
 bower install</pre>
         </li>
     </ul>
@@ -802,4 +802,3 @@ Installation d'OpenFisca
         <%self:block_initial/>
     </div>
 </%def>
-
