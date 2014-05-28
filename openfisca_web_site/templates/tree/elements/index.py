@@ -30,6 +30,19 @@ from openfisca_web_site import conf, model, urls
 
 class Node(model.Folder):
     def iter_items(self, ctx):
+        yield dict(
+            carousel_rank = 5,
+            description = textwrap.dedent(u"""\
+                Infographie représentant les constituants du revenu disponible sous forme de rayons de soleil
+                """).strip(),
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+            owner = u"Etalab",
+            source_url = conf['ui.url'],
+            tags = [u'visualisation'],
+            title = u"Visualisation en rayons du revenu disponible",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-sunburst.png'),
+            updated = u'2014-05-28T16:00:00',
+            )
 #        yield dict(
 #            description = u"""TODO""",
 #            owner = u"TODO",
