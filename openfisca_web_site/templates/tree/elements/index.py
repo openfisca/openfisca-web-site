@@ -166,7 +166,7 @@ class Node(model.Folder):
             description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../variables/revdisp'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../variables'),
             tags = [u'outil'],
             title = u"Formules socio-fiscales",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
