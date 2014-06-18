@@ -159,8 +159,21 @@ ${conf['realm']}
     <div class="row" style="margin-bottom: 20px">
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
+            <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
+                <img alt="Logo d'Etalab" class="partner" src="elements/images/logo-etalab.png"></img>
+            </a>
+##            <a href="http://www.etalab.gouv.fr/" target="_blank">
+##                <h4>Etalab</h4>
+##            </a>
+##            <p>
+##                Service du premier ministre chargé de l'ouverture des données publiques et du développement de
+##                la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
+##            </p>
+        </div>
+##        <div class="col-lg-3 col-sm-6" style="height: 160px">
+        <div class="col-lg-3 col-sm-6" style="text-align: center">
             <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
-                <img alt="Logo du Commissariat général à la stratégie et à la prospective (CGSP)" class="partner" src="elements/images/logo-cgsp.png"></img>
+                <img alt="Logo de France Stratégie" class="partner" src="elements/images/logo-france-strategie.jpg"></img>
             </a>
 ##            <a href="http://www.strategie.gouv.fr/" target="_blank">
 ##                <h4>Commissariat général à la stratégie et à la prospective</h4>
@@ -180,19 +193,6 @@ ${conf['realm']}
 ##                    avec les acteurs de la société civile.
 ##                </li>
 ##            </ul>
-        </div>
-##        <div class="col-lg-3 col-sm-6" style="height: 160px">
-        <div class="col-lg-3 col-sm-6" style="text-align: center">
-            <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
-                <img alt="Logo d'Etalab" class="partner" src="elements/images/logo-etalab.png"></img>
-            </a>
-##            <a href="http://www.etalab.gouv.fr/" target="_blank">
-##                <h4>Etalab</h4>
-##            </a>
-##            <p>
-##                Service du premier ministre chargé de l'ouverture des données publiques et du développement de
-##                la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
-##            </p>
         </div>
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
