@@ -57,7 +57,8 @@ sudo apt-get install python-requests
 sudo apt-get install python-setuptools
 sudo apt-get install python-scipy
 sudo apt-get install python-tz
-sudo apt-get install python-weberror</pre>
+sudo apt-get install python-weberror
+sudo apt-get install python-webob</pre>
         </li>
     </ul>
 
@@ -358,6 +359,7 @@ sudo pip install python-setuptools
 sudo pip install scipy
 sudo pip install numpy
 sudo pip install requests
+sudo pip install webob
 sudo pip install weberror</pre>
         </li>
     </ul>
