@@ -78,10 +78,10 @@ arrayRactive.observe('sali', function (newValue, oldValue) {
             individus: [{
                 activite: 'Actif occupé',
                 birth: '1970-01-01',
-                cadre: true,
                 id: 'ind0',
                 sali: parseFloat(newValue),
-                statmarit: 'Célibataire'
+                statmarit: 'Célibataire',
+                type_sal: 'prive_cadre'
             }],
             menages: [{personne_de_reference: 'ind0'}]
         },
