@@ -339,7 +339,7 @@ heroku open</pre>
 
     <ul>
         <li>
-            Installer <a href="https://developer.apple.com/downloads">Command Line Tools</a> (nécessite de créer un compte apple dévelopeur).
+            Installer <a href="https://developer.apple.com/downloads">Command Line Tools</a> (nécessite de créer un compte apple développeur).
         </li>
         <li>
             Installer <a href="http://brew.sh/index_fr.html">Homebrew</a>
