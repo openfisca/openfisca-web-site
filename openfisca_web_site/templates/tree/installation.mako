@@ -185,9 +185,9 @@ paster serve --reload development.ini</pre>
         <li>Enusite, dans un deuxième onglet, lancer MongoDB (ici installé dans le dossier openfisca) :
             <pre>sudo service mongodb start</pre>
         </li>
-        <li>Enfin, dans un troisième onglet, lancer le serveur de l'Interface utilisateur :
+        <li>Enfin, dans un troisième onglet, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
             <pre>cd Documents/openfisca/openfisca-web-ui
-./openfisca_web_ui/scripts/setup_app.py development.ini création des index dans la base de donnée
+./openfisca_web_ui/scripts/setup_app.py development.ini
 paster serve --reload development.ini</pre>
         </li>
     </ul>
@@ -478,9 +478,9 @@ paster serve --reload development.ini</pre>
             <pre>mongod</pre>
         </li>
         <li>
-            Enfin, dans un troisième onglet, lancer le serveur de l'Interface utilisateur :
+            Enfin, dans un troisième onglet, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
             <pre>cd /openfisca/openfisca-web-ui
-./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
+./openfisca_web_ui/scripts/setup_app.py development.ini
 paster serve --reload development.ini</pre>
         </li>
     </ul>
@@ -689,9 +689,9 @@ paster serve --reload development.ini</pre>
 mongod.exe</pre>
         </li>
         <li>
-            Enfin, dans une troisième console, lancer le serveur de l'Interface utilisateur :
+            Enfin, dans une troisième console, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
             <pre>cd Desktop/openfisca/openfisca-web-ui
-./openfisca_web_ui/scripts/setup_app.py development.ini #création des index dans la base de donnée
+./openfisca_web_ui/scripts/setup_app.py development.ini
 paster serve --reload development.ini</pre>
         </li>
     </ul>
