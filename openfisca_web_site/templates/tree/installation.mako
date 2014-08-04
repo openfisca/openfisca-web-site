@@ -333,11 +333,14 @@ heroku open</pre>
 
 <%def name="block_mac()" filter="trim">
 
-    <h2 id="mac">Installation sous <strong>Mac OS</strong></h2>
+    <h2 id="mac">Installation sous <strong>Mac OS</strong> (testé avec Marveriks 10.9.3) </h2>
 
     <h3 id="noyau-mac">Installation du noyau d'OpenFisca</h3>
 
     <ul>
+        <li>
+            Installer <a href="https://developer.apple.com/downloads">Command Line Tools</a> (nécessite de créer un compte apple développeur).
+        </li>
         <li>
             Installer <a href="http://brew.sh/index_fr.html">Homebrew</a>
         </li>
@@ -345,22 +348,24 @@ heroku open</pre>
             Afin de pouvoir lancer l'API, certain paquets sont nécessaires, pour les installer, lancer les commandes
             suivantes :
             <pre>brew install git
-brew install gfortran
+brew install gcc
 brew install mongodb
 brew install nodejs
-sudo pip install babel
-sudo pip install isodate
-sudo pip install pastescript
-sudo pip install pymongo
-sudo pip install python-dateutil
-sudo pip install python-gettext
-sudo pip install python-magic
-sudo pip install python-setuptools
-sudo pip install scipy
-sudo pip install numpy
-sudo pip install requests
-sudo pip install webob
-sudo pip install weberror</pre>
+brew install python
+echo export PATH='/usr/local/bin:$PATH' >> ~/.bash_profile
+pip install babel
+pip install isodate
+pip install pastescript
+pip install pymongo
+pip install python-dateutil
+pip install python-gettext
+pip install python-magic
+pip install --upgrade setuptools
+pip install scipy
+pip install numpy
+pip install requests
+pip install webob
+pip install weberror</pre>
         </li>
     </ul>
 
