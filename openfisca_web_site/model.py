@@ -49,6 +49,7 @@ year_re = re.compile(r'\d{4}$')
 
 class AbstractNode(objects.Initable):
     _template = UnboundLocalError
+    ctx = None
     in_toc = True  # When False, node should not appear in table of contents.
     parent = None
     title = None
@@ -56,7 +57,9 @@ class AbstractNode(objects.Initable):
     unique_name = None
     url_path = None
 
-    def __init__(self, parent = None, tree_path = None, unique_name = None, url_path = None):
+    def __init__(self, ctx, parent = None, tree_path = None, unique_name = None, url_path = None):
+        assert isinstance(ctx, contexts.Ctx), ctx
+        self.ctx = ctx
         if parent is None:
             assert unique_name is None
         else:
@@ -68,10 +71,10 @@ class AbstractNode(objects.Initable):
         assert url_path is not None
         self.url_path = url_path
 
-    def can_access(self, ctx, check = False):
+    def can_access(self, check = False):
         return None if check else True
 
-    def convert_element_to_article(self, ctx, element, updated):
+    def convert_element_to_article(self, element, updated):
         title_url = None
         for xpath in (
                 './/h1',
@@ -94,7 +97,7 @@ class AbstractNode(objects.Initable):
                         url, error = conv.pipe(
                             conv.make_input_to_url(),
                             conv.not_none,
-                            )(ancestor_element.get('href'), state = ctx)
+                            )(ancestor_element.get('href'), state = self.ctx)
                         if error is None:
                             title_url = url
                 header_element.getparent().remove(header_element)
@@ -111,9 +114,9 @@ class AbstractNode(objects.Initable):
             updated = get_element_time(element, default = updated),
             )
 
-    def init_from_node(self, ctx):
+    def init_from_node(self):
         if self.title is None:
-            h1_content = self.render_def(ctx, 'h1_content')
+            h1_content = self.render_def('h1_content')
             if h1_content:
                 self.title = lxml.html.tostring(lxml.html.fragment_fromstring(h1_content, create_parent = 'p'),
                     encoding = unicode, method = 'text').strip()
@@ -128,8 +131,8 @@ class AbstractNode(objects.Initable):
             for ancestor in parent.iter_ancestors():
                 yield ancestor
 
-    def iter_articles(self, ctx, updated = None):
-        page = self.render(ctx)
+    def iter_articles(self, updated = None):
+        page = self.render()
         if page is not None:
             try:
                 html_element = lxml.etree.fromstring(page, html_parser)
@@ -146,9 +149,9 @@ class AbstractNode(objects.Initable):
                         breadcrumb_element.getparent().remove(breadcrumb_element)
                     for footer_element in body_content_element.xpath('*[@class="footer"]'):
                         footer_element.getparent().remove(footer_element)
-                    yield self.convert_element_to_article(ctx, body_content_element, updated)
+                    yield self.convert_element_to_article(body_content_element, updated)
             elif len(article_elements) == 1:
-                yield self.convert_element_to_article(ctx, article_elements[0], updated)
+                yield self.convert_element_to_article(article_elements[0], updated)
             else:
                 for article_element in article_elements:
                     if any(
@@ -157,10 +160,10 @@ class AbstractNode(objects.Initable):
                             ):
                         # Skip article inside article.
                         continue
-                    yield self.convert_element_to_article(ctx, article_element, updated)
+                    yield self.convert_element_to_article(article_element, updated)
 
-    def iter_latest_articles(self, ctx, updated = None):
-        for article in sorted(self.iter_articles(ctx, updated = updated),
+    def iter_latest_articles(self, updated = None):
+        for article in sorted(self.iter_articles(updated = updated),
                 key = lambda article: article['updated'],
                 reverse = True):
             yield article
@@ -169,12 +172,13 @@ class AbstractNode(objects.Initable):
     def path(self):
         if self.tree_path is None:
             return None
-        return os.path.join(templates.dirs[0], u'tree', self.tree_path)
+        return templates.get_existing_path(self.ctx, u'tree', self.tree_path)
 
-    def render(self, ctx, **kw):
+    def render(self, **kw):
         template = self.template
         if template is None:
             return None
+        ctx = self.ctx
         return template.render_unicode(
             _ = ctx.translator.ugettext,
             ctx = ctx,
@@ -185,10 +189,11 @@ class AbstractNode(objects.Initable):
             req = ctx.req,
             **kw).strip()
 
-    def render_def(self, ctx, def_name, **kw):
+    def render_def(self, def_name, **kw):
         template = self.template
         if template is None:
             return None
+        ctx = self.ctx
         return template.get_def(def_name).render_unicode(
             _ = ctx.translator.ugettext,
             ctx = ctx,
@@ -199,9 +204,10 @@ class AbstractNode(objects.Initable):
             req = ctx.req,
             **kw).strip()
 
-    def render_not_found(self, ctx, **kw):
+    def render_not_found(self, **kw):
+        ctx = self.ctx
         template_path = os.path.join(os.sep, 'page-not-found.mako')
-        template = templates.get_template(template_path)
+        template = templates.get_template(ctx, template_path)
         return template.render_unicode(
             _ = ctx.translator.ugettext,
             ctx = ctx,
@@ -223,8 +229,8 @@ class AbstractNode(objects.Initable):
     def template(self):
         if self._template is UnboundLocalError:
             template_path = self.template_path
-            self._template = templates.get_template(template_path) \
-                if os.path.exists(os.path.join(templates.dirs[0], template_path.lstrip(u'/'))) \
+            self._template = templates.get_template(self.ctx, template_path) \
+                if templates.get_existing_path(self.ctx, template_path.lstrip(u'/')) is not None \
                 else None
         return self._template
 
@@ -234,11 +240,10 @@ class AbstractNode(objects.Initable):
 
     @wsgihelpers.wsgify
     def view(self, req):
-        ctx = contexts.Ctx(req)
-
         if self.template is None:
-            return wsgihelpers.not_found(ctx, body = self.render_not_found(ctx))
-        return self.render(ctx)
+            ctx = contexts.Ctx(req)
+            return wsgihelpers.not_found(ctx, body = self.render_not_found())
+        return self.render()
 
 
 class Directory(AbstractNode):
@@ -257,8 +262,9 @@ class Directory(AbstractNode):
             assert unique_name is not None
             tree_path = os.path.join(parent.tree_path, unique_name)
             url_path = urlparse.urljoin(parent.url_path.rstrip(u'/') + u'/', unique_name)
-        path = os.path.join(templates.dirs[0], u'tree', tree_path)
-        if os.path.isdir(path):
+        relative_path = os.path.join(u'tree', tree_path)
+        path = templates.get_existing_path(ctx, relative_path)
+        if path is not None and os.path.isdir(path):
             python_path = os.path.join(path, u'.index.py')
             if os.path.isfile(python_path):
                 scope = dict(
@@ -274,8 +280,10 @@ class Directory(AbstractNode):
             else:
                 cls = Directory
         else:
-            python_path = os.path.join(os.path.dirname(path), u'.{}.py'.format(os.path.basename(path)))
-            if os.path.isfile(python_path):
+            python_relative_path = os.path.join(os.path.dirname(relative_path),
+                u'.{}.py'.format(os.path.basename(relative_path)))
+            python_path = templates.get_existing_path(ctx, python_relative_path)
+            if python_path is not None and os.path.isfile(python_path):
                 scope = dict(
                     __builtins__ = __builtins__,  # __builtin__ module (without "s")
                     __doc__ = None,
@@ -288,17 +296,17 @@ class Directory(AbstractNode):
                 assert issubclass(cls, AbstractNode), cls
             else:
                 cls = File
-        self = cls(parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
-        self.init_from_node(ctx)
+        self = cls(ctx, parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
+        self.init_from_node()
         return self
 
     @property
     def has_view(self):
-        return os.path.exists(self.path)
+        return self.path is not None
 
-    def iter_children(self, ctx):
+    def iter_children(self):
         for child_unique_name in self.iter_children_unique_name():
-            yield self.child_from_node(ctx, unique_name = child_unique_name)
+            yield self.child_from_node(self.ctx, unique_name = child_unique_name)
 
     def iter_children_unique_name(self, reverse = False):
         hidden_filenames = set(self.hidden_filenames)
@@ -317,9 +325,9 @@ class Directory(AbstractNode):
         req = webob.Request(environ)
         ctx = contexts.Ctx(req)
 
-        if not os.path.exists(self.path):
-            return wsgihelpers.not_found(ctx, body = self.render_not_found(ctx))(environ, start_response)
-        http_error = self.can_access(ctx, check = True)
+        if self.path is None:
+            return wsgihelpers.not_found(ctx, body = self.render_not_found())(environ, start_response)
+        http_error = self.can_access(check = True)
         if http_error is not None:
             return http_error(environ, start_response)
 
@@ -333,9 +341,9 @@ class Directory(AbstractNode):
         filename, error = conv.not_none(req.urlvars.get('name'), state = ctx)
         child = self.child_from_node(ctx, unique_name = filename or u'')
         if error is not None:
-            return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
+            return wsgihelpers.not_found(ctx, body = child.render_not_found())(environ, start_response)
         if filename.startswith('.') or filename.endswith('~') or filename in self.hidden_filenames:
-            return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
+            return wsgihelpers.not_found(ctx, body = child.render_not_found())(environ, start_response)
 
         return child.route(environ, start_response)
 
@@ -350,9 +358,9 @@ class Directory(AbstractNode):
     def template(self):
         if self._template is UnboundLocalError:
             template_path = self.template_path
-            if not os.path.exists(os.path.join(templates.dirs[0], template_path.lstrip(u'/'))):
+            if templates.get_existing_path(self.ctx, template_path.lstrip(u'/')) is None:
                 template_path = os.path.join(os.sep, 'directory.mako')
-            self._template = templates.get_template(template_path)
+            self._template = templates.get_template(self.ctx, template_path)
         return self._template
 
     @property
@@ -365,15 +373,15 @@ class File(AbstractNode):
 
     @property
     def has_view(self):
-        return os.path.exists(self.path)
+        return self.path is not None
 
     def route(self, environ, start_response):
         req = webob.Request(environ)
         ctx = contexts.Ctx(req)
 
-        if not os.path.exists(self.path):
-            return wsgihelpers.not_found(ctx, body = self.render_not_found(ctx))(environ, start_response)
-        http_error = self.can_access(ctx, check = True)
+        if self.path is None:
+            return wsgihelpers.not_found(ctx, body = self.render_not_found())(environ, start_response)
+        http_error = self.can_access(check = True)
         if http_error is not None:
             return http_error(environ, start_response)
 
@@ -429,8 +437,9 @@ class Folder(AbstractNode):
             assert unique_name is not None
             tree_path = os.path.join(parent.tree_path, unique_name)
             url_path = urlparse.urljoin(parent.url_path.rstrip(u'/') + u'/', unique_name)
-        path = os.path.join(templates.dirs[0], u'tree', tree_path)
-        if os.path.isdir(path):
+        relative_path = os.path.join(u'tree', tree_path)
+        path = templates.get_existing_path(ctx, relative_path)
+        if path is not None and os.path.isdir(path):
             python_path = os.path.join(path, u'index.py')
             if os.path.isfile(python_path):
                 scope = dict(
@@ -446,8 +455,8 @@ class Folder(AbstractNode):
             else:
                 cls = Folder
         else:
-            python_path = path + u'.py'
-            if os.path.isfile(python_path):
+            python_path = templates.get_existing_path(ctx, relative_path + u'.py')
+            if python_path is not None and os.path.isfile(python_path):
                 scope = dict(
                     __builtins__ = __builtins__,  # __builtin__ module (without "s")
                     __doc__ = None,
@@ -460,17 +469,17 @@ class Folder(AbstractNode):
                 assert issubclass(cls, AbstractNode), cls
             else:
                 cls = Page
-        self = cls(parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
-        self.init_from_node(ctx)
+        self = cls(ctx, parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
+        self.init_from_node()
         return self
 
     @property
     def has_view(self):
         return self.template is not None
 
-    def iter_children(self, ctx):
+    def iter_children(self):
         for child_unique_name in self.iter_children_unique_name():
-            yield self.child_from_node(ctx, unique_name = child_unique_name)
+            yield self.child_from_node(self.ctx, unique_name = child_unique_name)
 
     def iter_children_unique_name(self, reverse = False):
         children_unique_name = set(self.hidden_names)
@@ -487,40 +496,41 @@ class Folder(AbstractNode):
             children_unique_name.add(child_unique_name)
             yield child_unique_name
 
-    def iter_latest_articles(self, ctx, updated = None):
+    def iter_latest_articles(self, updated = None):
+        ctx = self.ctx
         for year in self.iter_children_unique_name(reverse = True):
             if year_re.match(year) is None:
                 continue
             year_node = self.child_from_node(ctx, unique_name = year)
-            if not year_node.can_access(ctx):
+            if not year_node.can_access():
                 continue
             for month in year_node.iter_children_unique_name(reverse = True):
                 if month_re.match(month) is None:
                     continue
                 month_node = year_node.child_from_node(ctx, unique_name = month)
-                if not month_node.can_access(ctx):
+                if not month_node.can_access():
                     continue
                 for day in month_node.iter_children_unique_name(reverse = True):
                     if day_re.match(day) is None:
                         continue
                     day_node = month_node.child_from_node(ctx, unique_name = day)
-                    if not day_node.can_access(ctx):
+                    if not day_node.can_access():
                         continue
                     updated = datetime.date(int(year), int(month), int(day)).isoformat()
                     for child_unique_name in day_node.iter_children_unique_name():
                         child = day_node.child_from_node(ctx, unique_name = child_unique_name)
-                        if not child.can_access(ctx):
+                        if not child.can_access():
                             continue
-                        for article in child.iter_latest_articles(ctx, updated = updated):
+                        for article in child.iter_latest_articles(updated = updated):
                             yield article
 
     def route(self, environ, start_response):
         req = webob.Request(environ)
         ctx = contexts.Ctx(req)
 
-        if not os.path.exists(self.path):
-            return wsgihelpers.not_found(ctx, body = self.render_not_found(ctx))(environ, start_response)
-        http_error = self.can_access(ctx, check = True)
+        if self.path is None:
+            return wsgihelpers.not_found(ctx, body = self.render_not_found())(environ, start_response)
+        http_error = self.can_access(check = True)
         if http_error is not None:
             return http_error(environ, start_response)
 
@@ -534,9 +544,9 @@ class Folder(AbstractNode):
         name, error = conv.not_none(req.urlvars.get('name'), state = ctx)
         child = self.child_from_node(ctx, unique_name = name or u'')
         if error is not None:
-            return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
+            return wsgihelpers.not_found(ctx, body = child.render_not_found())(environ, start_response)
         if name in self.hidden_names:
-            return wsgihelpers.not_found(ctx, body = child.render_not_found(ctx))(environ, start_response)
+            return wsgihelpers.not_found(ctx, body = child.render_not_found())(environ, start_response)
 
         return child.route(environ, start_response)
 
@@ -562,8 +572,8 @@ class Page(AbstractNode):
         ctx = contexts.Ctx(req)
 
         if self.template is None:
-            return wsgihelpers.not_found(ctx, body = self.render_not_found(ctx))(environ, start_response)
-        http_error = self.can_access(ctx, check = True)
+            return wsgihelpers.not_found(ctx, body = self.render_not_found())(environ, start_response)
+        http_error = self.can_access(check = True)
         if http_error is not None:
             return http_error(environ, start_response)
 
@@ -586,20 +596,14 @@ class Redirect(AbstractNode):
     in_toc = False
     location = None
 
-    def get_location(self, ctx):
-        return self.location
-
     @wsgihelpers.wsgify
     def redirect(self, req):
         ctx = contexts.Ctx(req)
 
-        return wsgihelpers.redirect(ctx, code = self.code, location = self.get_location(ctx))
+        return wsgihelpers.redirect(ctx, code = self.code, location = self.location)
 
     def route(self, environ, start_response):
-        req = webob.Request(environ)
-        ctx = contexts.Ctx(req)
-
-        http_error = self.can_access(ctx, check = True)
+        http_error = self.can_access(check = True)
         if http_error is not None:
             return http_error(environ, start_response)
 

@@ -35,18 +35,19 @@ import webob
 from . import conf, conv
 
 
-__all__ = ['Ctx', 'null_ctx']
+__all__ = ['Ctx']
 
 
 class Ctx(conv.State):
     _parent = None
     default_values = dict(
+        _country = None,
         _lang = None,
         _root_node = None,
         _translator = None,
         req = None,
         )
-    env_keys = ('_lang', '_root_node', '_translator')
+    env_keys = ('_country', '_lang', '_root_node', '_translator')
 
     def __init__(self, req = None):
         if req is not None:
@@ -81,6 +82,24 @@ class Ctx(conv.State):
             if value is not None:
                 app_env[key] = value
         return webob.Request.blank(path, environ = env, base_url = base_url, headers = headers, POST = POST, **kw)
+
+    def country_del(self):
+        del self._country
+        if self.req is not None and self.req.environ.get('openfisca-web-site') is not None \
+                and '_country' in self.req.environ['openfisca-web-site']:
+            del self.req.environ['openfisca-web-site']['_country']
+
+    def country_get(self):
+        country = self._country
+        assert country is not None
+        return country
+
+    def country_set(self, country):
+        self._country = country
+        if self.req is not None:
+            self.req.environ.setdefault('openfisca-web-site', {})['_country'] = self._country
+
+    country = property(country_get, country_set, country_del)
 
     def get_containing(self, name, depth = 0):
         """Return the n-th (n = ``depth``) context containing attribute named ``name``."""
@@ -129,11 +148,9 @@ class Ctx(conv.State):
             del self.req.environ['openfisca-web-site']['_lang']
 
     def lang_get(self):
-        if self._lang is None:
-            self._lang = ['fr-FR', 'fr']
-            if self.req is not None:
-                self.req.environ.setdefault('openfisca-web-site', {})['_lang'] = self._lang
-        return self._lang
+        lang = self._lang
+        assert lang is not None
+        return lang
 
     def lang_set(self, lang):
         self._lang = lang
@@ -194,10 +211,6 @@ class Ctx(conv.State):
             translator = new_translator(conf['package_name'], conf['i18n_dir'], languages, fallback = translator)
             self._translator = translator
         return self._translator
-
-
-null_ctx = Ctx()
-null_ctx.lang = ['fr-FR', 'fr']
 
 
 def new_translator(domain, localedir, languages, fallback = None):

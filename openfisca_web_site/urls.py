@@ -26,6 +26,7 @@
 """Helpers for URLs"""
 
 
+import itertools
 import re
 import urllib
 import urlparse
@@ -49,9 +50,17 @@ def get_base_url(ctx, full = False):
 
 
 def get_full_url(ctx, *path, **query):
+    country = query.pop('country', None) or ctx.country
+    lang = query.pop('lang', None) or ctx.lang[0]
     path = [
         urllib.quote(unicode(sub_fragment).encode('utf-8'), safe = ',/:').decode('utf-8')
-        for fragment in path
+        for fragment in itertools.chain(
+            [
+                country if country != conf['default_country'] else None,
+                lang if lang != conf['default_language'] else None,
+                ],
+            path,
+            )
         if fragment
         for sub_fragment in unicode(fragment).split(u'/')
         if sub_fragment
@@ -65,10 +74,35 @@ def get_full_url(ctx, *path, **query):
         ('?' + urllib.urlencode(query, doseq = True)) if query else '')
 
 
-def get_url(ctx, *path, **query):
+def get_static_url(ctx, *path, **query):
     path = [
         urllib.quote(unicode(sub_fragment).encode('utf-8'), safe = ',/:').decode('utf-8')
         for fragment in path
+        if fragment
+        for sub_fragment in unicode(fragment).split(u'/')
+        if sub_fragment
+        ]
+    query = dict(
+        (str(name), strings.deep_encode(value))
+        for name, value in sorted(query.iteritems())
+        if value not in (None, [], (), '')
+        )
+    return u'{0}/{1}{2}'.format(get_base_url(ctx), u'/'.join(path),
+        ('?' + urllib.urlencode(query, doseq = True)) if query else '')
+
+
+def get_url(ctx, *path, **query):
+    country = query.pop('country', None) or ctx.country
+    lang = query.pop('lang', None) or ctx.lang[0]
+    path = [
+        urllib.quote(unicode(sub_fragment).encode('utf-8'), safe = ',/:').decode('utf-8')
+        for fragment in itertools.chain(
+            [
+                country if country != conf['default_country'] else None,
+                lang if lang != conf['default_language'] else None,
+                ],
+            path,
+            )
         if fragment
         for sub_fragment in unicode(fragment).split(u'/')
         if sub_fragment

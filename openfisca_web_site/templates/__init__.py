@@ -35,50 +35,51 @@ import mako.lookup
 from .. import conf
 
 
-custom_lookups = {}  # custom TemplateLookups, inited by function load_environment
-default_lookup = None  # default TemplateLookup, inited by function load_environment
-dirs = None  # Sequence of templates directories, inited by function load_environment
+dir = None  # Templates directory, inited by function load_environment
 js = lambda x: json.dumps(x, encoding = 'utf-8', ensure_ascii = False)
+lookup_by_country_and_lang_couple = {}
+relative_dirs_by_country_and_lang_couple = {
+    ('france', 'en'): [os.path.join('france', 'en'), os.path.join('france', 'fr')],
+    ('france', 'fr'): [os.path.join('france', 'fr')],
+    ('tunisia', 'ar'): [os.path.join('tunisia', 'ar'), os.path.join('tunisia', 'fr'), os.path.join('france', 'fr')],
+    ('tunisia', 'fr'): [os.path.join('tunisia', 'fr'), os.path.join('france', 'fr')],
+    }
 
 
-def get_default_lookup():
-    global default_lookup
-    if default_lookup is None:
-        default_lookup = mako.lookup.TemplateLookup(
+def get_existing_path(ctx, *paths):
+    country = ctx.country
+    lang = ctx.lang[0]
+    country_and_lang_couple = (country, lang)
+    for relative_dir in relative_dirs_by_country_and_lang_couple[country_and_lang_couple]:
+        found_path = os.path.join(dir, relative_dir, *paths)
+        if os.path.exists(found_path):
+            return found_path
+    return None
+
+
+def get_lookup(ctx):
+    country = ctx.country
+    lang = ctx.lang[0]
+    country_and_lang_couple = (country, lang)
+    lookup = lookup_by_country_and_lang_couple.get(country_and_lang_couple)
+    if lookup is None:
+        lookup_by_country_and_lang_couple[country_and_lang_couple] = lookup = mako.lookup.TemplateLookup(
             default_filters = ['h'],
-            directories = dirs,
-#            error_handler = handle_mako_error,
+            directories = [
+                os.path.join(dir, relative_dir)
+                for relative_dir in relative_dirs_by_country_and_lang_couple[country_and_lang_couple]
+                ],
+            # error_handler = handle_mako_error,
             input_encoding = 'utf-8',
-            module_directory = os.path.join(conf['cache_dir'], 'templates'),
+            module_directory = os.path.join(conf['cache_dir'], 'templates', country, lang),
             strict_undefined = False,
             )
-    return default_lookup
+    return lookup
 
 
-def get_lookup(custom_name):
-    # return mobile_lookup if ctx.mobile else lookup
-    if custom_name is None or conf['customs_dir'] is None:
-        return get_default_lookup()
-    custom_templates_dir = os.path.join(conf['customs_dir'], custom_name, 'templates')
-    if os.path.exists(custom_templates_dir):
-        if custom_name not in custom_lookups:
-            custom_lookups[custom_name] = mako.lookup.TemplateLookup(
-                default_filters = ['h'],
-                directories = [custom_templates_dir] + dirs,
-#                error_handler = handle_mako_error,
-                input_encoding = 'utf-8',
-                module_directory = os.path.join(conf['cache_dir'], 'templates-{}'.format(custom_name)),
-                strict_undefined = False,
-                )
-        return custom_lookups[custom_name]
-    if custom_name in custom_lookups:
-        del custom_lookups[custom_name]
-    return get_default_lookup()
-
-
-def get_template(template_path, custom_name = None):
+def get_template(ctx, template_path):
     assert template_path.startswith('/')
-    return get_lookup(custom_name).get_template(template_path)
+    return get_lookup(ctx).get_template(template_path)
 
 
 def qp(s, encoding = 'utf-8'):
@@ -93,8 +94,9 @@ def qp(s, encoding = 'utf-8'):
     return u' '.join(quoted_words)
 
 
-def render(ctx, template_path, custom_name = None, **kw):
-    return get_template(template_path, custom_name = custom_name).render_unicode(
+def render(ctx, template_path, **kw):
+    assert template_path.startswith('/')
+    return get_template(ctx, template_path).render_unicode(
         _ = ctx.translator.ugettext,
         ctx = ctx,
         js = js,
@@ -105,8 +107,9 @@ def render(ctx, template_path, custom_name = None, **kw):
         **kw).strip()
 
 
-def render_def(ctx, template_path, def_name, custom_name = None, **kw):
-    return get_template(template_path, custom_name = custom_name).get_def(def_name).render_unicode(
+def render_def(ctx, template_path, def_name, **kw):
+    assert template_path.startswith('/')
+    return get_template(ctx, template_path).get_def(def_name).render_unicode(
         _ = ctx.translator.ugettext,
         ctx = ctx,
         js = js,

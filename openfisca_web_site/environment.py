@@ -61,6 +61,23 @@ def load_environment(global_conf, app_conf):
                 ),
             'customs_dir': conv.default(None),
             'debug': conv.pipe(conv.guess_bool, conv.default(False)),
+            'default_country': conv.pipe(
+                conv.input_to_slug,
+                conv.test_in([
+                    u'france',
+                    u'tunisia',
+                    ]),
+                conv.default(u'france'),
+                ),
+            'default_language': conv.pipe(
+                conv.input_to_slug,
+                conv.test_in([
+                    u'ar',
+                    u'en',
+                    u'fr',
+                    ]),
+                conv.default(u'fr'),
+                ),
             'global_conf': conv.set_value(global_conf),
             'google_analytics.key': conv.empty_to_none,
             'host_urls': conv.pipe(
@@ -111,10 +128,7 @@ def load_environment(global_conf, app_conf):
         errorware['smtp_server'] = conf.get('smtp_server', 'localhost')
 
     # Create the Mako TemplateLookup, with the default auto-escaping.
-    templates.dirs = templates_dirs = []
-    if conf['custom_templates_dir']:
-        templates_dirs.append(conf['custom_templates_dir'])
-    templates_dirs.append(os.path.join(app_dir, 'templates'))
+    templates.dir = os.path.join(app_dir, 'templates')
 
 
 def setup_environment():
