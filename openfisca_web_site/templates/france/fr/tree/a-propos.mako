@@ -31,7 +31,7 @@ import datetime
 
 
 <%def name="h1_content()" filter="trim">
-${_(u'About OpenFisca')}
+${_(u"""À propos d'OpenFisca""")}
 </%def>
 
 
@@ -52,7 +52,7 @@ ${_(u'About OpenFisca')}
         <h2 id="licence">${_(u'License')}</h2>
         OpenFisca est un logiciel libre sous licence <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>.
 
-        <h2>${_(u'Source Code')}</h2>
+        <h2>${_(u'Code source')}</h2>
         <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
 
         <h2>Développeurs initiaux</h2>
@@ -92,4 +92,3 @@ ${_(u'About OpenFisca')}
         <h2>Porteurs du projet</h2>
         <%self:partners/>
 </%def>
-
