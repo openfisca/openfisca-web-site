@@ -156,30 +156,30 @@ twitter_statuses_updated = None
 %>\
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Présentation</h3>
+            <h3>Presenation</h3>
             <p class="text-justify">
-                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal français. Il permet de
-                 calculer simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de
-                 simuler l'impact de réformes sur leur budget.
+                 OpenFisca is an open micro-simulation simulator of French socio-fiscal system. 
+                 It allows users to simply calculate many social benefits and taxes 
+                 paid by households and to simulate the impact of reforms on their budget.
             </p>
             <p class="text-justify">
-                Il s'agit d'un outil à <strong>vocation pédagogique</strong> pour aider les
-                citoyens à mieux comprendre le système socio-fiscal.
+                This tool has an <strong>educational purpose</strong>, and aims
+                to help citizens better understand the French socio-fiscal system.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Lire la suite</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Read more...</a>
             </p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>API web</h3>
             <p class="text-justify">
-                L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
+               The API lets you use the web OpenFisca engine, without installing it, from any web page.
             </p>
             <p class="text-justify">
-                Grâce aux serveurs mis à votre disposition sur Internet par
-                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
-                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
+                The servers made available on the Internet by
+                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a> allow you to use the API to illustrate a research project,
+                an economic article, to create a dynamic infographics, etc.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a>
@@ -187,68 +187,63 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Démonstration</h3>
+            <h3>Demonstration</h3>
             <p class="text-justify">
-                Pour illustrer les possibilités offertes par l'API web, nous avons réalisé un simulateur en ligne.
+                To illustrate the possibilities offered by the Web API, we created an online simulator.
             </p>
             <p class="text-justify">
-                Grâce à ce <strong>démonstrateur</strong>, décrivez votre situation familiale, saisissez vos revenus et
-                votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
-                découvrez votre niveau de vie, etc.
+                With this <strong> demonstrator </ strong>, by describing your family situation and entering your income
+                and assets, you can compare your socio-fiscal situation with that of other households, discover your living standard, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a>
+                <a class="btn btn-jumbotron" href="${conf['ui.url']}" role="button">Simulate a standard case</a>
             </p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Installation</h3>
             <p class="text-justify">
-                Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
-                logiciels qui composent OpenFisca sur votre propre ordinateur, sur des serveurs ou même dans les
-                nuages.
+                If the use of OpenFisca online is not enough, you can also install different OpenFisca softwares on your own computer, on servers or even on clouds.
             </p>
             <p class="text-justify">
-                Nous déployons de gros efforts afin qu'OpenFisca puisse fonctionner sur de plus en plus de
-                systèmes différents.
+                We are working hard to make OpenFisca compatible with the greatest number of systems.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Installer les logiciels</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Install software</a>
             </p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Logiciel libre</h3>
             <p class="text-justify">
-                OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
-                OpenFisca, de l'installer, d'étudier son code source, de le modifier et devle redistribuer comme bon
-                vous semble.
+                OpenFisca is an open simulator under a free license. This license allows you to use OpenFisca, 
+                install it, study its source code, modify and redistribute it as you see fit.
             </p>
             <p class="text-justify">
-                Une seule contrainte : Les travaux dérivés d'OpenFisca doivent eux aussi être libres.
+                The only constraint : OpenFisca re-uses must also be free of use.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Connaître la licence</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Learn about the licence</a>
             </p>
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Communauté</h3>
             <p class="text-justify">
-                OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
-                ne pourra pas réussir sans l'aide du plus grand nombre.
+                OpenFisca is a free project, open to all. But it is first and foremost a very ambitious project, which cannot
+                succede without the help of many.
             </p>
             <p class="text-justify">
-                Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
-                développement. Toutes les bonnes volontés sont les bienvenues.
+                Whatever your qualifications, if you are interested in OpenFisca, you can contribute to its development. All people of
+                good will are welcome.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribuer</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribute</a>
             </p>
         </div>
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'documentation')}"><em class="lead">Voir toute la documentation...</em></a>
+        <a href="${urls.get_url(ctx, 'documentation')}"><em class="lead">See all documentation...</em></a>
     </div>
 
 <%
@@ -305,12 +300,11 @@ twitter_statuses_updated = None
         <h2>Outils</h2>
     </div>
     <p class="text-justify">
-        Pour vous aider à mieux comprendre le fonctionnement d'OpenFisca, à améliorer ses formules socio-fiscales,
-        à compléter la législation, etc, nous développons différents outils web de visualisation, d'exploration et de
-        déboguage.
+        We are currently developing different web visualization, exploration, and debugging tools. This will
+        help you better understand how OpenFisca works, will improve the socio-fiscal formulas, complete missing legislation etc.
     </p>
     <p class="text-justify">
-        Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API OpenFisca.
+        These tools are also themselves examples of use of the OpenFisca API.
     </p>
     <div class="row">
     % for item in items:
@@ -439,7 +433,7 @@ twitter_statuses_updated = None
     last_articles = list(itertools.islice(node.iter_latest_articles(), 3))
 %>\
     <div class="page-header">
-        <h2>Actualités</h2>
+        <h2>News</h2>
     </div>
     <div class="row" style="margin-bottom: 20px">
     % for article in last_articles:
