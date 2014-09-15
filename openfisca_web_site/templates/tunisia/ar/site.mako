@@ -28,7 +28,7 @@ from openfisca_web_site import urls
 %>
 
 
-<%inherit file="/root/france/fr/site.mako"/>
+<%inherit file="/root/tunisia/fr/site.mako"/>
 
 
 <%def name="topbar_content()" filter="trim">
