@@ -158,8 +158,8 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Presenation</h3>
             <p class="text-justify">
-                 OpenFisca is an open micro-simulation simulator of French socio-fiscal system. 
-                 It allows users to simply calculate many social benefits and taxes 
+                 OpenFisca is an open micro-simulation simulator of French socio-fiscal system.
+                 It allows users to simply calculate many social benefits and taxes
                  paid by households and to simulate the impact of reforms on their budget.
             </p>
             <p class="text-justify">
@@ -192,7 +192,7 @@ twitter_statuses_updated = None
                 To illustrate the possibilities offered by the Web API, we created an online simulator.
             </p>
             <p class="text-justify">
-                With this <strong> demonstrator </ strong>, by describing your family situation and entering your income
+                With this <strong> demonstrator </strong>, by describing your family situation and entering your income
                 and assets, you can compare your socio-fiscal situation with that of other households, discover your living standard, etc.
             </p>
             <p style="margin-top: 20px">
@@ -216,7 +216,7 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Logiciel libre</h3>
             <p class="text-justify">
-                OpenFisca is an open simulator under a free license. This license allows you to use OpenFisca, 
+                OpenFisca is an open simulator under a free license. This license allows you to use OpenFisca,
                 install it, study its source code, modify and redistribute it as you see fit.
             </p>
             <p class="text-justify">
