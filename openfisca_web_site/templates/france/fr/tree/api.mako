@@ -100,7 +100,7 @@ Content-Type: application/json; charset=utf-8
 {
   "@context": "http://openfisca.fr/contexts/legislation.jsonld",
   "@type": "Node",
-  "start': "2006-01-01",
+  "start": "2006-01-01",
   "stop": "2013-12-31",
   "children": {
     "al": {
@@ -117,7 +117,7 @@ Content-Type: application/json; charset=utf-8
               "format": "rate",
               "values": [
                 {
-                  "start': "2002-01-01",
+                  "start": "2002-01-01",
                   "stop": "2014-12-31",
                   "value": 0.88
                 }
@@ -130,7 +130,7 @@ Content-Type: application/json; charset=utf-8
               "format": "rate",
               "values": [
                 {
-                  "start': "2002-01-01",
+                  "start": "2002-01-01",
                   "stop": "2014-12-31",
                   "value": 0.4
                 }
