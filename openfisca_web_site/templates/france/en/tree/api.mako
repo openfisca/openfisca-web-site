@@ -147,27 +147,27 @@ Content-Type: application/json; charset=utf-8
             <li>
                 <h3 id="field"><code>/api/1/field</code></h3>
 
-                <p>Retourne le détail d'une variable ou formule.</p>
+                <p>Returns details on a variable or formula</p>
 
-                <h4>Paramètres de la requête</h4>
+                <h4>Request parameters</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Méthode</th>
+                            <th>Method</th>
                             <td><code>GET</code></td>
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Paramètre retourné tel quel dans la réponse</td>
+                            <td>Parameters returned as such in the response</td>
                         </tr>
                         <tr>
                             <th><code>variable</code></th>
-                            <td>Nom de la variable ou de la formule recherchée</td>
+                            <td>Variable name or formula sought</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Exemple d'appel : <small>Détail des informations sur la formule calculant le revenu disponible</small></h4>
+                <h4>Call example : <small>Detailed information on the formula calculating disposable income</small></h4>
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/field?variable=revdisp HTTP/1.1
@@ -248,9 +248,9 @@ Content-Type: application/json; charset=utf-8
 }
                 """.strip()}</code></pre>
 
-                <h4>Exemple d'utilisation</h4>
-                <p>L'outil de navigation dans les formules socio-fiscales utilise l'API <code>field</code> pour afficher la page de chaque variable ou formule.</p>
-                <p>Par exemple : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">formule calculant le revenu disponible</a></p>
+                <h4>Examples of use</h4>
+                <p>Thenavigation tool for the socio-economic formulas uses the API <code>field</code> to display the page for each variable or formula.</p>
+                <p>For example : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">formula that calculates the disposable income</a></p>
             </li>
             <li>
                 <h3 id="fields"><code>/api/1/fields</code></h3>
