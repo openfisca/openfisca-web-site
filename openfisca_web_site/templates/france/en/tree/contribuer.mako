@@ -39,8 +39,7 @@ Contribute to OpenFisca
 
 
 <%def name="page_content()" filter="trim">
-        <h2>
-              des formules permettant de les calculer ; Why contribute to OpenFisca </h2>
+        <h2> Why contribute to OpenFisca </h2>
 
         <p>
             OpenFisca is a project being developed under the GPLv3 license or later.
@@ -49,12 +48,12 @@ Contribute to OpenFisca
 
         <p>
       	    We encourage users to send their comments and suggestions for improvement, 
-      	    and to report any innacuracy or error they might have found.
+      	    and to report any inaccuracy or error they might have found.
             If you want to participate more actively in its development,
             know that there are multiple ways contribute to the OpenFisca project.
         </p>
 
-	<h2> Utiliser l'API web et orienter son développement  </h2>
+	<h2> Use the API and direct its development  </h2>
         <p>
 	  <ul>
 	    <li> Share your uses: you are welcome to keep us informed of the uses 
@@ -93,9 +92,10 @@ Contribute to OpenFisca
             social benefits to maintain and improve the software. You can help by following these steps:
 
 	    <ol>
-	      <li> identify the incomplete or missing taxes or benifits;
+	      <li> identify the incomplete or missing taxes or benefits;
               <li> gather the necessary documentation to fix this issue
-	      <li> propose patches that implement the incomplete or missing benefits and taxes on<a href="https://github.com/openfisca/openfisca-france/"> collaborative development website</a>.
+	      <li> propose patches that implement the incomplete or missing benefits and 
+	      taxes on<a href="https://github.com/openfisca/openfisca-france/"> collaborative development website</a>.
 	    </ol>
 	</p>
 
@@ -116,7 +116,7 @@ Contribute to OpenFisca
 	     <li> The development of other socio-fiscal simulators has begun in the case of the
 	    <a href="https://github.com/openfisca/openfisca-tunisia"> Tunisia </a>
 	    <a href="https://github.com/openfisca/openfisca-tunisia-pension">
-	    and tunisian pensions </a>.
+	    and Tunisian pensions </a>.
 	     <li> Using OpenFisca through <a href="https://github.com/blaquans/ropenfisca"> R</a>.
 	   </ul>
         </p>
