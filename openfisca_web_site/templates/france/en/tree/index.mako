@@ -156,7 +156,7 @@ twitter_statuses_updated = None
 %>\
     <div class="row">
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Presenation</h3>
+            <h3>Presentation</h3>
             <p class="text-justify">
                  OpenFisca is an open micro-simulation simulator of French socio-fiscal system.
                  It allows users to simply calculate many social benefits and taxes
@@ -182,7 +182,7 @@ twitter_statuses_updated = None
                 an economic article, to create a dynamic infographics, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Utiliser l'API web</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Use the web API</a>
             </p>
         </div>
 
@@ -203,7 +203,8 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Installation</h3>
             <p class="text-justify">
-                If the use of OpenFisca online is not enough, you can also install different OpenFisca softwares on your own computer, on servers or even on clouds.
+                If the use of OpenFisca online is not enough for you, you can also install 
+                different OpenFisca softwares on your own computer, on servers or even on clouds.
             </p>
             <p class="text-justify">
                 We are working hard to make OpenFisca compatible with the greatest number of systems.
@@ -220,10 +221,10 @@ twitter_statuses_updated = None
                 install it, study its source code, modify and redistribute it as you see fit.
             </p>
             <p class="text-justify">
-                The only constraint : OpenFisca re-uses must also be free of use.
+                The only constraint: OpenFisca re-uses must also be free of use.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Learn about the licence</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Learn about the license</a>
             </p>
         </div>
 
@@ -231,7 +232,7 @@ twitter_statuses_updated = None
             <h3>Communauté</h3>
             <p class="text-justify">
                 OpenFisca is a free project, open to all. But it is first and foremost a very ambitious project, which cannot
-                succede without the help of many.
+                succeede without the help of many.
             </p>
             <p class="text-justify">
                 Whatever your qualifications, if you are interested in OpenFisca, you can contribute to its development. All people of
@@ -260,8 +261,8 @@ twitter_statuses_updated = None
         <h2>Exemples</h2>
     </div>
     <p class="text-justify">
-        Pour vous permettre d'adapter OpenFisca à vos besoins, l'équipe OpenFisca développe et
-        documente différents exemples, en essayant de couvrir les différents cas d'usages possibles.
+       To allow you to adapt to your needs OpenFisca the OpenFisca team 
+       develops and documents several examples, trying to cover the various possible uses.
     </p>
     <p class="text-justify">
         Vous pouvez vous inspirer de ces exemples pour réaliser vos propres projets.
@@ -470,7 +471,7 @@ twitter_statuses_updated = None
     </div>
 
     <div class="page-header">
-        <h2>Porteurs du projet</h2>
+        <h2>Partners</h2>
     </div>
     <%self:partners/>
 </%def>
