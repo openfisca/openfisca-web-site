@@ -213,7 +213,7 @@ bower install</pre>
         </li>
     </ul>
     <p class="alert alert-danger">
-        <strong>Caution :</strong> to start the server interface, you must first start the API server in a different console:
+        <strong>Caution :</strong> to start the interface's server, you must first start the API server in a different console:
     </p>
     <ul>
         <li>
@@ -222,7 +222,7 @@ bower install</pre>
 paster serve --reload development.ini</pre>
         </li>
         <li>
-            In a second tab, launch the servers website :
+            In a second tab, launch the server's website :
             <pre>cd Documents/openfisca/openfisca-web-site
 paster serve --reload development.ini</pre>
         </li>
@@ -664,7 +664,7 @@ bower install</pre>
     </p>
     <ul>
         <li>
-            First, in a first terminal, run the API:
+            First, in a terminal, run the API:
             <pre>cd Desktop/openfisca/openfisca-web-api
 paster serve --reload development.ini</pre>
         </li>
@@ -674,7 +674,7 @@ paster serve --reload development.ini</pre>
 mongod.exe</pre>
         </li>
         <li>
-            EFinally, in a third terminal, run the user interface server to create the indexes in the database :
+            Finally, in a third terminal, run the user interface server to create the indexes in the database :
             <pre>cd Desktop/openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
 paster serve --reload development.ini</pre>
@@ -725,7 +725,8 @@ paster serve --reload development.ini</pre>
 
     <ul>
         <li>
-            To open the user interface, simply open your internet browser and follow this link: <kbd>http://localhost:2016</kbd>
+            To open the user interface, simply open your internet browser 
+            and follow this link: <kbd>http://localhost:2016</kbd>
         </li>
     </ul>
 </%def>
