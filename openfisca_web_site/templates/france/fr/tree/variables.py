@@ -31,7 +31,9 @@ class Node(model.Redirect):
 
     @property
     def location(self):
-        return urls.get_url(self.ctx, 'outils', 'variables', req.urlvars.get('variable_name'), **req.GET)
+        ctx = self.ctx
+        req = ctx.req
+        return urls.get_url(ctx, 'outils', 'variables', req.urlvars.get('variable_name'), **req.GET)
 
     @property
     def routings(self):
