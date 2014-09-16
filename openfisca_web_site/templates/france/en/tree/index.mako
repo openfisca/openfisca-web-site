@@ -74,7 +74,7 @@ twitter_statuses_updated = None
 %>
 
 
-<%inherit file="/root/france/fr/index.mako"/>
+<%inherit file="/root/france/fr/tree/index.mako"/>
 
 
 <%def name="body_content()" filter="trim">

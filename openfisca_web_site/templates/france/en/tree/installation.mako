@@ -30,7 +30,7 @@ from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/root/france/fr/installation.mako"/>
+<%inherit file="/root/france/fr/tree/installation.mako"/>
 
 
 <%def name="block_debian()" filter="trim">

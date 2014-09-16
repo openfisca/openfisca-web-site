@@ -27,7 +27,7 @@
 import datetime
 %>
 
-<%inherit file="/root/france/fr/a-propos.mako"/>
+<%inherit file="/root/france/fr/tree/a-propos.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
