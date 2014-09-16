@@ -71,7 +71,7 @@ API
             <li>
                 <h3 id="default-legislation"><code>/api/1/default-legislation</code></h3>
 
-                <p>Returns the socio-fiscal paramaters used by default in formulas.</p>
+                <p>Returns the socio-fiscal parameters used by default in formulas.</p>
 
                 <h4>Request parameters</h4>
                 <table class="table">
@@ -249,15 +249,16 @@ Content-Type: application/json; charset=utf-8
                 """.strip()}</code></pre>
 
                 <h4>Examples of use</h4>
-                <p>Thenavigation tool for the socio-economic formulas uses the API <code>field</code> to display the page for each variable or formula.</p>
-                <p>For example : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">formula that calculates the disposable income</a></p>
+                <p>The navigation tool for the socio-economic formulas uses the API <code>field</code> to display the page for each variable or formula.</p>
+                <p>For example : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">is the formula that calculates the 
+                disposable income</a></p>
             </li>
             <li>
                 <h3 id="fields"><code>/api/1/fields</code></h3>
 
                 <p>Returns the list of socio-fiscal formulas and variables.</p>
 
-                <h4>Request Parameters</h4>
+                <h4>Request parameters</h4>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -277,27 +278,28 @@ Content-Type: application/json; charset=utf-8
                         <tr>
                             <th><code>columns</code></th>
                             <td>
-                                Contains the list of entry variables, as a dictionnary
+                                Contains the list of entry variables, as a dictionary
                                 <code>"<i>(column code)</i>": <i>(dictionnaire describing the column)</i></code>
                             </td>
                         </tr>
                         <tr>
                             <th><code>columns_tree</code></th>
                             <td>
-                                Contains the tree of columns entry codes. This tree allows to group entry variables by bloc in the user interface.
+                                Contains the tree of columns entry codes. This tree 
+                                allows to group entry variables by bloc in the user interface.
                             </td>
                         </tr>
                         <tr>
                             <th><code>benefits</code></th>
                             <td>
                                 <p>
-                                    Contains the list of formulas (and, as a result, of output variables), as a dictionnary
+                                    Contains the list of formulas (and, as a result, of output variables), as a dictionary
                                     <code>"<i>(benefits code)</i>": <i>(dictionnary describing the benefits)</i></code>
                                 </p>
                                 <div class="alert alert-success">
                                     <p>
-                                        <strong>Note !</strong> It is possible to enter a value for a specific benifit.
-                                        In this case, the benifit will be treated as an input variable, and its formulat will be ignored.
+                                        <strong>Note !</strong> It is possible to enter a value for a specific benefit.
+                                        In this case, the benifit will be treated as an input variable, and its formula will be ignored.
                                     </p>
                                 </div>
                             </td>
@@ -636,57 +638,55 @@ Content-Type: application/json; charset=utf-8
                 <h3 id="graph"><code>/api/1/graph</code></h3>
 
                 <p>
-                    Retourne le graphe des variables et prestations permettant de calculer la variable donnée en
-                    paramètre.
+                    Returns the graph of variables and benefits, to calculate the variable given as a parameter .
                 </p>
 
-                <h4>Paramètres de la requête</h4>
+                <h4>Request parameters</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Méthode</th>
+                            <th>Method</th>
                             <td><code>GET</code></td>
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Paramètre retourné tel quel dans la réponse</td>
+                            <td>Parameter returned as such in the response</td>
                         </tr>
                         <tr>
                             <th><code>variable</code></th>
                             <td>
-                                Nom de la variable (formule) dont on veut récupérer le graphe. Par défault la variable
-                                <code>revdisp</code> est utilisée.
+                                Name of the variable (formula) for which we want to obtain the graph.
+                                The <code>revdisp</code> variable is used by default.
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Contenu de la réponse</h4>
+                <h4>Response content</h4>
                 <table class="table">
                     <tbody>
                         <tr>
                             <th><code>edges</code></th>
                             <td>
-                                Contient les arcs entre les différents noeuds
+                                Contains the arcs between the nods
                             </td>
                         </tr>
                         <tr>
                             <th><code>nodes</code></th>
                             <td>
-                                Contient la liste des variables et formules intervenant dans le calcul de la variable
-                                demandée
+                                Lists the variables and formulas used to calculate the requested variable
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Exemple d'appel</h4>
-                <p>Requête :</p>
+                <h4>Call example</h4>
+                <p>Request :</p>
                 <pre><code>${u"""
 GET /api/1/graph?variable=zone_apl HTTP/1.1
 Host: api.openfisca.fr
                  """.strip()}</code></pre>
-                <p>Réponse :</p>
+                <p>Response :</p>
                 <pre><code>${u"""
 HTTP/1.0 200 OK
 Content-Type: application/json; charset=utf-8
@@ -725,7 +725,7 @@ Content-Type: application/json; charset=utf-8
 
                 <h4>Example of use</h4>
                 <p>
-                    The<a href="${urls.get_url(ctx, 'graphe-formules')}">graphic animation of the visualisation of
+                    The<a href="${urls.get_url(ctx, 'graphe-formules')}">graphic animation of the visualization of
                     dependencies of socio-fiscal formulas and variables </a> uses the API <code>graph</code>.
                 </p>
             </li>
@@ -735,7 +735,7 @@ Content-Type: application/json; charset=utf-8
                 <p>Runs the simulation on a standard test case.</p>
 
                 <h4>Request parameters</h4>
-                <p>The request is done in the <code>POST</code>JSON format.</p>
+                <p>The request is done in <code>POST</code>JSON format.</p>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -759,19 +759,21 @@ Content-Type: application/json; charset=utf-8
                         <tr>
                             <th><code>decomposition</code></th>
                             <td>
-                                List of variables to be returned in the response. If no decomposition is given, the "waterfall" decompostion is returned.
+                                List of variables to be returned in the response. If no 
+                                decomposition is given, the "waterfall" decomposition is returned.
                             </td>
                         </tr>
                         <tr>
                             <th><code>scenarios</code></th>
                             <td>
-                                List of scenaris for which to run the simulation
+                                List of scenarios for which to run the simulation
                             </td>
                         </tr>
                         <tr>
                             <th><code>validate</code></th>
                             <td>
-                                Booléean, false by default. When it is true, the simulation is not run. Only a validation of the scenaris is done.
+                                Boolean, false by default. When it is true,
+                                the simulation is not run. Only a validation of the scenarios is done.
                             </td>
                         </tr>
                     </tbody>
@@ -783,7 +785,7 @@ Content-Type: application/json; charset=utf-8
                     <code>simulate</code>, written in various programming languages.
                 </p>
 
-                <h4>Usage examples</h4>
+                <h4>Examples of use</h4>
                 <p>
                     Most of the <a href="${urls.get_url(ctx, 'utilisations')}">uses identified</a> of OpenFisca
                     use the API<code>simulate</code>.
