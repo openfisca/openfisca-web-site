@@ -70,7 +70,7 @@ class Variable(model.Page):
         assert unique_name is not None
         tree_path = os.path.join(os.path.dirname(parent.tree_path), 'variable')
         url_path = urlparse.urljoin(parent.url_path.rstrip(u'/') + u'/', unique_name)
-        self = Variable(parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
+        self = Variable(ctx, parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
         self.init_from_node()
         return self
 
