@@ -55,12 +55,12 @@
                     and <strong>approximate</strong> model of the socio-fiscal legislation
                     </li>
                 </ul>
-                <p>These amounts are given only as indicators and may 
+                <p>These amounts are given only as indicators and may
                 differ from those determined by various authorities
                 for your real situation. The results cannot be held against the administration,
-                the Caf or more generally, against any organization 
-                involved in the calculation of taxes and benefits. 
-                In fact, your family situation and / or resources may change or may not have been 
+                the Caf or more generally, against any organization
+                involved in the calculation of taxes and benefits.
+                In fact, your family situation and / or resources may change or may not have been
                 taken into account in the simulation. Some simplifying hypothesis may have been made.
                 </p>
             </div>
@@ -69,12 +69,11 @@
         <h2>History of OpenFisca</h2>
 
         <p>
-        The development of OpenFisca began in May 2011 at the <abbr title = "Centre d'analyse stratégique"> 
-        CAS </ abbr>, renamed <abbr title = "Commissariat général à la stratégie et à la
-prospective"> CGSP </ abbr> in spring 2013,  with the support 
-        of the <abbr title = "Institut d'économie publique"> 
+        The development of OpenFisca began in May 2011 at the <abbr title = "Centre d'analyse stratégique">
+        CAS </ abbr>, renamed <abbr title = "Commissariat général à la stratégie et à la prospective"> CGSP </ abbr> in spring 2013,  with the support
+        of the <abbr title = "Institut d'économie publique">
         IDEP </ abbr>. The source code has been released under a
-        free license in November 2011. OpenFisca was originally 
+        free license in November 2011. OpenFisca was originally
         developed as an integrated desktop application (Qt) with a Python API.
         </p>
         <p>
@@ -93,8 +92,8 @@ prospective"> CGSP </ abbr> in spring 2013,  with the support
                 a web interface to simulate personal cases
             </li>
             <li>
-                
-               propose a <strong> public access to this web API </ strong>, 
+
+               propose a <strong> public access to this web API </ strong>,
                open to all : administrations, researchers, citizens, etc.
             </li>
         </ul>
@@ -114,10 +113,10 @@ prospective"> CGSP </ abbr> in spring 2013,  with the support
         <h2>Non French versions of OpenFisca</h2>
 
         <p>
-            The OpenFisca engine is generic. It is therefore completely 
+            The OpenFisca engine is generic. It is therefore completely
             independent of the socio-tax legislation. It is therefore possible to simulate
             any socio-fiscal system. The Tunisian version of OpenFisca is currently under development as well.
-            
+
         </p>
         <p>
             The Tunisian version is currently (March 2014), less advanced than the French version. But this is  only
