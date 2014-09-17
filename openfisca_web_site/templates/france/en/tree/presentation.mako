@@ -30,112 +30,97 @@
 
 
 <%def name="page_content()" filter="trim">
-        <h2>Qu'est-ce qu'OpenFisca</h2>
+        <h2>What is OpenFisca ?</h2>
 
         <p>
-            OpenFisca est un moteur ouvert de microsimulation du
-            système socio-fiscal français. Il permet de calculer
-            simplement un grand nombre de prestations sociales et
-            d'impôts payés, par les ménages, et de simuler l'impact de
-            réformes sur leur budget.
+            OpenFisca is an open microsimulation software of French socio-fiscal system. It allows users to simply
+            calculate many social benefits and taxes paid by households and simulate
+            the impact of reforms on their budget.
         </p>
         <p>
-            Il s'agit d'un outil à vocation pédagogique pour aider les
-            citoyens à mieux comprendre le système socio-fiscal.
+            It is an educational tool intended to help citizens better
+            understand the socio-fiscal system.
         </p>
 
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <h2 class="panel-title">Avertissement</h2>
+                <h2 class="panel-title">Disclaimer</h2>
             </div>
             <div class="panel-body">
-                <p>OpenFisca calcule les montants des cotisations
-                sociales, des contributions sociales, des impôts et
-                des prestations à partir :</p>
+                <p>OpenFisca calculates the amounts of payroll taxes, taxes, and benefits using:</p>
                 <ul>
-                    <li>de caractéristiques individuelles des ménages
-                    fournies par les utilisateurs</li>
-                    <li>d'un modèle <strong>simplifié</strong>
-                    et <strong>approximatif</strong> de la législation
-                    socio-fiscale</li>
+                    <li>the household's characteristic, as indicated by the user
+                    </li>
+                    <li>a <strong>simplified</strong>
+                    and <strong>approximate</strong> model of the socio-fiscal legislation
+                    </li>
                 </ul>
-                <p>Ces montants sont donnés à titre indicatif et
-peuvent être différents de ceux déterminés par les différentes
-administrations lors de l'étude des dossiers réels. Les résultats
-fournis ne sauraient engager l'administration, votre Caf ou plus
-généralement n'importe quel organisme préleveur ou verseur sur le
-montant définitif des impôts et des cotisations à acquitter ou des
-prestations versées. En effet, votre situation familiale et/ou vos
-ressources ou celles de l'un des membres de votre famille peuvent
-changer ou ne pas avoir été prises en compte lors de la simulation et
-certaines hypothèses simplificatrices ont été effectuées.</p>
+                <p>These amounts are given only as indicators and may 
+                differ from those determined by various authorities
+                for your real situation. The results cannot be held against the administration,
+                the Caf or more generally, against any organization 
+                involved in the calculation of taxes and benefits. 
+                In fact, your family situation and / or resources may change or may not have been 
+                taken into account in the simulation. Some simplifying hypothesis may have been made.
+                </p>
             </div>
         </div>
 
-        <h2>Historique d'OpenFisca</h2>
+        <h2>History of OpenFisca</h2>
 
         <p>
-          Le développement d'OpenFisca a débuté au <abbr title="Centre
-d'analyse stratégique">CAS</abbr>,
-rebaptisé <abbr title="Commissariat général à la stratégie et à la
-prospective">CGSP</abbr> au printemps 2013, en mai 2011 avec le
-soutien de l'<abbr title="Institut d'économie
-publique">IDEP</abbr>. Le code source a été diffusé sous une licence
-libre en novembre 2011. Initialement OpenFisca a été développé sous
-forme d'application bureautique intégrée (en Qt) avec une API Python.
+        The development of OpenFisca began in May 2011 at the <abbr title = "Centre d'analyse stratégique"> 
+        CAS </ abbr>, renamed <abbr title = "Commissariat général à la stratégie et à la
+prospective"> CGSP </ abbr> in spring 2013,  with the support 
+        of the <abbr title = "Institut d'économie publique"> 
+        IDEP </ abbr>. The source code has been released under a
+        free license in November 2011. OpenFisca was originally 
+        developed as an integrated desktop application (Qt) with a Python API.
         </p>
         <p>
-            Début 2014, quand Etalab s'est investi dans le
-            développement d'OpenFisca, il a été décidé de :
+            When Etalab started being implicated in the development of OpenFisca, in the early 2014, it was decided to:
         </p>
         <ul>
             <li>
-                séparer le moteur du simulateur de son interface
-                utilisateur (en QT)
+                separate the simulator's engine and its user interface (Qt)
             </li>
             <li>
-                proposer une <strong>API web</strong> en plus de son
-                API Python et de privilégier cette API web
+                offer a <strong>web API</strong>, in addition to the Python API,
+                and favor the first it over the latter.
             </li>
             <li>
-                démontrer l'intérêt de l'API web en développant des
-                exemples d'utilisation et notamment une interface web
-                de simulation de cas personnels
+                demonstrate the value of Web API by developing sample applications including
+                a web interface to simulate personal cases
             </li>
             <li>
-                proposer un <strong>accès public à cette API
-                web</strong>, ouvert à tous, administrations,
-                chercheurs, citoyens, etc.
+                
+               propose a <strong> public access to this web API </ strong>, 
+               open to all : administrations, researchers, citizens, etc.
             </li>
         </ul>
         <p>
-            Depuis cette date, le logiciel est développé intensivement
-            par Etalab. Parallèlement le <abbr title="Commissariat
-            général à la stratégie et à la prospective">CGSP</abbr>,
-            appuyé par l'<abbr title="Institut d'économie
-            publique">IDEP</abbr> et l'<abbr title="Institut des
-            politiques publiques">IPP</abbr>, améliore le modèle
-            économique et actualise la législation socio-fiscale
-            française.
+            Since then, the software is being developed extensively by Etalab.
+            Meanwhile the economic model is being improved and the socio-fiscal legislation updated by the
+            <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>,
+            with the help of the <abbr title="Institut d'économie
+            publique">IDEP</abbr> and the <abbr title="Institut des
+            politiques publiques">IPP</abbr>.
         </p>
         <p>
-            Actuellement (mars 2014), la version Qt n'est plus
-            maintenue et seule la version web fait l'objet de
-            développements.
+            As of now (March 2014), the Qt version is no longer maintained and
+            only the web version is being developped.
         </p>
 
-        <h2>Versions non françaises d'OpenFisca</h2>
+        <h2>Non French versions of OpenFisca</h2>
 
         <p>
-            Le moteur d'OpenFisca est générique. Il est donc
-            totalement indépendant de la législation socio-fiscale. Il
-            est donc possible de simuler n'importe quel système
-            socio-fiscal. Une version tunisienne d'OpenFisca est ainsi en cours de développement.
+            The OpenFisca engine is generic. It is therefore completely 
+            independent of the socio-tax legislation. It is therefore possible to simulate
+            any socio-fiscal system. The Tunisian version of OpenFisca is currently under development as well.
+            
         </p>
         <p>
-            Cette version tunisienne est actuellement (mars 2014) bien
-            moins avancée que la version française. Mais c'est
-            uniquement pas manque de bras pour saisir et actualiser la
-            législation socio-fiscale tunisienne.
+            The Tunisian version is currently (March 2014), less advanced than the French version. But this is  only
+            due to a shortage in manpower to enter and update the Tunisian socio-fiscal legislation.
         </p>
 </%def>
