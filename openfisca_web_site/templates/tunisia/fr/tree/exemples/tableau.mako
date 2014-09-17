@@ -73,20 +73,16 @@ var arrayRactive = new Ractive({
 arrayRactive.observe('sali', function (newValue, oldValue) {
     var scenario = {
         test_case: {
-            familles: [{parents: ['ind0']}],
             foyers_fiscaux: [{declarants: ['ind0']}],
             individus: [{
-                activite: 'Actif occupé',
                 birth: '1970-01-01',
                 id: 'ind0',
                 sali: parseFloat(newValue),
-                statmarit: 'Célibataire',
-                type_sal: 'prive_cadre'
             }],
             menages: [{personne_de_reference: 'ind0'}]
         },
         legislation_url: ${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/default-legislation') | n, js},
-        year: 2013
+        year: 2011
     };
     $.ajax(${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/simulate') | n, js}, {
         contentType: 'application/json',

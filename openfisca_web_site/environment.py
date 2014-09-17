@@ -46,11 +46,6 @@ def load_environment(global_conf, app_conf):
     conf.update(strings.deep_decode(app_conf))
     conf.update(conv.check(conv.struct(
         {
-            'api.url': conv.pipe(
-                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
-                    full = True),
-                conv.default(u'http://api.openfisca.fr/'),
-                ),
             'app_conf': conv.set_value(app_conf),
             'app_dir': conv.set_value(app_dir),
             'cache_dir': conv.default(os.path.join(os.path.dirname(app_dir), 'cache')),
@@ -78,6 +73,11 @@ def load_environment(global_conf, app_conf):
                     ]),
                 conv.default(u'fr'),
                 ),
+            'france.api.url': conv.pipe(
+                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                    full = True),
+                conv.default(u'http://api.openfisca.fr/'),
+                ),
             'global_conf': conv.set_value(global_conf),
             'google_analytics.key': conv.empty_to_none,
             'host_urls': conv.pipe(
@@ -101,6 +101,11 @@ def load_environment(global_conf, app_conf):
             # Whether this application serves its own static files.
             'static_files': conv.pipe(conv.guess_bool, conv.default(True)),
             'static_files_dir': conv.default(os.path.join(app_dir, 'static')),
+            'tunisia.api.url': conv.pipe(
+                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                    full = True),
+                conv.default(u'http://api.openfisca.tn/'),
+                ),
             'twitter.access_token_key': conv.cleanup_line,
             'twitter.access_token_secret': conv.cleanup_line,
             'twitter.consumer_key': conv.cleanup_line,

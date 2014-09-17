@@ -234,10 +234,10 @@ waterfallRactive.observe({
                 }],
                 menages: [{personne_de_reference: 'ind0'}]
             },
-            legislation_url: ${urlparse.urljoin(conf['api.url'], '/api/1/default-legislation') | n, js},
+            legislation_url: ${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/default-legislation') | n, js},
             year: 2013
         };
-        $.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/simulate') | n, js}, {
+        $.ajax(${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/simulate') | n, js}, {
             contentType: 'application/json',
             data: JSON.stringify({
                 scenarios: [scenario]

@@ -71,12 +71,12 @@ class Variable(model.Page):
         tree_path = os.path.join(os.path.dirname(parent.tree_path), 'variable')
         url_path = urlparse.urljoin(parent.url_path.rstrip(u'/') + u'/', unique_name)
         self = Variable(ctx, parent = parent, tree_path = tree_path, unique_name = unique_name, url_path = url_path)
-        self.init_from_node()
+        self.init_from_node(ctx)
         return self
 
-    def init_from_node(self):
+    def init_from_node(self, ctx):
         request = urllib2.Request(
-            urlparse.urljoin(conf['api.url'], '/api/1/field?variable={}'.format(urllib.quote(self.unique_name))),
+            urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/field?variable={}'.format(urllib.quote(self.unique_name))),
             headers = {
                 'User-Agent': 'OpenFisca-Web-Site',
                 },

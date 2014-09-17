@@ -114,11 +114,6 @@ var traceRactive = new Ractive({
   "scenarios": [
     {
       "test_case": {
-        "familles": [
-          {
-            "parents": ["ind0", "ind1"]
-          }
-        ],
         "foyers_fiscaux": [
           {
             "declarants": ["ind0", "ind1"]
@@ -137,7 +132,7 @@ var traceRactive = new Ractive({
           }
         ]
       },
-      "year": 2013
+      "year": 2011
     }
   ]
 }''' | n, js},

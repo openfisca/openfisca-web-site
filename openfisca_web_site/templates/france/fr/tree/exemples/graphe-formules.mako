@@ -48,7 +48,7 @@ Graphe des formules socio-fiscales
     <%parent:scripts/>
     <script src="${urls.get_static_url(ctx, u'/bower/vis/dist/vis.min.js')}"></script>
     <script>
-$.ajax(${urlparse.urljoin(conf['api.url'], '/api/1/graph') | n, js}, {
+$.ajax(${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/graph') | n, js}, {
     data: {
         variable: 'revdisp'
     },
