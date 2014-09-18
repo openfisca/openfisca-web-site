@@ -47,7 +47,7 @@ Contribute to OpenFisca
         </p>
 
         <p>
-      	    We encourage users to send their comments and suggestions for improvement, 
+      	    We encourage users to send their comments and suggestions for improvement,
       	    and to report any inaccuracy or error they might have found.
             If you want to participate more actively in its development,
             know that there are multiple ways contribute to the OpenFisca project.
@@ -56,7 +56,7 @@ Contribute to OpenFisca
 	<h2> Use the API and direct its development  </h2>
         <p>
 	  <ul>
-	    <li> Share your uses: you are welcome to keep us informed of the uses 
+	    <li> Share your uses: you are welcome to keep us informed of the uses
 	    you make of the API including visualizations you may create.
 	    We'd love to be able to include them on the OpenFisca website.
 
@@ -73,13 +73,13 @@ Contribute to OpenFisca
 	<h2> Test and report errors (web API) </h2>
 
         <p>
-	   You can contribute to the development of OpenFisca by reporting errors you would find on the calculation of benefits and taxes. 
+	   You can contribute to the development of OpenFisca by reporting errors you would find on the calculation of benefits and taxes.
 	   To enable the OpenFisca developers to solve your problems quickly, please follow these few steps:
 	   <ol>
 	     <li> try to create a minimal standard case that generates the error
-	     <li> verify <a href="https://github.com/openfisca/openfisca-france/issues?state=open"> that this error is not already listed  </a> ;
-	     <li> try to identify the source of the error by inspecting <a href="http://localhost:2016/variables"> the formulas for the different benefits and taxes</a> ;
-	     <li> report the error, possibly with additional information concerning <a href="https://github.com/openfisca/openfisca-france/issues?state=open">
+	     <li> verify <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open"> that this error is not already listed  </a> ;
+	     <li> try to identify the source of the error by inspecting <a href="${urls.get_url(ctx, 'variables')}"> the formulas for the different benefits and taxes</a> ;
+	     <li> report the error, possibly with additional information concerning <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open">
                the page dedicated to the of collaborative development website </a>. If possible, please provide the code that allows to reproduce the error
                or the json file of the standard case you created.
 	   </ol>
@@ -88,14 +88,14 @@ Contribute to OpenFisca
 	<h2> Complete the implementation of the French tax-benefit system </h2>
         <p>
             Some pieces of legislation are not yet integrated. Given the magnitude of the task, our
-            ambition is to build a community of developers, economists and experts on taxes or 
+            ambition is to build a community of developers, economists and experts on taxes or
             social benefits to maintain and improve the software. You can help by following these steps:
 
 	    <ol>
 	      <li> identify the incomplete or missing taxes or benefits;
               <li> gather the necessary documentation to fix this issue
-	      <li> propose patches that implement the incomplete or missing benefits and 
-	      taxes on<a href="https://github.com/openfisca/openfisca-france/"> collaborative development website</a>.
+	      <li> propose patches that implement the incomplete or missing benefits and
+	      taxes on<a href="https://github.com/openfisca/openfisca-${ctx.country}/"> collaborative development website</a>.
 	    </ol>
 	</p>
 
@@ -110,7 +110,7 @@ Contribute to OpenFisca
 
 	<h2> Other projects linked to OpenFisca</h2>
 
-        <p>	
+        <p>
            You can also participate in other projects that make use of OpenFisca.
 	   <ul>
 	     <li> The development of other socio-fiscal simulators has begun in the case of the

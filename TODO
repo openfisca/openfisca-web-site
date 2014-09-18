@@ -1,0 +1,18 @@
+All:
+Adapt a-propos (do we separate contributors and partners to the different projects)
+Correct Installation
+Complete contribuer bu linking to the projects
+Deal with the tweets (all the index.mako)
+
+France:
+Finish english translation of index.mako
+Check api
+
+Tunisia:
+Translation in arabic needed
+Adapt and translate (en from France, ar) api
+
+
+Other:
+Remove comparateur from outils
+Fix actualités to work for every country/language

@@ -158,13 +158,13 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Presentation</h3>
             <p class="text-justify">
-                 OpenFisca is an open micro-simulation simulator of French socio-fiscal system.
+                 OpenFisca is an open micro-simulator of the socio-fiscal system.
                  It allows users to simply calculate many social benefits and taxes
                  paid by households and to simulate the impact of reforms on their budget.
             </p>
             <p class="text-justify">
                 This tool has an <strong>educational purpose</strong>, and aims
-                to help citizens better understand the French socio-fiscal system.
+                to help citizens better understand the socio-fiscal system.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Read more...</a>
@@ -203,7 +203,7 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Installation</h3>
             <p class="text-justify">
-                If the use of OpenFisca online is not enough for you, you can also install 
+                If the use of OpenFisca online is not enough for you, you can also install
                 different OpenFisca softwares on your own computer, on servers or even on clouds.
             </p>
             <p class="text-justify">
@@ -261,7 +261,7 @@ twitter_statuses_updated = None
         <h2>Exemples</h2>
     </div>
     <p class="text-justify">
-       To allow you to adapt to your needs OpenFisca the OpenFisca team 
+       To allow you to adapt to your needs OpenFisca the OpenFisca team
        develops and documents several examples, trying to cover the various possible uses.
     </p>
     <p class="text-justify">
@@ -298,7 +298,7 @@ twitter_statuses_updated = None
         ))
 %>\
     <div class="page-header">
-        <h2>Outils</h2>
+        <h2>Tools</h2>
     </div>
     <p class="text-justify">
         We are currently developing different web visualization, exploration, and debugging tools. This will
@@ -317,14 +317,14 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
                 </div>
             </div>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Voir tous les outils...</em></a>
+        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Explore the available tools...</em></a>
     </div>
 
 <%
@@ -338,7 +338,7 @@ twitter_statuses_updated = None
         ))
 %>\
     <div class="page-header">
-        <h2>Projets</h2>
+        <h2>Projects</h2>
     </div>
     <div class="row" style="margin-bottom: 20px">
     % for item in items:
@@ -346,13 +346,13 @@ twitter_statuses_updated = None
             <h3>${item['title']}</h3>
             <p class="text-justify">${item['description']}</p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a>
+                <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">More</a>
             </p>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Voir tous les projets...</em></a>
+        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Explore the different  projects...</em></a>
     </div>
 
 <%
@@ -425,7 +425,7 @@ twitter_statuses_updated = None
             % endfor
     </div>
     <div class="text-right">
-        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
+        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">All the tweets...</em></a>
     </div>
         % endif
     % endif

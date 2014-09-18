@@ -158,7 +158,7 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Présentation</h3>
             <p class="text-justify">
-                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal français. Il permet de
+                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal. Il permet de
                  calculer simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de
                  simuler l'impact de réformes sur leur budget.
             </p>

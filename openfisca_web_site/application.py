@@ -69,6 +69,7 @@ def country_and_language_detector(app):
             req.script_name += req.path_info[:lang_match.end()]
             req.path_info = req.path_info[lang_match.end():]
 
+        log.debug(u'country = {}, lang = {}'.format(ctx.country, ctx.lang))
         return app(req.environ, start_response)
 
     return detect_country_and_language
