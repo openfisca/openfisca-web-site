@@ -111,12 +111,23 @@ Contribute to OpenFisca
 	<h2> Other projects linked to OpenFisca</h2>
 
         <p>
-           You can also participate in other projects that make use of OpenFisca.
+           You can also participate in other projects that make use of
+           OpenFisca.
 	   <ul>
-	     <li> The development of other socio-fiscal simulators has begun in the case of the
-	    <a href="https://github.com/openfisca/openfisca-tunisia"> Tunisia </a>
-	    <a href="https://github.com/openfisca/openfisca-tunisia-pension">
-	    and Tunisian pensions </a>.
+	     <li> The development of socio-fiscal simulators is ongoging for the following countries:
+	       <ul>
+		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a>
+		 <li> <a href="https://github.com/openfisca/openfisca-tunisia">
+		   Tunisia </a>
+		   ## <li> <a href="https://github.com/openfisca/openfisca-tunisia-pension">
+	       </ul>
+	     <li> Other projetcs built around OpenFisca (use of survey
+	     data, web user interface) can be found on the
+	     <a href="${urls.get_url(ctx, 'projets')}"> project
+	     page</a>. The extensive list of OpenFisca related
+	     projects are available on
+	     <a href="https://github.com/openfisca"> the OpenFisca
+	     github page</a>.
 	     <li> Using OpenFisca through <a href="https://github.com/blaquans/ropenfisca"> R</a>.
 	   </ul>
         </p>

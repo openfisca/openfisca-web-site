@@ -136,11 +136,22 @@ Contribuer à OpenFisca
         <p>
            Vous pouvez également participer à d'autres projets faisant usage d'OpenFisca.
 	   <ul>
-	     <li> Le développement d'autres systèmes
-	     sociaux fiscaux est : le travail est entamé pour le cas de la
-	    <a href="https://github.com/openfisca/openfisca-tunisia"> Tunisie </a>
-	    <a href="https://github.com/openfisca/openfisca-tunisia-pension">
-	    et les pensions tunisiennes </a>.
+	     <li> Le développement des systèmes
+	     sociaux fiscaux est plus ou mois achevé pour les pays suivants :
+	       <ul>
+		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a>
+		 <li> <a href="https://github.com/openfisca/openfisca-tunisia">
+		   Tunisie </a>
+		   ## <li> <a href="https://github.com/openfisca/openfisca-tunisia-pension">
+	       </ul>
+	     <li> Il existe de nombreux projets autour d'OpenFisca
+	     allant d'utilisation d'OpenFisca avec des données
+	     d'enquêtes à des interfaces utilisateurs utilisant le
+	     web. Certains de ses projets sont décrits sur la page
+	     des <a href="${urls.get_url(ctx, 'projets')}">
+	     projets </a>, tandis que l'ensemble des projets est
+	     disponible sur <a href="https://github.com/openfisca"> la
+	     page github d'OpenFisca </a>.
 	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca"> R</a>.
 	   </ul>
         </p>

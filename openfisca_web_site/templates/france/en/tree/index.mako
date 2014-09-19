@@ -90,7 +90,7 @@ twitter_statuses_updated = None
                         <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'elements', 'images',
                                 'logo-openfisca-280x200.png')}">
                     </p>
-                    <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
+                    <em class="lead" style="color: white; font-size: 32px">Open socio-fiscal system simulator</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
@@ -215,7 +215,7 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Logiciel libre</h3>
+            <h3>Free software</h3>
             <p class="text-justify">
                 OpenFisca is an open simulator under a free license. This license allows you to use OpenFisca,
                 install it, study its source code, modify and redistribute it as you see fit.
@@ -229,7 +229,7 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Communauté</h3>
+            <h3>Community</h3>
             <p class="text-justify">
                 OpenFisca is a free project, open to all. But it is first and foremost a very ambitious project, which cannot
                 succeede without the help of many.
@@ -258,14 +258,14 @@ twitter_statuses_updated = None
         ))
 %>\
     <div class="page-header">
-        <h2>Exemples</h2>
+        <h2>Examples</h2>
     </div>
     <p class="text-justify">
-       To allow you to adapt to your needs OpenFisca the OpenFisca team
+       To allow you to adapt to your needs the OpenFisca team
        develops and documents several examples, trying to cover the various possible uses.
     </p>
     <p class="text-justify">
-        Vous pouvez vous inspirer de ces exemples pour réaliser vos propres projets.
+      These examples might inspire you when you will make of your own projects.
     </p>
     <div class="row">
     % for item in items:
@@ -277,14 +277,14 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Étudier</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Analyse</a></p>
                 </div>
             </div>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">Voir tous les exemples...</em></a>
+        <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">See all examples...</em></a>
     </div>
 
 <%
@@ -369,11 +369,12 @@ twitter_statuses_updated = None
         <h2>Utilisations</h2>
     </div>
     <p class="text-justify">
-        OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
-        recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
+      OpenFisca has already been used for project developed during
+      hackathons to produce new visualisations, illustrate some research, create specialized
+      simulators, etc.
     </p>
     <p class="text-justify">
-        Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
+       This is just the beginning, but these early projects are promising.
     </p>
     <div class="row">
     % for item in items:
@@ -385,14 +386,14 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description']}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Read more</a></p>
                 </div>
             </div>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Voir toutes les utilisations...</em></a>
+        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">See all the uses...</em></a>
     </div>
 
     % if twitter_api is not None:
@@ -459,15 +460,15 @@ twitter_statuses_updated = None
                     )}
             </div>
             <p style="margin-top: 10px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Lire la suite</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Read more</a>
             </p>
         </article>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'actualites')}"><em class="lead">Voir toutes les actualités...</em></a>
+        <a href="${urls.get_url(ctx, 'actualites')}"><em class="lead">View all the news...</em></a>
         <br>
-        <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Fil d'actualité</span></a>
+        <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Newsfeed</span></a>
     </div>
 
     <div class="page-header">
