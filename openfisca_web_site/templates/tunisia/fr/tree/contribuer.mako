@@ -23,7 +23,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/root/france/fr/tree/contribuer.mako"/>
+<%inherit file="/france/fr/tree/contribuer.mako"/>
 
 
 <%def name="h1_content()" filter="trim">

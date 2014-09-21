@@ -39,11 +39,13 @@ dir = None  # Templates directory, inited by function load_environment
 js = lambda x: json.dumps(x, encoding = 'utf-8', ensure_ascii = False)
 lookup_by_country_and_lang_couple = {}
 relative_dirs_by_country_and_lang_couple = {
-    ('france', 'en'): [os.path.join('france', 'en'), os.path.join('france', 'fr')],
-    ('france', 'fr'): [os.path.join('france', 'fr')],
-    ('tunisia', 'ar'): [os.path.join('tunisia', 'ar'), os.path.join('tunisia', 'fr'), os.path.join('france', 'fr')],
-    ('tunisia', 'en'): [os.path.join('tunisia', 'en'), os.path.join('tunisia', 'fr'), os.path.join('france', 'fr')],
-    ('tunisia', 'fr'): [os.path.join('tunisia', 'fr'), os.path.join('france', 'fr')],
+    ('france', 'en'): [os.path.join('france', 'en'), os.path.join('france', 'fr'), '.'],
+    ('france', 'fr'): [os.path.join('france', 'fr'), '.'],
+    ('tunisia', 'ar'): [os.path.join('tunisia', 'ar'), os.path.join('tunisia', 'fr'), os.path.join('france', 'fr'),
+        '.'],
+    ('tunisia', 'en'): [os.path.join('tunisia', 'en'), os.path.join('tunisia', 'fr'), os.path.join('france', 'fr'),
+        '.'],
+    ('tunisia', 'fr'): [os.path.join('tunisia', 'fr'), os.path.join('france', 'fr'), '.'],
     }
 
 

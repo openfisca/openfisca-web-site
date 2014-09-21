@@ -23,7 +23,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/root/france/fr/tree/presentation.mako"/>
+<%inherit file="/france/fr/tree/presentation.mako"/>
 
 
 <%def name="h1_content()" filter="trim">Présentation</%def>

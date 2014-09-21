@@ -30,7 +30,7 @@ from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/root/france/fr/tree/contribuer.mako"/>
+<%inherit file="/france/fr/tree/contribuer.mako"/>
 
 
 <%def name="h1_content()" filter="trim">

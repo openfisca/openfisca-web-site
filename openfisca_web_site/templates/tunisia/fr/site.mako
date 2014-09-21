@@ -23,4 +23,4 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/root/france/fr/site.mako"/>
+<%inherit file="/france/fr/site.mako"/>

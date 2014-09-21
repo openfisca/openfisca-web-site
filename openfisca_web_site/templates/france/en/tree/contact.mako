@@ -24,7 +24,7 @@
 
 
 
-<%inherit file="/root/france/fr/tree/contact.mako"/>
+<%inherit file="/france/fr/tree/contact.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
