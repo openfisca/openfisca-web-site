@@ -68,12 +68,14 @@ ${_(u'About OpenFisca')}
         <ul>
             <li>Mahdi Ben Jelloul</li>
             <li>Christophe Benz</li>
+            <li>Léo Bouloc <span class="label label-success">New!</span></li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
             <li>Pierre-Yves Cusset</li>
+            <li>Félix Defrance <span class="label label-success">New, 9 months ago!</span></li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
-            <li>Adrien Fabre <span class="label label-success">New !</span></li>
+            <li>Adrien Fabre</li>
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
             <li>Victor Le Breton</li>
@@ -90,7 +92,7 @@ ${_(u'About OpenFisca')}
         <h2>Special Thanks</h2>
         <ul>
             <li>Antoine Bozio</li>
-            <li>Fabien Dell <span class="label label-success">New !</span></li>
+            <li>Fabien Dell</li>
             <li>Alain Trannoy</li>
         </ul>
 
