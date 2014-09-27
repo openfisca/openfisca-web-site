@@ -257,6 +257,7 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'exemple' in (item.get('tags') or []) and u'outil' not in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
             ),
         3,
         ))
@@ -279,7 +280,7 @@ twitter_statuses_updated = None
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Étudier</a></p>
                 </div>
@@ -297,6 +298,7 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'outil' in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
             ),
         3,
         ))
@@ -320,7 +322,7 @@ twitter_statuses_updated = None
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
                 </div>
@@ -349,7 +351,7 @@ twitter_statuses_updated = None
     % for item in items:
         <div class="col-md-4 col-sm-6" style="height: 180px">
             <h3>${item['title']}</h3>
-            <p class="text-justify">${item['description']}</p>
+            <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a>
             </p>
@@ -366,10 +368,12 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'utilisation' in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
             ),
         3,
         ))
 %>\
+    % if items:
     <div class="page-header">
         <h2>Utilisations</h2>
     </div>
@@ -381,24 +385,25 @@ twitter_statuses_updated = None
         Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
     </p>
     <div class="row">
-    % for item in items:
+        % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
                 </div>
             </div>
         </div>
-    % endfor
+        % endfor
     </div>
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Voir toutes les utilisations...</em></a>
     </div>
+    % endif
 
     % if twitter_api is not None:
 <%

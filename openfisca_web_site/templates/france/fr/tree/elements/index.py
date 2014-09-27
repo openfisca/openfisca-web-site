@@ -64,7 +64,11 @@ class Node(model.Folder):
             updated = u'2014-05-09T19:00:00',
             )
         yield dict(
-            description = u"""La version tunisienne d'OpenFisca, sans web et sans interface utilisateur""",
+            country = ['tunisia'],
+            description = {
+                "en": u"""The tunisian version of OpenFisca, without web nor user interface""",
+                "fr": u"""La version tunisienne d'OpenFisca, sans web et sans interface utilisateur""",
+            },
             owner = u"OpenFisca Team",
             source_url = u'https://github.com/openfisca/openfisca-tunisia',
             tags = [u'projet'],
@@ -72,6 +76,7 @@ class Node(model.Folder):
             updated = u'2014-05-02T06:00:00',
             )
         yield dict(
+            country = ['france'],
             description = textwrap.dedent(u"""\
                 Scripts extrayant les paramètres de la législation saisis par l'IPP dans des fichiers tableurs, et les
                 les convertissant au format d'entrée de différents micro-simulateurs
@@ -143,6 +148,7 @@ class Node(model.Folder):
             updated = u'2014-04-21T07:00:00',
             )
         yield dict(
+            country = ['france'],
             description = u"""Script de comparaison entre les simulations OpenFisca et celles des impôts""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
@@ -174,6 +180,7 @@ class Node(model.Folder):
             updated = u'2014-03-28T08:00:00',
             )
         yield dict(
+            country = ['france'],
             carousel_rank = 2,
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
@@ -195,6 +202,7 @@ class Node(model.Folder):
             updated = u'2014-03-21T07:00:00',
             )
         yield dict(
+            country = ['france'],
             description = u"Les aides que l'État peut apporter, en fonction de la situation des personnes",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"Équipe hackathon",
@@ -205,6 +213,7 @@ class Node(model.Folder):
             updated = u'2014-03-14T19:19:00',
             )
         yield dict(
+            country = ['france'],
             carousel_rank = 3,
             description = u"Proposition de réforme du statut du quotient conjugal",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
@@ -216,6 +225,7 @@ class Node(model.Folder):
             updated = u'2014-03-24T19:18:00',
             )
         yield dict(
+            country = ['france'],
             carousel_rank = 4,
             description = u"Différence des taux d'imposition en fonction des revenus du capital et du travail",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),

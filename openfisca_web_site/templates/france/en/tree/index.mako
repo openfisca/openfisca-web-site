@@ -253,10 +253,11 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'exemple' in (item.get('tags') or []) and u'outil' not in (item.get('tags') or [])
-            ),
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))	    ),
         3,
         ))
 %>\
+    % if items:
     <div class="page-header">
         <h2>Examples</h2>
     </div>
@@ -268,35 +269,37 @@ twitter_statuses_updated = None
       These examples might inspire you when you will make of your own projects.
     </p>
     <div class="row">
-    % for item in items:
+        % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Analyse</a></p>
                 </div>
             </div>
         </div>
-    % endfor
+        % endfor
     </div>
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">See all examples...</em></a>
     </div>
-
+    % endif
 <%
     items = list(itertools.islice(
         (
             item
             for item in items_node.iter_items()
             if u'outil' in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
             ),
         3,
         ))
 %>\
+    % if items:
     <div class="page-header">
         <h2>Tools</h2>
     </div>
@@ -315,7 +318,7 @@ twitter_statuses_updated = None
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
                 </div>
@@ -326,6 +329,7 @@ twitter_statuses_updated = None
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Explore the available tools...</em></a>
     </div>
+    % endif
 
 <%
     items = list(itertools.islice(
@@ -344,7 +348,7 @@ twitter_statuses_updated = None
     % for item in items:
         <div class="col-md-4 col-sm-6" style="height: 180px">
             <h3>${item['title']}</h3>
-            <p class="text-justify">${item['description']}</p>
+            <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">More</a>
             </p>
@@ -361,12 +365,14 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'utilisation' in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
             ),
         3,
         ))
 %>\
+    % if items:
     <div class="page-header">
-        <h2>Utilisations</h2>
+        <h2>Uses</h2>
     </div>
     <p class="text-justify">
       OpenFisca has already been used for project developed during
@@ -377,25 +383,25 @@ twitter_statuses_updated = None
        This is just the beginning, but these early projects are promising.
     </p>
     <div class="row">
-    % for item in items:
+        % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description']}</p>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
                     <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Read more</a></p>
                 </div>
             </div>
         </div>
-    % endfor
+        % endfor
     </div>
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">See all the uses...</em></a>
     </div>
-
+    % endif
     % if twitter_api is not None:
 <%
         global twitter_statuses, twitter_statuses_updated

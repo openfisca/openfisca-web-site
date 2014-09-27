@@ -43,6 +43,7 @@ Outils
         item
         for item in items_node.iter_items()
         if u'outil' in (item.get('tags') or [])
+	and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
         )
 %>\
     <div class="row">
