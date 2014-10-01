@@ -215,14 +215,14 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            description = u"Les aides que l'État peut apporter, en fonction de la situation des personnes",
+            description = u"Simulez tous vos droits en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"Équipe hackathon",
-            source_url = u'http://openfisca-dss.herokuapp.com/',
+            source_url = u'https://sgmap-dds.herokuapp.com/',
             tags = [u'utilisation'],
-            title = u"Dossier social simplifié",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-dossier-social-simplifie.png'),
-            updated = u'2014-03-14T19:19:00',
+            title = u"mesdroits.gouv.fr",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-mesdroits-gouv-fr.png'),
+            updated = u'2014-10-01T11:01:00',
             )
         yield dict(
             country = [u'france'],
