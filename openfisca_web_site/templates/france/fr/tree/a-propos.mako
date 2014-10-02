@@ -63,6 +63,7 @@ ${_(u"""À propos d'OpenFisca""")}
         <ul>
             <li>Mahdi Ben Jelloul</li>
             <li>Christophe Benz</li>
+            <li>Claire Bernard <span class="label label-success">New!</span></li>
             <li>Léo Bouloc <span class="label label-success">Nouveau !</span></li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>

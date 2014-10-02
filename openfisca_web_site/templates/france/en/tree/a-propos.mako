@@ -37,14 +37,14 @@ ${_(u'About OpenFisca')}
 
 <%def name="page_content()" filter="trim">
         <p>
-            OpenFisca is a free simulation software for the French socio-fiscal system. It allows 
+            OpenFisca is a free simulation software for the French socio-fiscal system. It allows
             users to easily visualize a great number of taxes and benefits, and to simulate
-            the impact of reforms on their households' revenue. It is a educational tool whose 
+            the impact of reforms on their households' revenue. It is a educational tool whose
             aim is to help citizens better understand France's socio-fiscal system.
         </p>
         <p>
-            In the long run, OpenFisca will model the entire socio-fiscal 
-            system as well as its progression. It will also be used to calculate 
+            In the long run, OpenFisca will model the entire socio-fiscal
+            system as well as its progression. It will also be used to calculate
             the impact of various reforms on the state budget.
         </p>
 
@@ -68,6 +68,7 @@ ${_(u'About OpenFisca')}
         <ul>
             <li>Mahdi Ben Jelloul</li>
             <li>Christophe Benz</li>
+            <li>Claire Bernard <span class="label label-success">New!</span></li>
             <li>Léo Bouloc <span class="label label-success">New!</span></li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
