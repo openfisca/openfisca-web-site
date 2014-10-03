@@ -89,7 +89,7 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
 
     <div class="alert alert-danger">
-        <strong>Caution :</strong> to run your tests locally, in your test files, 
+        <strong>Caution :</strong> to run your tests locally, in your test files,
         you must replace the links simulation and legislation by your local links:
         <ul>
             <li>
@@ -249,12 +249,12 @@ paster serve --reload development.ini</pre>
             Download and install <a href="https://toolbelt.heroku.com/" target="_blank">Heroku Toolbelt</a>
         </li>
         <li>
-            Once installed, youu will have access to the heroku command from your shell. Connect using the e-mail address and 
+            Once installed, youu will have access to the heroku command from your shell. Connect using the e-mail address and
             the password you used when you created you Heroku account. :
             <pre>heroku login</pre>
         </li>
         <li>
-            Once installed, go in its "openfisca-web-site" folder and 
+            Once installed, go in its "openfisca-web-site" folder and
             perform the following commands to start the server on Heroku:
             <pre>heroku create --region eu --buildpack https://github.com/jdesboeufs/heroku-buildpack-openfisca
 git push heroku master
@@ -263,7 +263,7 @@ heroku open</pre>
     </ul>
 
     <div class="alert alert-danger">
-        <strong>Caution :</strong> to run your tests on Heroku, 
+        <strong>Caution :</strong> to run your tests on Heroku,
         you must replace the simulation and legislation links in your test files by the link of the page that opened when you did
         <code>heroku open</code> :
         <ul>
@@ -281,19 +281,19 @@ heroku open</pre>
 
 
 <%def name="block_initial()" filter="trim">
-    <h2 id="version-initiale">Installation de la version initiale d'OpenFisca pour Windows</h2>
+    <h2 id="version-initiale">Installing the OpenFisca initial version for Windows</h2>
 
     <div class="panel panel-warning">
         <div class="panel-heading">
-            <h2 class="panel-title">Avertissement</h2>
+            <h2 class="panel-title">Warning</h2>
         </div>
         <div class="panel-body">
             <p>
-                The origin version of OpenFisca is now <strong>obsolete</strong>. It is no longer maintained and 
+                The origin version of OpenFisca is now <strong>obsolete</strong>. It is no longer maintained and
                 the socio-fiscal model has not been updated for legislation since 2013.
             </p>
             <p>
-               However, this version includes features that are not yet present in the new web version, 
+               However, this version includes features that are not yet present in the new web version,
                in particular the management of survey data. This may justify its use in some cases for demonstration purposes.
             </p>
         </div>
@@ -301,7 +301,7 @@ heroku open</pre>
 
     <p>
         Please read the disclaimer before you start using OpenFisca. Then click on the download link and save the
-        file to your computer. Unzip the folder, open it and double-click on <code> OpenFisca.exe </ code>. 
+        file to your computer. Unzip the folder, open it and double-click on <code> OpenFisca.exe </ code>.
         That's all, no installation is required. You may need to have administrator rights to run the program.
     </p>
     <p>
@@ -315,7 +315,7 @@ heroku open</pre>
     <h2>For GNU/Linux systems</h2>
 
     <p>
-        Download the source code on GitHub and launch OpenFisca.pyw. You may have to add the directory 
+        Download the source code on GitHub and launch OpenFisca.pyw. You may have to add the directory
         <code>src</code> in your <code>PYTHONPATH</code>, and to install the PyQt, Matplotlib and Numpy packages.
     </p>
     <p>
@@ -335,7 +335,7 @@ heroku open</pre>
             Install <a href="http://brew.sh/index_fr.html">Homebrew</a>
         </li>
         <li>
-            To launch the API, some packages are necessary. To install them, 
+            To launch the API, some packages are necessary. To install them,
             Afin de pouvoir lancer l'API, certain paquets sont nécessaires, run the following commands :
             <pre>brew install git
 brew install gfortran
@@ -412,7 +412,7 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
 
     <div class="alert alert-danger">
-        <strong>Caution :</strong> to run your tests locally, you must replace the 
+        <strong>Caution :</strong> to run your tests locally, you must replace the
         simulation and legislation linkse in your test files, by your local links:
         <ul>
             <li>
@@ -432,7 +432,7 @@ sudo python setup.py develop --no-deps</pre>
 
     <ul>
         <li>
-            To install the UI, open a new tab (<kbd>ctrl + shift + T</kbd>), go into its 
+            To install the UI, open a new tab (<kbd>ctrl + shift + T</kbd>), go into its
             openfisca folder and install the essential packages :
             <pre>cd /openfisca
 sudo pip install python-formencode
@@ -469,7 +469,7 @@ paster serve --reload development.ini</pre>
             <pre>mongod</pre>
         </li>
         <li>
-            Finally, in a third tab, start the user interface server to create the indexes in the database : 
+            Finally, in a third tab, start the user interface server to create the indexes in the database :
             <pre>cd /openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
 paster serve --reload development.ini</pre>
@@ -484,7 +484,7 @@ paster serve --reload development.ini</pre>
         </li>
     </ul>
 
-    <h3 id="install-site-mac">Installation du site OpenFisca</h3>
+    <h3 id="install-site-mac">Installing the OpenFisca web site</h3>
 
     <ul>
         <li>
@@ -538,8 +538,10 @@ paster serve --reload development.ini</pre>
             "adjusting yout PATH environment", and select "run Git from the Windows Command Prompt"
         </li>
         <li>
-            Download <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>
-            in their version for Python 2.7
+            Download <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"Setuptools"</a> and
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a>
+	    in their version for Python 2.7
         </li>
     </ul>
 
@@ -547,8 +549,8 @@ paster serve --reload development.ini</pre>
 
     <ul>
         <li>
-            First, open the Windows control, the simplest being to press : 
-            <kbd>Windows + R</kbd>, de taper <kbd>cmd</kbd> puis ok.
+            First, open the Windows control, the simplest being to press :
+            <kbd>Windows + R</kbd>, then hit  <kbd>cmd</kbd> and ok.
         </li>
         <li>
             If you want to put your files on the desktop, perform the following commands in the
@@ -569,7 +571,7 @@ git clone https://github.com/etalab/biryani.git</pre>
 pip install PasteScript
 cd biryani
 python setup.py compile_catalog
-sudo python setup.py develop --no-deps
+python setup.py develop
 cd ../openfisca-core
 python setup.py compile_catalog
 python setup.py develop --no-deps
@@ -578,7 +580,7 @@ python setup.py develop --no-deps</pre>
         </li>
     </ul>
 
-    <h3 id="install-windows">Installation de l'API Web d'OpenFisca</h3>
+    <h3 id="install-windows">Installing the OpenFisca Web API</h3>
 
     <ul>
         <li>
@@ -606,7 +608,7 @@ python setup.py develop --no-deps</pre>
     </ul>
 
     <div class="alert alert-danger">
-        <strong>Caution :</strong> to run your tests locally, you must replac simulation and legislation links 
+        <strong>Caution :</strong> to run your tests locally, you must replac simulation and legislation links
         in your test files, by your local links :
         <ul>
             <li>
@@ -659,7 +661,7 @@ bower install</pre>
     </ul>
 
     <p class="alert alert-danger">
-        <strong>Caution :</strong> to start the server interface, 
+        <strong>Caution :</strong> to start the server interface,
         you must first start the API's server and MongoDB in different consoles:
     </p>
     <ul>
@@ -725,7 +727,7 @@ paster serve --reload development.ini</pre>
 
     <ul>
         <li>
-            To open the user interface, simply open your internet browser 
+            To open the user interface, simply open your internet browser
             and follow this link: <kbd>http://localhost:2016</kbd>
         </li>
     </ul>

@@ -551,7 +551,9 @@ paster serve --reload development.ini</pre>
             "adjusting yout PATH environment" et selectionnez "run Git from the Windows Command Prompt"
         </li>
         <li>
-            Télécharger <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>
+            Télécharger <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"Setuptools"</a> et
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a>
             dans leur version pour Python 2.7
         </li>
     </ul>
@@ -577,12 +579,12 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>
-            Afin d'installer chaque partie d'openfisca, effectuez les commandes suivantes dans l'ordre :
+            Afin d'installer chaque composante d'openfisca, effectuez les commandes suivantes dans l'ordre :
             <pre>pip install python-gettext
 pip install PasteScript
 cd biryani
 python setup.py compile_catalog
-sudo python setup.py develop --no-deps
+python setup.py develop
 cd ../openfisca-core
 python setup.py compile_catalog
 python setup.py develop --no-deps
