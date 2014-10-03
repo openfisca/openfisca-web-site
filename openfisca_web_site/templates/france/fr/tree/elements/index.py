@@ -193,7 +193,7 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            carousel_rank = 2,
+            carousel_rank = 6,
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
             owner = u"Regards citoyens",
@@ -215,9 +215,10 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
+            carousel_rank = 2,
             description = u"Simulez tous vos droits en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
-            owner = u"Équipe hackathon",
+            owner = u"Startup d'état",
             source_url = u'https://sgmap-dds.herokuapp.com/',
             tags = [u'utilisation'],
             title = u"mesdroits.gouv.fr",
