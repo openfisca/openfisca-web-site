@@ -120,7 +120,7 @@ twitter_statuses_updated = None
 ##                                        item['thumbnail_url']}"></a>
                                 <img alt="Copie d'écran : ${item['title']}" src="${item['thumbnail_url']}">
                                 <div class="carousel-caption">
-                                    <h3>${item['title']}</h3>
+                                    <h3><a href="${item['source_url']}">${item['title']}</a></h3>
                                     ${item['owner']}, ${babel.dates.format_date(
                                         datetime.date(*[
                                             int(number)
