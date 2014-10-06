@@ -76,7 +76,7 @@ class Variable(model.Page):
 
     def init_from_node(self, ctx):
         request = urllib2.Request(
-            urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/field?variable={}'.format(urllib.quote(self.unique_name))),
+            urlparse.urljoin(conf['urls.api'], '/api/1/field?variable={}'.format(urllib.quote(self.unique_name))),
             headers = {
                 'User-Agent': 'OpenFisca-Web-Site',
                 },

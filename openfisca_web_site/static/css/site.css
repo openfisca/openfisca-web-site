@@ -68,7 +68,7 @@ div.c-wrapper{
     overflow: hidden;
 }
 
-.carousel-inner > div.item > img, 
+.carousel-inner > div.item > img,
 .carousel-inner > div.item > a > img {
     margin: auto;
     /* width: 100%; use this, or not */
@@ -184,4 +184,22 @@ img.partner {
     padding-bottom: 3px;
     padding-left: 30px;
     font-size: 90%;
+}
+
+
+/* Sticky footer styles
+From http://getbootstrap.com/examples/sticky-footer-navbar/
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 150px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

@@ -91,7 +91,7 @@ twitter_statuses_updated = None
                                 'logo-openfisca-280x200.png')}">
                     </p>
                     <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
-##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a></div>
+##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
 <%
@@ -197,7 +197,7 @@ twitter_statuses_updated = None
                 découvrez votre niveau de vie, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${conf['ui.url']}" role="button">Simuler un cas type en ligne</a>
+                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a>
             </p>
         </div>
 
@@ -257,7 +257,7 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'exemple' in (item.get('tags') or []) and u'outil' not in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
+	           and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
             ),
         3,
         ))
@@ -298,7 +298,7 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'outil' in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
+        	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
             ),
         3,
         ))
@@ -368,7 +368,7 @@ twitter_statuses_updated = None
             item
             for item in items_node.iter_items()
             if u'utilisation' in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == ctx.country for country in item.get('country')))
+	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
             ),
         3,
         ))

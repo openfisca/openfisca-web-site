@@ -56,28 +56,6 @@ def load_environment(global_conf, app_conf):
                 ),
             'customs_dir': conv.default(None),
             'debug': conv.pipe(conv.guess_bool, conv.default(False)),
-            'default_country': conv.pipe(
-                conv.input_to_slug,
-                conv.test_in([
-                    u'france',
-                    u'tunisia',
-                    ]),
-                conv.default(u'france'),
-                ),
-            'default_language': conv.pipe(
-                conv.input_to_slug,
-                conv.test_in([
-                    u'ar',
-                    u'en',
-                    u'fr',
-                    ]),
-                conv.default(u'fr'),
-                ),
-            'france.api.url': conv.pipe(
-                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
-                    full = True),
-                conv.default(u'http://api.openfisca.fr/'),
-                ),
             'global_conf': conv.set_value(global_conf),
             'google_analytics.key': conv.empty_to_none,
             'host_urls': conv.pipe(
@@ -89,6 +67,11 @@ def load_environment(global_conf, app_conf):
                     ),
                 ),
             'i18n_dir': conv.default(os.path.join(app_dir, 'i18n')),
+            'languages': conv.pipe(
+                conv.cleanup_line,
+                conv.function(lambda value: value.split(',')),
+                conv.uniform_sequence(conv.input_to_slug),
+                ),
             'log_level': conv.pipe(
                 conv.default('WARNING'),
                 conv.function(lambda log_level: getattr(logging, log_level.upper())),
@@ -101,19 +84,38 @@ def load_environment(global_conf, app_conf):
             # Whether this application serves its own static files.
             'static_files': conv.pipe(conv.guess_bool, conv.default(True)),
             'static_files_dir': conv.default(os.path.join(app_dir, 'static')),
-            'tunisia.api.url': conv.pipe(
-                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
-                    full = True),
-                conv.default(u'http://api.openfisca.tn/'),
-                ),
             'twitter.access_token_key': conv.cleanup_line,
             'twitter.access_token_secret': conv.cleanup_line,
             'twitter.consumer_key': conv.cleanup_line,
             'twitter.consumer_secret': conv.cleanup_line,
-            'ui.url': conv.pipe(
+            'urls.api': conv.pipe(
                 conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
                     full = True),
-                conv.default(u'http://ui.openfisca.fr/'),
+                conv.not_none,
+                ),
+            'urls.ui': conv.pipe(
+                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                    full = True),
+                conv.not_none,
+                ),
+            'urls.other_www_by_country': conv.pipe(
+                conv.cleanup_line,
+                conv.function(lambda value: value.split('\n')),
+                conv.uniform_sequence(
+                    conv.pipe(
+                        conv.function(lambda value: value.split('=')),
+                        conv.uniform_sequence(conv.cleanup_line),
+                        )
+                    ),
+                conv.function(lambda value: dict(value)),
+                conv.uniform_mapping(
+                    conv.noop,
+                    conv.pipe(
+                        conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                            full = True),
+                        conv.not_none,
+                        )
+                    ),
                 ),
             },
         default = 'drop',

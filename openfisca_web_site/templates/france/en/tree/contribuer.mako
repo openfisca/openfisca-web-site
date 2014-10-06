@@ -77,9 +77,9 @@ Contribute to OpenFisca
 	   To enable the OpenFisca developers to solve your problems quickly, please follow these few steps:
 	   <ol>
 	     <li> try to create a minimal standard case that generates the error
-	     <li> verify <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open"> that this error is not already listed  </a> ;
+	     <li> verify <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> that this error is not already listed  </a> ;
 	     <li> try to identify the source of the error by inspecting <a href="${urls.get_url(ctx, 'variables')}"> the formulas for the different benefits and taxes</a> ;
-	     <li> report the error, possibly with additional information concerning <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open">
+	     <li> report the error, possibly with additional information concerning <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open">
                the page dedicated to the of collaborative development website </a>. If possible, please provide the code that allows to reproduce the error
                or the json file of the standard case you created.
 	   </ol>
@@ -95,7 +95,7 @@ Contribute to OpenFisca
 	      <li> identify the incomplete or missing taxes or benefits;
               <li> gather the necessary documentation to fix this issue
 	      <li> propose patches that implement the incomplete or missing benefits and
-	      taxes on<a href="https://github.com/openfisca/openfisca-${ctx.country}/"> collaborative development website</a>.
+	      taxes on<a href="https://github.com/openfisca/openfisca-${conf['country']}/"> collaborative development website</a>.
 	    </ol>
 	</p>
 

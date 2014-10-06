@@ -29,6 +29,7 @@
 
 
 <%!
+import collections
 import datetime
 import urlparse
 
@@ -115,7 +116,8 @@ ${conf['realm']}
             <ul class="nav navbar-nav">
                 <li><a href="https://github.com/openfisca/openfisca-web-site/tree/master/openfisca_web_site/templates${
                         node.template_path}">Source de la page</a></li>
-                <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">${u"Statistiques du site"}</a></li>
+                <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">Statistiques du site</a></li>
+                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
             </ul>
     % endif
         </div>
@@ -278,16 +280,57 @@ $(function () {
         </div>
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${urls.get_url(ctx, 'presentation')}">${u"Présentation"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'documentation')}">${u"Documentation"}</a></li>
+                <li><a href="${urls.get_url(ctx, 'presentation')}">Présentation</a></li>
+                <li><a href="${urls.get_url(ctx, 'documentation')}">Documentation</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${urls.get_url(ctx, 'a-propos')}">${u"À propos"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'contact')}">${u"Contact"}</a></li>
-                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
+                <li><a href="${urls.get_url(ctx, 'a-propos')}">À propos</a></li>
+                <li><a href="${urls.get_url(ctx, 'contact')}">Contact</a></li>
+                <%self:topbar_lang/>
             </ul>
         </div>
     </div>
+</%def>
+
+
+<%def name="topbar_lang()" filter="trim">
+<%
+country_name_by_code = {
+    'france': _(u'France'),
+    'tunisia': _(u'Tunisia'),
+    }
+language_name_by_code = {
+    'en': u'English',
+    'fr': u'Français',
+    'ar': u'العربية',
+    }
+%>\
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            ${language_name_by_code[ctx.lang[0]]} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-header">
+                ${country_name_by_code[conf['country']]}
+            </li>
+    % for language_code in conf['languages']:
+            <li>
+                <a href="${urls.get_url(ctx, ctx.application_path_info, lang = language_code, **req.GET)}">
+                    ${language_name_by_code[language_code]}
+                </a>
+            </li>
+    % endfor
+            <li role="presentation" class="divider"></li>
+            <li role="presentation" class="dropdown-header">${_('Other countries')}</li>
+    % for country_code, country_url in conf['urls.other_www_by_country'].iteritems():
+            <li>
+                <a href="${country_url}">
+                    ${country_name_by_code[country_code]}
+                </a>
+            </li>
+    % endfor
+        </ul>
+    </li>
 </%def>
 
 

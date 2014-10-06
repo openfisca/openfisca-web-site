@@ -1,6 +1,6 @@
 /build/
 /cache/
-/development-*.ini
+/development-*local.ini
 /dist/
 /openfisca_web_site/static/bower/
 *.egg-info
@@ -8,4 +8,3 @@
 *.pyc
 *.pyo
 *~
-

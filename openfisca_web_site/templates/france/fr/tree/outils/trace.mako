@@ -154,7 +154,7 @@ traceRactive.on({
         previousValue = this.get(path);
         this.toggle(path);
         if (! this.get('variableHolderByCode')[name]) {
-            $.ajax(${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/field') | n, js}, {
+            $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/field') | n, js}, {
                 data: {
                     variable: name
                 },
@@ -191,7 +191,7 @@ traceRactive.on({
             return;
         }
 
-        $.ajax(${urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/simulate') | n, js}, {
+        $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/simulate') | n, js}, {
             contentType: 'application/json',
             data: JSON.stringify(simulationJson),
             dataType: 'json',

@@ -50,14 +50,12 @@ def get_base_url(ctx, full = False):
 
 
 def get_full_url(ctx, *path, **query):
-    country = query.pop('country', None) or ctx.country
     lang = query.pop('lang', None) or ctx.lang[0]
     path = [
         urllib.quote(unicode(sub_fragment).encode('utf-8'), safe = ',/:').decode('utf-8')
         for fragment in itertools.chain(
             [
-                country if country != conf['default_country'] else None,
-                lang if lang != conf['default_language'] else None,
+                lang if lang != conf['languages'][0] else None,
                 ],
             path,
             )
@@ -92,14 +90,12 @@ def get_static_url(ctx, *path, **query):
 
 
 def get_url(ctx, *path, **query):
-    country = query.pop('country', None) or ctx.country
     lang = query.pop('lang', None) or ctx.lang[0]
     path = [
         urllib.quote(unicode(sub_fragment).encode('utf-8'), safe = ',/:').decode('utf-8')
         for fragment in itertools.chain(
             [
-                country if country != conf['default_country'] else None,
-                lang if lang != conf['default_language'] else None,
+                lang if lang != conf['languages'][0] else None,
                 ],
             path,
             )

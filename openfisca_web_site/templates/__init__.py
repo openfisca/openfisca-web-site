@@ -50,7 +50,7 @@ relative_dirs_by_country_and_lang_couple = {
 
 
 def get_existing_path(ctx, *paths):
-    country = ctx.country
+    country = conf['country']
     lang = ctx.lang[0]
     country_and_lang_couple = (country, lang)
     for relative_dir in relative_dirs_by_country_and_lang_couple[country_and_lang_couple]:
@@ -61,7 +61,7 @@ def get_existing_path(ctx, *paths):
 
 
 def get_lookup(ctx):
-    country = ctx.country
+    country = conf['country']
     lang = ctx.lang[0]
     country_and_lang_couple = (country, lang)
     lookup = lookup_by_country_and_lang_couple.get(country_and_lang_couple)

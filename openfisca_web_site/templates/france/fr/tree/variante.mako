@@ -91,7 +91,7 @@ twitter_statuses_updated = None
                                 'logo-openfisca-280x200.png')}">
                     </p>
                     <em class="lead" style="color: white; font-size: 24px">Moteur ouvert de simulation du système socio-fiscal</em>
-                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['ui.url']}" role="button" style="margin-top: 15px">Simuler un cas type en ligne</a></div>
+                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button" style="margin-top: 15px">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
 <%

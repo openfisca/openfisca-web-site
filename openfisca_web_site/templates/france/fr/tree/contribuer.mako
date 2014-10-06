@@ -87,13 +87,13 @@ Contribuer à OpenFisca
 	   <ol>
 	     <li> essayer de réaliser un cas-type minimal permettant
 	       de mettre en évidence l'erreur rencontrée
-	     <li> vérifier que <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open"> cette erreur n'est pas déjà répertoriée  </a> ;
+	     <li> vérifier que <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> cette erreur n'est pas déjà répertoriée  </a> ;
 	     <li> tenter d'identifier la source de l'erreur en
 	   inspectant <a href="${urls.get_url(ctx, 'variables')}"> les
 	   formules des différents prestations et impôts</a> ;
 	     <li> rapporter l'erreur accompagnée éventuellement
                d'informations complémentaires
-               sur <a href="https://github.com/openfisca/openfisca-${ctx.country}/issues?state=open">
+               sur <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open">
                la page consacrée sur le site de développement
                collaboratif</a> en fournissant si possible le code
                permettant de reproduire l'erreur ou le fichier json du
@@ -117,7 +117,7 @@ Contribuer à OpenFisca
               des formules permettant de les calculer ;
 	      <li> proposer les correctifs implémentant les
 	      prestations et les impôts incomplets ou manquants
-	      sur <a href="https://github.com/openfisca/openfisca-${ctx.country}/">le
+	      sur <a href="https://github.com/openfisca/openfisca-${conf['country']}/">le
 	      site de développement collaboratif</a>.
 	    </ol>
 	</p>

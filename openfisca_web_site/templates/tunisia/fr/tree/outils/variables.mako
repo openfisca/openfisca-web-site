@@ -48,7 +48,7 @@ Variables et formules socio-fiscales
 
 <%def name="page_content()" filter="trim">
 <%
-    request = urllib2.Request(urlparse.urljoin(conf['{}.api.url'.format(ctx.country)], '/api/1/fields'), headers = {
+    request = urllib2.Request(urlparse.urljoin(conf['urls.api'], '/api/1/fields'), headers = {
         'User-Agent': 'OpenFisca-Web-Site',
         })
     try:

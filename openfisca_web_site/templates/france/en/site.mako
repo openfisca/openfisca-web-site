@@ -50,9 +50,8 @@ from openfisca_web_site import urls
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${urls.get_url(ctx, 'a-propos')}">About</a></li>
                 <li><a href="${urls.get_url(ctx, 'contact')}">Contact</a></li>
-                <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Legal Notice</a></li>
+                <%self:topbar_lang/>
             </ul>
         </div>
     </div>
 </%def>
-
