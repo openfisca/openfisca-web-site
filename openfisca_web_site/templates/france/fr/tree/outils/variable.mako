@@ -82,8 +82,8 @@ ${' ' * indent}</ul>
 #        doc = formula.get('doc')
         line_number = formula.get('line_number')
         module = formula.get('module')
-        parameters = formula.get('parameters')
         source = formula.get('source')
+        variables = formula.get('variables')
 %>\
 
 ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_level}>
@@ -99,15 +99,15 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
                     <td><pre>${comments}</pre></td>
                 </tr>
         % endif
-        % if parameters:
+        % if variables:
 
         <h${heading_level + 1}>Paramètres</h${heading_level + 1}>
         <ul>
-            % for parameter in parameters:
+            % for variable in variables:
             <li>
-                <a href="${parameter['name']}">${parameter['name']}</a>
-                % if parameter.get('label'):
-                : ${parameter['label']}
+                <a href="${variable['name']}">${variable['name']}</a>
+                % if variable.get('label'):
+                : ${variable['label']}
                 % endif
              </li>
             % endfor
@@ -232,4 +232,3 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/generic.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/python.js')}"></script>
 </%def>
-

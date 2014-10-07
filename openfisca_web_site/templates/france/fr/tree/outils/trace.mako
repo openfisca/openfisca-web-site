@@ -329,7 +329,7 @@ traceRactive.fire('submit-form');
                     </tr>
                 </thead>
                 <tbody>
-                    {{#.parameters}}
+                    {{#.variables}}
                         <tr>
                             <td><code>{{.name}}</code></td>
                             <td>{{.label != .name ? .label : ''}}</td>
@@ -342,7 +342,7 @@ traceRactive.fire('submit-form');
                                 </ul>
                             </td>
                         </tr>
-                    {{/.parameters}}
+                    {{/.variables}}
                 </tbody>
             </table>
         <h4>Code source <a class="btn btn-info" href="https://github.com/openfisca/openfisca-france/tree/master/{{
