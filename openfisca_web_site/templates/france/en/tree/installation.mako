@@ -539,7 +539,7 @@ paster serve --reload development.ini</pre>
         </li>
         <li>
             Download <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
-	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"Setuptools"</a> and
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a> and
 	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a>
 	    in their version for Python 2.7
         </li>
