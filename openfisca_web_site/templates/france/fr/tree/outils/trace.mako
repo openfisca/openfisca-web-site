@@ -297,7 +297,7 @@ traceRactive.fire('submit-form');
         <ul>
             {{#.dated_formulas}}
                 <li>
-                    <span class="lead">{{start}} - {{end}}</span>
+                    <span class="lead">{{start_instant}} - {{stop_instant}}</span>
                     {{#.formula}}
                         {{>formulaContent}}
                     {{/.formula}}

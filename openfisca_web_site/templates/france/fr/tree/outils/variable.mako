@@ -57,7 +57,7 @@ ${' ' * indent}<h${heading_level}>Fonctions datées <small>(${type})</small></h$
 ${' ' * indent}<ul>
         % for dated_formula in formula['dated_formulas']:
 ${' ' * indent}    <li>
-${' ' * indent}        <span class="lead">${dated_formula['start']} - ${dated_formula['end']}</span>
+${' ' * indent}        <span class="lead">${dated_formula['start_instant']} - ${dated_formula['stop_instant']}</span>
 ${' ' * indent}        <%self:formula_block_content formula="${dated_formula['formula']}" heading_level="${
                             heading_level + 1}" indent="${indent + 8}"/>
 ${' ' * indent}    </li>
