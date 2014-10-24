@@ -24,7 +24,7 @@
 
 
 <%!
-from openfisca_web_site import urls
+from openfisca_web_site import conf, urls
 %>
 
 
@@ -42,8 +42,7 @@ Outils
     items_iter = (
         item
         for item in items_node.iter_items()
-        if u'outil' in (item.get('tags') or [])
-	and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+        if u'outil' in (item.get('tags') or []) and (item.get('country') is None or conf['country'] in item['country'])
         )
 %>\
     <div class="row">
