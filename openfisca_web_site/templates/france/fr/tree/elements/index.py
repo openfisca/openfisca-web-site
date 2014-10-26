@@ -218,11 +218,11 @@ class Node(model.Folder):
             carousel_rank = 2,
             description = u"Simulez tous vos droits en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
-            owner = u"Startup d'état",
-            source_url = u'https://sgmap-dds.herokuapp.com/',
+            owner = u"SGMAP",
+            source_url = u'http://mes-aides.gouv.fr/',
             tags = [u'utilisation'],
-            title = u"mesdroits.gouv.fr",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-mesdroits-gouv-fr.png'),
+            title = u"mes-aides.gouv.fr",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-mes-aides-gouv-fr.png'),
             updated = u'2014-10-01T11:01:00',
             )
         yield dict(
