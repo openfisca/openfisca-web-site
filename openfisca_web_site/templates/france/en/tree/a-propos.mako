@@ -74,13 +74,13 @@ ${_(u'About OpenFisca')}
             <li>Grégory Cornu</li>
             <li>Pierre-Yves Cusset</li>
             <li>Félix Defrance</li>
-            <li>Jérôme Desbœufs <span class="label label-success">Nouveau</span></li>
+            <li>Jérôme Desbœufs <span class="label label-success">New</span></li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
             <li>Adrien Fabre</li>
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
-            <li>Arnaud Kleinpeter <span class="label label-success">Nouveau</span></li>
+            <li>Arnaud Kleinpeter <span class="label label-success">New</span></li>
             <li>Victor Le Breton</li>
             <li>Adrien Pacifico</li>
             <li>Louise Paul-Delvaux</li>
@@ -96,6 +96,7 @@ ${_(u'About OpenFisca')}
         <ul>
             <li>Antoine Bozio</li>
             <li>Fabien Dell</li>
+            <li>Pierre Pezziardi <span class="label label-success">New</span></li>
             <li>Alain Trannoy</li>
         </ul>
 
