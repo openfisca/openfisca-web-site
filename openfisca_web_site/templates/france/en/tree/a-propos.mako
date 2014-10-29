@@ -68,17 +68,19 @@ ${_(u'About OpenFisca')}
         <ul>
             <li>Mahdi Ben Jelloul</li>
             <li>Christophe Benz</li>
-            <li>Claire Bernard <span class="label label-success">New!</span></li>
-            <li>Léo Bouloc <span class="label label-success">New!</span></li>
+            <li>Claire Bernard</li>
+            <li>Léo Bouloc</li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
             <li>Pierre-Yves Cusset</li>
-            <li>Félix Defrance <span class="label label-success">New, 9 months ago!</span></li>
+            <li>Félix Defrance</li>
+            <li>Jérôme Desbœufs <span class="label label-success">Nouveau</span></li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
             <li>Adrien Fabre</li>
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
+            <li>Arnaud Kleinpeter <span class="label label-success">Nouveau</span></li>
             <li>Victor Le Breton</li>
             <li>Adrien Pacifico</li>
             <li>Louise Paul-Delvaux</li>
