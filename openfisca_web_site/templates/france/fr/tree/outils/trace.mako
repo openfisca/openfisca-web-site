@@ -278,7 +278,7 @@ traceRactive.fire('submit-form');
                                 {{#.formula}}
                                     {{>formulaContent}}
                                 {{/.formula}}
-                            {{#variableHolderByCode[name]}}
+                            {{/variableHolderByCode[name]}}
                         </div>
                     {{/variableOpenedByCode[name]}}
                 </div>
