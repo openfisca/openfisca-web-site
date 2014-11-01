@@ -131,7 +131,9 @@ function calculateStepSize(range, stepsCount) {
 
 function computeBars(variableOpenedByCode, variablesTree) {
     var variableByCode = {};
-    extractVariablesFromTree(variableByCode, variableOpenedByCode, variablesTree, 0, 0);
+    if (variablesTree) {
+        extractVariablesFromTree(variableByCode, variableOpenedByCode, variablesTree, 0, 0);
+    }
     var valueMax = 0;
     var valueMin = 0;
     for (code in variableByCode) {
