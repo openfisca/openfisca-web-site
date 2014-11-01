@@ -71,23 +71,8 @@ var arrayRactive = new Ractive({
         }
 });
 arrayRactive.observe('sali', function (newValue, oldValue) {
-    var scenario = {
-        test_case: {
-            familles: [{parents: ['ind0']}],
-            foyers_fiscaux: [{declarants: ['ind0']}],
-            individus: [{
-                activite: 'Actif occupé',
-                birth: '1970-01-01',
-                id: 'ind0',
-                sali: parseFloat(newValue),
-                statmarit: 'Célibataire',
-                type_sal: 'prive_cadre'
-            }],
-            menages: [{personne_de_reference: 'ind0'}]
-        },
-        legislation_url: ${urlparse.urljoin(conf['urls.api'], '/api/1/default-legislation') | n, js},
-        year: 2013
-    };
+    var scenario = jQuery.extend(true, {}, baseScenario);
+    scenario.test_case.individus[0].sali = parseFloat(newValue);
     $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/simulate') | n, js}, {
         contentType: 'application/json',
         data: JSON.stringify({
@@ -183,6 +168,26 @@ Exemple de tableau
 </%def>
 
 
+<%def name="scenario_script_content()" filter="trim">
+var baseScenario = {
+    test_case: {
+        familles: [{parents: ['ind0']}],
+        foyers_fiscaux: [{declarants: ['ind0']}],
+        individus: [{
+            activite: 'Actif occupé',
+            birth: '1970-01-01',
+            id: 'ind0',
+            sali: 0,
+            statmarit: 'Célibataire',
+            type_sal: 'prive_cadre'
+        }],
+        menages: [{personne_de_reference: 'ind0'}]
+    },
+    year: 2013
+};
+</%def>
+
+
 <%def name="scripts()" filter="trim">
     <%parent:scripts/>
     <script src="${urls.get_static_url(ctx, u'/bower/ractive/ractive.js')}"></script>
@@ -191,6 +196,7 @@ Exemple de tableau
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/html.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
     <script>
+<%self:scenario_script_content/>
 <%self:array_script_content/>
     </script>
 </%def>

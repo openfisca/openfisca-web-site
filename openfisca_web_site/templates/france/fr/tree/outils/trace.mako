@@ -74,8 +74,45 @@ Trace
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/python.js')}"></script>
     <script>
+<%self:simulation_script_content/>
 <%self:trace_script_content/>
     </script>
+</%def>
+
+
+<%def name="simulation_script_content()" filter="trim">
+var = baseSimulationText = ${u'''\
+{
+  "scenarios": [
+    {
+      "test_case": {
+        "familles": [
+          {
+            "parents": ["ind0", "ind1"]
+          }
+        ],
+        "foyers_fiscaux": [
+          {
+            "declarants": ["ind0", "ind1"]
+          }
+        ],
+        "individus": {
+          "ind0": {
+            "sali": 15000
+          },
+          "ind1": {}
+        },
+        "menages": [
+          {
+            "personne_de_reference": "ind0",
+            "conjoint": "ind1"
+          }
+        ]
+      },
+      "year": 2013
+    }
+  ]
+}''' | n, js};
 </%def>
 
 
@@ -109,38 +146,7 @@ var traceRactive = new Ractive({
         },
         showDefaultFormulas: false,
         simulationError: null,
-        simulationText: ${u'''\
-{
-  "scenarios": [
-    {
-      "test_case": {
-        "familles": [
-          {
-            "parents": ["ind0", "ind1"]
-          }
-        ],
-        "foyers_fiscaux": [
-          {
-            "declarants": ["ind0", "ind1"]
-          }
-        ],
-        "individus": {
-          "ind0": {
-            "sali": 15000
-          },
-          "ind1": {}
-        },
-        "menages": [
-          {
-            "personne_de_reference": "ind0",
-            "conjoint": "ind1"
-          }
-        ]
-      },
-      "year": 2013
-    }
-  ]
-}''' | n, js},
+        simulationText: baseSimulationText,
         tracebacks: null,
         variableHolderByCode: {},
         variableOpenedByCode: {}

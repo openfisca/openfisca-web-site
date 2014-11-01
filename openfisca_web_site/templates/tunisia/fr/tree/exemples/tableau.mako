@@ -23,6 +23,30 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%inherit file="/france/fr/tree/exemples/tableau.mako"/>
+
+
+<%def name="h1_content()" filter="trim">
+Exemple de tableau
+</%def>
+
+
+<%def name="scenario_script_content()" filter="trim">
+var baseScenario = {
+    test_case: {
+        foyers_fiscaux: [{declarants: ['ind0']}],
+        individus: [{
+            birth: '1970-01-01',
+            id: 'ind0',
+            sali: 0,
+        }],
+        menages: [{personne_de_reference: 'ind0'}]
+    },
+    year: 2011
+};
+</%def>
+
+
 <%!
 import urlparse
 
