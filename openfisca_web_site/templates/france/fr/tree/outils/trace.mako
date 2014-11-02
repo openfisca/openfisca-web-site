@@ -144,6 +144,7 @@ var traceRactive = new Ractive({
         getType: function (object) {
             return object['@type'];
         },
+        scenariosVariables: null,
         showDefaultFormulas: false,
         simulationError: null,
         simulationText: baseSimulationText,
@@ -155,7 +156,7 @@ var traceRactive = new Ractive({
 traceRactive.on({
     'toggle-variable-panel': function (event) {
         event.original.preventDefault();
-        var name = event.index.name;
+        var name = traceRactive.get('tracebacks')[event.index.scenarioIndex][event.index.tracebackStepIndex].name;
         var path = 'variableOpenedByCode.' + name;
         previousValue = this.get(path);
         this.toggle(path);
@@ -208,6 +209,7 @@ traceRactive.on({
         })
         .done(function (data, textStatus, jqXHR) {
             traceRactive.set({
+                scenariosVariables: data.variables,
                 simulationError: null,
                 tracebacks: data.tracebacks
             });
@@ -250,8 +252,8 @@ traceRactive.fire('submit-form');
             </label>
         </div>
     </form>
-    {{#tracebacks:tracebackIndex}}
-        {{#.:name}}
+    {{#tracebacks:scenarioIndex}}
+        {{#.:tracebackStepIndex}}
             {{# .is_computed && (showDefaultFormulas || ! .default_arguments)}}
                 <div class="panel panel-default">
                     <div class="panel-heading" on-click="toggle-variable-panel" style="cursor: pointer">
@@ -264,11 +266,19 @@ traceRactive.fire('submit-form');
                             <div class="col-sm-6">{{label}}</div>
                             <div class="col-sm-1 {{getEntityBackgroundColor(.)}}">{{getEntityKeyPlural(.)}}</div>
                             <div class="col-sm-2">
-                                <ul class="list-unstyled">
-                                    {{#array}}
-                                        <li class="text-right">{{.}}</li>
-                                    {{/array}}
-                                </ul>
+                                {{# {
+                                    variableValue: scenariosVariables[scenarioIndex][name]
+                                }}}
+                                    {{# {
+                                        variableArray: typeof variableValue === 'object' ? variableValue[period] : variableValue
+                                    }}}
+                                        <ul class="list-unstyled">
+                                            {{#variableArray}}
+                                                <li class="text-right">{{.}}</li>
+                                            {{/variableArray}}
+                                        </ul>
+                                    {{/}}
+                                {{/}}
                             </div>
                         </div>
                     </div>
@@ -289,7 +299,7 @@ traceRactive.fire('submit-form');
 
     <!-- {{>formulaContent}} -->
     {{# getType(.) === 'AlternativeFormula'}}
-        <h3>Choix de fonctions <small>{{@type}}</small></h3>
+        <h3>Choix de fonctions <small>AlternativeFormula</small></h3>
         <ul>
             {{#.alternative_formulas}}
                 <li>
@@ -299,7 +309,7 @@ traceRactive.fire('submit-form');
         </ul>
     {{/ getType(.) === 'AlternativeFormula'}}
     {{# getType(.) === 'DatedFormula'}}
-        <h3>Fonctions datées <small>{{@type}}</small></h3>
+        <h3>Fonctions datées <small>DatedFormula</small></h3>
         <ul>
             {{#.dated_formulas}}
                 <li>
@@ -312,7 +322,7 @@ traceRactive.fire('submit-form');
         </ul>
     {{/ getType(.) === 'DatedFormula'}}
     {{# getType(.) === 'SelectFormula'}}
-        <h3>Choix de fonctions <small>{{@type}}</small></h3>
+        <h3>Choix de fonctions <small>SelectFormula</small></h3>
         <ul>
             {{#.formula_by_main_variable:mainVariable}}
                 <li>
@@ -323,7 +333,7 @@ traceRactive.fire('submit-form');
         </ul>
     {{/ getType(.) === 'SelectFormula'}}
     {{# getType(.) === 'SimpleFormula'}}
-        <h3>Fonction <small>{{@type}}</small></h3>
+        <h3>Fonction <small>SimpleFormula</small></h3>
         <h4>Paramètres</h4>
             <table class="table">
                 <thead>
@@ -331,23 +341,35 @@ traceRactive.fire('submit-form');
                         <th>Nom</th>
                         <th>Libellé</th>
                         <th>Entité</th>
+                        <th>Période</th>
                         <th>Valeur</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#.variables}}
-                        <tr>
-                            <td><code>{{.name}}</code></td>
-                            <td>{{.label != .name ? .label : ''}}</td>
-                            <td class="{{getEntityBackgroundColor(.)}}">{{.entity}}</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    {{#tracebacks[tracebackIndex][.name].array}}
-                                        <li class="text-right">{{.}}</li>
-                                    {{/tracebacks[tracebackIndex][.name].array}}
-                                </ul>
-                            </td>
-                        </tr>
+                        {{# {
+                            argumentPeriod: tracebacks[scenarioIndex][tracebackStepIndex].arguments[.name],
+                            entityBackgroundColor: getEntityBackgroundColor(.),
+                            argumentValue: scenariosVariables[scenarioIndex][.name]
+                        }}}
+                            {{# {
+                                argumentArray: typeof argumentValue === 'object' ? argumentValue[argumentPeriod] : argumentValue
+                            }}}
+                                <tr>
+                                    <td><code>{{name}}</code></td>
+                                    <td>{{label != name ? label : ''}}</td>
+                                    <td class="{{entityBackgroundColor}}">{{entity}}</td>
+                                    <td>{{argumentPeriod}}</td>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {{#argumentArray}}
+                                                <li class="text-right">{{.}}</li>
+                                            {{/argumentArray}}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {{/}}
+                        {{/}}
                     {{/.variables}}
                 </tbody>
             </table>
