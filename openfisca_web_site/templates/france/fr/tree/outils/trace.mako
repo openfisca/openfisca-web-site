@@ -81,7 +81,7 @@ Trace
 
 
 <%def name="simulation_script_content()" filter="trim">
-var = baseSimulationText = ${u'''\
+var baseSimulationText = ${u'''\
 {
   "scenarios": [
     {
