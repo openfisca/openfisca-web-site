@@ -402,8 +402,6 @@ class File(AbstractNode):
 
     @wsgihelpers.wsgify
     def view(self, req):
-        ctx = contexts.Ctx(req)
-
         response = req.response
         # The with below doesn't work because file will be closed before webob response has read it.
         # with open(self.path) as data_file:
