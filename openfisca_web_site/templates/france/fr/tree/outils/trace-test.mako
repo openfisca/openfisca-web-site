@@ -23,20 +23,32 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/france/fr/tree/outils/trace.mako"/>
+<%inherit file="/page.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
-Trace
+Test Trace
 </%def>
 
 
-<%def name="simulation_script_content()" filter="trim">
-var baseSimulationText = ${simulation_text or u'''\
+<%def name="page_content()" filter="trim">
+    <h2>Exemple d'appel distant du traceur OpenFisca</h2>
+    <form action="trace" class="form" method="POST" role="form">
+        <p class="lead">
+            Saisissez le JSON d'une simulation, pour connaître sa décomposition en prélèvements et prestations.
+        </p>
+        <div class="form-group">
+            <label class="control-label" for="simulation">Simulation :</label>
+            <textarea class="form-control" name="simulation" placeholder="Mettez ici la simulation au format JSON" rows="10">${u'''
 {
   "scenarios": [
     {
       "test_case": {
+        "familles": [
+          {
+            "parents": ["ind0", "ind1"]
+          }
+        ],
         "foyers_fiscaux": [
           {
             "declarants": ["ind0", "ind1"]
@@ -55,9 +67,13 @@ var baseSimulationText = ${simulation_text or u'''\
           }
         ]
       },
-      "year": 2011
+      "year": 2013
     }
   ],
   "variables": ["revdisp"]
-}''' | n, js};
+}
+            '''.strip()}</textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Simuler</button>
+    </form>
 </%def>

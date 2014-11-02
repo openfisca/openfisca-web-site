@@ -81,7 +81,7 @@ Trace
 
 
 <%def name="simulation_script_content()" filter="trim">
-var baseSimulationText = ${u'''\
+var baseSimulationText = ${simulation_text or u'''\
 {
   "scenarios": [
     {
@@ -111,7 +111,8 @@ var baseSimulationText = ${u'''\
       },
       "year": 2013
     }
-  ]
+  ],
+  "variables": ["revdisp"]
 }''' | n, js};
 </%def>
 
@@ -198,7 +199,7 @@ traceRactive.on({
             return;
         }
 
-        $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/simulate') | n, js}, {
+        $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/calculate') | n, js}, {
             contentType: 'application/json',
             data: JSON.stringify(simulationJson),
             dataType: 'json',
