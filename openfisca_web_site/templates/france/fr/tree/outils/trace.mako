@@ -264,8 +264,9 @@ traceRactive.fire('submit-form');
                                         : 'glyphicon-plus'}}"></span>
                                 <code>{{name}}</code>
                             </div>
-                            <div class="col-sm-6">{{label}}</div>
+                            <div class="col-sm-5">{{label}}</div>
                             <div class="col-sm-1 {{getEntityBackgroundColor(.)}}">{{getEntityKeyPlural(.)}}</div>
+                            <div class="col-sm-1">{{period}}</div>
                             <div class="col-sm-2">
                                 {{# {
                                     variableValue: scenariosVariables[scenarioIndex][name]
