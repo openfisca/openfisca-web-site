@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import conf
+%>
+
+
 <%inherit file="/page.mako"/>
 
 
@@ -73,6 +78,10 @@ Test Trace
   "variables": ["revdisp"]
 }
             '''.strip()}</textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="api_url">URL API :</label>
+            <input class="form-control" id="api_url" name="api_url" type="url" value="${conf['urls.api']}">
         </div>
         <button class="btn btn-primary" type="submit">Simuler</button>
     </form>

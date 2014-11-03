@@ -122,6 +122,7 @@ var traceRactive = new Ractive({
     el: 'trace-container',
     template: '#trace-template',
     data: {
+        apiUrl: ${api_url or conf['urls.api'] | n, js},
         getEntityBackgroundColor: function (step) {
             return {
                 'fam': 'bg-success',
@@ -162,7 +163,7 @@ traceRactive.on({
         previousValue = this.get(path);
         this.toggle(path);
         if (! this.get('variableHolderByCode')[name]) {
-            $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/field') | n, js}, {
+            $.ajax(traceRactive.get('apiUrl') + 'api/1/field', {
                 data: {
                     variable: name
                 },
@@ -199,7 +200,7 @@ traceRactive.on({
             return;
         }
 
-        $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/calculate') | n, js}, {
+        $.ajax(this.get('apiUrl') + 'api/1/calculate', {
             contentType: 'application/json',
             data: JSON.stringify(simulationJson),
             dataType: 'json',
@@ -245,6 +246,7 @@ traceRactive.fire('submit-form');
                 <pre><code data-language="javascript">{{simulationError}}</pre>
             {{/simulationError}}
         </div>
+        <p class="form-control-static"><b>URL API :</b> {{apiUrl}}</p>
         <button class="btn btn-primary" type="submit">Simuler</button>
         <div class="checkbox">
             <label>

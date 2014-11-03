@@ -26,7 +26,7 @@
 import collections
 import json
 
-from openfisca_web_site import contexts, conv, model, wsgihelpers
+from openfisca_web_site import conf, contexts, conv, model, wsgihelpers
 
 
 class Node(model.Page):
@@ -67,14 +67,21 @@ class Node(model.Page):
                         ).iteritems())),
                     headers = headers,
                     )
+            api_url = conf['urls.api']
         else:
             # URL-encoded POST.
             params = req.POST
             inputs = dict(
+                api_url = params.get('api_url'),
                 simulation = params.get('simulation'),
                 )
             data, errors = conv.struct(
                 dict(
+                    api_url = conv.pipe(
+                        conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                            full = True),
+                        conv.default(conf['urls.api']),
+                        ),
                     simulation = conv.pipe(
                         conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
                         conv.test_isinstance(dict),
@@ -98,9 +105,10 @@ class Node(model.Page):
                         ).iteritems())),
                     headers = headers,
                     )
+            api_url = data['api_url']
             simulation = data['simulation']
         simulation_text = unicode(json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2))
 
         response = req.response
         response.headers.update(headers)
-        return self.render(simulation_text = simulation_text)
+        return self.render(api_url = api_url, simulation_text = simulation_text)
