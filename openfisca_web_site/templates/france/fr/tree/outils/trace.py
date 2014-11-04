@@ -32,21 +32,19 @@ from openfisca_web_site import conf, contexts, conv, model, wsgihelpers
 class Node(model.Page):
     @property
     def routings(self):
-        return super(Node, self).routings + (
-            ('POST', '^/?$', self.submit),
-            )
+        return (
+            (('GET', 'POST'), '^/?$', self.trace),
+            ) + super(Node, self).routings
 
     @wsgihelpers.wsgify
-    def submit(self, req):
+    def trace(self, req):
         ctx = contexts.Ctx(req)
         headers = wsgihelpers.handle_cross_origin_resource_sharing(ctx)
-
-        assert req.method == 'POST', req.method
 
         content_type = req.content_type
         if content_type is not None:
             content_type = content_type.split(';', 1)[0].strip()
-        if content_type == 'application/json':
+        if req.method == 'POST' and content_type == 'application/json':
             simulation, error = conv.pipe(
                 conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
                 conv.test_isinstance(dict),
@@ -69,8 +67,8 @@ class Node(model.Page):
                     )
             api_url = conf['urls.api']
         else:
-            # URL-encoded POST.
-            params = req.POST
+            # URL-encoded GET or POST.
+            params = req.params
             inputs = dict(
                 api_url = params.get('api_url'),
                 simulation = params.get('simulation'),
@@ -85,7 +83,7 @@ class Node(model.Page):
                     simulation = conv.pipe(
                         conv.make_input_to_json(object_pairs_hook = collections.OrderedDict),
                         conv.test_isinstance(dict),
-                        conv.not_none,
+                        # When None, use default value defined in atom.mako.
                         ),
                     ),
                 )(inputs, state = ctx)
@@ -107,7 +105,8 @@ class Node(model.Page):
                     )
             api_url = data['api_url']
             simulation = data['simulation']
-        simulation_text = unicode(json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2))
+        simulation_text = unicode(json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2)) \
+            if simulation is not None else None
 
         response = req.response
         response.headers.update(headers)
