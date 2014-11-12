@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenFisca-Web-Site 0.2dev\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-02-14 16:37+0100\n"
+"POT-Creation-Date: 2014-11-12 19:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: openfisca_web_site/application.py:54
+#: openfisca_web_site/application.py:76
 msgid "Web site not found."
 msgstr ""
 
@@ -38,15 +38,15 @@ msgstr ""
 msgid "Unknown value"
 msgstr ""
 
-#: openfisca_web_site/urls.py:136 openfisca_web_site/urls.py:141
+#: openfisca_web_site/urls.py:166 openfisca_web_site/urls.py:171
 msgid "Invalid path: {0}"
 msgstr ""
 
-#: openfisca_web_site/urls.py:162
+#: openfisca_web_site/urls.py:192
 msgid "Path not found: {0}"
 msgstr ""
 
-#: openfisca_web_site/urls.py:167
+#: openfisca_web_site/urls.py:197
 msgid "Page not found: {0}"
 msgstr ""
 
@@ -78,97 +78,112 @@ msgstr ""
 msgid "Access Denied"
 msgstr ""
 
-#: openfisca_web_site/wsgihelpers.py:161
+#: openfisca_web_site/wsgihelpers.py:150
 msgid "{0} <a href=\"{1}\">{1}</a>."
 msgstr ""
 
-#: openfisca_web_site/wsgihelpers.py:162
+#: openfisca_web_site/wsgihelpers.py:151
 msgid "You'll be redirected to page"
 msgstr ""
 
-#: openfisca_web_site/wsgihelpers.py:170
+#: openfisca_web_site/wsgihelpers.py:159
 msgid "Redirection in progress..."
 msgstr ""
 
-#: openfisca_web_site/templates/page-not-found.mako:31
-msgid "Page Not Found"
-msgstr ""
-
-#: openfisca_web_site/templates/page-not-found.mako:32
-msgid "Page \"{}\" doesn't exist."
-msgstr ""
-
-#: openfisca_web_site/templates/page-not-found.mako:38
-msgid "Page \"{}\" not found"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:66
-#: openfisca_web_site/templates/tree/index.mako:46
-msgid "Home"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:86
-msgid "Error!"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:97
-msgid "Please, correct the informations below."
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:113
-msgid "{0}:"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:113
-msgid "Software"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:116
-msgid "Copyright © {} OpenFisca Team"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:121
-#: openfisca_web_site/templates/tree/a-propos.mako:45
-msgid "GNU Affero General Public License"
-msgstr ""
-
-#: openfisca_web_site/templates/site.mako:196
+#: openfisca_web_site/templates/france/en/site.mako:38
+#: openfisca_web_site/templates/france/fr/site.mako:274
+#: openfisca_web_site/templates/tunisia/ar/site.mako:38
 msgid "Toggle navigation"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/a-propos.mako:34
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:34
 msgid "About OpenFisca"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/a-propos.mako:39
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:51
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:46
 msgid "Copyright"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/a-propos.mako:40
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:52
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:47
 msgid "Copyright © {0} OpenFisca Team"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/a-propos.mako:44
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:57
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:52
 msgid "License"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/a-propos.mako:46
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:58
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:53
+msgid "GNU Affero General Public License"
+msgstr ""
+
+#: openfisca_web_site/templates/france/en/tree/a-propos.mako:60
 msgid "Source Code"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/api.mako:76
-msgid "Submit"
+#: openfisca_web_site/templates/france/en/tree/index.mako:488
+#: openfisca_web_site/templates/france/fr/site.mako:70
+#: openfisca_web_site/templates/france/fr/tree/index.mako:491
+#: openfisca_web_site/templates/france/fr/tree/variante.mako:402
+msgid "Home"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/index.mako:96
-msgid "Try it online"
+#: openfisca_web_site/templates/france/fr/page-not-found.mako:31
+msgid "Page Not Found"
 msgstr ""
 
-#: openfisca_web_site/templates/tree/index.mako:105
-msgid "Partners"
+#: openfisca_web_site/templates/france/fr/page-not-found.mako:32
+msgid "Page \"{}\" doesn't exist."
 msgstr ""
 
-#: openfisca_web_site/templates/tree/presentation.mako:30
-msgid "Presentation"
+#: openfisca_web_site/templates/france/fr/page-not-found.mako:38
+msgid "Page \"{}\" not found"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:89
+msgid "Error!"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:100
+msgid "Please, correct the informations below."
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:299
+msgid "France"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:300
+msgid "Tunisia"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:325
+msgid "Other countries"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/site.mako:384
+msgid "Skip to main content"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:34
+msgid "À propos d'OpenFisca"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/a-propos.mako:55
+msgid "Code source"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:60
+msgid "Invalid JSON in request POST body"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:98
+msgid "Bad parameters in request"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/outils/variable.mako:133
+msgid "Help"
 msgstr ""
 

@@ -122,6 +122,20 @@ ${' ' * indent}<h${heading_level}>Fonction <small>(${type})</small></h${heading_
 </%def>
 
 
+<%def name="h1_content()" filter="trim">
+<%
+    holder = node.holder
+    url = holder.get('url')
+%>\
+${node.title}
+% if url is not None:
+<div class="pull-right">
+    <small><a href="${url}"rel="external" target="_blank">${_('Help')}</a></small>
+</div>
+% endif
+</%def>
+
+
 <%def name="page_content()" filter="trim">
 <%
     holder = node.holder
