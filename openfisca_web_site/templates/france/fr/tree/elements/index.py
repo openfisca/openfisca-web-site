@@ -68,7 +68,7 @@ class Node(model.Folder):
             description = {
                 "en": u"""The tunisian version of OpenFisca, without web nor user interface""",
                 "fr": u"""La version tunisienne d'OpenFisca, sans web et sans interface utilisateur""",
-            },
+                },
             owner = u"OpenFisca Team",
             source_url = u'https://github.com/openfisca/openfisca-tunisia',
             tags = [u'projet'],
@@ -80,7 +80,7 @@ class Node(model.Folder):
             description = {
                 "en": u"""The french version of OpenFisca, without web nor user interface""",
                 "fr": u"""La version française d'OpenFisca, sans web et sans interface utilisateur""",
-            },
+                },
             owner = u"OpenFisca Team",
             source_url = u'https://github.com/openfisca/openfisca-france',
             tags = [u'projet'],
@@ -140,7 +140,7 @@ class Node(model.Folder):
             updated = u'2014-05-02T00:00:00',
             )
         yield dict(
-            description = u"""Outil web de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",
+            description = u"""Outil web de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
             source_url = urls.get_full_url(ctx, self.url_path, '../exemple-trace'),
@@ -150,7 +150,7 @@ class Node(model.Folder):
             updated = u'2014-04-27T11:00:00',
             )
         yield dict(
-            description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",
+            description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
             source_url = urls.get_full_url(ctx, self.url_path, '../exemples/waterfall'),
@@ -164,7 +164,7 @@ class Node(model.Folder):
             description = u"""Script de comparaison entre les simulations OpenFisca et celles des impôts""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/compare_openfisca_impots.py',
+            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/compare_openfisca_impots.py',  # noqa
             tags = [u'outil'],
             title = u"Comparateur impôts",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-comparateur-impots.png'),
@@ -197,7 +197,7 @@ class Node(model.Folder):
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
             owner = u"Regards citoyens",
-            source_url = u'http://nbviewer.ipython.org/urls/raw.githubusercontent.com/regardscitoyens/openfisca-web-notebook/master/calcul_taux_effectif.ipynb',
+            source_url = u'http://nbviewer.ipython.org/urls/raw.githubusercontent.com/regardscitoyens/openfisca-web-notebook/master/calcul_taux_effectif.ipynb',  # noqa
             tags = [u'utilisation'],
             title = u"Taux effectif d'imposition",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-effectif.png'),
@@ -243,7 +243,11 @@ class Node(model.Folder):
             description = u"Différence des taux d'imposition en fonction des revenus du capital et du travail",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"Équipe hackathon",
-            source_url = urls.get_full_url(ctx, self.url_path, 'hackathon-2014-03-14/taux-imposition-capital-travail.pdf'),
+            source_url = urls.get_full_url(
+                ctx,
+                self.url_path,
+                'hackathon-2014-03-14/taux-imposition-capital-travail.pdf',
+                ),
             tags = [u'utilisation'],
             title = u"Taux d'imposition du capital et du travail",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-taux-imposition-capital-travail.png'),
