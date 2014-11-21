@@ -32,6 +32,7 @@
     "ractive": "~0",
     "rainbow": "~1",
     "respond": "~1",
-    "vis": "~0"
+    "vis": "~0",
+    "react": "~0.12.1"
   }
 }

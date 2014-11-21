@@ -32,7 +32,7 @@ Trace
 
 
 <%def name="simulation_script_content()" filter="trim">
-var baseSimulationText = ${simulation_text or u'''\
+window.defaultSimulationText = ${simulation_text or u'''\
 {
   "scenarios": [
     {

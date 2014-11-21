@@ -1,0 +1,20 @@
+{
+  "browser": true,
+  "camelcase": true,
+  "globals": {
+    "alert": false,
+    "confirm": false,
+    "console": false,
+    "prompt": false,
+  },
+  "indent": 2,
+  "maxlen": 120,
+  "newcap": false,
+  "node": true,
+  "nonbsp": true,
+  "nonew": true,
+  "strict": true,
+  "trailing": true,
+  "undef": true,
+  "unused": true
+}
