@@ -441,8 +441,15 @@ var VariablePanel = React.createClass({
     if (formula['@type'] === 'AlternativeFormula') {
       return (
         <div>
-          <h3>AlternativeFormula</h3>
-          <p>Choix de fonctions</p>
+          <h3>AlternativeFormula <small>Choix de fonctions</small></h3>
+          {
+            formula.doc && (
+              <div>
+                <h3>Description</h3>
+                <p>{formula.doc}</p>
+              </div>
+            )
+          }
           <ul>
             {
               formula.alternative_formulas.map(function(alternativeFormula, idx) {
@@ -456,6 +463,14 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>DatedFormula <small>Fonctions datées</small></h3>
+          {
+            formula.doc && (
+              <div>
+                <h3>Description</h3>
+                <p>{formula.doc}</p>
+              </div>
+            )
+          }
           <ul>
             {
               formula.dated_formulas.map(function(datedFormula, idx) {
@@ -475,6 +490,14 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
+          {
+            formula.doc && (
+              <div>
+                <h3>Description</h3>
+                <p>{formula.doc}</p>
+              </div>
+            )
+          }
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               mapObject(formula.formula_by_main_variable, function(mainVariable, formula) {
@@ -517,6 +540,14 @@ var VariablePanel = React.createClass({
         (formula.line_number + formula.source.trim().split('\n').length - 1);
       return (
         <div>
+          {
+            formula.doc && (
+              <div>
+                <h3>Description</h3>
+                <p>{formula.doc}</p>
+              </div>
+            )
+          }
           <h3>Formules appelées</h3>
           <p>Formules appellées par cette formule dans le cadre de cette simulation :</p>
           <table className="table">
