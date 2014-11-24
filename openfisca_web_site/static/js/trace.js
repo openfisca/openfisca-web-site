@@ -50,16 +50,25 @@ function fetchField(apiUrl, name, onSuccess, onError) {
 }
 
 
+function formatValue(value, type) {
+  var formattedValue = value.toLocaleString('fr');
+  if (type === 'Float') {
+    formattedValue += ' €';
+  }
+  return formattedValue;
+}
+
+
 function getEntityBackgroundColor(entity) {
   return {
-    fam: 'bg-success',
-    familles: 'bg-success',
-    foy: 'bg-info',
-    foyers_fiscaux: 'bg-info',
-    ind: 'bg-primary',
-    individus: 'bg-primary',
-    men: 'bg-warning',
-    menages: 'bg-warning',
+    fam: 'success',
+    familles: 'success',
+    foy: 'info',
+    foyers_fiscaux: 'info',
+    ind: 'primary',
+    individus: 'primary',
+    men: 'warning',
+    menages: 'warning',
   }[entity] || entity;
 };
 
@@ -173,8 +182,8 @@ var TraceTool = React.createClass({
     var variableId = variableName + '-' + variablePeriod;
     var openedVariableByIdChangeset = {};
     openedVariableByIdChangeset[variableId] = ! this.state.openedVariableById[variableId];
-    var newopenedVariableById = update(this.state.openedVariableById, {$merge: openedVariableByIdChangeset});
-    this.setState({openedVariableById: newopenedVariableById});
+    var newOpenedVariableById = update(this.state.openedVariableById, {$merge: openedVariableByIdChangeset});
+    this.setState({openedVariableById: newOpenedVariableById});
 
     var onError = function(errorMessage) {
       var variableHolderChangeset = {};
@@ -349,17 +358,27 @@ var VariablePanel = React.createClass({
               <span className={cx('glyphicon', this.props.isOpened ? 'glyphicon-minus' : 'glyphicon-plus')}></span>
               <code>{this.props.name}</code>
             </div>
-            <div className="col-sm-5">{this.props.label}</div>
-            <div className={cx('col-sm-1', getEntityBackgroundColor(this.props.entity))}>
-              {getEntityKeyPlural(this.props.entity)}
+            <div className="col-sm-1">
+              <small>{this.props.period}</small>
             </div>
-            <div className="col-sm-1">{this.props.period}</div>
+            <div className="col-sm-5">
+              {this.props.label}
+            </div>
+            <div className="col-sm-1">
+              <span className={cx('label', 'label-' + getEntityBackgroundColor(this.props.entity))}>
+                {getEntityKeyPlural(this.props.entity)}
+              </span>
+            </div>
             <div className="col-sm-2">
               <ul className="list-unstyled">
                 {
                   this.props.values.map(function(value, idx) {
-                    <li className="text-right" key={idx}>{value}</li>
-                  })
+                    return (
+                      <li className="text-right" key={idx}>
+                        {formatValue(value, this.props.holder && this.props.holder['@type'])}
+                      </li>
+                    );
+                  }.bind(this))
                 }
               </ul>
             </div>
@@ -392,25 +411,28 @@ var VariablePanel = React.createClass({
     return (
       <div>
         {this.renderFormula(this.props.holder.formula)}
-        <h3>Formules dépendantes</h3>
+        <h3>Formules appelantes</h3>
         {
           this.props.computedConsumerTracebacks ? (
-            <ul className="consumers">
-              {
-                this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
-                  var computedConsumerTracebackId = computedConsumerTraceback.name + '-' +
-                    computedConsumerTraceback.period;
-                  return (
-                    <li key={idx}>
-                      <a href={'#' + computedConsumerTracebackId}>{computedConsumerTraceback.name}</a>
-                      <span> : {computedConsumerTraceback.label}</span>
-                    </li>
-                  );
-                }.bind(this))
-              }
-            </ul>
+            <div>
+              <p>Formules qui appellent cette formule dans le cadre de cette simulation :</p>
+              <ul className="consumers">
+                {
+                  this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
+                    var computedConsumerTracebackId = computedConsumerTraceback.name + '-' +
+                      computedConsumerTraceback.period;
+                    return (
+                      <li key={idx}>
+                        <a href={'#' + computedConsumerTracebackId}>{computedConsumerTraceback.name}</a>
+                        <span> : {computedConsumerTraceback.label}</span>
+                      </li>
+                    );
+                  }.bind(this))
+                }
+              </ul>
+            </div>
           ) : (
-            <p>Aucune</p>
+            <p>Aucune : cette formule n'est appelée par aucune autre formule.</p>
           )
         }
       </div>
@@ -420,7 +442,8 @@ var VariablePanel = React.createClass({
     if (formula['@type'] === 'AlternativeFormula') {
       return (
         <div>
-          <h3>Choix de fonctions <small>AlternativeFormula</small></h3>
+          <h3>AlternativeFormula</h3>
+          <p>Choix de fonctions</p>
           <ul>
             {
               formula.alternative_formulas.map(function(alternativeFormula, idx) {
@@ -433,7 +456,7 @@ var VariablePanel = React.createClass({
     } else if (formula['@type'] === 'DatedFormula') {
       return (
         <div>
-          <h3>Fonctions datées <small>DatedFormula</small></h3>
+          <h3>DatedFormula <small>Fonctions datées</small></h3>
           <ul>
             {
               formula.dated_formulas.map(function(datedFormula, idx) {
@@ -449,22 +472,44 @@ var VariablePanel = React.createClass({
         </div>
       );
     } else if (formula['@type'] === 'SelectFormula') {
+      var accordionId = 'accordion-' + this.props.name + '-' + this.props.period;
       return (
         <div>
-          <h3>Choix de fonctions <small>SelectFormula</small></h3>
-          <ul>
+          <h3>SelectFormula <small>Choix de fonctions</small></h3>
+          <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               mapObject(formula.formula_by_main_variable, function(mainVariable, formula) {
                 var isCalled = formula.variables[0].name in this.props.variablePeriodByName; // This is tricky.
+                var mainVariableId = accordionId + '-' + mainVariable;
+                var headingId = mainVariableId + '-heading';
                 return (
-                  <li key={mainVariable}>
-                      <span className="lead">{mainVariable} {isCalled ? null : '(non appelée)'}</span>
-                      {this.renderFormula(formula)}
-                  </li>
+                  <div className="panel panel-default" key={mainVariable}>
+                    <div className="panel-heading" role="tab" id={headingId}>
+                      <h4 className="panel-title">
+                        <a
+                          aria-controls={mainVariableId}
+                          aria-expanded="false"
+                          data-parent={'#' + accordionId}
+                          data-toggle="collapse"
+                          href={'#' + mainVariableId}>
+                          {mainVariable + (isCalled ? '' : ' (non appelée)')}
+                        </a>
+                      </h4>
+                    </div>
+                    <div
+                      aria-labelledby={headingId}
+                      className="panel-collapse collapse"
+                      id={mainVariableId}
+                      role="tabpanel">
+                      <div className="panel-body">
+                        {this.renderFormula(formula)}
+                      </div>
+                    </div>
+                  </div>
                 );
               }.bind(this))
             }
-          </ul>
+          </div>
         </div>
       );
     } else if (formula['@type'] === 'SimpleFormula') {
@@ -473,15 +518,15 @@ var VariablePanel = React.createClass({
         (formula.line_number + formula.source.trim().split('\n').length - 1);
       return (
         <div>
-          <h3>Fonction <small>SimpleFormula</small></h3>
-          <h4>Paramètres</h4>
+          <h3>Formules appelées</h3>
+          <p>Formules appellées par cette formule dans le cadre de cette simulation :</p>
           <table className="table">
             <thead>
               <tr>
                 <th>Nom</th>
+                <th>Période</th>
                 <th>Libellé</th>
                 <th>Entité</th>
-                <th>Période</th>
                 <th>Valeur</th>
               </tr>
             </thead>
@@ -495,16 +540,24 @@ var VariablePanel = React.createClass({
                   return (
                     <tr key={idx}>
                       <td><a href={'#' + variableId}>{variable.name}</a></td>
-                      <td>{variable.label != variable.name ? variable.label : ''}</td>
-                      <td className={getEntityBackgroundColor(variable.entity)}>{variable.entity}</td>
                       <td>{argumentPeriod}</td>
+                      <td>{variable.label != variable.name ? variable.label : ''}</td>
+                      <td>
+                        <span className={cx('label', 'label-' + getEntityBackgroundColor(variable.entity))}>
+                          {variable.entity}
+                        </span>
+                      </td>
                       <td>
                         {
                           argumentArray && (
                             <ul className="list-unstyled">
                               {
                                 argumentArray.map(function(argument, idx) {
-                                  return <li className="text-right" key={idx}>{argument}</li>;
+                                  return (
+                                    <li className="text-right" key={idx}>
+                                      {formatValue(argument)}
+                                    </li>
+                                  );
                                 })
                               }
                             </ul>
