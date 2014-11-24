@@ -6,7 +6,6 @@ var $ = window.$,
   React = window.React;
 
 var cx = React.addons.classSet,
-  PureRenderMixin = React.addons.PureRenderMixin,
   update = React.addons.update;
 
 
@@ -286,7 +285,6 @@ var TraceTool = React.createClass({
 
 
 var VariablePanel = React.createClass({
-  mixins: [PureRenderMixin],
   propTypes: {
     entity: React.PropTypes.string.isRequired,
     holder: React.PropTypes.object,
@@ -301,7 +299,9 @@ var VariablePanel = React.createClass({
     variablePeriodByName: React.PropTypes.object.isRequired,
   },
   colorize: function() {
-    Rainbow.color();
+    if (this.props.isOpened && this.props.holder) {
+      Rainbow.color();
+    }
   },
   componentDidMount: function() {
     this.colorize();
