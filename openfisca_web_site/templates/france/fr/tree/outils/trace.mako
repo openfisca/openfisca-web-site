@@ -65,6 +65,7 @@ react_js_path = u'/bower/react/react-with-addons.js' if conf['debug'] else u'/bo
 <%self:simulation_script_content/>
 window.apiUrl = ${api_url or conf['urls.api'] | n, js};
 window.apiDocUrl = ${urls.get_url(ctx, 'api') | n, js};
+window.variablesExplorerUrl = ${urls.get_url(ctx, 'outils', 'variables') | n, js};
     </script>
     <script src="${urls.get_static_url(ctx, u'/js/trace.js')}" type="text/jsx"></script>
 </%def>

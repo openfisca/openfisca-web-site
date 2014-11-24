@@ -154,6 +154,11 @@ var TraceTool = React.createClass({
     }
     return this.computedConsumerTracebacksByVariableId[variableId];
   },
+  findInputVariables: function() {
+    return this.state.tracebacks.filter(function(traceback) {
+      return traceback.is_computed && ! traceback.default_value;
+    });
+  },
   getInitialState: function() {
     return {
       openedVariableById: {},
@@ -223,44 +228,103 @@ var TraceTool = React.createClass({
       <div>
         {this.renderSimulationForm()}
         {
-          this.state.simulationError && (
+          this.state.simulationError ? (
             <div className="alert alert-danger">
               <p>
                 <strong>Erreur !</strong>
               </p>
               <pre style={{background: 'transparent', border: 0}}>{this.state.simulationError}</pre>
             </div>
+          ) : (
+            this.state.simulationInProgress ? (
+              <div className="alert alert-info">
+                <p>Simulation en cours...</p>
+              </div>
+            ) : (
+              this.state.tracebacks && (
+                <div>
+                  {this.renderInputVariables()}
+                  {this.renderOutputVariables()}
+                </div>
+              )
+            )
           )
         }
-        {
-          this.state.tracebacks && this.state.tracebacks.map(function(traceback) {
-            var variable = this.state.variableByName[traceback.name];
-            var variableId = traceback.name + '-' + traceback.period;
-            var values = typeof variable === 'object' ? variable[traceback.period] : variable;
-            var isOpened = this.state.openedVariableById[variableId];
-            return ! traceback.default_arguments || this.state.showDefaultFormulas ? (
-              <VariablePanel
-                computedConsumerTracebacks={
-                  isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
-                }
-                entity={traceback.entity}
-                holder={this.state.variableHolderByName[traceback.name]}
-                holderError={this.state.variableHolderErrorByName[traceback.name]}
-                isCalledWithDefaultArguments={traceback.default_arguments}
-                isOpened={isOpened}
-                key={variableId}
-                label={traceback.label}
-                name={traceback.name}
-                onToggle={this.handleVariablePanelToggle}
-                period={traceback.period}
-                values={values}
-                variableByName={this.state.variableByName}
-                variablePeriodByName={traceback.arguments}
-              />
-            ) : null;
-          }.bind(this))
-        }
       </div>
+    );
+  },
+  renderInputVariables: function() {
+    return (
+      <div className="panel panel-default">
+        <div className="panel-heading" role="tab" id="collapseInputVariablesHeading">
+          <h4 className="panel-title">
+            <a
+              aria-controls="collapseInputVariables"
+              aria-expanded="true"
+              data-toggle="collapse"
+              href="#collapseInputVariables">
+              Variables d'entrée
+            </a>
+          </h4>
+        </div>
+        <div
+          aria-expanded="true"
+          aria-labelledby="collapseInputVariablesHeading"
+          className="panel-collapse collapse"
+          id="collapseInputVariables"
+          role="tabpanel">
+          <div className="panel-body">
+            <p>
+              Combinaison des variables définies dans le JSON fourni à l'appel de la simulation
+              et des suggestions faites par le simulateur :
+            </p>
+            <ul>
+              {
+                this.findInputVariables().map(function(inputVariable, idx) {
+                  return (
+                    <li key={idx}>
+                      <a href={window.variablesExplorerUrl + '/' + inputVariable.name} rel="external" target="_blank">
+                        {inputVariable.name}
+                      </a>
+                      {' / ' + inputVariable.period + ' : ' + inputVariable.label}
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  },
+  renderOutputVariables: function() {
+    return (
+      this.state.tracebacks.map(function(traceback) {
+        var variable = this.state.variableByName[traceback.name];
+        var variableId = traceback.name + '-' + traceback.period;
+        var values = typeof variable === 'object' ? variable[traceback.period] : variable;
+        var isOpened = this.state.openedVariableById[variableId];
+        return ! traceback.default_arguments || this.state.showDefaultFormulas ? (
+          <VariablePanel
+            computedConsumerTracebacks={
+              isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
+            }
+            entity={traceback.entity}
+            holder={this.state.variableHolderByName[traceback.name]}
+            holderError={this.state.variableHolderErrorByName[traceback.name]}
+            isCalledWithDefaultArguments={traceback.default_arguments}
+            isOpened={isOpened}
+            key={variableId}
+            label={traceback.label}
+            name={traceback.name}
+            onToggle={this.handleVariablePanelToggle}
+            period={traceback.period}
+            values={values}
+            variableByName={this.state.variableByName}
+            variablePeriodByName={traceback.arguments}
+          />
+        ) : null;
+      }.bind(this))
     );
   },
   renderSimulationForm: function() {
@@ -269,14 +333,21 @@ var TraceTool = React.createClass({
         <div className="panel panel-default">
           <div className="panel-heading" role="tab" id="collapseSimulationTextHeading">
             <h4 className="panel-title">
-              <a className="" data-toggle="collapse" href="#collapseSimulationText" aria-expanded="true"
-                aria-controls="collapseSimulationText">
+              <a
+                aria-controls="collapseSimulationText"
+                aria-expanded="true"
+                data-toggle="collapse"
+                href="#collapseSimulationText">
                 Appel de la simulation
               </a>
             </h4>
           </div>
-          <div id="collapseSimulationText" className="panel-collapse collapse" role="tabpanel"
-            aria-labelledby="collapseSimulationTextHeading" aria-expanded="true">
+          <div
+            aria-expanded="true"
+            aria-labelledby="collapseSimulationTextHeading"
+            className="panel-collapse collapse"
+            id="collapseSimulationText"
+            role="tabpanel">
             <div className="panel-body">
               <p>
                 URL de l'API de simulation : {this.props.apiUrl + 'api/1/calculate '}
@@ -303,13 +374,6 @@ var TraceTool = React.createClass({
             Afficher aussi les formules appelées avec les valeurs par défaut
           </label>
         </div>
-        {
-          this.state.simulationInProgress && (
-            <div className="alert alert-info">
-              <p>Simulation en cours...</p>
-            </div>
-          )
-        }
       </form>
     );
   },
@@ -422,7 +486,9 @@ var VariablePanel = React.createClass({
                       computedConsumerTraceback.period;
                     return (
                       <li key={idx}>
-                        <a href={'#' + computedConsumerTracebackId}>{computedConsumerTraceback.name}</a>
+                        <a href={'#' + computedConsumerTracebackId}>
+                          {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
+                        </a>
                         <span> : {computedConsumerTraceback.label}</span>
                       </li>
                     );
@@ -601,7 +667,7 @@ var VariablePanel = React.createClass({
             </tbody>
           </table>
           <div style={{position: 'relative'}}>
-            <h4>Code source</h4>
+            <h3>Code source</h3>
             <pre>
               <code data-language="python">{formula.source}</code>
             </pre>
