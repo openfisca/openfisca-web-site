@@ -280,7 +280,7 @@ var TraceTool = React.createClass({
             aria-labelledby="collapseSimulationTextHeading" aria-expanded="true">
             <div className="panel-body">
               <p>
-                URL de l'API de simulation : {this.apiUrl + 'api/1/calculate '}
+                URL de l'API de simulation : {this.props.apiUrl + 'api/1/calculate '}
                 (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
               <textarea
