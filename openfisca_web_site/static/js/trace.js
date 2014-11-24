@@ -486,6 +486,11 @@ var VariablePanel = React.createClass({
   renderBody: function() {
     return (
       <div>
+        {
+          this.props.isCalledWithDefaultArguments && (
+            <small>Cette formule est appelée avec des valeurs par défaut.</small>
+          )
+        }
         {this.renderFormula(this.props.holder.formula)}
         <h3>Formules appelantes</h3>
         {
@@ -665,9 +670,16 @@ var VariablePanel = React.createClass({
                                   return (
                                     <li className="text-right" key={idx}>
                                       {formatValue(argument)}
+                                      {
+                                        this.props.isCalledWithDefaultArguments && (
+                                          <span className='label label-default' style={{marginLeft: 10}}>
+                                            par défaut
+                                          </span>
+                                        )
+                                      }
                                     </li>
                                   );
-                                })
+                                }.bind(this))
                               }
                             </ul>
                           )
