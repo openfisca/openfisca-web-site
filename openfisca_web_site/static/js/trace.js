@@ -23,7 +23,7 @@ function calculate(apiUrl, simulationJson, onSuccess, onError) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    onError(jqXHR.responseText);
+    onError(errorThrown + ': ' + jqXHR.responseText);
   });
 }
 
@@ -44,7 +44,7 @@ function fetchField(apiUrl, name, onSuccess, onError) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    onError(jqXHR.responseText);
+    onError(errorThrown + ': ' + jqXHR.responseText);
   });
 }
 
