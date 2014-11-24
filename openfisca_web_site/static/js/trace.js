@@ -287,7 +287,11 @@ var TraceTool = React.createClass({
                 this.findInputVariables().map(function(inputVariable, idx) {
                   return (
                     <li key={idx}>
-                      <a href={window.variablesExplorerUrl + '/' + inputVariable.name} rel="external" target="_blank">
+                      <a
+                        href={window.variablesExplorerUrl + '/' + inputVariable.name}
+                        id={inputVariable.name + '-' + inputVariable.period}
+                        rel="external"
+                        target="_blank">
                         {inputVariable.name}
                       </a>
                       {' / ' + inputVariable.period + ' : ' + inputVariable.label}
