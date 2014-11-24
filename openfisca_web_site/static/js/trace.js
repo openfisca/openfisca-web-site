@@ -238,6 +238,7 @@ var TraceTool = React.createClass({
                 entity={traceback.entity}
                 holder={this.state.variableHolderByName[traceback.name]}
                 holderError={this.state.variableHolderErrorByName[traceback.name]}
+                isCalledWithDefaultArguments={traceback.default_arguments}
                 isOpened={isOpened}
                 key={variableId}
                 label={traceback.label}
@@ -313,6 +314,7 @@ var VariablePanel = React.createClass({
     entity: React.PropTypes.string.isRequired,
     holder: React.PropTypes.object,
     holderError: React.PropTypes.string,
+    isCalledWithDefaultArguments: React.PropTypes.bool,
     isOpened: React.PropTypes.bool,
     label: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
@@ -338,7 +340,9 @@ var VariablePanel = React.createClass({
   },
   render: function() {
     return (
-      <div className="panel panel-default" id={this.props.name + '-' + this.props.period}>
+      <div
+        className={cx('panel', this.props.isCalledWithDefaultArguments ? 'panel-warning' : 'panel-default')}
+        id={this.props.name + '-' + this.props.period}>
         <div className="panel-heading" onClick={this.handlePanelHeadingClick} style={{cursor: 'pointer'}}>
           <div className="row">
             <div className="col-sm-3">
