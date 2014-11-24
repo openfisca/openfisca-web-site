@@ -23,7 +23,11 @@ function calculate(apiUrl, simulationJson, onSuccess, onError) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    onError(errorThrown + ': ' + jqXHR.responseText);
+    onError(
+      errorThrown && jqXHR.responseText ?
+        errorThrown + ': ' + jqXHR.responseText :
+        errorThrown || jqXHR.responseText || 'unknown'
+    );
   });
 }
 
@@ -44,17 +48,47 @@ function fetchField(apiUrl, name, onSuccess, onError) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
-    onError(errorThrown + ': ' + jqXHR.responseText);
+    onError(
+      errorThrown && jqXHR.responseText ?
+        errorThrown + ': ' + jqXHR.responseText :
+        errorThrown || jqXHR.responseText || 'unknown'
+    );
   });
 }
 
 
-function formatValue(value, type) {
-  var formattedValue = value.toLocaleString('fr');
-  if (type === 'Float') {
-    formattedValue += ' €';
+function fetchFields(apiUrl, onSuccess, onError) {
+  var fieldUrls = apiUrl + 'api/1/fields';
+  $.ajax(fieldUrls, {
+    dataType: 'json',
+    type: 'GET',
+    xhrFields: {
+      withCredentials: true,
+    },
+  })
+  .done(function(data, textStatus, jqXHR) {
+    onSuccess(data);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    onError(
+      errorThrown && jqXHR.responseText ?
+        errorThrown + ': ' + jqXHR.responseText :
+        errorThrown || jqXHR.responseText || 'unknown'
+    );
+  });
+}
+
+
+function formatValue(value, type, valType) {
+  if (value === '') {
+    return '""';
+  } else {
+    var formattedValue = value.toLocaleString('fr');
+    if (valType === 'monetary') {
+      formattedValue += ' €';
+    }
+    return formattedValue;
   }
-  return formattedValue;
 }
 
 
@@ -135,6 +169,7 @@ var TraceTool = React.createClass({
   },
   componentDidMount: function() {
     this.calculate();
+    this.fetchFields();
   },
   fetchField: function(variableName) {
     var onError = function(errorMessage) {
@@ -152,7 +187,6 @@ var TraceTool = React.createClass({
         variableHolderErrorByName: newVariableHolderErrorByName,
       });
     }.bind(this);
-
     var onSuccess = function(data) {
       var variableHolderChangeset = {};
       variableHolderChangeset[variableName] = data.value;
@@ -168,8 +202,24 @@ var TraceTool = React.createClass({
         variableHolderErrorByName: newVariableHolderErrorByName,
       });
     }.bind(this);
-
     fetchField(this.props.apiUrl, variableName, onSuccess, onError);
+  },
+  fetchFields: function() {
+    var onError = function(errorMessage) {
+      this.setState({
+        columns: null,
+        prestations: null,
+        fieldsError: errorMessage,
+      });
+    }.bind(this);
+    var onSuccess = function(data) {
+      this.setState({
+        columns: data.columns,
+        prestations: data.prestations,
+        fieldsError: null,
+      });
+    }.bind(this);
+    fetchFields(this.props.apiUrl, onSuccess, onError);
   },
   findComputedConsumerTracebacks: function(variableName, variablePeriod) {
     var variableId = variableName + '-' + variablePeriod;
@@ -196,7 +246,10 @@ var TraceTool = React.createClass({
   },
   getInitialState: function() {
     return {
+      columns: null,
+      fieldsError: null,
       openedVariableById: {},
+      prestations: null,
       showDefaultFormulas: false,
       simulationError: null,
       simulationInProgress: false,
@@ -230,12 +283,22 @@ var TraceTool = React.createClass({
   render: function() {
     return (
       <div>
+        {
+          this.state.fieldsError && (
+            <div className="alert alert-danger">
+              <p>
+                <strong>Erreur à l'appel de l'API fields !</strong>
+              </p>
+              <pre style={{background: 'transparent', border: 0}}>{this.state.fieldsError}</pre>
+            </div>
+          )
+        }
         {this.renderSimulationForm()}
         {
           this.state.simulationError ? (
             <div className="alert alert-danger">
               <p>
-                <strong>Erreur !</strong>
+                <strong>Erreur à l'appel de l'API calculate !</strong>
               </p>
               <pre style={{background: 'transparent', border: 0}}>{this.state.simulationError}</pre>
             </div>
@@ -289,7 +352,6 @@ var TraceTool = React.createClass({
                     <li key={idx}>
                       <a
                         href={window.variablesExplorerUrl + '/' + inputVariable.name}
-                        id={inputVariable.name + '-' + inputVariable.period}
                         rel="external"
                         target="_blank">
                         {inputVariable.name}
@@ -314,19 +376,21 @@ var TraceTool = React.createClass({
         var isOpened = this.state.openedVariableById[variableId];
         return ! traceback.default_arguments || this.state.showDefaultFormulas ? (
           <VariablePanel
+            columns={this.state.columns}
             computedConsumerTracebacks={
               isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
             }
             entity={traceback.entity}
             holder={this.state.variableHolderByName[traceback.name]}
             holderError={this.state.variableHolderErrorByName[traceback.name]}
-            isCalledWithDefaultArguments={traceback.default_arguments}
+            isCalledWithAllDefaultArguments={traceback.default_arguments}
             isOpened={isOpened}
             key={variableId}
             label={traceback.label}
             name={traceback.name}
             onToggle={this.handleVariablePanelToggle}
             period={traceback.period}
+            prestations={this.state.prestations}
             values={values}
             variableByName={this.state.variableByName}
             variablePeriodByName={traceback.arguments}
@@ -379,7 +443,7 @@ var TraceTool = React.createClass({
               checked={this.props.showDefaultFormulas}
               type="checkbox"
             />
-            Afficher aussi les formules appelées avec les valeurs par défaut
+            Afficher les formules appelées uniquement avec des valeurs par défaut
           </label>
         </div>
       </form>
@@ -390,16 +454,18 @@ var TraceTool = React.createClass({
 
 var VariablePanel = React.createClass({
   propTypes: {
+    columns: React.PropTypes.object.isRequired,
     computedConsumerTracebacks: React.PropTypes.array,
     entity: React.PropTypes.string.isRequired,
     holder: React.PropTypes.object,
     holderError: React.PropTypes.string,
-    isCalledWithDefaultArguments: React.PropTypes.bool,
+    isCalledWithAllDefaultArguments: React.PropTypes.bool,
     isOpened: React.PropTypes.bool,
     label: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     onToggle: React.PropTypes.func.isRequired,
     period: React.PropTypes.string.isRequired,
+    prestations: React.PropTypes.object.isRequired,
     values: React.PropTypes.array.isRequired,
     variableByName: React.PropTypes.object.isRequired,
     variablePeriodByName: React.PropTypes.object.isRequired,
@@ -415,13 +481,19 @@ var VariablePanel = React.createClass({
   componentDidUpdate: function() {
     this.colorize();
   },
+  getDefaultProps: function() {
+    return {
+      columns: {},
+      prestations: {},
+    };
+  },
   handlePanelHeadingClick: function(event) {
     this.props.onToggle(this.props.name, this.props.period);
   },
   render: function() {
     return (
       <div
-        className={cx('panel', this.props.isCalledWithDefaultArguments ? 'panel-warning' : 'panel-default')}
+        className={cx('panel', this.props.isCalledWithAllDefaultArguments ? 'panel-warning' : 'panel-default')}
         id={this.props.name + '-' + this.props.period}>
         <div className="panel-heading" onClick={this.handlePanelHeadingClick} style={{cursor: 'pointer'}}>
           <div className="row">
@@ -444,9 +516,13 @@ var VariablePanel = React.createClass({
               <ul className="list-unstyled">
                 {
                   this.props.values.map(function(value, idx) {
+                    var column = this.props.columns[this.props.name],
+                      prestation = this.props.prestations[this.props.name];
+                    var type = column && column['@type'] || prestation && prestation['@type'],
+                      valType = column && column.val_type || prestation && prestation.val_type;
                     return (
                       <li className="text-right" key={idx}>
-                        {formatValue(value, this.props.holder && this.props.holder['@type'])}
+                        {formatValue(value, type, valType)}
                       </li>
                     );
                   }.bind(this))
@@ -491,7 +567,7 @@ var VariablePanel = React.createClass({
     return (
       <div>
         {
-          this.props.isCalledWithDefaultArguments && (
+          this.props.isCalledWithAllDefaultArguments && (
             <small>Cette formule est appelée avec des valeurs par défaut.</small>
           )
         }
@@ -671,16 +747,23 @@ var VariablePanel = React.createClass({
                             <ul className="list-unstyled">
                               {
                                 argumentArray.map(function(argument, idx) {
+                                  var column = this.props.columns[variable.name],
+                                    prestation = this.props.prestations[variable.name];
+                                  var isDefaultArgument = this.props.isCalledWithAllDefaultArguments ||
+                                    column && column.default == argument ||
+                                    prestation && prestation.default == argument;
+                                  var type = column && column['@type'] || prestation && prestation['@type'],
+                                    valType = column && column.val_type || prestation && prestation.val_type;
                                   return (
                                     <li className="text-right" key={idx}>
-                                      {formatValue(argument)}
                                       {
-                                        this.props.isCalledWithDefaultArguments && (
-                                          <span className='label label-default' style={{marginLeft: 10}}>
+                                        isDefaultArgument && (
+                                          <span className='label label-default' style={{marginRight: 10}}>
                                             par défaut
                                           </span>
                                         )
                                       }
+                                      {formatValue(argument, type, valType)}
                                     </li>
                                   );
                                 }.bind(this))
@@ -713,11 +796,12 @@ var VariablePanel = React.createClass({
 
 
 var mountNode = document.getElementById('trace-container');
-React.render(
+var traceTool = (
   <TraceTool
     apiDocUrl={window.apiDocUrl}
     apiUrl={window.apiUrl}
     defaultSimulationText={window.defaultSimulationText}
-  />,
-  mountNode
+  />
 );
+React.render(traceTool, mountNode);
+window.traceTool = traceTool;
