@@ -453,7 +453,7 @@ var VariablePanel = React.createClass({
         </div>
         {
           this.props.isOpened && (
-            <div className="panel-body">
+            <div className="panel-body" style={{position: 'relative'}}>
               {
                 this.props.holderError ? (
                   <div className="alert alert-danger">
@@ -468,6 +468,15 @@ var VariablePanel = React.createClass({
                   )
                 )
               }
+              <div style={{position: 'absolute', right: 7, top: 5}}>
+                <a
+                  href={window.variablesExplorerUrl + '/' + this.props.name}
+                  rel="external"
+                  target="_blank"
+                  title="Ouvrir dans l'explorateur de variables, hors du cadre de cette simulation">
+                  Page de la variable
+                </a>
+              </div>
             </div>
           )
         }
