@@ -112,6 +112,7 @@ var TraceTool = React.createClass({
       var computedVariablesTracebacks = firstScenarioTracebacks.filter(function(traceback) {
         return traceback.is_computed;
       });
+      this.computedConsumerTracebacksByVariableId = {};
       this.setState({
         simulationError: null,
         simulationInProgress: false,
@@ -126,6 +127,24 @@ var TraceTool = React.createClass({
   },
   componentDidMount: function() {
     this.calculate();
+  },
+  findComputedConsumerTracebacks: function(variableName, variablePeriod) {
+    var variableId = variableName + '-' + variablePeriod;
+    if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
+      var computedConsumerTracebacks = [];
+      for (var tracebackIdx in this.state.tracebacks) {
+        var traceback = this.state.tracebacks[tracebackIdx];
+        for (var argumentName in traceback.arguments) {
+          var argumentPeriod = traceback.arguments[argumentName];
+          if (argumentName === variableName && argumentPeriod === variablePeriod) {
+            computedConsumerTracebacks.push(traceback);
+          }
+        }
+      }
+      this.computedConsumerTracebacksByVariableId[variableId] = computedConsumerTracebacks.length ?
+        computedConsumerTracebacks : null;
+    }
+    return this.computedConsumerTracebacksByVariableId[variableId];
   },
   getInitialState: function() {
     return {
@@ -210,12 +229,16 @@ var TraceTool = React.createClass({
             var variable = this.state.variableByName[traceback.name];
             var variableId = traceback.name + '-' + traceback.period;
             var values = typeof variable === 'object' ? variable[traceback.period] : variable;
+            var isOpened = this.state.openedVariableById[variableId];
             return ! traceback.default_arguments || this.state.showDefaultFormulas ? (
               <VariablePanel
+                computedConsumerTracebacks={
+                  isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
+                }
                 entity={traceback.entity}
                 holder={this.state.variableHolderByName[traceback.name]}
                 holderError={this.state.variableHolderErrorByName[traceback.name]}
-                isOpened={this.state.openedVariableById[variableId]}
+                isOpened={isOpened}
                 key={variableId}
                 label={traceback.label}
                 name={traceback.name}
@@ -286,6 +309,7 @@ var TraceTool = React.createClass({
 
 var VariablePanel = React.createClass({
   propTypes: {
+    computedConsumerTracebacks: React.PropTypes.array,
     entity: React.PropTypes.string.isRequired,
     holder: React.PropTypes.object,
     holderError: React.PropTypes.string,
@@ -366,16 +390,23 @@ var VariablePanel = React.createClass({
         {this.renderFormula(this.props.holder.formula)}
         <h3>Formules dépendantes</h3>
         {
-          this.props.holder.consumers && (
+          this.props.computedConsumerTracebacks ? (
             <ul className="consumers">
               {
-                this.props.holder.consumers.map(function(consumer, idx) {
-                  return consumer.name in this.props.variableByName ? (
-                    <li key={idx}><a href="#">{consumer.name}</a> : {consumer.label}</li>
-                  ) : null;
+                this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
+                  var computedConsumerTracebackId = computedConsumerTraceback.name + '-' +
+                    computedConsumerTraceback.period;
+                  return (
+                    <li key={idx}>
+                      <a href={'#' + computedConsumerTracebackId}>{computedConsumerTraceback.name}</a>
+                      <span> : {computedConsumerTraceback.label}</span>
+                    </li>
+                  );
                 }.bind(this))
               }
             </ul>
+          ) : (
+            <p>Aucune</p>
           )
         }
       </div>
@@ -455,10 +486,11 @@ var VariablePanel = React.createClass({
                 formula.variables.map(function(variable, idx) {
                   var argumentPeriod = this.props.variablePeriodByName[variable.name],
                     argumentValue = this.props.variableByName[variable.name],
-                    argumentArray = typeof argumentValue === 'object' ? argumentValue[argumentPeriod] : argumentValue;
+                    argumentArray = typeof argumentValue === 'object' ? argumentValue[argumentPeriod] : argumentValue,
+                    variableId = variable.name + '-' + argumentPeriod;
                   return (
                     <tr key={idx}>
-                      <td><code>{variable.name}</code></td>
+                      <td><a href={'#' + variableId}>{variable.name}</a></td>
                       <td>{variable.label != variable.name ? variable.label : ''}</td>
                       <td className={getEntityBackgroundColor(variable.entity)}>{variable.entity}</td>
                       <td>{argumentPeriod}</td>
