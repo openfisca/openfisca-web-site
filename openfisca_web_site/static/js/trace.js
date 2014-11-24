@@ -517,9 +517,15 @@ var VariablePanel = React.createClass({
               }
             </tbody>
           </table>
-          <h4>Code source</h4>
-          <a className="btn btn-info" href={githubUrl} rel="external" target="_blank">Voir dans GitHub</a>
-          <pre><code data-language="python">{formula.source}</code></pre>
+          <div style={{position: 'relative'}}>
+            <h4>Code source</h4>
+            <pre>
+              <code data-language="python">{formula.source}</code>
+            </pre>
+            <a href={githubUrl} rel="external" style={{position: 'absolute', right: 7, top: 5}} target="_blank">
+              Voir dans GitHub
+            </a>
+          </div>
         </div>
       )
     }
