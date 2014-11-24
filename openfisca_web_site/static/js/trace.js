@@ -136,6 +136,41 @@ var TraceTool = React.createClass({
   componentDidMount: function() {
     this.calculate();
   },
+  fetchField: function(variableName) {
+    var onError = function(errorMessage) {
+      var variableHolderChangeset = {};
+      variableHolderChangeset[variableName] = null;
+      var newVariableHolderByName = update(this.state.variableHolderByName, {$merge: variableHolderChangeset});
+      var variableHolderErrorChangeset = {};
+      variableHolderErrorChangeset[variableName] = errorMessage;
+      var newVariableHolderErrorByName = update(
+        this.state.variableHolderErrorByName,
+        {$merge: variableHolderErrorChangeset}
+      );
+      this.setState({
+        variableHolderByName: newVariableHolderByName,
+        variableHolderErrorByName: newVariableHolderErrorByName,
+      });
+    }.bind(this);
+
+    var onSuccess = function(data) {
+      var variableHolderChangeset = {};
+      variableHolderChangeset[variableName] = data.value;
+      var newVariableHolderByName = update(this.state.variableHolderByName, {$merge: variableHolderChangeset});
+      var variableHolderErrorChangeset = {};
+      variableHolderErrorChangeset[variableName] = null;
+      var newVariableHolderErrorByName = update(
+        this.state.variableHolderErrorByName,
+        {$merge: variableHolderErrorChangeset}
+      );
+      this.setState({
+        variableHolderByName: newVariableHolderByName,
+        variableHolderErrorByName: newVariableHolderErrorByName,
+      });
+    }.bind(this);
+
+    fetchField(this.props.apiUrl, variableName, onSuccess, onError);
+  },
   findComputedConsumerTracebacks: function(variableName, variablePeriod) {
     var variableId = variableName + '-' + variablePeriod;
     if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
@@ -188,40 +223,9 @@ var TraceTool = React.createClass({
     openedVariableByIdChangeset[variableId] = ! this.state.openedVariableById[variableId];
     var newOpenedVariableById = update(this.state.openedVariableById, {$merge: openedVariableByIdChangeset});
     this.setState({openedVariableById: newOpenedVariableById});
-
-    var onError = function(errorMessage) {
-      var variableHolderChangeset = {};
-      variableHolderChangeset[variableName] = null;
-      var newVariableHolderByName = update(this.state.variableHolderByName, {$merge: variableHolderChangeset});
-      var variableHolderErrorChangeset = {};
-      variableHolderErrorChangeset[variableName] = errorMessage;
-      var newVariableHolderErrorByName = update(
-        this.state.variableHolderErrorByName,
-        {$merge: variableHolderErrorChangeset}
-      );
-      this.setState({
-        variableHolderByName: newVariableHolderByName,
-        variableHolderErrorByName: newVariableHolderErrorByName,
-      });
-    }.bind(this);
-
-    var onSuccess = function(data) {
-      var variableHolderChangeset = {};
-      variableHolderChangeset[variableName] = data.value;
-      var newVariableHolderByName = update(this.state.variableHolderByName, {$merge: variableHolderChangeset});
-      var variableHolderErrorChangeset = {};
-      variableHolderErrorChangeset[variableName] = null;
-      var newVariableHolderErrorByName = update(
-        this.state.variableHolderErrorByName,
-        {$merge: variableHolderErrorChangeset}
-      );
-      this.setState({
-        variableHolderByName: newVariableHolderByName,
-        variableHolderErrorByName: newVariableHolderErrorByName,
-      });
-    }.bind(this);
-
-    fetchField(this.props.apiUrl, variableName, onSuccess, onError);
+    if (newOpenedVariableById && ! (variableName in this.state.variableHolderByName)) {
+      this.fetchField(variableName);
+    }
   },
   render: function() {
     return (
