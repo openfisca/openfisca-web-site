@@ -46,8 +46,8 @@ def load_environment(global_conf, app_conf):
     conf.update(strings.deep_decode(app_conf))
     conf.update(conv.check(conv.struct(
         {
-            'app_conf': conv.set_value(app_conf),
-            'app_dir': conv.set_value(app_dir),
+            'app_conf': conv.set_value(app_conf, handle_none_value = True),
+            'app_dir': conv.set_value(app_dir, handle_none_value = True),
             'cache_dir': conv.default(os.path.join(os.path.dirname(app_dir), 'cache')),
             'cookie': conv.default('openfisca_web_site'),
             'custom_templates_dir': conv.pipe(
@@ -56,7 +56,7 @@ def load_environment(global_conf, app_conf):
                 ),
             'customs_dir': conv.default(None),
             'debug': conv.pipe(conv.guess_bool, conv.default(False)),
-            'global_conf': conv.set_value(global_conf),
+            'global_conf': conv.set_value(global_conf, handle_none_value = True),
             'google_analytics.key': conv.empty_to_none,
             'host_urls': conv.pipe(
                 conv.function(lambda host_urls: host_urls.split()),
