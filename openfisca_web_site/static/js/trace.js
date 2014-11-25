@@ -684,7 +684,7 @@ var VariablePanel = React.createClass({
                     </div>
                     <div
                       aria-labelledby={headingId}
-                      className="panel-collapse collapse"
+                      className={cx({collapse: true, in: isCalled, 'panel-collapse ': true})}
                       id={mainVariableId}
                       role="tabpanel">
                       <div className="panel-body">
