@@ -112,14 +112,12 @@ ${conf['realm']}
 <%def name="footer()" filter="trim">
     <footer class="footer navbar-inverse" style="margin-top: 15px">
         <div class="container">
-    % if node is not None and template is not None:
             <ul class="nav navbar-nav">
-                <li><a href="https://github.com/openfisca/openfisca-web-site/tree/master/openfisca_web_site/templates${
-                        node.template_path}">Source de la page</a></li>
+                <li><a href="https://github.com/openfisca/openfisca-web-site/tree/master/openfisca_web_site${
+                        self.filename[len(conf['app_dir']):]}">Source de la page</a></li>
                 <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">Statistiques du site</a></li>
                 <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
             </ul>
-    % endif
         </div>
     </footer>
 </%def>
