@@ -552,9 +552,9 @@ paster serve --reload development.ini</pre>
         </li>
         <li>
             Télécharger <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
-	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a>,
-	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a> et 
-        <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#babel" target="_blank">"Babel"</a>
+            <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a>,
+            <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a> et
+            <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#babel" target="_blank">"Babel"</a>
             dans leur version pour Python 2.7
         </li>
     </ul>
@@ -580,9 +580,8 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>
-            Il est nécessaire <a href="http://support.microsoft.com/kb/310519/fr-fr" target="_blank">ajouter les dossiers<\a> 
-            'C:\Python' et 'C:\Python\Scripts' dans le PATH de windows
-        
+            Il est nécessaire d'ajouter les dossiers 'C:\Python' et 'C:\Python\Scripts' dans le PATH de Windows.
+            <a href="http://support.microsoft.com/kb/310519/fr-fr" target="_blank">Documentation Microsoft</a>
         </li>
         <li>
             Afin d'installer chaque composante d'openfisca, effectuez les commandes suivantes dans l'ordre :
@@ -604,8 +603,8 @@ python setup.py develop</pre>
     <ul>
         <li>
             Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
-            <pre>cd ../</pre>            
-            <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
+            <pre>cd ../
+git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         </li>
         <li>
             Afin d'installer l'API, effectuez les commandes dans l'ordre :
