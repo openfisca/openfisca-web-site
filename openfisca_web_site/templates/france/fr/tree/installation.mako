@@ -554,7 +554,7 @@ paster serve --reload development.ini</pre>
             Télécharger <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
 	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a>,
 	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a> et 
-         <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#babel" target="_blank">"Babel"</a>
+        <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#babel" target="_blank">"Babel"</a>
             dans leur version pour Python 2.7
         </li>
     </ul>
@@ -609,7 +609,7 @@ python setup.py develop</pre>
         </li>
         <li>
             Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>openfisca-web-api
+            <pre>cd openfisca-web-api
 python setup.py compile_catalog
 python setup.py develop</pre>
         </li>
