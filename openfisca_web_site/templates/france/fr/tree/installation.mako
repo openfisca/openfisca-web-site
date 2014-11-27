@@ -552,8 +552,9 @@ paster serve --reload development.ini</pre>
         </li>
         <li>
             Télécharger <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#setuptools" target="_blank">"Setuptools"</a>,
-	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a> et
-	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a>
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank">"NumPy"</a>,
+	    <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank">"SciPy"</a> et 
+        <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#babel" target="_blank">"Babel"</a>
             dans leur version pour Python 2.7
         </li>
     </ul>
@@ -579,6 +580,11 @@ git clone http://github.com/openfisca/openfisca-france.git
 git clone https://github.com/etalab/biryani.git</pre>
         </li>
         <li>
+            Il est nécessaire <a href="http://support.microsoft.com/kb/310519/fr-fr" target="_blank">ajouter les dossiers<\a> 
+            'C:\Python' et 'C:\Python\Scripts' dans le PATH de windows
+        
+        </li>
+        <li>
             Afin d'installer chaque composante d'openfisca, effectuez les commandes suivantes dans l'ordre :
             <pre>pip install python-gettext
 pip install PasteScript
@@ -587,9 +593,9 @@ python setup.py compile_catalog
 python setup.py develop
 cd ../openfisca-core
 python setup.py compile_catalog
-python setup.py develop --no-deps
+python setup.py develop
 cd ../openfisca-france
-python setup.py develop --no-deps</pre>
+python setup.py develop</pre>
         </li>
     </ul>
 
@@ -598,13 +604,14 @@ python setup.py develop --no-deps</pre>
     <ul>
         <li>
             Pour cloner les fichiers de l'api sur votre machine, effectuez la commande suivante :
+            <pre>cd ../</pre>            
             <pre>git clone http://github.com/openfisca/openfisca-web-api.git</pre>
         </li>
         <li>
             Afin d'installer l'API, effectuez les commandes dans l'ordre :
-            <pre>cd ../openfisca-web-api
+            <pre>cd openfisca-web-api
 python setup.py compile_catalog
-python setup.py develop --no-deps</pre>
+python setup.py develop</pre>
         </li>
     </ul>
 
@@ -614,7 +621,7 @@ python setup.py develop --no-deps</pre>
         <li>
             Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez
             dans le dossier "openfisca-web-api") lancer la commande suivante :
-            <pre>paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development-france.ini</pre>
         </li>
         <li>
             Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
