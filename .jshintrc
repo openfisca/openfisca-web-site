@@ -1,17 +1,15 @@
 {
   "browser": true,
-  "camelcase": true,
   "globals": {
     "alert": false,
     "confirm": false,
     "console": false,
-    "prompt": false,
+    "prompt": false
   },
   "indent": 2,
-  "maxlen": 120,
   "newcap": false,
   "node": true,
-  "nonbsp": true,
+  "nonbsp": false,
   "nonew": true,
   "strict": true,
   "trailing": true,

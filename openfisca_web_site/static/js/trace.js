@@ -1,11 +1,18 @@
 'use strict';
 
 var $ = window.$,
+  _ = window._,
   Rainbow = window.Rainbow,
   React = window.React;
 
 var cx = React.addons.classSet,
+  PureRenderMixin = React.addons.PureRenderMixin,
   update = React.addons.update;
+
+
+function buildVariableId(variableName, variablePeriod) {
+  return variablePeriod ? variableName + '-' + variablePeriod : variableName;
+}
 
 
 function calculate(apiUrl, simulationJson, onSuccess, onError) {
@@ -19,7 +26,7 @@ function calculate(apiUrl, simulationJson, onSuccess, onError) {
       withCredentials: true
     }
   })
-  .done(function (data, textStatus, jqXHR) {
+  .done(function (data/*, textStatus, jqXHR*/) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -44,7 +51,7 @@ function fetchField(apiUrl, name, onSuccess, onError) {
       withCredentials: true,
     },
   })
-  .done(function(data, textStatus, jqXHR) {
+  .done(function(data/*, textStatus, jqXHR*/) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -66,7 +73,7 @@ function fetchFields(apiUrl, onSuccess, onError) {
       withCredentials: true,
     },
   })
-  .done(function(data, textStatus, jqXHR) {
+  .done(function(data/*, textStatus, jqXHR*/) {
     onSuccess(data);
   })
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -79,7 +86,7 @@ function fetchFields(apiUrl, onSuccess, onError) {
 }
 
 
-function formatValue(value, type, valType) {
+function formatValue(value, valType) {
   if (value === '') {
     return '""';
   } else {
@@ -103,7 +110,7 @@ function getEntityBackgroundColor(entity) {
     men: 'warning',
     menages: 'warning',
   }[entity] || entity;
-};
+}
 
 
 function getEntityKeyPlural(entity) {
@@ -113,16 +120,6 @@ function getEntityKeyPlural(entity) {
     ind: 'individus',
     men: 'ménages',
   }[entity] || entity;
-};
-
-
-function mapObject(obj, cb) {
-  var result = [];
-  for (var key in obj) {
-    var value = obj[key];
-    result.push(cb(key, value));
-  }
-  return result;
 }
 
 
@@ -133,8 +130,9 @@ var TraceTool = React.createClass({
     defaultSimulationText: React.PropTypes.string,
   },
   calculate: function() {
+    var simulationJson;
     try {
-        var simulationJson = JSON.parse(this.state.simulationText);
+        simulationJson = JSON.parse(this.state.simulationText);
     } catch (error) {
         this.setState({simulationError: 'JSON parse error: ' + error.message});
         return;
@@ -151,17 +149,15 @@ var TraceTool = React.createClass({
     var onSuccess = function(data) {
       var firstScenarioTracebacks = data.tracebacks['0'],
         firstScenarioVariables = data.variables['0'];
-      var computedVariablesTracebacks = firstScenarioTracebacks.filter(function(traceback) {
-        return traceback.is_computed;
-      });
       this.computedConsumerTracebacksByVariableId = {};
       this.setState({
         simulationError: null,
         simulationInProgress: false,
         simulationText: this.props.defaultSimulationText,
-        tracebacks: computedVariablesTracebacks,
+        tracebacks: firstScenarioTracebacks,
         variableByName: firstScenarioVariables,
       });
+      window.tracebacks = firstScenarioTracebacks; // DEBUG
     }.bind(this);
     this.setState({simulationInProgress: true}, function() {
       calculate(this.props.apiUrl, simulationJson, onSuccess, onError);
@@ -222,6 +218,7 @@ var TraceTool = React.createClass({
     fetchFields(this.props.apiUrl, onSuccess, onError);
   },
   findComputedConsumerTracebacks: function(variableName, variablePeriod) {
+    // Find formulas which call the given formula and period.
     var variableId = variableName + '-' + variablePeriod;
     if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
       var computedConsumerTracebacks = [];
@@ -238,11 +235,6 @@ var TraceTool = React.createClass({
         computedConsumerTracebacks : null;
     }
     return this.computedConsumerTracebacksByVariableId[variableId];
-  },
-  findInputVariables: function() {
-    return this.state.tracebacks.filter(function(traceback) {
-      return traceback.is_computed && ! traceback.default_value;
-    });
   },
   getInitialState: function() {
     return {
@@ -270,10 +262,14 @@ var TraceTool = React.createClass({
   handleSimulationTextChange: function(event) {
     this.setState({simulationText: event.target.value});
   },
-  handleVariablePanelToggle: function(variableName, variablePeriod) {
-    var variableId = variableName + '-' + variablePeriod;
+  handleVariablePanelOpen: function(variableName, variablePeriod) {
+    this.handleVariablePanelToggle(variableName, variablePeriod, true);
+  },
+  handleVariablePanelToggle: function(variableName, variablePeriod, forceValue) {
+    var variableId = buildVariableId(variableName, variablePeriod);
     var openedVariableByIdChangeset = {};
-    openedVariableByIdChangeset[variableId] = ! this.state.openedVariableById[variableId];
+    openedVariableByIdChangeset[variableId] = _.isUndefined(forceValue) ?
+      ! this.state.openedVariableById[variableId] : forceValue;
     var newOpenedVariableById = update(this.state.openedVariableById, {$merge: openedVariableByIdChangeset});
     this.setState({openedVariableById: newOpenedVariableById});
     if (newOpenedVariableById && ! (variableName in this.state.variableHolderByName)) {
@@ -310,93 +306,13 @@ var TraceTool = React.createClass({
             ) : (
               this.state.tracebacks && (
                 <div>
-                  {this.renderInputVariables()}
-                  {this.renderOutputVariables()}
+                  {this.renderVariablesPanels()}
                 </div>
               )
             )
           )
         }
       </div>
-    );
-  },
-  renderInputVariables: function() {
-    return (
-      <div className="panel panel-default">
-        <div className="panel-heading" role="tab" id="collapseInputVariablesHeading">
-          <h4 className="panel-title">
-            <a
-              aria-controls="collapseInputVariables"
-              aria-expanded="true"
-              data-toggle="collapse"
-              href="#collapseInputVariables">
-              Variables d'entrée
-            </a>
-          </h4>
-        </div>
-        <div
-          aria-expanded="true"
-          aria-labelledby="collapseInputVariablesHeading"
-          className="panel-collapse collapse"
-          id="collapseInputVariables"
-          role="tabpanel">
-          <div className="panel-body">
-            <p>
-              Combinaison des variables définies dans le JSON fourni à l'appel de la simulation
-              et des suggestions faites par le simulateur :
-            </p>
-            <ul>
-              {
-                this.findInputVariables().map(function(inputVariable, idx) {
-                  return (
-                    <li key={idx}>
-                      <a
-                        href={window.variablesExplorerUrl + '/' + inputVariable.name}
-                        rel="external"
-                        target="_blank">
-                        {inputVariable.name}
-                      </a>
-                      {' / ' + inputVariable.period + ' : ' + inputVariable.label}
-                    </li>
-                  );
-                })
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  },
-  renderOutputVariables: function() {
-    return (
-      this.state.tracebacks.map(function(traceback) {
-        var variable = this.state.variableByName[traceback.name];
-        var variableId = traceback.name + '-' + traceback.period;
-        var values = typeof variable === 'object' ? variable[traceback.period] : variable;
-        var isOpened = this.state.openedVariableById[variableId];
-        return ! traceback.default_arguments || this.state.showDefaultFormulas ? (
-          <VariablePanel
-            columns={this.state.columns}
-            computedConsumerTracebacks={
-              isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
-            }
-            entity={traceback.entity}
-            holder={this.state.variableHolderByName[traceback.name]}
-            holderError={this.state.variableHolderErrorByName[traceback.name]}
-            isCalledWithAllDefaultArguments={traceback.default_arguments}
-            isOpened={isOpened}
-            key={variableId}
-            label={traceback.label}
-            name={traceback.name}
-            onToggle={this.handleVariablePanelToggle}
-            period={traceback.period}
-            prestations={this.state.prestations}
-            values={values}
-            variableByName={this.state.variableByName}
-            variablePeriodByName={traceback.arguments}
-          />
-        ) : null;
-      }.bind(this))
     );
   },
   renderSimulationForm: function() {
@@ -422,8 +338,10 @@ var TraceTool = React.createClass({
             role="tabpanel">
             <div className="panel-body">
               <p>
-                URL de l'API de simulation : {this.props.apiUrl + 'api/1/calculate '}
-                (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
+                {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate'}
+                <span>
+                  (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
+                </span>
               </p>
               <textarea
                 className="form-control"
@@ -443,32 +361,110 @@ var TraceTool = React.createClass({
               checked={this.props.showDefaultFormulas}
               type="checkbox"
             />
-            Afficher les formules appelées uniquement avec des valeurs par défaut
+            Afficher aussi les formules appelées avec toutes les valeurs par défaut
           </label>
         </div>
       </form>
+    );
+  },
+  renderVariablesPanels: function() {
+    return (
+      this.state.tracebacks.filter(function(traceback) {
+        return ! traceback.default_arguments || this.state.showDefaultFormulas;
+      }.bind(this)).map(function(traceback) {
+        var variable = this.state.variableByName[traceback.name];
+        var variableId = buildVariableId(traceback.name, traceback.period);
+        var values = _.isArray(variable) ? variable : variable[traceback.period];
+        var isOpened = this.state.openedVariableById[variableId];
+        var argumentTracebackByName = _(traceback.arguments).keys().map(function(variableName) {
+          var variableNameTraceback = _.find(this.state.tracebacks, function(traceback1) {
+            return traceback1.name === variableName && traceback1.period === traceback.arguments[variableName];
+          });
+          return [variableName, variableNameTraceback];
+        }.bind(this)).object().valueOf();
+        return (
+          <VariablePanel
+            argumentPeriodByName={traceback.arguments}
+            argumentTracebackByName={argumentTracebackByName}
+            cellType={traceback.cell_type}
+            columns={this.state.columns}
+            computedConsumerTracebacks={
+              isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
+            }
+            entity={traceback.entity}
+            hasAllDefaultArguments={traceback.default_arguments}
+            holder={this.state.variableHolderByName[traceback.name]}
+            holderError={this.state.variableHolderErrorByName[traceback.name]}
+            isComputed={traceback.isComputed}
+            isOpened={isOpened}
+            key={variableId}
+            label={traceback.label}
+            name={traceback.name}
+            onOpen={this.handleVariablePanelOpen}
+            onToggle={this.handleVariablePanelToggle}
+            period={traceback.period}
+            prestations={this.state.prestations}
+            usedPeriods={traceback.used_periods}
+            values={values}
+            variableByName={this.state.variableByName}
+          />
+        );
+      }.bind(this))
+    );
+  },
+});
+
+
+var VariableLink = React.createClass({
+  mixins: [PureRenderMixin],
+  propTypes: {
+    children: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    onOpen: React.PropTypes.func.isRequired,
+    period: React.PropTypes.string,
+  },
+  handleClick: function(event) {
+    event.preventDefault();
+    this.props.onOpen(this.props.name, this.props.period);
+    var $link = $(event.target.hash);
+    if ($link.length) {
+      location.hash = event.target.hash;
+      $(document.body).scrollTop($link.offset().top);
+    } else {
+      console.error('This link has no target: ' + event.target.hash);
+    }
+  },
+  render: function() {
+    var variableId = buildVariableId(this.props.name, this.props.period);
+    return (
+      <a href={'#' + variableId} onClick={this.handleClick}>{this.props.children}</a>
     );
   },
 });
 
 
 var VariablePanel = React.createClass({
+  mixins: [PureRenderMixin],
   propTypes: {
+    argumentPeriodByName: React.PropTypes.object,
+    argumentTracebackByName: React.PropTypes.object,
+    cellType: React.PropTypes.string,
     columns: React.PropTypes.object.isRequired,
     computedConsumerTracebacks: React.PropTypes.array,
     entity: React.PropTypes.string.isRequired,
+    hasAllDefaultArguments: React.PropTypes.bool,
     holder: React.PropTypes.object,
     holderError: React.PropTypes.string,
-    isCalledWithAllDefaultArguments: React.PropTypes.bool,
+    isComputed: React.PropTypes.bool,
     isOpened: React.PropTypes.bool,
     label: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
     onToggle: React.PropTypes.func.isRequired,
-    period: React.PropTypes.string.isRequired,
+    period: React.PropTypes.string,
     prestations: React.PropTypes.object.isRequired,
+    usedPeriods: React.PropTypes.array,
     values: React.PropTypes.array.isRequired,
     variableByName: React.PropTypes.object.isRequired,
-    variablePeriodByName: React.PropTypes.object.isRequired,
   },
   colorize: function() {
     if (this.props.isOpened && this.props.holder) {
@@ -487,14 +483,14 @@ var VariablePanel = React.createClass({
       prestations: {},
     };
   },
-  handlePanelHeadingClick: function(event) {
+  handlePanelHeadingClick: function() {
     this.props.onToggle(this.props.name, this.props.period);
   },
   render: function() {
     return (
       <div
-        className={cx('panel', this.props.isCalledWithAllDefaultArguments ? 'panel-warning' : 'panel-default')}
-        id={this.props.name + '-' + this.props.period}>
+        className={cx('panel', this.props.hasAllDefaultArguments ? 'panel-warning' : 'panel-default')}
+        id={buildVariableId(this.props.name, this.props.period)}>
         <div className="panel-heading" onClick={this.handlePanelHeadingClick} style={{cursor: 'pointer'}}>
           <div className="row">
             <div className="col-sm-3">
@@ -502,7 +498,7 @@ var VariablePanel = React.createClass({
               <code>{this.props.name}</code>
             </div>
             <div className="col-sm-1">
-              <small>{this.props.period}</small>
+              <small>{this.props.period || '-'}</small>
             </div>
             <div className="col-sm-5">
               {this.props.label}
@@ -516,13 +512,11 @@ var VariablePanel = React.createClass({
               <ul className="list-unstyled">
                 {
                   this.props.values.map(function(value, idx) {
-                    var column = this.props.columns[this.props.name],
-                      prestation = this.props.prestations[this.props.name];
-                    var type = column && column['@type'] || prestation && prestation['@type'],
-                      valType = column && column.val_type || prestation && prestation.val_type;
                     return (
                       <li className="text-right" key={idx}>
-                        {formatValue(value, type, valType)}
+                        <samp>
+                          {formatValue(value, this.props.cellType)}
+                        </samp>
                       </li>
                     );
                   }.bind(this))
@@ -567,11 +561,67 @@ var VariablePanel = React.createClass({
     return (
       <div>
         {
-          this.props.isCalledWithAllDefaultArguments && (
-            <small>Cette formule est appelée avec des valeurs par défaut.</small>
+          this.props.hasAllDefaultArguments && (
+            <small>Tous les arguments de cette formule ont des valeurs par défaut.</small>
           )
         }
-        {this.renderFormula(this.props.holder.formula)}
+        {
+          this.props.isComputed && (
+            <p><span className='label label-default'>Variable d'entrée</span></p>
+          )
+        }
+        {this.props.holder.formula && ! this.props.usedPeriods && this.renderFormula(this.props.holder.formula)}
+        {
+          this.props.usedPeriods && (
+            <div>
+              <h3>Formules appelées</h3>
+              <p>Valeurs extrapolées à partir de :</p>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Période</th>
+                    <th className="text-right">Valeur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    this.props.usedPeriods.map(function(period, idx) {
+                      var values = this.props.variableByName[this.props.name][period];
+                      return (
+                        <tr key={idx}>
+                          <td>
+                            <VariableLink name={this.props.name} onOpen={this.props.onOpen} period={period}>
+                              {this.props.name}
+                            </VariableLink>
+                          </td>
+                          <td>
+                            {period}
+                          </td>
+                          <td>
+                            <ul className="list-unstyled">
+                              {
+                                values.map(function(value, idx) {
+                                  return (
+                                    <li className="text-right" key={idx}>
+                                      <samp>
+                                        {formatValue(value, this.props.cellType)}
+                                      </samp>
+                                    </li>
+                                  );
+                                }.bind(this))
+                              }
+                            </ul>
+                          </td>
+                        </tr>
+                      );
+                    }.bind(this))
+                  }
+                </tbody>
+              </table>
+            </div>
+          )
+        }
         <h3>Formules appelantes</h3>
         {
           this.props.computedConsumerTracebacks ? (
@@ -580,13 +630,14 @@ var VariablePanel = React.createClass({
               <ul className="consumers">
                 {
                   this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
-                    var computedConsumerTracebackId = computedConsumerTraceback.name + '-' +
-                      computedConsumerTraceback.period;
                     return (
                       <li key={idx}>
-                        <a href={'#' + computedConsumerTracebackId}>
+                        <VariableLink
+                          name={computedConsumerTraceback.name}
+                          onOpen={this.props.onOpen}
+                          period={computedConsumerTraceback.period}>
                           {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
-                        </a>
+                        </VariableLink>
                         <span> : {computedConsumerTraceback.label}</span>
                       </li>
                     );
@@ -610,7 +661,7 @@ var VariablePanel = React.createClass({
             formula.doc && (
               <div>
                 <h3>Description</h3>
-                <p>{formula.doc}</p>
+                <pre>{formula.doc}</pre>
               </div>
             )
           }
@@ -622,7 +673,7 @@ var VariablePanel = React.createClass({
             }
           </ul>
         </div>
-      )
+      );
     } else if (formula['@type'] === 'DatedFormula') {
       return (
         <div>
@@ -631,7 +682,7 @@ var VariablePanel = React.createClass({
             formula.doc && (
               <div>
                 <h3>Description</h3>
-                <p>{formula.doc}</p>
+                <pre>{formula.doc}</pre>
               </div>
             )
           }
@@ -650,7 +701,8 @@ var VariablePanel = React.createClass({
         </div>
       );
     } else if (formula['@type'] === 'SelectFormula') {
-      var accordionId = 'accordion-' + this.props.name + '-' + this.props.period;
+      var variableId = buildVariableId(this.props.name, this.props.period),
+        accordionId = 'accordion-' + variableId;
       return (
         <div>
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
@@ -658,14 +710,15 @@ var VariablePanel = React.createClass({
             formula.doc && (
               <div>
                 <h3>Description</h3>
-                <p>{formula.doc}</p>
+                <pre>{formula.doc}</pre>
               </div>
             )
           }
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
-              mapObject(formula.formula_by_main_variable, function(mainVariable, formula) {
-                var isCalled = formula.variables[0].name in this.props.variablePeriodByName; // This is tricky.
+              _(formula.formula_by_main_variable).map(function(formula, mainVariable) {
+                var isCalled = this.props.argumentPeriodByName &&
+                  formula.variables[0].name in this.props.argumentPeriodByName; // This is tricky.
                 var mainVariableId = accordionId + '-' + mainVariable;
                 var headingId = mainVariableId + '-heading';
                 return (
@@ -693,7 +746,7 @@ var VariablePanel = React.createClass({
                     </div>
                   </div>
                 );
-              }.bind(this))
+              }.bind(this)).valueOf()
             }
           </div>
         </div>
@@ -708,12 +761,12 @@ var VariablePanel = React.createClass({
             formula.doc && (
               <div>
                 <h3>Description</h3>
-                <p>{formula.doc}</p>
+                <pre>{formula.doc}</pre>
               </div>
             )
           }
           <h3>Formules appelées</h3>
-          <p>Formules appellées par cette formule dans le cadre de cette simulation :</p>
+          <p>Formules appellées par cette formule dans le cadre de cette simulation :</p>
           <table className="table">
             <thead>
               <tr>
@@ -721,21 +774,26 @@ var VariablePanel = React.createClass({
                 <th>Période</th>
                 <th>Libellé</th>
                 <th>Entité</th>
-                <th>Valeur</th>
+                <th className="text-right">Valeur</th>
               </tr>
             </thead>
             <tbody>
               {
                 formula.variables.map(function(variable, idx) {
-                  var argumentPeriod = this.props.variablePeriodByName[variable.name],
-                    argumentValue = this.props.variableByName[variable.name],
-                    argumentArray = typeof argumentValue === 'object' ? argumentValue[argumentPeriod] : argumentValue,
-                    variableId = variable.name + '-' + argumentPeriod;
+                  var argumentPeriod = this.props.argumentPeriodByName &&
+                    this.props.argumentPeriodByName[variable.name],
+                    argumentValues = _.isArray(this.props.variableByName[variable.name]) ?
+                      this.props.variableByName[variable.name] :
+                      this.props.variableByName[variable.name][argumentPeriod];
                   return (
                     <tr key={idx}>
-                      <td><a href={'#' + variableId}>{variable.name}</a></td>
+                      <td>
+                        <VariableLink name={variable.name} onOpen={this.props.onOpen} period={argumentPeriod}>
+                          {variable.name}
+                        </VariableLink>
+                      </td>
                       <td>{argumentPeriod}</td>
-                      <td>{variable.label != variable.name ? variable.label : ''}</td>
+                      <td>{variable.label !== variable.name ? variable.label : ''}</td>
                       <td>
                         <span className={cx('label', 'label-' + getEntityBackgroundColor(variable.entity))}>
                           {variable.entity}
@@ -743,27 +801,29 @@ var VariablePanel = React.createClass({
                       </td>
                       <td>
                         {
-                          argumentArray && (
+                          argumentValues && (
                             <ul className="list-unstyled">
                               {
-                                argumentArray.map(function(argument, idx) {
+                                argumentValues.map(function(value, idx) {
                                   var column = this.props.columns[variable.name],
                                     prestation = this.props.prestations[variable.name];
-                                  var isDefaultArgument = this.props.isCalledWithAllDefaultArguments ||
-                                    column && column.default == argument ||
-                                    prestation && prestation.default == argument;
-                                  var type = column && column['@type'] || prestation && prestation['@type'],
-                                    valType = column && column.val_type || prestation && prestation.val_type;
+                                  var isDefaultArgument = this.props.hasAllDefaultArguments ||
+                                    column && column.default == value ||
+                                    prestation && prestation.default == value;
+                                  var valType = this.props.argumentTracebackByName &&
+                                    this.props.argumentTracebackByName[variable.name] ?
+                                    this.props.argumentTracebackByName[variable.name].cell_type :
+                                    null;
+                                  var formattedValue = formatValue(value, valType);
                                   return (
                                     <li className="text-right" key={idx}>
-                                      {
-                                        isDefaultArgument && (
-                                          <span className='label label-default' style={{marginRight: 10}}>
-                                            par défaut
-                                          </span>
-                                        )
-                                      }
-                                      {formatValue(argument, type, valType)}
+                                      <samp>
+                                        {
+                                          isDefaultArgument ? formattedValue : (
+                                            <span className='bg-danger'>{formattedValue}</span>
+                                          )
+                                        }
+                                      </samp>
                                     </li>
                                   );
                                 }.bind(this))
@@ -788,7 +848,7 @@ var VariablePanel = React.createClass({
             </a>
           </div>
         </div>
-      )
+      );
     }
   },
 });
