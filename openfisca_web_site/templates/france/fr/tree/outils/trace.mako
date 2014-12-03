@@ -40,11 +40,15 @@ from openfisca_web_site import conf, urls
 
 
 <%def name="h1_content()" filter="trim">
-Outil de trace <small>Récapitulatif des formules exécutées par la simulation</small>
+Outil de trace
 </%def>
 
 
 <%def name="page_content()" filter="trim">
+        <p>
+          Cet outil prèsente les variables et les formules réellement utilisées par cette simulation,
+          dans l'ordre chronologique.
+        </p>
         <div id="trace-container"></div>
 </%def>
 

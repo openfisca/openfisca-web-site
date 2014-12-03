@@ -11,7 +11,10 @@ var cx = React.addons.classSet,
 
 
 function buildVariableId(variableName, variablePeriod) {
-  return variablePeriod ? variableName + '-' + variablePeriod : variableName;
+  var toValidBootstrapId = function(str) {
+    return str.replace(':', '-');
+  };
+  return variablePeriod ? variableName + '-' + toValidBootstrapId(variablePeriod) : variableName;
 }
 
 
@@ -64,41 +67,6 @@ function fetchField(apiUrl, name, onSuccess, onError) {
 }
 
 
-function fetchFields(apiUrl, onSuccess, onError) {
-  var fieldUrls = apiUrl + 'api/1/fields';
-  $.ajax(fieldUrls, {
-    dataType: 'json',
-    type: 'GET',
-    xhrFields: {
-      withCredentials: true,
-    },
-  })
-  .done(function(data/*, textStatus, jqXHR*/) {
-    onSuccess(data);
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-    onError(
-      errorThrown && jqXHR.responseText ?
-        errorThrown + ': ' + jqXHR.responseText :
-        errorThrown || jqXHR.responseText || 'unknown'
-    );
-  });
-}
-
-
-function formatValue(value, valType) {
-  if (value === '') {
-    return '""';
-  } else {
-    var formattedValue = value.toLocaleString('fr');
-    if (valType === 'monetary') {
-      formattedValue += ' €';
-    }
-    return formattedValue;
-  }
-}
-
-
 function getEntityBackgroundColor(entity) {
   return {
     fam: 'success',
@@ -121,6 +89,19 @@ function getEntityKeyPlural(entity) {
     men: 'ménages',
   }[entity] || entity;
 }
+
+
+var guid = (function() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+               .toString(16)
+               .substring(1);
+  }
+  return function() {
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+           s4() + '-' + s4() + s4() + s4();
+  };
+})();
 
 
 var TraceTool = React.createClass({
@@ -165,7 +146,6 @@ var TraceTool = React.createClass({
   },
   componentDidMount: function() {
     this.calculate();
-    this.fetchFields();
   },
   fetchField: function(variableName) {
     var onError = function(errorMessage) {
@@ -200,33 +180,16 @@ var TraceTool = React.createClass({
     }.bind(this);
     fetchField(this.props.apiUrl, variableName, onSuccess, onError);
   },
-  fetchFields: function() {
-    var onError = function(errorMessage) {
-      this.setState({
-        columns: null,
-        prestations: null,
-        fieldsError: errorMessage,
-      });
-    }.bind(this);
-    var onSuccess = function(data) {
-      this.setState({
-        columns: data.columns,
-        prestations: data.prestations,
-        fieldsError: null,
-      });
-    }.bind(this);
-    fetchFields(this.props.apiUrl, onSuccess, onError);
-  },
   findComputedConsumerTracebacks: function(variableName, variablePeriod) {
     // Find formulas which call the given formula and period.
-    var variableId = variableName + '-' + variablePeriod;
+    var variableId = buildVariableId(variableName, variablePeriod);
     if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
       var computedConsumerTracebacks = [];
       for (var tracebackIdx in this.state.tracebacks) {
         var traceback = this.state.tracebacks[tracebackIdx];
         for (var argumentName in traceback.arguments) {
           var argumentPeriod = traceback.arguments[argumentName];
-          if (argumentName === variableName && argumentPeriod === variablePeriod) {
+          if (argumentName === variableName && (! variablePeriod || argumentPeriod === variablePeriod)) {
             computedConsumerTracebacks.push(traceback);
           }
         }
@@ -238,10 +201,8 @@ var TraceTool = React.createClass({
   },
   getInitialState: function() {
     return {
-      columns: null,
       fieldsError: null,
       openedVariableById: {},
-      prestations: null,
       showDefaultFormulas: false,
       simulationError: null,
       simulationInProgress: false,
@@ -338,10 +299,8 @@ var TraceTool = React.createClass({
             role="tabpanel">
             <div className="panel-body">
               <p>
-                {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate'}
-                <span>
-                  (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
-                </span>
+                {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate '}
+                (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
               <textarea
                 className="form-control"
@@ -378,7 +337,9 @@ var TraceTool = React.createClass({
         var isOpened = this.state.openedVariableById[variableId];
         var argumentTracebackByName = _(traceback.arguments).keys().map(function(variableName) {
           var variableNameTraceback = _.find(this.state.tracebacks, function(traceback1) {
-            return traceback1.name === variableName && traceback1.period === traceback.arguments[variableName];
+            return traceback1.name === variableName && (
+              traceback1.period === null || traceback1.period === traceback.arguments[variableName]
+            );
           });
           return [variableName, variableNameTraceback];
         }.bind(this)).object().valueOf();
@@ -387,10 +348,10 @@ var TraceTool = React.createClass({
             argumentPeriodByName={traceback.arguments}
             argumentTracebackByName={argumentTracebackByName}
             cellType={traceback.cell_type}
-            columns={this.state.columns}
             computedConsumerTracebacks={
               isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
             }
+            default={traceback.default}
             entity={traceback.entity}
             hasAllDefaultArguments={traceback.default_arguments}
             holder={this.state.variableHolderByName[traceback.name]}
@@ -403,13 +364,39 @@ var TraceTool = React.createClass({
             onOpen={this.handleVariablePanelOpen}
             onToggle={this.handleVariablePanelToggle}
             period={traceback.period}
-            prestations={this.state.prestations}
             usedPeriods={traceback.used_periods}
             values={values}
             variableByName={this.state.variableByName}
           />
         );
       }.bind(this))
+    );
+  },
+});
+
+
+var Value = React.createClass({
+  mixins: [PureRenderMixin],
+  propTypes: {
+    isDefaultArgument: React.PropTypes.bool,
+    type: React.PropTypes.string,
+    value: React.PropTypes.any.isRequired,
+  },
+  format: function() {
+    if (this.props.value === '') {
+      return '""';
+    } else {
+      var formattedValue = this.props.value.toLocaleString('fr');
+      if (this.props.type === 'monetary') {
+        formattedValue += ' €';
+      }
+      return formattedValue;
+    }
+  },
+  render: function() {
+    var formattedValue = this.format();
+    return (
+      <span className={cx({'bg-danger': ! this.props.isDefaultArgument})}>{formattedValue}</span>
     );
   },
 });
@@ -449,8 +436,8 @@ var VariablePanel = React.createClass({
     argumentPeriodByName: React.PropTypes.object,
     argumentTracebackByName: React.PropTypes.object,
     cellType: React.PropTypes.string,
-    columns: React.PropTypes.object.isRequired,
     computedConsumerTracebacks: React.PropTypes.array,
+    default: React.PropTypes.any.isRequired,
     entity: React.PropTypes.string.isRequired,
     hasAllDefaultArguments: React.PropTypes.bool,
     holder: React.PropTypes.object,
@@ -461,7 +448,6 @@ var VariablePanel = React.createClass({
     name: React.PropTypes.string.isRequired,
     onToggle: React.PropTypes.func.isRequired,
     period: React.PropTypes.string,
-    prestations: React.PropTypes.object.isRequired,
     usedPeriods: React.PropTypes.array,
     values: React.PropTypes.array.isRequired,
     variableByName: React.PropTypes.object.isRequired,
@@ -472,16 +458,10 @@ var VariablePanel = React.createClass({
     }
   },
   componentDidMount: function() {
-    this.colorize();
+    // this.colorize();
   },
   componentDidUpdate: function() {
-    this.colorize();
-  },
-  getDefaultProps: function() {
-    return {
-      columns: {},
-      prestations: {},
-    };
+    // this.colorize();
   },
   handlePanelHeadingClick: function() {
     this.props.onToggle(this.props.name, this.props.period);
@@ -498,7 +478,7 @@ var VariablePanel = React.createClass({
               <code>{this.props.name}</code>
             </div>
             <div className="col-sm-1">
-              <small>{this.props.period || '-'}</small>
+              <small>{this.props.period || '–'}</small>
             </div>
             <div className="col-sm-5">
               {this.props.label}
@@ -515,7 +495,11 @@ var VariablePanel = React.createClass({
                     return (
                       <li className="text-right" key={idx}>
                         <samp>
-                          {formatValue(value, this.props.cellType)}
+                          <Value
+                            isDefaultArgument={value === this.props.default}
+                            type={this.props.cellType}
+                            value={value}
+                          />
                         </samp>
                       </li>
                     );
@@ -570,7 +554,10 @@ var VariablePanel = React.createClass({
             <p><span className='label label-default'>Variable d'entrée</span></p>
           )
         }
-        {this.props.holder.formula && ! this.props.usedPeriods && this.renderFormula(this.props.holder.formula)}
+        {
+          this.props.holder.formula && ! this.props.usedPeriods &&
+            this.renderFormula(this.props.holder.formula)
+        }
         {
           this.props.usedPeriods && (
             <div>
@@ -605,7 +592,11 @@ var VariablePanel = React.createClass({
                                   return (
                                     <li className="text-right" key={idx}>
                                       <samp>
-                                        {formatValue(value, this.props.cellType)}
+                                        <Value
+                                          isDefaultArgument={value === this.props.default}
+                                          type={this.props.cellType}
+                                          value={value}
+                                        />
                                       </samp>
                                     </li>
                                   );
@@ -653,6 +644,12 @@ var VariablePanel = React.createClass({
     );
   },
   renderFormula: function(formula) {
+    var variableId = buildVariableId(this.props.name, this.props.period),
+      accordionId = 'accordion-' + variableId;
+    var isCalled = function(formula) {
+      return this.props.argumentPeriodByName &&
+        formula.variables[0].name in this.props.argumentPeriodByName; // This is tricky.
+    }.bind(this);
     if (formula['@type'] === 'AlternativeFormula') {
       return (
         <div>
@@ -665,19 +662,47 @@ var VariablePanel = React.createClass({
               </div>
             )
           }
-          <ul>
+          <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
-              formula.alternative_formulas.map(function(alternativeFormula, idx) {
-                return <li key={idx}>{this.renderFormula(alternativeFormula)}</li>;
+              formula.alternative_formulas.map(function(formula, idx) {
+                var mainVariableId = accordionId + '-' + idx;
+                var headingId = mainVariableId + '-heading';
+                var isFormulaCalled = isCalled(formula);
+                return (
+                  <div className="panel panel-default" key={idx}>
+                    <div className="panel-heading" role="tab" id={headingId}>
+                      <h4 className="panel-title">
+                        <a
+                          aria-controls={mainVariableId}
+                          aria-expanded="false"
+                          data-parent={'#' + accordionId}
+                          data-toggle="collapse"
+                          href={'#' + mainVariableId}>
+                          {(idx + 1).toString() + (isFormulaCalled ? '' : ' (non appelée)')}
+                        </a>
+                      </h4>
+                    </div>
+                    <div
+                      aria-labelledby={headingId}
+                      className={cx({collapse: true, in: isFormulaCalled, 'panel-collapse ': true})}
+                      id={mainVariableId}
+                      role="tabpanel">
+                      <div className="panel-body">
+                        {this.renderFormula(formula)}
+                      </div>
+                    </div>
+                  </div>
+                );
               }.bind(this))
             }
-          </ul>
+          </div>
         </div>
       );
     } else if (formula['@type'] === 'DatedFormula') {
       return (
         <div>
           <h3>DatedFormula <small>Fonctions datées</small></h3>
+          <p>Une ou plusieurs des formules ci-dessous sont appelées en fonction de la période demandée.</p>
           {
             formula.doc && (
               <div>
@@ -686,23 +711,42 @@ var VariablePanel = React.createClass({
               </div>
             )
           }
-          <ul>
+          <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               formula.dated_formulas.map(function(datedFormula, idx) {
+                var mainVariableId = accordionId + '-' + idx;
+                var headingId = mainVariableId + '-heading';
                 return (
-                  <li key={idx}>
-                    <span className="lead">{datedFormula.start_instant} - {datedFormula.stop_instant}</span>
-                    {this.renderFormula(datedFormula.formula)}
-                  </li>
+                  <div className="panel panel-default" key={idx}>
+                    <div className="panel-heading" role="tab" id={headingId}>
+                      <h4 className="panel-title">
+                        <a
+                          aria-controls={mainVariableId}
+                          aria-expanded="false"
+                          data-parent={'#' + accordionId}
+                          data-toggle="collapse"
+                          href={'#' + mainVariableId}>
+                          {datedFormula.start_instant + ' – ' + datedFormula.stop_instant}
+                        </a>
+                      </h4>
+                    </div>
+                    <div
+                      aria-labelledby={headingId}
+                      className={cx({collapse: true, 'panel-collapse ': true})}
+                      id={mainVariableId}
+                      role="tabpanel">
+                      <div className="panel-body">
+                        {this.renderFormula(datedFormula.formula)}
+                      </div>
+                    </div>
+                  </div>
                 );
               }.bind(this))
             }
-          </ul>
+          </div>
         </div>
       );
     } else if (formula['@type'] === 'SelectFormula') {
-      var variableId = buildVariableId(this.props.name, this.props.period),
-        accordionId = 'accordion-' + variableId;
       return (
         <div>
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
@@ -717,10 +761,9 @@ var VariablePanel = React.createClass({
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               _(formula.formula_by_main_variable).map(function(formula, mainVariable) {
-                var isCalled = this.props.argumentPeriodByName &&
-                  formula.variables[0].name in this.props.argumentPeriodByName; // This is tricky.
                 var mainVariableId = accordionId + '-' + mainVariable;
                 var headingId = mainVariableId + '-heading';
+                var isFormulaCalled = isCalled(formula);
                 return (
                   <div className="panel panel-default" key={mainVariable}>
                     <div className="panel-heading" role="tab" id={headingId}>
@@ -731,13 +774,13 @@ var VariablePanel = React.createClass({
                           data-parent={'#' + accordionId}
                           data-toggle="collapse"
                           href={'#' + mainVariableId}>
-                          {mainVariable + (isCalled ? '' : ' (non appelée)')}
+                          {mainVariable + (isFormulaCalled ? '' : ' (non appelée)')}
                         </a>
                       </h4>
                     </div>
                     <div
                       aria-labelledby={headingId}
-                      className={cx({collapse: true, in: isCalled, 'panel-collapse ': true})}
+                      className={cx({collapse: true, in: isFormulaCalled, 'panel-collapse ': true})}
                       id={mainVariableId}
                       role="tabpanel">
                       <div className="panel-body">
@@ -755,6 +798,8 @@ var VariablePanel = React.createClass({
       var githubUrl = 'https://github.com/openfisca/openfisca-france/tree/master/' +
         formula.module.split('.').join('/') + '.py#L' + formula.line_number + '-' +
         (formula.line_number + formula.source.trim().split('\n').length - 1);
+      var sourceCodeId = guid();
+      var isFormulaCalled = isCalled(formula);
       return (
         <div>
           {
@@ -774,79 +819,95 @@ var VariablePanel = React.createClass({
                 <th>Période</th>
                 <th>Libellé</th>
                 <th>Entité</th>
-                <th className="text-right">Valeur</th>
+                {isFormulaCalled && <th className="text-right">Valeur</th>}
               </tr>
             </thead>
             <tbody>
               {
                 formula.variables.map(function(variable, idx) {
-                  var argumentPeriod = this.props.argumentPeriodByName &&
-                    this.props.argumentPeriodByName[variable.name],
-                    argumentValues = _.isArray(this.props.variableByName[variable.name]) ?
+                  var isPeriodAgnostic = this.props.argumentTracebackByName &&
+                    variable.name in this.props.argumentTracebackByName &&
+                    this.props.argumentTracebackByName[variable.name].period === null;
+                  var argumentPeriod = isPeriodAgnostic ? null : (
+                    this.props.argumentPeriodByName && this.props.argumentPeriodByName[variable.name]
+                  );
+                  // Useful with some [alternative, dated, selected] formulas.
+                  var isComputed = variable.name in this.props.variableByName;
+                  var argumentValues = isComputed ? (
+                    _.isArray(this.props.variableByName[variable.name]) ?
                       this.props.variableByName[variable.name] :
-                      this.props.variableByName[variable.name][argumentPeriod];
+                      this.props.variableByName[variable.name][argumentPeriod]
+                  ) : null;
                   return (
                     <tr key={idx}>
                       <td>
-                        <VariableLink name={variable.name} onOpen={this.props.onOpen} period={argumentPeriod}>
-                          {variable.name}
-                        </VariableLink>
+                        {
+                          isFormulaCalled ? (
+                            <VariableLink name={variable.name} onOpen={this.props.onOpen} period={argumentPeriod}>
+                              {variable.name}
+                            </VariableLink>
+                          ) : variable.name
+                        }
                       </td>
-                      <td>{argumentPeriod}</td>
+                      <td>{argumentPeriod || '–'}</td>
                       <td>{variable.label !== variable.name ? variable.label : ''}</td>
                       <td>
                         <span className={cx('label', 'label-' + getEntityBackgroundColor(variable.entity))}>
                           {variable.entity}
                         </span>
                       </td>
-                      <td>
-                        {
-                          argumentValues && (
-                            <ul className="list-unstyled">
-                              {
-                                argumentValues.map(function(value, idx) {
-                                  var column = this.props.columns[variable.name],
-                                    prestation = this.props.prestations[variable.name];
-                                  var isDefaultArgument = this.props.hasAllDefaultArguments ||
-                                    column && column.default == value ||
-                                    prestation && prestation.default == value;
-                                  var valType = this.props.argumentTracebackByName &&
-                                    this.props.argumentTracebackByName[variable.name] ?
-                                    this.props.argumentTracebackByName[variable.name].cell_type :
-                                    null;
-                                  var formattedValue = formatValue(value, valType);
-                                  return (
-                                    <li className="text-right" key={idx}>
-                                      <samp>
-                                        {
-                                          isDefaultArgument ? formattedValue : (
-                                            <span className='bg-danger'>{formattedValue}</span>
-                                          )
-                                        }
-                                      </samp>
-                                    </li>
-                                  );
-                                }.bind(this))
-                              }
-                            </ul>
-                          )
-                        }
-                      </td>
+                      {
+                        isFormulaCalled && (
+                          <td>
+                            {
+                              argumentValues && (
+                                <ul className="list-unstyled">
+                                  {
+                                    argumentValues.map(function(value, idx) {
+                                      var isDefaultArgument = this.props.hasAllDefaultArguments ||
+                                        this.props.argumentTracebackByName &&
+                                        this.props.argumentTracebackByName[variable.name].default === value;
+                                      var valueType = this.props.argumentTracebackByName &&
+                                        this.props.argumentTracebackByName[variable.name] ?
+                                        this.props.argumentTracebackByName[variable.name].cell_type :
+                                        null;
+                                      return (
+                                        <li className="text-right" key={idx}>
+                                          <samp>
+                                            <Value isDefaultArgument={isDefaultArgument} type={valueType} value={value} />
+                                          </samp>
+                                        </li>
+                                      );
+                                    }.bind(this))
+                                  }
+                                </ul>
+                              )
+                            }
+                          </td>
+                        )
+                      }
                     </tr>
                   );
                 }.bind(this))
               }
             </tbody>
           </table>
-          <div style={{position: 'relative'}}>
-            <h3>Code source</h3>
-            <pre>
-              <code data-language="python">{formula.source}</code>
-            </pre>
-            <a href={githubUrl} rel="external" style={{position: 'absolute', right: 7, top: 5}} target="_blank">
-              Voir dans GitHub
+          <h3>
+            <span>Code source – </span>
+            <a
+              aria-controls={sourceCodeId}
+              aria-expanded='false'
+              data-target={'#' + sourceCodeId}
+              data-toggle="collapse"
+              href='#'
+              onClick={function(event) { event.preventDefault(); }}>
+              afficher/masquer
             </a>
-          </div>
+            <span> – <a href={githubUrl} rel="external" target="_blank">ouvrir dans GitHub</a></span>
+          </h3>
+          <pre className='collapse' id={sourceCodeId}>
+            <code data-language="python">{formula.source}</code>
+          </pre>
         </div>
       );
     }
