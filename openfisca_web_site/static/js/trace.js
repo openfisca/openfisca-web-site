@@ -206,19 +206,17 @@ var TraceTool = React.createClass({
     fetchField(this.props.apiUrl, variableName, onSuccess, onError);
   },
   findComputedConsumerTracebacks: function(variableName, variablePeriod) {
-    // Find formulas which call the given formula and period.
+    // Find formulas which call the given formula at the given period.
     var variableId = buildVariableId(variableName, variablePeriod);
     if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
-      var computedConsumerTracebacks = [];
-      for (var tracebackIdx in this.state.tracebacks) {
-        var traceback = this.state.tracebacks[tracebackIdx];
-        for (var argumentName in traceback.arguments) {
-          var argumentPeriod = traceback.arguments[argumentName];
-          if (argumentName === variableName && (! variablePeriod || argumentPeriod === variablePeriod)) {
-            computedConsumerTracebacks.push(traceback);
-          }
+      var computedConsumerTracebacks = _(this.state.tracebacks).filter(function(traceback) {
+        return traceback.arguments && variableName in traceback.arguments;
+      }).map(function(traceback) {
+        var argumentPeriod = traceback.arguments[variableName];
+        if (! variablePeriod || argumentPeriod === variablePeriod) {
+          return traceback;
         }
-      }
+      }).compact().valueOf();
       this.computedConsumerTracebacksByVariableId[variableId] = computedConsumerTracebacks.length ?
         computedConsumerTracebacks : null;
     }
