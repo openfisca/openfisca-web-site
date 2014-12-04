@@ -104,6 +104,32 @@ var guid = (function() {
 })();
 
 
+var AutoSizedTextArea = React.createClass({
+  mixins: [PureRenderMixin],
+  propTypes: {
+    defaultValue: React.PropTypes.string,
+  },
+  getInitialState: function() {
+    return {
+      value: this.props.defaultValue,
+    };
+  },
+  handleChange: function(event) {
+    this.setState({value: event.target.value});
+  },
+  render: function() {
+    return (
+      <textarea
+        className="form-control"
+        onChange={this.handleChange}
+        rows={this.state.value.split('\n').length + 1}
+        style={{marginBottom: '1em'}}
+        value={this.state.value}></textarea>
+    );
+  },
+});
+
+
 var TraceTool = React.createClass({
   propTypes: {
     apiDocUrl: React.PropTypes.string.isRequired,
@@ -113,7 +139,7 @@ var TraceTool = React.createClass({
   calculate: function() {
     var simulationJson;
     try {
-        simulationJson = JSON.parse(this.state.simulationText);
+        simulationJson = JSON.parse(this.refs.simulationText.getDOMNode().value);
     } catch (error) {
         this.setState({simulationError: 'JSON parse error: ' + error.message});
         return;
@@ -205,7 +231,6 @@ var TraceTool = React.createClass({
       showDefaultFormulas: false,
       simulationError: null,
       simulationInProgress: false,
-      simulationText: this.props.defaultSimulationText,
       tracebacks: null,
       variableByName: null,
       variableHolderByName: {},
@@ -218,9 +243,6 @@ var TraceTool = React.createClass({
   handleSimulationFormSubmit: function(event) {
     event.preventDefault();
     this.calculate();
-  },
-  handleSimulationTextChange: function(event) {
-    this.setState({simulationText: event.target.value});
   },
   handleVariablePanelOpen: function(variableName, variablePeriod) {
     this.handleVariablePanelToggle(variableName, variablePeriod, true);
@@ -301,13 +323,7 @@ var TraceTool = React.createClass({
                 {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate '}
                 (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
-              <textarea
-                className="form-control"
-                onChange={this.handleSimulationTextChange}
-                placeholder="Mettez ici la simulation au format JSON"
-                rows={this.state.simulationText.split('\n').length + 1}
-                style={{marginBottom: '1em'}}
-                value={this.state.simulationText}></textarea>
+              <AutoSizedTextArea defaultValue={this.props.defaultSimulationText} ref='simulationText' />
               <button className="btn btn-primary" type="submit">Simuler</button>
             </div>
           </div>
