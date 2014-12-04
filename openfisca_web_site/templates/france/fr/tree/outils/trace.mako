@@ -46,8 +46,8 @@ Outil de trace
 
 <%def name="page_content()" filter="trim">
         <p>
-          Cet outil prèsente les variables et les formules réellement utilisées par cette simulation,
-          dans l'ordre chronologique.
+          Cet outil présente les formules socio-fiscales intervenant dans le calcul d'un cas type,
+          des valeurs de leurs paramètres et de leur résultat, dans l'ordre chronologique.
         </p>
         <div id="trace-container"></div>
 </%def>

@@ -140,12 +140,12 @@ class Node(model.Folder):
             updated = u'2014-05-02T00:00:00',
             )
         yield dict(
-            description = u"""Outil web de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
+            description = u"""Outil de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
             source_url = urls.get_full_url(ctx, self.url_path, '../exemple-trace'),
             tags = [u'exemple', u'outil'],
-            title = u"Débogueur en ligne",
+            title = u"Outil trace",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-trace.png'),
             updated = u'2014-04-27T11:00:00',
             )
