@@ -436,7 +436,7 @@ var VariablePanel = React.createClass({
     argumentTracebackByName: React.PropTypes.object,
     cellType: React.PropTypes.string,
     computedConsumerTracebacks: React.PropTypes.array,
-    default: React.PropTypes.any.isRequired,
+    default: React.PropTypes.any,
     entity: React.PropTypes.string.isRequired,
     hasAllDefaultArguments: React.PropTypes.bool,
     holder: React.PropTypes.object,
