@@ -134,7 +134,6 @@ var TraceTool = React.createClass({
       this.setState({
         simulationError: null,
         simulationInProgress: false,
-        simulationText: this.props.defaultSimulationText,
         tracebacks: firstScenarioTracebacks,
         variableByName: firstScenarioVariables,
       });
