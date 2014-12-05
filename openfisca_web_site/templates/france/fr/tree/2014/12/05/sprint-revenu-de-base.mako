@@ -59,6 +59,6 @@ Sprint sur le revenu de base <small>le vendredi 19 décembre 2014</small>
     La porte d'entrée de la Fondation Mozilla sera fermée. Un numéro de téléphone sera affiché sur la porte pour qu'on vienne vous ouvrir.
 </p>
   <p class="text-justify">
-    <b>En résumé</b> : Réservez la journée du 19 décembre, inscrivez-vous sur <a href="mailto:sprint@openfisca.fr">sprint@openfisca.fr</a>, faites circuler et retournez coder.
+    <b>En résumé</b> : Réservez la journée du 19 décembre, inscrivez-vous sur <a href="mailto:sprint@openfisca.fr">sprint@openfisca.fr</a> et faites circuler.
   </p>
 </%def>
