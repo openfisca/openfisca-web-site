@@ -2,7 +2,7 @@
 
 var $ = window.$,
   _ = window._,
-  Rainbow = window.Rainbow,
+  // Rainbow = window.Rainbow,
   React = window.React;
 
 var cx = React.addons.classSet,
@@ -67,6 +67,30 @@ function fetchField(apiUrl, name, onSuccess, onError) {
 }
 
 
+function findConsumerTracebacks(tracebacks, name, period) {
+  // Find formula tracebacks which call the given variable at the given period.
+  var filteredTracebacks = _.filter(tracebacks, function(traceback) {
+    if (traceback.arguments) {
+      var argumentPeriod = traceback.arguments[name];
+      return period === null || argumentPeriod === null || argumentPeriod === period;
+    } else {
+      return false;
+    }
+  });
+  return filteredTracebacks.length ? filteredTracebacks : null;
+}
+
+
+function findTracebacks(tracebacks, name, period) {
+  // Find variable traceback at the given name and period.
+  // Assumes that a traceback exists only one for a given name and period, in the tracebacks list.
+  var filteredTracebacks = _.filter(tracebacks, function(traceback) {
+    return traceback.name === name && (period === null || traceback.period === null || traceback.period === period);
+  });
+  return filteredTracebacks.length ? filteredTracebacks : null;
+}
+
+
 function getEntityBackgroundColor(entity) {
   return {
     fam: 'success',
@@ -107,24 +131,19 @@ var guid = (function() {
 var AutoSizedTextArea = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
-    defaultValue: React.PropTypes.string,
-  },
-  getInitialState: function() {
-    return {
-      value: this.props.defaultValue,
-    };
-  },
-  handleChange: function(event) {
-    this.setState({value: event.target.value});
+    disabled: React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    value: React.PropTypes.string,
   },
   render: function() {
     return (
       <textarea
         className="form-control"
-        onChange={this.handleChange}
-        rows={this.state.value.split('\n').length + 1}
+        disabled={this.props.disabled}
+        onChange={this.props.onChange}
+        rows={this.props.value.split('\n').length + 1}
         style={{marginBottom: '1em'}}
-        value={this.state.value}></textarea>
+        value={this.props.value}></textarea>
     );
   },
 });
@@ -139,7 +158,7 @@ var TraceTool = React.createClass({
   calculate: function() {
     var simulationJson;
     try {
-        simulationJson = JSON.parse(this.refs.simulationText.getDOMNode().value);
+        simulationJson = JSON.parse(this.state.simulationText);
     } catch (error) {
         this.setState({simulationError: 'JSON parse error: ' + error.message});
         return;
@@ -155,13 +174,13 @@ var TraceTool = React.createClass({
     }.bind(this);
     var onSuccess = function(data) {
       var firstScenarioTracebacks = data.tracebacks['0'],
-        firstScenarioVariables = data.variables['0'];
+        firstSimulationVariables = data.variables['0'];
       this.computedConsumerTracebacksByVariableId = {};
       this.setState({
         simulationError: null,
         simulationInProgress: false,
         tracebacks: firstScenarioTracebacks,
-        variableByName: firstScenarioVariables,
+        variableByName: firstSimulationVariables,
       });
       window.tracebacks = firstScenarioTracebacks; // DEBUG
     }.bind(this);
@@ -205,30 +224,13 @@ var TraceTool = React.createClass({
     }.bind(this);
     fetchField(this.props.apiUrl, variableName, onSuccess, onError);
   },
-  findComputedConsumerTracebacks: function(variableName, variablePeriod) {
-    // Find formulas which call the given formula at the given period.
-    var variableId = buildVariableId(variableName, variablePeriod);
-    if ( ! (variableId in this.computedConsumerTracebacksByVariableId)) {
-      var computedConsumerTracebacks = _(this.state.tracebacks).filter(function(traceback) {
-        return traceback.arguments && variableName in traceback.arguments;
-      }).map(function(traceback) {
-        var argumentPeriod = traceback.arguments[variableName];
-        if (! variablePeriod || argumentPeriod === variablePeriod) {
-          return traceback;
-        }
-      }).compact().valueOf();
-      this.computedConsumerTracebacksByVariableId[variableId] = computedConsumerTracebacks.length ?
-        computedConsumerTracebacks : null;
-    }
-    return this.computedConsumerTracebacksByVariableId[variableId];
-  },
   getInitialState: function() {
     return {
-      fieldsError: null,
-      openedVariableById: {},
       showDefaultFormulas: false,
       simulationError: null,
       simulationInProgress: false,
+      simulationText: this.props.defaultSimulationText,
+      toggleStatusByVariableId: {},
       tracebacks: null,
       variableByName: null,
       variableHolderByName: {},
@@ -242,33 +244,43 @@ var TraceTool = React.createClass({
     event.preventDefault();
     this.calculate();
   },
+  handleSimulationTextChange: function(event) {
+    this.setState({
+      simulationError: null,
+      simulationText: event.target.value,
+      tracebacks: null,
+      variableByName: null,
+      variableHolderByName: {},
+      variableHolderErrorByName: {},
+    }, function() {
+      // Fetch holders for previously opened variables.
+      _.map(this.state.toggleStatusByVariableId, function(variableInfos) {
+        if ( ! (variableInfos.name in this.state.variableHolderByName)) {
+          this.handleVariablePanelOpen(variableInfos.name, variableInfos.period);
+        }
+      }.bind(this));
+    });
+  },
   handleVariablePanelOpen: function(variableName, variablePeriod) {
     this.handleVariablePanelToggle(variableName, variablePeriod, true);
   },
   handleVariablePanelToggle: function(variableName, variablePeriod, forceValue) {
     var variableId = buildVariableId(variableName, variablePeriod);
-    var openedVariableByIdChangeset = {};
-    openedVariableByIdChangeset[variableId] = _.isUndefined(forceValue) ?
-      ! this.state.openedVariableById[variableId] : forceValue;
-    var newOpenedVariableById = update(this.state.openedVariableById, {$merge: openedVariableByIdChangeset});
-    this.setState({openedVariableById: newOpenedVariableById});
-    if (newOpenedVariableById && ! (variableName in this.state.variableHolderByName)) {
+    var toggleStatusByVariableIdChangeset = {};
+    toggleStatusByVariableIdChangeset[variableId] = {
+      isOpened: _.isUndefined(forceValue) ? ! this.state.toggleStatusByVariableId[variableId] : forceValue,
+      name: variableName,
+      period: variablePeriod,
+    };
+    var newToggleStatusByVariableId = update(this.state.toggleStatusByVariableId, {$merge: toggleStatusByVariableIdChangeset});
+    this.setState({toggleStatusByVariableId: newToggleStatusByVariableId});
+    if (newToggleStatusByVariableId && ! (variableName in this.state.variableHolderByName)) {
       this.fetchField(variableName);
     }
   },
   render: function() {
     return (
       <div>
-        {
-          this.state.fieldsError && (
-            <div className="alert alert-danger">
-              <p>
-                <strong>Erreur à l'appel de l'API fields !</strong>
-              </p>
-              <pre style={{background: 'transparent', border: 0}}>{this.state.fieldsError}</pre>
-            </div>
-          )
-        }
         {this.renderSimulationForm()}
         {
           this.state.simulationError ? (
@@ -321,7 +333,11 @@ var TraceTool = React.createClass({
                 {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate '}
                 (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
-              <AutoSizedTextArea defaultValue={this.props.defaultSimulationText} ref='simulationText' />
+              <AutoSizedTextArea
+                disabled={this.state.simulationInProgress}
+                onChange={this.handleSimulationTextChange}
+                value={this.state.simulationText}
+              />
               <button className="btn btn-primary" type="submit">Simuler</button>
             </div>
           </div>
@@ -340,30 +356,32 @@ var TraceTool = React.createClass({
     );
   },
   renderVariablesPanels: function() {
+    var simulationJson = JSON.parse(this.state.simulationText),
+      scenarioPeriod = simulationJson.scenarios[0].period,
+      simulationVariables = simulationJson.variables;
     return (
-      this.state.tracebacks.filter(function(traceback) {
-        return ! traceback.default_arguments || this.state.showDefaultFormulas;
-      }.bind(this)).map(function(traceback) {
+      this.state.tracebacks.map(function(traceback) {
+        if (traceback.default_arguments && ! this.state.showDefaultFormulas) {
+          return null;
+        }
         var variable = this.state.variableByName[traceback.name];
         var variableId = buildVariableId(traceback.name, traceback.period);
         var values = _.isArray(variable) ? variable : variable[traceback.period];
-        var isOpened = this.state.openedVariableById[variableId];
-        var argumentTracebackByName = _(traceback.arguments).keys().map(function(variableName) {
-          var variableNameTraceback = _.find(this.state.tracebacks, function(traceback1) {
-            return traceback1.name === variableName && (
-              traceback1.period === null || traceback1.period === traceback.arguments[variableName]
-            );
-          });
-          return [variableName, variableNameTraceback];
+        var toggleStatus = this.state.toggleStatusByVariableId[variableId];
+        var isOpened = toggleStatus && toggleStatus.isOpened;
+        var argumentTracebackByName = _(traceback.arguments).map(function(argumentPeriod, argumentName) {
+          if (argumentPeriod === null) {
+            throw new Error('traceback argument has no period for name ' + argumentName);
+          }
+          var argumentTraceback = _.first(findTracebacks(this.state.tracebacks, argumentName, argumentPeriod));
+          return [argumentName, argumentTraceback];
         }.bind(this)).object().valueOf();
         return (
           <VariablePanel
             argumentPeriodByName={traceback.arguments}
             argumentTracebackByName={argumentTracebackByName}
             cellType={traceback.cell_type}
-            computedConsumerTracebacks={
-              isOpened ? this.findComputedConsumerTracebacks(traceback.name, traceback.period) : null
-            }
+            computedConsumerTracebacks={isOpened ? findConsumerTracebacks(traceback.name, traceback.period) : null}
             default={traceback.default}
             entity={traceback.entity}
             hasAllDefaultArguments={traceback.default_arguments}
@@ -377,6 +395,8 @@ var TraceTool = React.createClass({
             onOpen={this.handleVariablePanelOpen}
             onToggle={this.handleVariablePanelToggle}
             period={traceback.period}
+            scenarioPeriod={scenarioPeriod}
+            simulationVariables={simulationVariables}
             usedPeriods={traceback.used_periods}
             values={values}
             variableByName={this.state.variableByName}
@@ -461,21 +481,23 @@ var VariablePanel = React.createClass({
     name: React.PropTypes.string.isRequired,
     onToggle: React.PropTypes.func.isRequired,
     period: React.PropTypes.string,
+    scenarioPeriod: React.PropTypes.string.isRequired,
+    simulationVariables: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     usedPeriods: React.PropTypes.array,
     values: React.PropTypes.array.isRequired,
     variableByName: React.PropTypes.object.isRequired,
   },
-  colorize: function() {
-    if (this.props.isOpened && this.props.holder) {
-      Rainbow.color();
-    }
-  },
-  componentDidMount: function() {
-    // this.colorize();
-  },
-  componentDidUpdate: function() {
-    // this.colorize();
-  },
+  // colorize: function() {
+  //   if (this.props.isOpened && this.props.holder) {
+  //     Rainbow.color();
+  //   }
+  // },
+  // componentDidMount: function() {
+  //   // this.colorize();
+  // },
+  // componentDidUpdate: function() {
+  //   // this.colorize();
+  // },
   handlePanelHeadingClick: function() {
     this.props.onToggle(this.props.name, this.props.period);
   },
@@ -568,6 +590,11 @@ var VariablePanel = React.createClass({
           )
         }
         {
+          this.props.name in this.props.simulationVariables && this.props.period === this.props.scenarioPeriod (
+            <small>Cette formule à cette période est demandée directement par l'appel de la simulation.</small>
+          )
+        }
+        {
           this.props.holder.formula && ! this.props.usedPeriods &&
             this.renderFormula(this.props.holder.formula)
         }
@@ -650,7 +677,7 @@ var VariablePanel = React.createClass({
               </ul>
             </div>
           ) : (
-            <p>Aucune : cette formule n'est appelée par aucune autre formule.</p>
+            <p>Cette formule n'est appelée par aucune autre formule.</p>
           )
         }
       </div>

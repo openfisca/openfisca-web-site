@@ -60,11 +60,11 @@ react_js_path = u'/bower/react/react-with-addons.js' if conf['debug'] else u'/bo
 %>\
     <script src="${urls.get_static_url(ctx, react_js_path)}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/react/JSXTransformer.js')}"></script>
-    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/rainbow.min.js')}"></script>
-    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/generic.js')}"></script>
-    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/html.js')}"></script>
-    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
-    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/python.js')}"></script>
+##    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/rainbow.min.js')}"></script>
+##    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/generic.js')}"></script>
+##    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/html.js')}"></script>
+##    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/javascript.js')}"></script>
+##    <script src="${urls.get_static_url(ctx, u'/bower/rainbow/js/language/python.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/lodash/dist/lodash.min.js')}"></script>
     <script>
 <%self:simulation_script_content/>
