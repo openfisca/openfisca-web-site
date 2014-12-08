@@ -590,7 +590,8 @@ var VariablePanel = React.createClass({
           )
         }
         {
-          this.props.name in this.props.simulationVariables && this.props.period === this.props.scenarioPeriod (
+          _.contains(this.props.simulationVariables, this.props.name) &&
+          this.props.period === this.props.scenarioPeriod && (
             <small>Cette formule à cette période est demandée directement par l'appel de la simulation.</small>
           )
         }
