@@ -105,7 +105,7 @@ window.defaultSimulationText = ${simulation_text or u'''\
           }
         ]
       },
-      "year": 2013
+      "period": "2013"
     }
   ],
   "variables": ["revdisp"]

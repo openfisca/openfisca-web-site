@@ -10,6 +10,8 @@ var cx = React.addons.classSet,
   update = React.addons.update;
 
 
+// Helpers, model and services functions.
+
 function buildVariableId(variableName, variablePeriod) {
   var toValidBootstrapId = function(str) {
     return str.replace(':', '-');
@@ -128,6 +130,26 @@ var guid = (function() {
 })();
 
 
+function normalizePeriod(period) {
+  var dashMatches = period.match(/-/g);
+  if (dashMatches) {
+    var dashesCount = dashMatches.length;
+    var monthPrefix = 'month:';
+    if (dashesCount === 1 && startsWith(period, monthPrefix)) {
+      return period.slice(monthPrefix.length);
+    }
+  }
+  return period;
+}
+
+
+function startsWith(str, startStr) {
+  return str.indexOf(startStr) === 0;
+}
+
+
+// Components
+
 var AutoSizedTextArea = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
@@ -156,14 +178,6 @@ var TraceTool = React.createClass({
     defaultSimulationText: React.PropTypes.string,
   },
   calculate: function() {
-    var simulationJson;
-    try {
-        simulationJson = JSON.parse(this.state.simulationText);
-    } catch (error) {
-        this.setState({simulationError: 'JSON parse error: ' + error.message});
-        return;
-    }
-    simulationJson.trace = true;
     var onError = function(errorMessage) {
       this.setState({
         variableByName: null,
@@ -175,7 +189,6 @@ var TraceTool = React.createClass({
     var onSuccess = function(data) {
       var firstScenarioTracebacks = data.tracebacks['0'],
         firstSimulationVariables = data.variables['0'];
-      this.computedConsumerTracebacksByVariableId = {};
       this.setState({
         simulationError: null,
         simulationInProgress: false,
@@ -185,7 +198,7 @@ var TraceTool = React.createClass({
       window.tracebacks = firstScenarioTracebacks; // DEBUG
     }.bind(this);
     this.setState({simulationInProgress: true}, function() {
-      calculate(this.props.apiUrl, simulationJson, onSuccess, onError);
+      calculate(this.props.apiUrl, this.state.simulationJson, onSuccess, onError);
     });
   },
   componentDidMount: function() {
@@ -229,6 +242,7 @@ var TraceTool = React.createClass({
       showDefaultFormulas: false,
       simulationError: null,
       simulationInProgress: false,
+      simulationJson: this.getSimulationJson(this.props.defaultSimulationText),
       simulationText: this.props.defaultSimulationText,
       toggleStatusByVariableId: {},
       tracebacks: null,
@@ -237,12 +251,25 @@ var TraceTool = React.createClass({
       variableHolderErrorByName: {},
     };
   },
+  getSimulationJson: function(simulationText) {
+    var simulationJson;
+    try {
+        simulationJson = JSON.parse(simulationText);
+    } catch (error) {
+        this.setState({simulationError: 'JSON parse error: ' + error.message});
+        return;
+    }
+    simulationJson.trace = true;
+    return simulationJson;
+  },
   handleShowDefaultFormulasChange: function(event) {
     this.setState({showDefaultFormulas: event.target.checked});
   },
   handleSimulationFormSubmit: function(event) {
     event.preventDefault();
-    this.calculate();
+    this.setState({simulationJson: this.getSimulationJson(this.state.simulationText)}, function() {
+      this.calculate();
+    });
   },
   handleSimulationTextChange: function(event) {
     this.setState({
@@ -333,6 +360,7 @@ var TraceTool = React.createClass({
                 {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate '}
                 (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
+              <p>Paramètre l'URL <code>api_url</code></p>
               <AutoSizedTextArea
                 disabled={this.state.simulationInProgress}
                 onChange={this.handleSimulationTextChange}
@@ -356,9 +384,8 @@ var TraceTool = React.createClass({
     );
   },
   renderVariablesPanels: function() {
-    var simulationJson = JSON.parse(this.state.simulationText),
-      scenarioPeriod = simulationJson.scenarios[0].period,
-      simulationVariables = simulationJson.variables;
+    var scenarioPeriod = normalizePeriod(this.state.simulationJson.scenarios[0].period),
+      simulationVariables = this.state.simulationJson.variables;
     return (
       this.state.tracebacks.map(function(traceback) {
         if (traceback.default_arguments && ! this.state.showDefaultFormulas) {
@@ -381,21 +408,24 @@ var TraceTool = React.createClass({
             argumentPeriodByName={traceback.arguments}
             argumentTracebackByName={argumentTracebackByName}
             cellType={traceback.cell_type}
-            computedConsumerTracebacks={isOpened ? findConsumerTracebacks(traceback.name, traceback.period) : null}
+            computedConsumerTracebacks={
+              isOpened ? findConsumerTracebacks(this.state.tracebacks, traceback.name, traceback.period) : null
+            }
             default={traceback.default}
             entity={traceback.entity}
             hasAllDefaultArguments={traceback.default_arguments}
             holder={this.state.variableHolderByName[traceback.name]}
             holderError={this.state.variableHolderErrorByName[traceback.name]}
-            isComputed={traceback.isComputed}
+            isComputed={traceback.is_computed}
             isOpened={isOpened}
             key={variableId}
             label={traceback.label}
             name={traceback.name}
             onOpen={this.handleVariablePanelOpen}
             onToggle={this.handleVariablePanelToggle}
-            period={traceback.period}
+            period={traceback.period === null ? null : normalizePeriod(traceback.period)}
             scenarioPeriod={scenarioPeriod}
+            showDefaultFormulas={this.state.showDefaultFormulas}
             simulationVariables={simulationVariables}
             usedPeriods={traceback.used_periods}
             values={values}
@@ -482,6 +512,7 @@ var VariablePanel = React.createClass({
     onToggle: React.PropTypes.func.isRequired,
     period: React.PropTypes.string,
     scenarioPeriod: React.PropTypes.string.isRequired,
+    showDefaultFormulas: React.PropTypes.bool,
     simulationVariables: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     usedPeriods: React.PropTypes.array,
     values: React.PropTypes.array.isRequired,
@@ -581,18 +612,18 @@ var VariablePanel = React.createClass({
       <div>
         {
           this.props.hasAllDefaultArguments && (
-            <small>Tous les arguments de cette formule ont des valeurs par défaut.</small>
+            <p><span className='label label-default'>Valeurs par défaut</span></p>
           )
         }
         {
-          this.props.isComputed && (
+          ! this.props.isComputed && (
             <p><span className='label label-default'>Variable d'entrée</span></p>
           )
         }
         {
           _.contains(this.props.simulationVariables, this.props.name) &&
           this.props.period === this.props.scenarioPeriod && (
-            <small>Cette formule à cette période est demandée directement par l'appel de la simulation.</small>
+            <p><span className='label label-default'>Appel simulation</span></p>
           )
         }
         {
@@ -610,6 +641,7 @@ var VariablePanel = React.createClass({
                     <th>Nom</th>
                     <th>Période</th>
                     <th className="text-right">Valeur</th>
+                    <th>Transformation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -645,6 +677,25 @@ var VariablePanel = React.createClass({
                               }
                             </ul>
                           </td>
+                          <td>
+                            <ul className="list-unstyled">
+                              {
+                                values.map(function(value, idx) {
+                                  return (
+                                    <li key={idx}>
+                                      <samp>
+                                        {
+                                          value > this.props.values[idx] ?
+                                            '/ ' + (value / this.props.values[idx]).toLocaleString('fr') :
+                                            '× ' + (this.props.values[idx] / value).toLocaleString('fr')
+                                        }
+                                      </samp>
+                                    </li>
+                                  );
+                                }.bind(this))
+                              }
+                            </ul>
+                          </td>
                         </tr>
                       );
                     }.bind(this))
@@ -657,26 +708,31 @@ var VariablePanel = React.createClass({
         <h3>Formules appelantes</h3>
         {
           this.props.computedConsumerTracebacks ? (
-            <div>
-              <p>Formules qui appellent cette formule dans le cadre de cette simulation :</p>
-              <ul className="consumers">
-                {
-                  this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
-                    return (
-                      <li key={idx}>
-                        <VariableLink
-                          name={computedConsumerTraceback.name}
-                          onOpen={this.props.onOpen}
-                          period={computedConsumerTraceback.period}>
-                          {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
-                        </VariableLink>
-                        <span> : {computedConsumerTraceback.label}</span>
-                      </li>
-                    );
-                  }.bind(this))
-                }
-              </ul>
-            </div>
+            <ul className="consumers">
+              {
+                this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
+                  var isVariableDisplayed = ! computedConsumerTraceback.default_arguments ||
+                    this.props.showDefaultFormulas;
+                  return (
+                    <li key={idx}>
+                      {
+                        isVariableDisplayed ? (
+                          <VariableLink
+                            name={computedConsumerTraceback.name}
+                            onOpen={this.props.onOpen}
+                            period={computedConsumerTraceback.period}>
+                            {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
+                          </VariableLink>
+                        ) : (
+                          computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period + ' (non affichée)'
+                        )
+                      }
+                      <span> : {computedConsumerTraceback.label}</span>
+                    </li>
+                  );
+                }.bind(this))
+              }
+            </ul>
           ) : (
             <p>Cette formule n'est appelée par aucune autre formule.</p>
           )
@@ -697,10 +753,7 @@ var VariablePanel = React.createClass({
           <h3>AlternativeFormula <small>Choix de fonctions</small></h3>
           {
             formula.doc && (
-              <div>
-                <h3>Description</h3>
-                <pre>{formula.doc}</pre>
-              </div>
+              <pre>{formula.doc}</pre>
             )
           }
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
@@ -746,10 +799,7 @@ var VariablePanel = React.createClass({
           <p>Une ou plusieurs des formules ci-dessous sont appelées en fonction de la période demandée.</p>
           {
             formula.doc && (
-              <div>
-                <h3>Description</h3>
-                <pre>{formula.doc}</pre>
-              </div>
+              <pre>{formula.doc}</pre>
             )
           }
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
@@ -793,10 +843,7 @@ var VariablePanel = React.createClass({
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
           {
             formula.doc && (
-              <div>
-                <h3>Description</h3>
-                <pre>{formula.doc}</pre>
-              </div>
+              <pre>{formula.doc}</pre>
             )
           }
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
@@ -845,14 +892,10 @@ var VariablePanel = React.createClass({
         <div>
           {
             formula.doc && (
-              <div>
-                <h3>Description</h3>
-                <pre>{formula.doc}</pre>
-              </div>
+              <pre>{formula.doc}</pre>
             )
           }
           <h3>Formules appelées</h3>
-          <p>Formules appellées par cette formule dans le cadre de cette simulation :</p>
           <table className="table">
             <thead>
               <tr>
@@ -866,9 +909,10 @@ var VariablePanel = React.createClass({
             <tbody>
               {
                 formula.variables.map(function(variable, idx) {
-                  var isPeriodAgnostic = this.props.argumentTracebackByName &&
+                  var argumentTraceback = this.props.argumentTracebackByName &&
                     variable.name in this.props.argumentTracebackByName &&
-                    this.props.argumentTracebackByName[variable.name].period === null;
+                    this.props.argumentTracebackByName[variable.name];
+                  var isPeriodAgnostic = argumentTraceback && argumentTraceback.period === null;
                   var argumentPeriod = isPeriodAgnostic ? null : (
                     this.props.argumentPeriodByName && this.props.argumentPeriodByName[variable.name]
                   );
