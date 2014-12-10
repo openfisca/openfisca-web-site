@@ -542,44 +542,7 @@ var VariablePanel = React.createClass({
       <div
         className={cx('panel', this.props.hasAllDefaultArguments ? 'panel-warning' : 'panel-default')}
         id={buildVariableId(this.props.name, this.props.period)}>
-        <div className="panel-heading" onClick={this.handlePanelHeadingClick} style={{cursor: 'pointer'}}>
-          <div className="row">
-            <div className="col-sm-3">
-              <span className={cx('glyphicon', this.props.isOpened ? 'glyphicon-minus' : 'glyphicon-plus')}></span>
-              <code>{this.props.name}</code>
-            </div>
-            <div className="col-sm-1">
-              <small>{this.props.period || '–'}</small>
-            </div>
-            <div className="col-sm-5">
-              {this.props.label}
-            </div>
-            <div className="col-sm-1">
-              <span className={cx('label', 'label-' + getEntityBackgroundColor(this.props.entity))}>
-                {getEntityKeyPlural(this.props.entity)}
-              </span>
-            </div>
-            <div className="col-sm-2">
-              <ul className="list-unstyled">
-                {
-                  this.props.values.map(function(value, idx) {
-                    return (
-                      <li className="text-right" key={idx}>
-                        <samp>
-                          <Value
-                            isDefaultArgument={value === this.props.default}
-                            type={this.props.cellType}
-                            value={value}
-                          />
-                        </samp>
-                      </li>
-                    );
-                  }.bind(this))
-                }
-              </ul>
-            </div>
-          </div>
-        </div>
+        {this.renderPanelHeading()}
         {
           this.props.isOpened && (
             <div className="panel-body" style={{position: 'relative'}}>
@@ -592,7 +555,7 @@ var VariablePanel = React.createClass({
                     <pre style={{background: 'transparent', border: 0}}>{this.props.holderError}</pre>
                   </div>
                 ) : (
-                  this.props.holder ? this.renderBody() : (
+                  this.props.holder ? this.renderPanelBodyContent() : (
                     <p>Chargement en cours...</p>
                   )
                 )
@@ -609,48 +572,6 @@ var VariablePanel = React.createClass({
             </div>
           )
         }
-      </div>
-    );
-  },
-  renderBody: function() {
-    return (
-      <div>
-        {
-          _.contains(this.props.simulationVariables, this.props.name) &&
-          this.props.period === this.props.scenarioPeriod && (
-            <p><span className='label label-default'>Appel simulation</span></p>
-          )
-        }
-        {
-          this.props.usedPeriods ? (
-            this.renderUsedPeriods()
-          ) : (
-            <div>
-              {
-                (this.props.hasAllDefaultArguments || ! this.props.isComputed) && (
-                  <div>
-                    {
-                      this.props.hasAllDefaultArguments && (
-                        <span className='label label-default'>Valeurs par défaut</span>
-                      )
-                    }
-                    {
-                      ! this.props.isComputed && (
-                        <span className='label label-default'>Variable d'entrée</span>
-                      )
-                    }
-                  </div>
-                )
-              }
-              {
-                this.props.holder.formula && ! this.props.usedPeriods &&
-                  this.renderFormula(this.props.holder.formula)
-              }
-            </div>
-          )
-        }
-        {this.props.computedConsumerTracebacks && this.renderComputedConsumers()}
-        {this.props.extrapolatedConsumerTracebacks && this.renderExtrapolatedConsumers()}
       </div>
     );
   },
@@ -729,7 +650,7 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>AlternativeFormula <small>Choix de fonctions</small></h3>
-          {formula.doc && <p>{formula.doc}</p>}
+          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               formula.alternative_formulas.map(function(formula, idx) {
@@ -771,7 +692,7 @@ var VariablePanel = React.createClass({
         <div>
           <h3>DatedFormula <small>Fonctions datées</small></h3>
           <p>Une ou plusieurs des formules ci-dessous sont appelées en fonction de la période demandée.</p>
-          {formula.doc && <p>{formula.doc}</p>}
+          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               formula.dated_formulas.map(function(datedFormula, idx) {
@@ -811,7 +732,7 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
-          {formula.doc && <p>{formula.doc}</p>}
+          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               _(formula.formula_by_main_variable).map(function(formula, mainVariable) {
@@ -856,7 +777,7 @@ var VariablePanel = React.createClass({
       var isFormulaCalled = isCalled(formula);
       return (
         <div>
-          {formula.doc && <p>{formula.doc}</p>}
+          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
           {
             isFormulaCalled && (
               <div>
@@ -963,6 +884,90 @@ var VariablePanel = React.createClass({
         </div>
       );
     }
+  },
+  renderPanelBodyContent: function() {
+    return (
+      <div>
+        {
+          _.contains(this.props.simulationVariables, this.props.name) &&
+          this.props.period === this.props.scenarioPeriod && (
+            <p><span className='label label-default'>Appel simulation</span></p>
+          )
+        }
+        {
+          this.props.usedPeriods ? (
+            this.renderUsedPeriods()
+          ) : (
+            <div>
+              {
+                (this.props.hasAllDefaultArguments || ! this.props.isComputed) && (
+                  <div>
+                    {
+                      this.props.hasAllDefaultArguments && (
+                        <span className='label label-default'>Valeurs par défaut</span>
+                      )
+                    }
+                    {
+                      ! this.props.isComputed && (
+                        <span className='label label-default'>Variable d'entrée</span>
+                      )
+                    }
+                  </div>
+                )
+              }
+              {
+                this.props.holder.formula && ! this.props.usedPeriods &&
+                  this.renderFormula(this.props.holder.formula)
+              }
+            </div>
+          )
+        }
+        {this.props.computedConsumerTracebacks && this.renderComputedConsumers()}
+        {this.props.extrapolatedConsumerTracebacks && this.renderExtrapolatedConsumers()}
+      </div>
+    );
+  },
+  renderPanelHeading: function() {
+    return (
+      <div className="panel-heading" onClick={this.handlePanelHeadingClick} style={{cursor: 'pointer'}}>
+        <div className="row">
+          <div className="col-sm-3">
+            <span className={cx('glyphicon', this.props.isOpened ? 'glyphicon-minus' : 'glyphicon-plus')}></span>
+            <code>{this.props.name}</code>
+          </div>
+          <div className="col-sm-1">
+            <small>{this.props.period || '–'}</small>
+          </div>
+          <div className="col-sm-5">
+            {this.props.label}
+          </div>
+          <div className="col-sm-1">
+            <span className={cx('label', 'label-' + getEntityBackgroundColor(this.props.entity))}>
+              {getEntityKeyPlural(this.props.entity)}
+            </span>
+          </div>
+          <div className="col-sm-2">
+            <ul className="list-unstyled">
+              {
+                this.props.values.map(function(value, idx) {
+                  return (
+                    <li className="text-right" key={idx}>
+                      <samp>
+                        <Value
+                          isDefaultArgument={value === this.props.default}
+                          type={this.props.cellType}
+                          value={value}
+                        />
+                      </samp>
+                    </li>
+                  );
+                }.bind(this))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
   },
   renderUsedPeriods: function() {
     var displayTransformationColumn = _.isNumber(this.props.values[0]);
