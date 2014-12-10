@@ -83,7 +83,7 @@ function findConsumerTracebacks(tracebacks, name, period) {
 }
 
 
-function findTracebacks(tracebacks, name, period) {
+function findTracebacks(tracebacks, name, period) { // jshint ignore:line
   // Find variable traceback at the given name and period.
   // Assumes that a traceback exists only one for a given name and period, in the tracebacks list.
   var filteredTracebacks = _.filter(tracebacks, function(traceback) {
@@ -386,6 +386,13 @@ var TraceTool = React.createClass({
   renderVariablesPanels: function() {
     var scenarioPeriod = normalizePeriod(this.state.simulationJson.scenarios[0].period),
       simulationVariables = this.state.simulationJson.variables;
+    var tracebackByNameAndPeriod = {};
+    _(this.state.tracebacks).each(function(traceback) {
+      if ( ! (traceback.name in tracebackByNameAndPeriod)) {
+        tracebackByNameAndPeriod[traceback.name] = {};
+      }
+      tracebackByNameAndPeriod[traceback.name][traceback.period] = traceback;
+    });
     return (
       this.state.tracebacks.map(function(traceback) {
         if (traceback.default_arguments && ! this.state.showDefaultFormulas) {
@@ -396,17 +403,9 @@ var TraceTool = React.createClass({
         var values = _.isArray(variable) ? variable : variable[traceback.period];
         var toggleStatus = this.state.toggleStatusByVariableId[variableId];
         var isOpened = toggleStatus && toggleStatus.isOpened;
-        var argumentTracebackByName = _(traceback.arguments).map(function(argumentPeriod, argumentName) {
-          if (argumentPeriod === null) {
-            throw new Error('traceback argument has no period for name ' + argumentName);
-          }
-          var argumentTraceback = _.first(findTracebacks(this.state.tracebacks, argumentName, argumentPeriod));
-          return [argumentName, argumentTraceback];
-        }.bind(this)).object().valueOf();
         return (
           <VariablePanel
             argumentPeriodByName={traceback.arguments}
-            argumentTracebackByName={argumentTracebackByName}
             cellType={traceback.cell_type}
             computedConsumerTracebacks={
               isOpened ? findConsumerTracebacks(this.state.tracebacks, traceback.name, traceback.period) : null
@@ -427,6 +426,7 @@ var TraceTool = React.createClass({
             scenarioPeriod={scenarioPeriod}
             showDefaultFormulas={this.state.showDefaultFormulas}
             simulationVariables={simulationVariables}
+            tracebackByNameAndPeriod={tracebackByNameAndPeriod}
             usedPeriods={traceback.used_periods}
             values={values}
             variableByName={this.state.variableByName}
@@ -497,7 +497,6 @@ var VariablePanel = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
     argumentPeriodByName: React.PropTypes.object,
-    argumentTracebackByName: React.PropTypes.object,
     cellType: React.PropTypes.string,
     computedConsumerTracebacks: React.PropTypes.array,
     default: React.PropTypes.any,
@@ -514,6 +513,7 @@ var VariablePanel = React.createClass({
     scenarioPeriod: React.PropTypes.string.isRequired,
     showDefaultFormulas: React.PropTypes.bool,
     simulationVariables: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    tracebackByNameAndPeriod: React.PropTypes.object.isRequired,
     usedPeriods: React.PropTypes.array,
     values: React.PropTypes.array.isRequired,
     variableByName: React.PropTypes.object.isRequired,
@@ -611,127 +611,73 @@ var VariablePanel = React.createClass({
     return (
       <div>
         {
-          this.props.hasAllDefaultArguments && (
-            <p><span className='label label-default'>Valeurs par défaut</span></p>
-          )
-        }
-        {
-          ! this.props.isComputed && (
-            <p><span className='label label-default'>Variable d'entrée</span></p>
-          )
-        }
-        {
           _.contains(this.props.simulationVariables, this.props.name) &&
           this.props.period === this.props.scenarioPeriod && (
             <p><span className='label label-default'>Appel simulation</span></p>
           )
         }
         {
-          this.props.holder.formula && ! this.props.usedPeriods &&
-            this.renderFormula(this.props.holder.formula)
-        }
-        {
-          this.props.usedPeriods && (
+          this.props.usedPeriods ? (
+            this.renderUsedPeriods()
+          ) : (
             <div>
-              <h3>Formules appelées</h3>
-              <p>Valeurs extrapolées à partir de :</p>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Période</th>
-                    <th className="text-right">Valeur</th>
-                    <th>Transformation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    this.props.usedPeriods.map(function(period, idx) {
-                      var values = this.props.variableByName[this.props.name][period];
-                      return (
-                        <tr key={idx}>
-                          <td>
-                            <VariableLink name={this.props.name} onOpen={this.props.onOpen} period={period}>
-                              {this.props.name}
-                            </VariableLink>
-                          </td>
-                          <td>
-                            {period}
-                          </td>
-                          <td>
-                            <ul className="list-unstyled">
-                              {
-                                values.map(function(value, idx) {
-                                  return (
-                                    <li className="text-right" key={idx}>
-                                      <samp>
-                                        <Value
-                                          isDefaultArgument={value === this.props.default}
-                                          type={this.props.cellType}
-                                          value={value}
-                                        />
-                                      </samp>
-                                    </li>
-                                  );
-                                }.bind(this))
-                              }
-                            </ul>
-                          </td>
-                          <td>
-                            <ul className="list-unstyled">
-                              {
-                                values.map(function(value, idx) {
-                                  return (
-                                    <li key={idx}>
-                                      <samp>
-                                        {
-                                          value > this.props.values[idx] ?
-                                            '/ ' + (value / this.props.values[idx]).toLocaleString('fr') :
-                                            '× ' + (this.props.values[idx] / value).toLocaleString('fr')
-                                        }
-                                      </samp>
-                                    </li>
-                                  );
-                                }.bind(this))
-                              }
-                            </ul>
-                          </td>
-                        </tr>
-                      );
-                    }.bind(this))
-                  }
-                </tbody>
-              </table>
+              {
+                (this.props.hasAllDefaultArguments || ! this.props.isComputed) && (
+                  <div>
+                    {
+                      this.props.hasAllDefaultArguments && (
+                        <span className='label label-default'>Valeurs par défaut</span>
+                      )
+                    }
+                    {
+                      ! this.props.isComputed && (
+                        <span className='label label-default'>Variable d'entrée</span>
+                      )
+                    }
+                  </div>
+                )
+              }
+              {
+                this.props.holder.formula && ! this.props.usedPeriods &&
+                  this.renderFormula(this.props.holder.formula)
+              }
             </div>
           )
         }
+        {this.renderComputedConsumers()}
+      </div>
+    );
+  },
+  renderComputedConsumers: function() {
+    return (
+      <div>
         <h3>Formules appelantes</h3>
         {
           this.props.computedConsumerTracebacks ? (
             <ul className="consumers">
-              {
-                this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
-                  var isVariableDisplayed = ! computedConsumerTraceback.default_arguments ||
-                    this.props.showDefaultFormulas;
-                  return (
-                    <li key={idx}>
-                      {
-                        isVariableDisplayed ? (
-                          <VariableLink
-                            name={computedConsumerTraceback.name}
-                            onOpen={this.props.onOpen}
-                            period={computedConsumerTraceback.period}>
-                            {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
-                          </VariableLink>
-                        ) : (
-                          computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period + ' (non affichée)'
-                        )
-                      }
-                      <span> : {computedConsumerTraceback.label}</span>
-                    </li>
-                  );
-                }.bind(this))
-              }
+            {
+              this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
+                var isVariableDisplayed = ! computedConsumerTraceback.default_arguments ||
+                this.props.showDefaultFormulas;
+                return (
+                  <li key={idx}>
+                  {
+                    isVariableDisplayed ? (
+                      <VariableLink
+                      name={computedConsumerTraceback.name}
+                      onOpen={this.props.onOpen}
+                      period={computedConsumerTraceback.period}>
+                      {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
+                      </VariableLink>
+                    ) : (
+                      computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period + ' (non affichée)'
+                    )
+                  }
+                  <span> : {computedConsumerTraceback.label}</span>
+                  </li>
+                );
+              }.bind(this))
+            }
             </ul>
           ) : (
             <p>Cette formule n'est appelée par aucune autre formule.</p>
@@ -751,11 +697,7 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>AlternativeFormula <small>Choix de fonctions</small></h3>
-          {
-            formula.doc && (
-              <pre>{formula.doc}</pre>
-            )
-          }
+          {formula.doc && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               formula.alternative_formulas.map(function(formula, idx) {
@@ -797,11 +739,7 @@ var VariablePanel = React.createClass({
         <div>
           <h3>DatedFormula <small>Fonctions datées</small></h3>
           <p>Une ou plusieurs des formules ci-dessous sont appelées en fonction de la période demandée.</p>
-          {
-            formula.doc && (
-              <pre>{formula.doc}</pre>
-            )
-          }
+          {formula.doc && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               formula.dated_formulas.map(function(datedFormula, idx) {
@@ -841,11 +779,7 @@ var VariablePanel = React.createClass({
       return (
         <div>
           <h3>SelectFormula <small>Choix de fonctions</small></h3>
-          {
-            formula.doc && (
-              <pre>{formula.doc}</pre>
-            )
-          }
+          {formula.doc && <p>{formula.doc}</p>}
           <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
             {
               _(formula.formula_by_main_variable).map(function(formula, mainVariable) {
@@ -887,14 +821,9 @@ var VariablePanel = React.createClass({
         formula.module.split('.').join('/') + '.py#L' + formula.line_number + '-' +
         (formula.line_number + formula.source.trim().split('\n').length - 1);
       var sourceCodeId = guid();
-      var isFormulaCalled = isCalled(formula);
       return (
         <div>
-          {
-            formula.doc && (
-              <pre>{formula.doc}</pre>
-            )
-          }
+          {formula.doc && <p>{formula.doc}</p>}
           <h3>Formules appelées</h3>
           <table className="table">
             <thead>
@@ -903,74 +832,63 @@ var VariablePanel = React.createClass({
                 <th>Période</th>
                 <th>Libellé</th>
                 <th>Entité</th>
-                {isFormulaCalled && <th className="text-right">Valeur</th>}
+                {this.props.argumentPeriodByName && <th className="text-right">Valeur</th>}
               </tr>
             </thead>
             <tbody>
               {
-                formula.variables.map(function(variable, idx) {
-                  var argumentTraceback = this.props.argumentTracebackByName &&
-                    variable.name in this.props.argumentTracebackByName &&
-                    this.props.argumentTracebackByName[variable.name];
-                  var isPeriodAgnostic = argumentTraceback && argumentTraceback.period === null;
-                  var argumentPeriod = isPeriodAgnostic ? null : (
-                    this.props.argumentPeriodByName && this.props.argumentPeriodByName[variable.name]
-                  );
+                this.props.argumentPeriodByName &&
+                _.map(this.props.argumentPeriodByName, function(argumentPeriod, argumentName) {
+                  var variable = _.find(formula.variables, function(variable) {
+                    return variable.name === argumentName;
+                  });
                   // Useful with some [alternative, dated, selected] formulas.
-                  var isComputed = variable.name in this.props.variableByName;
+                  var isComputed = argumentName in this.props.variableByName;
                   var argumentValues = isComputed ? (
-                    _.isArray(this.props.variableByName[variable.name]) ?
-                      this.props.variableByName[variable.name] :
-                      this.props.variableByName[variable.name][argumentPeriod]
+                    _.isArray(this.props.variableByName[argumentName]) ?
+                      this.props.variableByName[argumentName] :
+                      this.props.variableByName[argumentName][argumentPeriod]
                   ) : null;
                   return (
-                    <tr key={idx}>
+                    <tr key={argumentName}>
                       <td>
-                        {
-                          isFormulaCalled ? (
-                            <VariableLink name={variable.name} onOpen={this.props.onOpen} period={argumentPeriod}>
-                              {variable.name}
-                            </VariableLink>
-                          ) : variable.name
-                        }
+                        <VariableLink name={argumentName} onOpen={this.props.onOpen} period={argumentPeriod}>
+                          {argumentName}
+                        </VariableLink>
                       </td>
                       <td>{argumentPeriod || '–'}</td>
-                      <td>{variable.label !== variable.name ? variable.label : ''}</td>
+                      <td>{variable.label !== argumentName ? variable.label : ''}</td>
                       <td>
                         <span className={cx('label', 'label-' + getEntityBackgroundColor(variable.entity))}>
                           {variable.entity}
                         </span>
                       </td>
-                      {
-                        isFormulaCalled && (
-                          <td>
-                            {
-                              argumentValues && (
-                                <ul className="list-unstyled">
-                                  {
-                                    argumentValues.map(function(value, idx) {
-                                      var isDefaultArgument = this.props.hasAllDefaultArguments ||
-                                        this.props.argumentTracebackByName &&
-                                        this.props.argumentTracebackByName[variable.name].default === value;
-                                      var valueType = this.props.argumentTracebackByName &&
-                                        this.props.argumentTracebackByName[variable.name] ?
-                                        this.props.argumentTracebackByName[variable.name].cell_type :
-                                        null;
-                                      return (
-                                        <li className="text-right" key={idx}>
-                                          <samp>
-                                            <Value isDefaultArgument={isDefaultArgument} type={valueType} value={value} />
-                                          </samp>
-                                        </li>
-                                      );
-                                    }.bind(this))
-                                  }
-                                </ul>
-                              )
-                            }
-                          </td>
-                        )
-                      }
+                      <td>
+                        {
+                          argumentValues && (
+                            <ul className="list-unstyled">
+                              {
+                                argumentValues.map(function(value, idx) {
+                                  var isDefaultArgument = this.props.hasAllDefaultArguments ||
+                                    this.props.argumentTracebackByName &&
+                                    this.props.argumentTracebackByName[argumentName].default === value;
+                                  var valueType = this.props.argumentTracebackByName &&
+                                    this.props.argumentTracebackByName[argumentName] ?
+                                    this.props.argumentTracebackByName[argumentName].cell_type :
+                                    null;
+                                  return (
+                                    <li className="text-right" key={idx}>
+                                      <samp>
+                                        <Value isDefaultArgument={isDefaultArgument} type={valueType} value={value} />
+                                      </samp>
+                                    </li>
+                                  );
+                                }.bind(this))
+                              }
+                            </ul>
+                          )
+                        }
+                      </td>
                     </tr>
                   );
                 }.bind(this))
@@ -996,6 +914,95 @@ var VariablePanel = React.createClass({
         </div>
       );
     }
+  },
+  renderUsedPeriods: function() {
+    var displayTransformationColumn = _.isNumber(this.props.values[0]);
+    return (
+      <div>
+        <h3>Valeurs extrapolées depuis</h3>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Période</th>
+              <th className="text-right">Valeur</th>
+              {displayTransformationColumn && <th>Transformation</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.usedPeriods.map(function(period, idx) {
+                var values = this.props.variableByName[this.props.name][period];
+                var usedPeriodTraceback = this.props.tracebackByNameAndPeriod[this.props.name][period];
+                var isVariableDisplayed = ! usedPeriodTraceback.default_arguments || this.props.showDefaultFormulas;
+                return (
+                  <tr key={idx}>
+                    <td>
+                      {
+                        isVariableDisplayed ? (
+                          <VariableLink name={this.props.name} onOpen={this.props.onOpen} period={period}>
+                            {this.props.name}
+                          </VariableLink>
+                        ) : this.props.name + ' (non affichée)'
+                      }
+                    </td>
+                    <td>
+                      {period}
+                    </td>
+                    <td>
+                      <ul className="list-unstyled">
+                        {
+                          values.map(function(value, idx) {
+                            return (
+                              <li className="text-right" key={idx}>
+                                <samp>
+                                  <Value
+                                    isDefaultArgument={value === this.props.default}
+                                    type={this.props.cellType}
+                                    value={value}
+                                  />
+                                </samp>
+                              </li>
+                            );
+                          }.bind(this))
+                        }
+                      </ul>
+                    </td>
+                    {
+                      displayTransformationColumn && (
+                        <td>
+                          <ul className="list-unstyled">
+                            {
+                              values.map(function(value, idx) {
+                                return (
+                                  <li key={idx}>
+                                    <samp>
+                                      {
+                                        value === this.props.values[idx] ? (
+                                          '='
+                                        ) : (
+                                          value > this.props.values[idx] ?
+                                            '/ ' + (value / this.props.values[idx]).toLocaleString('fr') :
+                                            '× ' + (this.props.values[idx] / value).toLocaleString('fr')
+                                        )
+                                      }
+                                    </samp>
+                                  </li>
+                                );
+                              }.bind(this))
+                            }
+                          </ul>
+                        </td>
+                      )
+                    }
+                  </tr>
+                );
+              }.bind(this))
+            }
+          </tbody>
+        </table>
+      </div>
+    );
   },
 });
 
