@@ -116,6 +116,12 @@ function getEntityKeyPlural(entity) {
 }
 
 
+function getQueryParameters(str) {
+  return (str || document.location.search).replace(/(^\?)/,'').split("&")
+    .map(function(n){return n = n.split("="),this[n[0]] = n[1],this;}.bind({}))[0];
+}
+
+
 var guid = (function() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -358,6 +364,9 @@ var TraceTool = React.createClass({
     );
   },
   renderSimulationForm: function() {
+    var permaLinkParameters = getQueryParameters();
+    permaLinkParameters.simulation = this.state.simulationText;
+    var permaLinkHref = '?' + $.param(permaLinkParameters);
     return (
       <form className="form" role="form" onSubmit={this.handleSimulationFormSubmit}>
         <div className="panel panel-default">
@@ -390,6 +399,7 @@ var TraceTool = React.createClass({
                 value={this.state.simulationText}
               />
               <button className="btn btn-primary" type="submit">Simuler</button>
+              <a href={permaLinkHref} rel="external" style={{marginLeft: '1em'}} target="_blank">Lien permanent</a>
             </div>
           </div>
         </div>
