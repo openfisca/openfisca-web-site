@@ -180,22 +180,27 @@ var TraceTool = React.createClass({
   calculate: function() {
     var onError = function(errorMessage) {
       this.setState({
-        variableByName: null,
+        extrapolatedConsumerTracebacksByVariableId: null,
         simulationError: errorMessage,
         simulationInProgress: false,
         tracebacks: null,
+        variableByName: null,
       });
+      window.tracebacks = null; // DEBUG
     }.bind(this);
     var onSuccess = function(data) {
       var firstScenarioTracebacks = data.tracebacks['0'],
         firstSimulationVariables = data.variables['0'];
+      window.tracebacks = firstScenarioTracebacks; // DEBUG
       this.setState({
+        extrapolatedConsumerTracebacksByVariableId: this.findExtrapolatedConsumerTracebacksByVariableId(
+          firstScenarioTracebacks
+        ),
         simulationError: null,
         simulationInProgress: false,
         tracebacks: firstScenarioTracebacks,
         variableByName: firstSimulationVariables,
       });
-      window.tracebacks = firstScenarioTracebacks; // DEBUG
     }.bind(this);
     this.setState({simulationInProgress: true}, function() {
       calculate(this.props.apiUrl, this.state.simulationJson, onSuccess, onError);
@@ -236,6 +241,20 @@ var TraceTool = React.createClass({
       });
     }.bind(this);
     fetchField(this.props.apiUrl, variableName, onSuccess, onError);
+  },
+  findExtrapolatedConsumerTracebacksByVariableId: function(tracebacks) {
+    var extrapolatedConsumerTracebacksByVariableId = {};
+    tracebacks.forEach(function(traceback) {
+      if (traceback.used_periods) {
+        var extrapolatedConsumerTracebacks = tracebacks.filter(function(traceback1) {
+          return traceback.name === traceback1.name && traceback1.used_periods &&
+            _.contains(traceback1.used_periods, traceback.period);
+        });
+        var variableId = buildVariableId(traceback.name, traceback.period);
+        extrapolatedConsumerTracebacksByVariableId[variableId] = extrapolatedConsumerTracebacks;
+      }
+    });
+    return extrapolatedConsumerTracebacksByVariableId;
   },
   getInitialState: function() {
     return {
@@ -401,11 +420,6 @@ var TraceTool = React.createClass({
         var values = _.isArray(variable) ? variable : variable[traceback.period];
         var toggleStatus = this.state.toggleStatusByVariableId[variableId];
         var isOpened = toggleStatus && toggleStatus.isOpened;
-        var extrapolatedConsumerTracebacks = this.state.tracebacks.filter(function(traceback1) {
-          return traceback.name === traceback1.name && traceback1.used_periods &&
-            _.contains(traceback1.used_periods, traceback.period);
-        });
-        extrapolatedConsumerTracebacks = extrapolatedConsumerTracebacks.length ? extrapolatedConsumerTracebacks : null;
         return (
           <VariablePanel
             argumentPeriodByName={traceback.arguments}
@@ -415,7 +429,10 @@ var TraceTool = React.createClass({
             }
             default={traceback.default}
             entity={traceback.entity}
-            extrapolatedConsumerTracebacks={extrapolatedConsumerTracebacks}
+            extrapolatedConsumerTracebacks={
+              this.state.extrapolatedConsumerTracebacksByVariableId &&
+                this.state.extrapolatedConsumerTracebacksByVariableId[variableId]
+            }
             hasAllDefaultArguments={traceback.default_arguments}
             holder={this.state.variableHolderByName[traceback.name]}
             holderError={this.state.variableHolderErrorByName[traceback.name]}
