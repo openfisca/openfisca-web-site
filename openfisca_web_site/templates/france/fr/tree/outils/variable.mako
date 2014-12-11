@@ -77,7 +77,6 @@ ${' ' * indent}    </li>
 ${' ' * indent}</ul>
     % else:
 <%
-        assert type == 'SimpleFormula', type
         comments = formula.get('comments')
 #        doc = formula.get('doc')
         line_number = formula.get('line_number')
