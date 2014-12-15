@@ -133,7 +133,7 @@ sudo python setup.py develop --no-deps</pre>
     </ul>
 
     <div class="alert alert-danger">
-        <strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers test, vous devez remplacer les
+        <strong>Attention :</strong> pour lancer vos tests localement, dans vos fichiers <code>ini</code>, vous devez remplacer les
         liens de simulation et de législation par vos liens locaux :
         <ul>
             <li>
@@ -148,47 +148,13 @@ sudo python setup.py develop --no-deps</pre>
     </div>
 
     <h3 id="install-ui-gnu-linux">
-        Installation de l'Interface Utilisateur <small>(non indispensable pour faire tourner l'API Web)</small>
+        Installation de l'interface utilisateur <small>(non indispensable pour faire tourner l'API Web)</small>
     </h3>
 
     <ul>
         <li>
-            Pour installer l'UI, il faut  aller dans son dossier openfisca et installer les paquets nécessaires :
-            <pre>cd Documents/openfisca
-sudo apt-get install python-formencode
-sudo apt-get install nodejs-legacy
-sudo apt-get install npm
-sudo npm install -g bower
-git clone https://git.gitorious.org/korma/korma.git@dev
-cd korma.git@dev
-sudo python setup.py develop --no-deps
-cd ../
-git clone https://github.com/openfisca/openfisca-web-ui.git
-cd openfisca-web-ui
-python setup.py compile_catalog
-sudo python setup.py develop --no-deps</pre>
-        </li>
-        <li>installer bower dans openfisca/openfisca-web-ui :
-            <pre>cd ~/Documents/openfisca/openfisca-web-ui
-bower install</pre>
-        </li>
-    </ul>
-    <p class="alert alert-danger">
-        <strong>Attention :</strong> pour lancer le serveur de l'interface, vous devez lancer d'abord le serveur de
-        l'API et MongoDB dans des consoles différentes :
-    </p>
-    <ul>
-        <li>Tout d'abord, dans un premier onglet, lancer l'API :
-            <pre>cd Documents/openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
-        </li>
-        <li>Enusite, dans un deuxième onglet, lancer MongoDB (ici installé dans le dossier openfisca) :
-            <pre>sudo service mongodb start</pre>
-        </li>
-        <li>Enfin, dans un troisième onglet, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
-            <pre>cd Documents/openfisca/openfisca-web-ui
-./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development.ini</pre>
+            Pour installer l'UI, suivez les instructions décrites sur le 
+            <a href="https://github.com/openfisca/openfisca-web-ui">README du repository dédié</a>.
         </li>
     </ul>
 
@@ -196,8 +162,8 @@ paster serve --reload development.ini</pre>
 
     <ul>
         <li>
-            Pour ouvrir l'interface utilisateur, il vous suffit d'ouvrir votre navigateur internet et d'aller à
-            l'adresse du lien suivant : <kbd>http://localhost:2015</kbd>
+            Pour ouvrir l'interface utilisateur, il vous suffit d'ouvrir votre navigateur Internet et d'aller à
+            l'adresse du lien suivant : <code>http://localhost:2015</code>
         </li>
     </ul>
 
@@ -411,11 +377,11 @@ sudo python setup.py develop --no-deps</pre>
     <ul>
         <li>
             Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez
-            dans le dossier "openfisca-web-api") lancer la commande suivante :
+            dans le dossier "openfisca-web-api"), lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
         <li>
-            Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
+            Pour arrêter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
         </li>
     </ul>
 
