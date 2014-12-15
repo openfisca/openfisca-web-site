@@ -123,7 +123,7 @@ sudo python setup.py develop --no-deps</pre>
 
     <ul>
         <li>
-            Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez
+            Une fois toutes ces étapes terminées, il faut, toujours dans la même commande (normalement vous vous trouvez
             dans le dossier <code>openfisca-web-api</code>) lancer la commande suivante :
             <pre>paster serve --reload development.ini</pre>
         </li>
