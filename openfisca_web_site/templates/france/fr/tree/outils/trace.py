@@ -25,6 +25,7 @@
 
 import collections
 import json
+import urllib2
 
 from openfisca_web_site import conf, contexts, conv, model, wsgihelpers
 
@@ -72,6 +73,7 @@ class Node(model.Page):
             inputs = dict(
                 api_url = params.get('api_url'),
                 simulation = params.get('simulation'),
+                simulation_url = params.get('simulation_url'),
                 )
             data, errors = conv.struct(
                 dict(
@@ -85,6 +87,7 @@ class Node(model.Page):
                         conv.test_isinstance(dict),
                         # When None, use default value defined in atom.mako.
                         ),
+                    simulation_url = conv.make_input_to_url(full = True),
                     ),
                 )(inputs, state = ctx)
             if errors is not None:
@@ -104,8 +107,31 @@ class Node(model.Page):
                     headers = headers,
                     )
             api_url = data['api_url']
-            simulation = data['simulation']
-        simulation_text = unicode(json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2)) \
+            if data['simulation_url'] is not None:
+                request = urllib2.Request(data['simulation_url'], headers = {'User-Agent': 'OpenFisca-Web-Site'})
+                try:
+                    response = urllib2.urlopen(request)
+                except urllib2.HTTPError as response:
+                    return wsgihelpers.respond_json(ctx,
+                        collections.OrderedDict(sorted(dict(
+                            apiVersion = '1.0',
+                            context = inputs.get('context'),
+                            error = collections.OrderedDict(sorted(dict(
+                                code = 400,  # Bad Request
+                                errors = [{'code': response.code, 'message': response.msg, 'url': response.url}],
+                                message = ctx._(u'Unable to fetch simulation JSON from simulation_url'),
+                                ).iteritems())),
+                            method = req.script_name,
+                            params = inputs,
+                            url = req.url.decode('utf-8'),
+                            ).iteritems())),
+                        headers = headers,
+                        )
+                response_text = response.read()
+                simulation = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
+            else:
+                simulation = data['simulation']
+        simulation_text = json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2) \
             if simulation is not None else None
 
         response = req.response
