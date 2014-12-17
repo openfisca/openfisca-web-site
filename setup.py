@@ -79,7 +79,5 @@ setup(
         ('templates/**.mako', 'mako', {'input_encoding': 'utf-8'}),
         ('static/**', 'ignore', None)]},
     packages = find_packages(),
-    paster_plugins = ['PasteScript'],
-    setup_requires = ['PasteScript >= 1.6.3'],
     zip_safe = False,
     )
