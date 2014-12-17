@@ -32,9 +32,6 @@ Sprint sur le revenu de base <small>le vendredi 19 décembre 2014</small>
 
 
 <%def name="page_content()" filter="trim">
-  <p>
-    Codeuse, codeur, économiste, économiste,
-  </p>
   <p class="text-justify">
     En préparation d'un hackathon début 2015 sur les réformes, les équipes de <a href="http://lemodele.fr/">lemodele.fr</a> et d'<a href="http://www.openfisca.fr/">OpenFisca</a> organisent un sprint préparatoire consacré au revenu de base.
   </p>
@@ -57,8 +54,11 @@ Sprint sur le revenu de base <small>le vendredi 19 décembre 2014</small>
   </p>
   <p class="text-justify">
     La porte d'entrée de la Fondation Mozilla sera fermée. Un numéro de téléphone sera affiché sur la porte pour qu'on vienne vous ouvrir.
-</p>
+  </p>
   <p class="text-justify">
     <b>En résumé</b> : Réservez la journée du 19 décembre, inscrivez-vous sur <a href="mailto:sprint@openfisca.fr">sprint@openfisca.fr</a> et faites circuler.
+  </p>
+  <p class="text-justify">
+    Pour plus d'informations, consultez le <b><a href="https://lite5.framapad.org/p/sprint-revenu-de-base">FramaPad avec le planning, les objectifs, etc, du sprint</a></b>.
   </p>
 </%def>
