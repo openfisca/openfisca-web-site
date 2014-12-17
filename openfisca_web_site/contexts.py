@@ -204,7 +204,10 @@ class Ctx(conv.State):
                 languages = [languages]
             translator = gettext.NullTranslations()
             for name, i18n_dir in [
-                    ('biryani1', os.path.join(pkg_resources.get_distribution('biryani1').location, 'biryani1', 'i18n')),
+                    (
+                        'biryani',
+                        os.path.join(pkg_resources.get_distribution('biryani').location, 'biryani', 'i18n'),
+                        ),
                     ]:
                 if i18n_dir is not None:
                     translator = new_translator(name, i18n_dir, languages, fallback = translator)

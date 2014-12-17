@@ -65,7 +65,7 @@ setup(
     include_package_data = True,
     install_requires = [
         'Babel >= 0.9.4',
-        'Biryani1 >= 0.9dev',
+        'Biryani >= 0.10.1',
         'lxml >= 2.3',
         'Mako >= 0.7.0',
         #'python-magic',  # TODO: This is the name of the Debian package. Pypi name is not known.

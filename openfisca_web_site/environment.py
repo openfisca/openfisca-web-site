@@ -30,7 +30,7 @@ import logging
 import os
 import sys
 
-from biryani1 import strings
+from biryani import strings
 
 import openfisca_web_site
 from . import conv, model, templates

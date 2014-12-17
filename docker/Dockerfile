@@ -3,7 +3,6 @@ FROM debian:unstable
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install --no-install-recommends -y git nodejs-legacy npm python-babel python-lxml python-magic python-mako python-pastedeploy python-pip python-twitter python-weberror python-webob
 RUN pip install twitter-text-python
-RUN pip install -e git+https://github.com/etalab/biryani.git@biryani1#egg=Biryani1
 RUN pip install -e git+https://github.com/openfisca/openfisca-web-site.git#egg=OpenFisca-Web-Site
 RUN npm install -g bower
 RUN cd /src/openfisca-web-site/ && bower install --allow-root

@@ -32,7 +32,7 @@ import os
 import re
 import urlparse
 
-from biryani1 import strings
+from biryani import strings
 import lxml.etree
 import lxml.html
 import webob

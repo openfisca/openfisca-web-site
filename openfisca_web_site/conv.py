@@ -26,11 +26,11 @@
 """Conversion functions"""
 
 
-from biryani1.baseconv import *
-from biryani1.base64conv import *
-from biryani1.jsonconv import *
-from biryani1.objectconv import *
-from biryani1.states import default_state, State
+from biryani.baseconv import *
+from biryani.base64conv import *
+from biryani.jsonconv import *
+from biryani.objectconv import *
+from biryani.states import default_state, State
 
 
 input_to_token = cleanup_line
