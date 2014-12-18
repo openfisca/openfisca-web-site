@@ -534,7 +534,7 @@ paster serve --reload development.ini</pre>
             Install <a href="https://www.python.org/download/releases/2.7.6/">Python 2.7.6</a>
         </li>
         <li>
-            Install <a href="git-scm.com/download/win">Git</a>, open the .exe file and select default answers except for
+            Install <a href="http://git-scm.com/download/win">Git</a>, open the .exe file and select default answers except for
             "adjusting yout PATH environment", and select "run Git from the Windows Command Prompt"
         </li>
         <li>
