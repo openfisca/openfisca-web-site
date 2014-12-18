@@ -108,27 +108,22 @@ class Node(model.Page):
                     )
             api_url = data['api_url']
             if data['simulation_url'] is not None:
-                request = urllib2.Request(data['simulation_url'], headers = {'User-Agent': 'OpenFisca-Web-Site'})
+                request = urllib2.Request(data['simulation_url'], headers = {'User-Agent': 'OpenFisca-Trace-Tool'})
                 try:
                     response = urllib2.urlopen(request)
-                except urllib2.HTTPError as response:
-                    return wsgihelpers.respond_json(ctx,
-                        collections.OrderedDict(sorted(dict(
-                            apiVersion = '1.0',
-                            context = inputs.get('context'),
-                            error = collections.OrderedDict(sorted(dict(
-                                code = 400,  # Bad Request
-                                errors = [{'code': response.code, 'message': response.msg, 'url': response.url}],
-                                message = ctx._(u'Unable to fetch simulation JSON from simulation_url'),
-                                ).iteritems())),
-                            method = req.script_name,
-                            params = inputs,
-                            url = req.url.decode('utf-8'),
-                            ).iteritems())),
+                except (urllib2.HTTPError, urllib2.URLError) as response:
+                    return wsgihelpers.bad_request(ctx,
+                        message = ctx._(u'Unable to open simulation_url'),
                         headers = headers,
                         )
                 response_text = response.read()
-                simulation = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
+                try:
+                    simulation = json.loads(response_text, object_pairs_hook = collections.OrderedDict)
+                except ValueError as error:
+                    return wsgihelpers.bad_request(ctx,
+                        message = unicode(error),
+                        headers = headers,
+                        )
             else:
                 simulation = data['simulation']
         simulation_text = json.dumps(simulation, encoding = 'utf-8', ensure_ascii = False, indent = 2) \
