@@ -72,9 +72,16 @@ function fetchField(apiUrl, name, onSuccess, onError) {
 function findConsumerTracebacks(tracebacks, name, period) {
   // Find formula tracebacks which call the given variable at the given period.
   var filteredTracebacks = _.filter(tracebacks, function(traceback) {
-    if (traceback.arguments) {
-      var argumentPeriod = traceback.arguments[name];
-      return period === null || argumentPeriod === null || argumentPeriod === period;
+    if (traceback.input_variables && traceback.input_variables.length) {
+      var inputVariable = _.find(traceback.input_variables, function(inputVariableData) {
+        var argumentName = inputVariableData[0],
+          argumentPeriod = inputVariableData[1];
+
+        return argumentName === name && (
+          period === null || argumentPeriod === null || argumentPeriod === period
+        );
+      });
+      return inputVariable;
     } else {
       return false;
     }
@@ -88,6 +95,15 @@ function findTraceback(tracebacks, name, period) {
   // Assumes that a traceback exists only once for a given name and period, in the tracebacks list.
   return _.find(tracebacks, function(traceback) {
     return traceback.name === name && (traceback.period === null || traceback.period === period);
+  });
+}
+
+
+function findTracebacks(tracebacks, name, period) {  // jshint ignore:line
+  // Find variable traceback at the given name and period.
+  // Assumes that a traceback exists only once for a given name and period, in the tracebacks list.
+  return _.filter(tracebacks, function(traceback) {
+    return traceback.name === name && (period === null || traceback.period === null || traceback.period === period);
   });
 }
 
@@ -365,7 +381,7 @@ var TraceTool = React.createClass({
   },
   renderSimulationForm: function() {
     var permaLinkParameters = getQueryParameters();
-    permaLinkParameters.simulation = this.state.simulationText;
+    permaLinkParameters.simulation = this.state.simulationJson;
     var permaLinkHref = '?' + $.param(permaLinkParameters);
     return (
       <form className="form" role="form" onSubmit={this.handleSimulationFormSubmit}>
@@ -421,8 +437,8 @@ var TraceTool = React.createClass({
     var scenarioPeriod = normalizePeriod(scenario.period || scenario.year.toString()),
       simulationVariables = this.state.simulationJson.variables;
     return (
-      this.state.tracebacks.map(function(traceback) {
-        if (traceback.default_arguments && ! this.state.showDefaultFormulas) {
+      this.state.tracebacks.map(function(traceback, idx) {
+        if (traceback.default_input_variables && ! this.state.showDefaultFormulas) {
           return null;
         }
         var variable = this.state.variableByName[traceback.name];
@@ -432,7 +448,6 @@ var TraceTool = React.createClass({
         var isOpened = toggleStatus && toggleStatus.isOpened;
         return (
           <VariablePanel
-            argumentPeriodByName={traceback.arguments}
             cellType={traceback.cell_type}
             computedConsumerTracebacks={
               isOpened ? findConsumerTracebacks(this.state.tracebacks, traceback.name, traceback.period) : null
@@ -443,12 +458,15 @@ var TraceTool = React.createClass({
               this.state.extrapolatedConsumerTracebacksByVariableId &&
                 this.state.extrapolatedConsumerTracebacksByVariableId[variableId]
             }
-            hasAllDefaultArguments={traceback.default_arguments}
+            hasAllDefaultArguments={traceback.default_input_variables}
             holder={this.state.variableHolderByName[traceback.name]}
             holderError={this.state.variableHolderErrorByName[traceback.name]}
             isComputed={traceback.is_computed}
+            inputVariables={
+              traceback.input_variables && traceback.input_variables.length ? traceback.input_variables : null
+            }
             isOpened={isOpened}
-            key={variableId}
+            key={idx}
             label={traceback.label}
             name={traceback.name}
             onOpen={this.handleVariablePanelOpen}
@@ -527,7 +545,6 @@ var VariableLink = React.createClass({
 var VariablePanel = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
-    argumentPeriodByName: React.PropTypes.object,
     cellType: React.PropTypes.string,
     computedConsumerTracebacks: React.PropTypes.array,
     default: React.PropTypes.any,
@@ -537,6 +554,7 @@ var VariablePanel = React.createClass({
     holder: React.PropTypes.object,
     holderError: React.PropTypes.string,
     isComputed: React.PropTypes.bool,
+    inputVariables: React.PropTypes.array,
     isOpened: React.PropTypes.bool,
     label: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired,
@@ -609,7 +627,7 @@ var VariablePanel = React.createClass({
         <ul className="computed-consumers">
           {
             this.props.computedConsumerTracebacks.map(function(computedConsumerTraceback, idx) {
-              var isVariableDisplayed = ! computedConsumerTraceback.default_arguments || this.props.showDefaultFormulas;
+              var isVariableDisplayed = ! computedConsumerTraceback.default_input_variables || this.props.showDefaultFormulas;
               return (
                 <li key={idx}>
                   {
@@ -621,7 +639,7 @@ var VariablePanel = React.createClass({
                         {computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period}
                       </VariableLink>
                     ) : (
-                      computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period + ' (non affichée)'
+                      computedConsumerTraceback.name + ' / ' + computedConsumerTraceback.period
                     )
                   }
                   <span> : {computedConsumerTraceback.label}</span>
@@ -640,7 +658,7 @@ var VariablePanel = React.createClass({
         <ul className="extrapolated-consumers">
           {
             this.props.extrapolatedConsumerTracebacks.map(function(extrapolatedConsumerTraceback, idx) {
-              var isVariableDisplayed = ! extrapolatedConsumerTraceback.default_arguments ||
+              var isVariableDisplayed = ! extrapolatedConsumerTraceback.default_input_variables ||
                 this.props.showDefaultFormulas;
               return (
                 <li key={idx}>
@@ -653,8 +671,7 @@ var VariablePanel = React.createClass({
                         {extrapolatedConsumerTraceback.name + ' / ' + extrapolatedConsumerTraceback.period}
                       </VariableLink>
                     ) : (
-                      extrapolatedConsumerTraceback.name + ' / ' + extrapolatedConsumerTraceback.period +
-                        ' (non affichée)'
+                      extrapolatedConsumerTraceback.name + ' / ' + extrapolatedConsumerTraceback.period
                     )
                   }
                   <span> : {extrapolatedConsumerTraceback.label}</span>
@@ -669,52 +686,7 @@ var VariablePanel = React.createClass({
   renderFormula: function(formula) {
     var variableId = buildVariableId(this.props.name, this.props.period),
       accordionId = 'accordion-' + variableId;
-    var isCalled = function(formula) {
-      return this.props.argumentPeriodByName &&
-        formula.variables[0].name in this.props.argumentPeriodByName; // This is tricky.
-    }.bind(this);
-    if (formula['@type'] === 'AlternativeFormula') {
-      return (
-        <div>
-          <h3>AlternativeFormula <small>Choix de fonctions</small></h3>
-          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
-          <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
-            {
-              formula.alternative_formulas.map(function(formula, idx) {
-                var mainVariableId = accordionId + '-' + idx;
-                var headingId = mainVariableId + '-heading';
-                var isFormulaCalled = isCalled(formula);
-                return (
-                  <div className="panel panel-default" key={idx}>
-                    <div className="panel-heading" role="tab" id={headingId}>
-                      <h4 className="panel-title">
-                        <a
-                          aria-controls={mainVariableId}
-                          aria-expanded="false"
-                          data-parent={'#' + accordionId}
-                          data-toggle="collapse"
-                          href={'#' + mainVariableId}>
-                          {(idx + 1).toString() + (isFormulaCalled ? '' : ' (non appelée)')}
-                        </a>
-                      </h4>
-                    </div>
-                    <div
-                      aria-labelledby={headingId}
-                      className={cx({collapse: true, in: isFormulaCalled, 'panel-collapse ': true})}
-                      id={mainVariableId}
-                      role="tabpanel">
-                      <div className="panel-body">
-                        {this.renderFormula(formula)}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }.bind(this))
-            }
-          </div>
-        </div>
-      );
-    } else if (formula['@type'] === 'DatedFormula') {
+    if (formula['@type'] === 'DatedFormula') {
       return (
         <div>
           <h3>DatedFormula <small>Fonctions datées</small></h3>
@@ -755,143 +727,98 @@ var VariablePanel = React.createClass({
           </div>
         </div>
       );
-    } else if (formula['@type'] === 'SelectFormula') {
-      return (
-        <div>
-          <h3>SelectFormula <small>Choix de fonctions</small></h3>
-          {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
-          <div className="panel-group" id={accordionId} role="tablist" aria-multiselectable="true">
-            {
-              _(formula.formula_by_main_variable).map(function(formula, mainVariable) {
-                var mainVariableId = accordionId + '-' + mainVariable;
-                var headingId = mainVariableId + '-heading';
-                var isFormulaCalled = isCalled(formula);
-                return (
-                  <div className="panel panel-default" key={mainVariable}>
-                    <div className="panel-heading" role="tab" id={headingId}>
-                      <h4 className="panel-title">
-                        <a
-                          aria-controls={mainVariableId}
-                          aria-expanded="false"
-                          data-parent={'#' + accordionId}
-                          data-toggle="collapse"
-                          href={'#' + mainVariableId}>
-                          {mainVariable + (isFormulaCalled ? '' : ' (non appelée)')}
-                        </a>
-                      </h4>
-                    </div>
-                    <div
-                      aria-labelledby={headingId}
-                      className={cx({collapse: true, in: isFormulaCalled, 'panel-collapse ': true})}
-                      id={mainVariableId}
-                      role="tabpanel">
-                      <div className="panel-body">
-                        {this.renderFormula(formula)}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }.bind(this)).valueOf()
-            }
-          </div>
-        </div>
-      );
     } else if (formula['@type'] === 'SimpleFormula') {
       var githubUrl = 'https://github.com/openfisca/openfisca-france/tree/master/' +
         formula.module.split('.').join('/') + '.py#L' + formula.line_number + '-' +
         (formula.line_number + formula.source.trim().split('\n').length - 1);
       var sourceCodeId = guid();
-      var isFormulaCalled = isCalled(formula);
       return (
         <div>
           {formula.doc && formula.doc != this.props.label && <p>{formula.doc}</p>}
-          {
-            isFormulaCalled && (
-              <div>
-                <h3>Formules appelées</h3>
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Nom</th>
-                      <th>Période</th>
-                      <th>Libellé</th>
-                      <th>Entité</th>
-                      {this.props.argumentPeriodByName && <th className="text-right">Valeur</th>}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      _.map(this.props.argumentPeriodByName, function(argumentPeriod, argumentName) {
-                        var variable = _.find(formula.variables, function(variable) {
-                          return variable.name === argumentName;
-                        });
-                        // Useful with some [alternative, dated, selected] formulas.
-                        var isComputed = argumentName in this.props.variableByName;
-                        var argumentValues = isComputed ? (
-                          _.isArray(this.props.variableByName[argumentName]) ?
-                            this.props.variableByName[argumentName] :
-                            this.props.variableByName[argumentName][argumentPeriod]
-                        ) : null;
-                        var argumentTraceback = findTraceback(this.props.tracebacks, argumentName, argumentPeriod);
-                        var isVariableDisplayed = ! argumentTraceback.default_arguments ||
-                          this.props.showDefaultFormulas;
-                        return (
-                          <tr key={argumentName}>
-                            <td>
-                              {
-                                isVariableDisplayed ? (
-                                  <VariableLink name={argumentName} onOpen={this.props.onOpen} period={argumentPeriod}>
-                                    {argumentName}
-                                  </VariableLink>
-                                ) : argumentName + ' (non affichée)'
-                              }
-                            </td>
-                            <td>{argumentPeriod || '–'}</td>
-                            <td>{variable.label !== argumentName ? variable.label : ''}</td>
-                            <td>
-                              <span className={cx('label', 'label-' + getEntityBackgroundColor(variable.entity))}>
-                                {variable.entity}
-                              </span>
-                            </td>
-                            <td>
-                              {
-                                argumentValues && (
-                                  <ul className="list-unstyled">
-                                    {
-                                      argumentValues.map(function(value, idx) {
-                                        var isDefaultArgument = this.props.hasAllDefaultArguments ||
-                                          this.props.argumentTracebackByName &&
-                                          this.props.argumentTracebackByName[argumentName].default === value;
-                                        var valueType = this.props.argumentTracebackByName &&
-                                          this.props.argumentTracebackByName[argumentName] ?
-                                          this.props.argumentTracebackByName[argumentName].cell_type :
-                                          null;
-                                        return (
-                                          <li className="text-right" key={idx}>
-                                            <samp>
-                                              <Value
-                                                isDefaultArgument={isDefaultArgument}
-                                                type={valueType}
-                                                value={value}
-                                              />
-                                            </samp>
-                                          </li>
-                                        );
-                                      }.bind(this))
-                                    }
-                                  </ul>
-                                )
-                              }
-                            </td>
-                          </tr>
-                        );
-                      }.bind(this))
-                    }
-                  </tbody>
-                </table>
-              </div>
-            )
-          }
+          <div>
+            <h3>Formules appelées</h3>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Période</th>
+                  <th>Libellé</th>
+                  <th>Entité</th>
+                  {this.props.inputVariables && <th className="text-right">Valeur</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.props.inputVariables.map(function(inputVariableData, idx) {
+                    var argumentName = inputVariableData[0],
+                      argumentPeriod = inputVariableData[1];
+                    var isComputed = argumentName in this.props.variableByName; // Useful with some dated formulas.
+                    var argumentValues = isComputed ? (
+                      _.isArray(this.props.variableByName[argumentName]) ?
+                        this.props.variableByName[argumentName] :
+                        this.props.variableByName[argumentName][argumentPeriod]
+                    ) : null;
+                    // TODO index tracebacks before
+                    var argumentTraceback = findTraceback(this.props.tracebacks, argumentName, argumentPeriod);
+                    var isVariableDisplayed = ! argumentTraceback || ! argumentTraceback.default_input_variables ||
+                      this.props.showDefaultFormulas;
+                    return argumentTraceback && (
+                      <tr key={idx}>
+                        <td>
+                          {
+                            isVariableDisplayed ? (
+                              <VariableLink name={argumentName} onOpen={this.props.onOpen} period={argumentPeriod}>
+                                {argumentName}
+                              </VariableLink>
+                            ) : argumentName
+                          }
+                        </td>
+                        <td>{argumentPeriod || '–'}</td>
+                        <td>{argumentTraceback.label !== argumentName ? argumentTraceback.label : ''}</td>
+                        <td>
+                          <span className={
+                            cx('label', 'label-' + getEntityBackgroundColor(argumentTraceback.entity))
+                          }>
+                            {argumentTraceback.entity}
+                          </span>
+                        </td>
+                        <td>
+                          {
+                            argumentValues && (
+                              <ul className="list-unstyled">
+                                {
+                                  argumentValues.map(function(value, idx) {
+                                    var isDefaultArgument = this.props.hasAllDefaultArguments ||
+                                      this.props.argumentTracebackByName &&
+                                      this.props.argumentTracebackByName[argumentName].default === value;
+                                    var valueType = this.props.argumentTracebackByName &&
+                                      this.props.argumentTracebackByName[argumentName] ?
+                                      this.props.argumentTracebackByName[argumentName].cell_type :
+                                      null;
+                                    return (
+                                      <li className="text-right" key={idx}>
+                                        <samp>
+                                          <Value
+                                            isDefaultArgument={isDefaultArgument}
+                                            type={valueType}
+                                            value={value}
+                                          />
+                                        </samp>
+                                      </li>
+                                    );
+                                  }.bind(this))
+                                }
+                              </ul>
+                            )
+                          }
+                        </td>
+                      </tr>
+                    );
+                  }.bind(this))
+                }
+              </tbody>
+            </table>
+          </div>
           <h3>
             <a
               aria-controls={sourceCodeId}
@@ -1015,7 +942,8 @@ var VariablePanel = React.createClass({
               this.props.usedPeriods.map(function(period, idx) {
                 var values = this.props.variableByName[this.props.name][period];
                 var usedPeriodTraceback = findTraceback(this.props.tracebacks, this.props.name, period);
-                var isVariableDisplayed = ! usedPeriodTraceback.default_arguments || this.props.showDefaultFormulas;
+                var isVariableDisplayed = ! usedPeriodTraceback.default_input_variables ||
+                  this.props.showDefaultFormulas;
                 return (
                   <tr key={idx}>
                     <td>
@@ -1024,7 +952,7 @@ var VariablePanel = React.createClass({
                           <VariableLink name={this.props.name} onOpen={this.props.onOpen} period={period}>
                             {this.props.name}
                           </VariableLink>
-                        ) : this.props.name + ' (non affichée)'
+                        ) : this.props.name
                       }
                     </td>
                     <td>
