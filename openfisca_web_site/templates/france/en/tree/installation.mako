@@ -123,7 +123,7 @@ sudo python setup.py develop --no-deps</pre>
     <ul>
         <li>
             Once all these steps are completed (you should be in the <code> openfisca-web-api </ code>), run the following commands, in order:
-            <pre>paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development-france.ini</pre>
         </li>
         <li>
             To stop the server, type in the command: <kbd>ctrl + C</kbd>
@@ -178,7 +178,7 @@ bower install</pre>
     <ul>
         <li>In a first tab, launch the API:
             <pre>cd Documents/openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>In a second tab, launch MongoDB (here, installed in the openfisca folder) :
             <pre>sudo service mongodb start</pre>
@@ -186,7 +186,7 @@ paster serve --reload development.ini</pre>
         <li>Finally, in a third tab, start the user interface server to create the indexes in the database :
             <pre>cd Documents/openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
@@ -219,12 +219,12 @@ bower install</pre>
         <li>
             In a first tab, launch the API :
             <pre>cd Documents/openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>
             In a second tab, launch the server's website :
             <pre>cd Documents/openfisca/openfisca-web-site
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
@@ -404,7 +404,7 @@ sudo python setup.py develop --no-deps</pre>
     <ul>
         <li>
             Once all these steps are finished (you should be in the "openfisca-web-api" folder), run the following command in order :
-            <pre>paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development-france.ini</pre>
         </li>
         <li>
             To stop the server, enter <kbd>ctrl + C</kbd> in the command
@@ -462,7 +462,7 @@ bower install</pre>
         <li>
             Start by launching the API in a first tab :
             <pre>cd /openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>
             In a second tab, launch MongoDB (here, installed in the openfisca folder) :
@@ -472,7 +472,7 @@ paster serve --reload development.ini</pre>
             Finally, in a third tab, start the user interface server to create the indexes in the database :
             <pre>cd /openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
@@ -505,12 +505,12 @@ bower install</pre>
         <li>
             In a first tab, launch the API :
             <pre>cd /openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>
             In a second tab, launch the website's server :
             <pre>cd /openfisca/openfisca-web-site
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
@@ -600,7 +600,7 @@ python setup.py develop --no-deps</pre>
     <ul>
         <li>
            Once all these steps are finished (you should be in the "openfisca-web-api" folder), run the following command in order:
-            <pre>paster serve --reload development.ini</pre>
+            <pre>paster serve --reload development-france.ini</pre>
         </li>
         <li>
             To stop the server, type in <kbd>ctrl + C</kbd>
@@ -668,7 +668,7 @@ bower install</pre>
         <li>
             First, in a terminal, run the API:
             <pre>cd Desktop/openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>
             Then, in a second console, run MongoDB (here, installed in the openfisca folder)
@@ -679,7 +679,7 @@ mongod.exe</pre>
             Finally, in a third terminal, run the user interface server to create the indexes in the database :
             <pre>cd Desktop/openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
@@ -714,12 +714,12 @@ bower install</pre>
         <li>
             First, in a first terminal, run the API :
             <pre>cd Desktop/openfisca/openfisca-web-api
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
         <li>
            Then, in a second console, start the server :
             <pre>cd Desktop/openfisca/openfisca-web-site
-paster serve --reload development.ini</pre>
+paster serve --reload development-france.ini</pre>
         </li>
     </ul>
 
