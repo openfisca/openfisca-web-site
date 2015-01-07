@@ -125,7 +125,7 @@ sudo python setup.py develop --no-deps</pre>
         <li>
             Une fois toutes ces étapes terminées, il faut, toujours dans la même commande (normalement vous vous trouvez
             dans le dossier <code>openfisca-web-api</code>) lancer la commande suivante :
-            <pre>paster serve --reload development-france.ini</pre>
+            <pre>paster serve --reload development.ini</pre>
         </li>
         <li>
             Pour arreter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
@@ -153,7 +153,7 @@ sudo python setup.py develop --no-deps</pre>
 
     <ul>
         <li>
-            Pour installer l'UI, suivez les instructions décrites sur le
+            Pour installer l'UI, suivez les instructions décrites sur le 
             <a href="https://github.com/openfisca/openfisca-web-ui">README du repository dédié</a>.
         </li>
     </ul>
@@ -189,12 +189,12 @@ bower install</pre>
         <li>
             Tout d'abord, dans un premier onglet, lancer l'API :
             <pre>cd Documents/openfisca/openfisca-web-api
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
         <li>
             Ensuite, dans un deuxième onglet, lancer le serveur du site :
             <pre>cd Documents/openfisca/openfisca-web-site
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
     </ul>
 
@@ -378,7 +378,7 @@ sudo python setup.py develop --no-deps</pre>
         <li>
             Une fois toutes ces étapes finis, il faut, toujours dans la même commande (normalement vous vous trouvez
             dans le dossier "openfisca-web-api"), lancer la commande suivante :
-            <pre>paster serve --reload development-france.ini</pre>
+            <pre>paster serve --reload development.ini</pre>
         </li>
         <li>
             Pour arrêter le serveur, dans la commande faire <kbd>ctrl + C</kbd>
@@ -437,7 +437,7 @@ bower install</pre>
         <li>
             Tout d'abord, dans un premier onglet, lancer l'API :
             <pre>cd /openfisca/openfisca-web-api
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
         <li>
             Enusite, dans un deuxième onglet, lancer MongoDB (ici installé dans le dossier openfisca) :
@@ -447,7 +447,7 @@ paster serve --reload development-france.ini</pre>
             Enfin, dans un troisième onglet, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
             <pre>cd /openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
     </ul>
 
@@ -483,12 +483,12 @@ bower install</pre>
         <li>
             Tout d'abord, dans un premier onglet, lancer l'API :
             <pre>cd /openfisca/openfisca-web-api
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
         <li>
             Ensuite, dans un deuxième onglet, lancer le serveur du site :
             <pre>cd /openfisca/openfisca-web-site
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
     </ul>
 
@@ -655,7 +655,7 @@ bower install</pre>
         <li>
             Tout d'abord, dans une première console, lancer l'API :
             <pre>cd Desktop/openfisca/openfisca-web-api
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
         <li>
             Enusite, dans une deuxième console, lancer MongoDB (ici installé dans le dossier openfisca) :
@@ -666,7 +666,7 @@ mongod.exe</pre>
             Enfin, dans une troisième console, lancer le serveur de l'interface utilisateur afin de créer les index dans la base de données:
             <pre>cd Desktop/openfisca/openfisca-web-ui
 ./openfisca_web_ui/scripts/setup_app.py development.ini
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
     </ul>
 
@@ -703,12 +703,12 @@ bower install</pre>
         <li>
             Tout d'abord, dans une premiere console, lancer l'API :
             <pre>cd Desktop/openfisca/openfisca-web-api
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
         <li>
             Ensuite, dans une deuxième console, lancer le serveur du site :
             <pre>cd Desktop/openfisca/openfisca-web-site
-paster serve --reload development-france.ini</pre>
+paster serve --reload development.ini</pre>
         </li>
     </ul>
 
