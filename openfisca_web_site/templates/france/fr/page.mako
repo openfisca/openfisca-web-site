@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import urls
+%>
+
+
 <%inherit file="/site.mako"/>
 
 
@@ -30,12 +35,12 @@
     % for ancestor in reversed(list(node.iter_ancestors(skip_self = True))):
             <li>
         % if ancestor.has_view:
-                <a href="${ancestor.url_path}">${ancestor.title}</a>
+                <a href="${urls.get_url(ctx, ancestor.url_path)}">${ancestor.title}</a>
         % else:
                 ${ancestor.title}
         % endif
             </li>
-        
+
     % endfor
             <li class="active">${node.title}</li>
 </%def>
