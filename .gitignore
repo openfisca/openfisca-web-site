@@ -3,6 +3,7 @@
 /development-*local.ini
 /dist/
 /openfisca_web_site/static/bower/
+/tags
 *.egg-info
 *.mo
 *.pyc
