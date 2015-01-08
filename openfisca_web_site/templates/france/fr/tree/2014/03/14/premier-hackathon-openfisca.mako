@@ -58,7 +58,7 @@ Premier hackathon OpenFisca<small> le 14 mars 2014 chez Simplon.co</small>
         </p>
         <ul>
             <li>Utiliser l'API OpenFisca pour réaliser de nouvelles infographies et les mettre en valeur</li>
-            <li>Imaginer des réformes socio-fiscales et les intégrer au logiciel Openfisca</li>
+            <li>Imaginer des réformes socio-fiscales et les intégrer au logiciel OpenFisca</li>
             <li>S'intéresser à de nouveaux pans de la législation pour continuer à développer OpenFisca</li>
         </ul>
 
