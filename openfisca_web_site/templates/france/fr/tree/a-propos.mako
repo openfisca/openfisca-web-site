@@ -27,37 +27,57 @@
 import datetime
 %>
 
+
 <%inherit file="/page.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
-${_(u"""À propos d'OpenFisca""")}
+À propos d'OpenFisca
 </%def>
 
 
 <%def name="page_content()" filter="trim">
         <p>
-            OpenFisca est un logiciel libre de simulation du système socio-fiscal français. Il permet de visualiser simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de simuler l'impact de réformes sur leur revenu. Il s'agit d'un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système socio-fiscal.
+            OpenFisca est un logiciel libre de simulation du système socio-fiscal français.
+            Il permet de visualiser simplement un grand nombre de prestations sociales et d'impôts payés,
+            par les ménages, et de simuler l'impact de réformes sur leur revenu.
+            Il s'agit d'un outil à vocation pédagogique pour aider les citoyens à mieux comprendre le système
+            socio-fiscal.
         </p>
         <p>
-            À terme, OpenFisca intégrera l'ensemble du système socio-fiscal français et son évolution et permettra de calculer l'impact de réformes sur le budget de l'État.
+            À terme, OpenFisca intégrera l'ensemble du système socio-fiscal français et son évolution et permettra de
+            calculer l'impact de réformes sur le budget de l'État.
         </p>
 
-        <h2>${_(u'Copyright')}</h2>
-        <p>${_(u'Copyright © {0} OpenFisca Team').format(u', '.join(
-            unicode(year)
-            for year in range(2011, datetime.date.today().year + 1)
-            ))}</p>
+        <h2>Droits d'auteur</h2>
+        <p>
+            ${
+                u'Copyright © {0} OpenFisca Team'.format(u', '.join(
+                    unicode(year)
+                    for year in range(2011, datetime.date.today().year + 1)
+                    ))
+            }
+        </p>
 
-        <h2 id="licence">${_(u'License')}</h2>
-        OpenFisca est un logiciel libre sous licence <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>.
+        <h2 id="licence">Licence</h2>
+        <p>
+            OpenFisca est un logiciel libre sous licence
+            <a href="http://www.gnu.org/licenses/agpl.html" rel="external" target="_blank">
+                GNU Affero General Public License
+            </a>
+            version 3 ou ultérieure.
+        </p>
 
-        <h2>${_(u'Code source')}</h2>
-        <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
+        <h2>Code source</h2>
+        <p>
+            <a href="https://github.com/openfisca" rel="external" target="_blank">https://github.com/openfisca</a>
+        </p>
 
         <h2>Développeurs initiaux</h2>
-        Clément Schaff et Mahdi Ben Jelloul (Centre d'analyse stratégique, puis Commissariat général à la stratégie et
-        à la prospective)
+        <p>
+            Clément Schaff et Mahdi Ben Jelloul (Centre d'analyse stratégique, puis Commissariat général à la stratégie
+            et à la prospective).
+        </p>
 
         <h2>Contributeurs au code (<em>OpenFisca Team</em>)</h2>
         <ul>

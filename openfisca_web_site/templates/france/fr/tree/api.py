@@ -27,8 +27,8 @@ from openfisca_web_site import model, urls
 
 
 class Node(model.Redirect):
-    title = u"Exemple de tableau"
+    title = u"API Web"
 
     @property
     def location(self):
-        return urls.get_url(self.ctx, 'exemples', 'tableau')
+        return urls.get_url(self.ctx, 'documentation', 'api')

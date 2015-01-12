@@ -90,7 +90,7 @@ twitter_statuses_updated = None
                         <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'elements', 'images',
                                 'logo-openfisca-280x200.png')}">
                     </p>
-                    <em class="lead" style="color: white; font-size: 32px">Open socio-fiscal system simulator</em>
+                    <em class="lead" style="color: white; font-size: 32px">Open tax-benefit system simulator</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
@@ -158,16 +158,16 @@ twitter_statuses_updated = None
         <div class="col-md-4 col-sm-6" style="height: 280px">
             <h3>Presentation</h3>
             <p class="text-justify">
-                 OpenFisca is an open micro-simulator of the socio-fiscal system.
+                 OpenFisca is an open micro-simulator of the tax-benefit system.
                  It allows users to simply calculate many social benefits and taxes
                  paid by households and to simulate the impact of reforms on their budget.
             </p>
             <p class="text-justify">
-                This tool has an <strong>educational purpose</strong>, and aims
-                to help citizens better understand the socio-fiscal system.
+                This tool has an <em>educational purpose</em>, and aims
+                to help citizens better understand the tax-benefit system.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Read more...</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Read more</a>
             </p>
         </div>
 
@@ -178,8 +178,8 @@ twitter_statuses_updated = None
             </p>
             <p class="text-justify">
                 The servers made available on the Internet by
-                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a> allow you to use the API to illustrate a research project,
-                an economic article, to create a dynamic infographics, etc.
+                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a> allow you to use the API to illustrate
+                a research project, an economic article, to create a dynamic infographics, etc.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Use the web API</a>
@@ -187,16 +187,17 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Demonstration</h3>
+            <h3>Test-case simulation</h3>
             <p class="text-justify">
-                To illustrate the possibilities offered by the Web API, we created an online simulator.
+                To illustrate the possibilities offered by the web API, we created an online simulator.
             </p>
             <p class="text-justify">
-                With this <strong> demonstrator </strong>, by describing your family situation and entering your income
-                and assets, you can compare your socio-fiscal situation with that of other households, discover your living standard, etc.
+                With this <em>demonstrator</em>, by describing your family situation and entering your income
+                and assets, you can compare your tax-benefit situation with that of other households, discover your
+                living standard, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simulate a standard case</a>
+                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simulate a test case</a>
             </p>
         </div>
 
@@ -204,13 +205,15 @@ twitter_statuses_updated = None
             <h3>Installation</h3>
             <p class="text-justify">
                 If the use of OpenFisca online is not enough for you, you can also install
-                different OpenFisca softwares on your own computer, on servers or even on clouds.
+                different OpenFisca softwares on your own computer, on servers or even in the "cloud".
             </p>
             <p class="text-justify">
                 We are working hard to make OpenFisca compatible with the greatest number of systems.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'installation')}" role="button">Install software</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'installation')}" role="button">
+                    Installation
+                </a>
             </p>
         </div>
 
@@ -224,7 +227,7 @@ twitter_statuses_updated = None
                 The only constraint: OpenFisca re-uses must also be free of use.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">Learn about the license</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">About</a>
             </p>
         </div>
 
@@ -239,7 +242,9 @@ twitter_statuses_updated = None
                 good will are welcome.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'contribuer')}" role="button">Contribute</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'contribuer')}" role="button">
+                    Contribute
+                </a>
             </p>
         </div>
     </div>
@@ -247,7 +252,28 @@ twitter_statuses_updated = None
         <a href="${urls.get_url(ctx, 'documentation')}"><em class="lead">See all documentation...</em></a>
     </div>
 
+    <%self:news/>
+
+    <%self:tools/>
+
+    <%self:examples/>
+
+##    <%self:projects/>
+
+    <%self:uses/>
+
+    <%self:twitter/>
+
+    <div class="page-header">
+        <h2>Partners</h2>
+    </div>
+    <%self:partners/>
+</%def>
+
+
+<%def name="examples()" filter="trim">
 <%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
     items = list(itertools.islice(
         (
             item
@@ -259,7 +285,7 @@ twitter_statuses_updated = None
 %>\
     % if items:
     <div class="page-header">
-        <h2>Examples</h2>
+        <h2>Web API Usage Examples</h2>
     </div>
     <p class="text-justify">
        To allow you to adapt to your needs the OpenFisca team
@@ -288,50 +314,62 @@ twitter_statuses_updated = None
         <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">See all examples...</em></a>
     </div>
     % endif
+</%def>
+
+
+<%def name="h1_content()" filter="trim">
+Home
+</%def>
+
+
+<%def name="news()" filter="trim">
 <%
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'outil' in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
-            ),
-        3,
-        ))
+    last_articles = list(itertools.islice(node.iter_latest_articles(), 3))
 %>\
-    % if items:
+  % if last_articles:
     <div class="page-header">
-        <h2>Tools</h2>
+        <h2>News</h2>
     </div>
-    <p class="text-justify">
-        We are currently developing different web visualization, exploration, and debugging tools. This will
-        help you better understand how OpenFisca works, will improve the socio-fiscal formulas, complete missing legislation etc.
-    </p>
-    <p class="text-justify">
-        These tools are also themselves examples of use of the OpenFisca API.
-    </p>
-    <div class="row">
-    % for item in items:
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
-                <div class="caption">
-                    <div class="ellipsis" style="height: 120px">
-                        <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
-                    </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
-                </div>
+    <div class="row" style="margin-bottom: 20px">
+        % for article in last_articles:
+        <article class="col-md-4 col-sm-6">
+            <div class="ellipsis" style="height: 190px">
+            % if article.get('title_url') is None:
+                <h3>${article['title']}</h3>
+            % else:
+                <a href="${article['title_url']}" target="_blank"><h3>${article['title']}</h3></a>
+            % endif
+            % for child_element in article['element']:
+                ${lxml.html.tostring(child_element, encoding = unicode) | n}
+            % endfor
             </div>
-        </div>
-    % endfor
+            <div class="text-muted text-right">
+                ${babel.dates.format_date(
+                    datetime.date(*(
+                        int(fragment)
+                        for fragment in article['updated'].split(u'-')
+                        )),
+                    locale = ctx.lang[0][:2],
+                    )}
+            </div>
+            <p style="margin-top: 10px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Read more</a>
+            </p>
+        </article>
+        % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Explore the available tools...</em></a>
+        <a href="${urls.get_url(ctx, 'actualites')}"><em class="lead">View all the news...</em></a>
+        <br>
+        <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Newsfeed</span></a>
     </div>
     % endif
+</%def>
 
+
+<%def name="projects()" filter="trim">
 <%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
     items = list(itertools.islice(
         (
             item
@@ -356,10 +394,116 @@ twitter_statuses_updated = None
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Explore the different  projects...</em></a>
+        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Explore the different projects...</em></a>
     </div>
+</%def>
+
+
+<%def name="scripts()" filter="trim">
+    <%parent:scripts/>
+    <script src="${urls.get_static_url(ctx, u'/bower/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js')}"></script>
+    <script>
+$(function () {
+    $(".ellipsis").dotdotdot();
+});
+    </script>
+</%def>
+
+
+<%def name="title_content()" filter="trim">
+<%self:brand/>
+</%def>
+
+
+<%def name="tools()" filter="trim">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items()
+            if u'outil' in (item.get('tags') or [])
+	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+            ),
+        3,
+        ))
+%>\
+    % if items:
+    <div class="page-header">
+        <h2>Online Tools</h2>
+    </div>
+    <p class="text-justify">
+        We are currently developing different web visualization, exploration, and debugging tools. This will
+        help you better understand how OpenFisca works, will improve the tax-benefit formulas, complete missing legislation etc.
+    </p>
+    <p class="text-justify">
+        These tools are also themselves examples of use of the OpenFisca web API.
+    </p>
+    <div class="row">
+    % for item in items:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Explore the available tools...</em></a>
+    </div>
+    % endif
+</%def>
+
+
+<%def name="twitter()" filter="trim">
+    % if twitter_api is not None:
+<%
+        global twitter_statuses, twitter_statuses_updated
+        if twitter_statuses_updated is None \
+                or twitter_statuses_updated + datetime.timedelta(minutes = 5) < datetime.datetime.utcnow():
+            try:
+                twitter_statuses = twitter_api.GetUserTimeline('OpenFisca', count = 9)
+            except:
+                log.exception(u"An error occurred while calling twitter_api.GetUserTimeline('OpenFisca')")
+                twitter_statuses = []
+            twitter_statuses_updated = datetime.datetime.utcnow()
+%>\
+        % if twitter_statuses:
+    <div class="page-header">
+        <h2>Tweets <small>@OpenFisca</small></h2>
+    </div>
+    <div class="row" style="margin-bottom: 20px">
+            % for status_index, status in enumerate(twitter_statuses):
+        <div class="col-md-4 col-sm-6" style="height: 120px">
+            <p>${twitter_parser.parse(status.text).html | n}</p>
+            <div class="text-muted text-right">
+                ${babel.dates.format_date(
+                    datetime.date.fromtimestamp(status.created_at_in_seconds),
+                    locale = ctx.lang[0][:2],
+                    )}
+            </div>
+        </div>
+            % endfor
+    </div>
+    <div class="text-right">
+        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">All the tweets...</em></a>
+    </div>
+        % endif
+    % endif
+</%def>
+
+
+<%def name="uses()" filter="trim">
 
 <%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
     items = list(itertools.islice(
         (
             item
@@ -402,104 +546,4 @@ twitter_statuses_updated = None
         <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">See all the uses...</em></a>
     </div>
     % endif
-    % if twitter_api is not None:
-<%
-        global twitter_statuses, twitter_statuses_updated
-        if twitter_statuses_updated is None \
-                or twitter_statuses_updated + datetime.timedelta(minutes = 5) < datetime.datetime.utcnow():
-            try:
-                twitter_statuses = twitter_api.GetUserTimeline('OpenFisca', count = 9)
-            except:
-                log.exception(u"An error occurred while calling twitter_api.GetUserTimeline('OpenFisca')")
-                twitter_statuses = []
-            twitter_statuses_updated = datetime.datetime.utcnow()
-%>\
-        % if twitter_statuses:
-    <div class="page-header">
-        <h2>Tweets <small>@OpenFisca</small></h2>
-    </div>
-    <div class="row" style="margin-bottom: 20px">
-            % for status_index, status in enumerate(twitter_statuses):
-        <div class="col-md-4 col-sm-6" style="height: 120px">
-            <p>${twitter_parser.parse(status.text).html | n}</p>
-            <div class="text-muted text-right">
-                ${babel.dates.format_date(
-                    datetime.date.fromtimestamp(status.created_at_in_seconds),
-                    locale = ctx.lang[0][:2],
-                    )}
-            </div>
-        </div>
-            % endfor
-    </div>
-    <div class="text-right">
-        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">All the tweets...</em></a>
-    </div>
-        % endif
-    % endif
-
-<%
-    last_articles = list(itertools.islice(node.iter_latest_articles(), 3))
-%>\
-    <div class="page-header">
-        <h2>News</h2>
-    </div>
-    <div class="row" style="margin-bottom: 20px">
-    % for article in last_articles:
-        <article class="col-md-4 col-sm-6">
-            <div class="ellipsis" style="height: 190px">
-        % if article.get('title_url') is None:
-                <h3>${article['title']}</h3>
-        % else:
-                <a href="${article['title_url']}" target="_blank"><h3>${article['title']}</h3></a>
-        % endif
-        % for child_element in article['element']:
-                ${lxml.html.tostring(child_element, encoding = unicode) | n}
-        % endfor
-            </div>
-            <div class="text-muted text-right">
-                ${babel.dates.format_date(
-                    datetime.date(*(
-                        int(fragment)
-                        for fragment in article['updated'].split(u'-')
-                        )),
-                    locale = ctx.lang[0][:2],
-                    )}
-            </div>
-            <p style="margin-top: 10px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, article['node'].url_path)}" role="button">Read more</a>
-            </p>
-        </article>
-    % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'actualites')}"><em class="lead">View all the news...</em></a>
-        <br>
-        <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Newsfeed</span></a>
-    </div>
-
-    <div class="page-header">
-        <h2>Partners</h2>
-    </div>
-    <%self:partners/>
-</%def>
-
-
-<%def name="h1_content()" filter="trim">
-${_(u'Home')}
-</%def>
-
-
-<%def name="title_content()" filter="trim">
-<%self:brand/>
-</%def>
-
-
-<%def name="scripts()" filter="trim">
-    <%parent:scripts/>
-    <script src="${urls.get_static_url(ctx, u'/bower/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js')}"></script>
-    <script>
-$(function () {
-    $(".ellipsis").dotdotdot();
-});
-    </script>
 </%def>

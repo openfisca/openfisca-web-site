@@ -24,13 +24,11 @@
 
 
 <%!
-import urlparse
-
 from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/france/fr/tree/contribuer.mako"/>
+<%inherit file="/page.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
@@ -114,7 +112,7 @@ Contribute to OpenFisca
            You can also participate in other projects that make use of
            OpenFisca.
 	   <ul>
-	     <li> The development of socio-fiscal simulators is ongoging for the following countries:
+	     <li> The development of tax-benefit simulators is ongoging for the following countries:
 	       <ul>
 		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a>
 		 <li> <a href="https://github.com/openfisca/openfisca-tunisia">

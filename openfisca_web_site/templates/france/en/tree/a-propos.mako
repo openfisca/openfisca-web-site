@@ -27,7 +27,8 @@
 import datetime
 %>
 
-<%inherit file="/france/fr/tree/a-propos.mako"/>
+
+<%inherit file="/page.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
@@ -37,32 +38,46 @@ ${_(u'About OpenFisca')}
 
 <%def name="page_content()" filter="trim">
         <p>
-            OpenFisca is a free simulation software for the French socio-fiscal system. It allows
+            OpenFisca is a free simulation software for the French tax-benefit system. It allows
             users to easily visualize a great number of taxes and benefits, and to simulate
             the impact of reforms on their households' revenue. It is a educational tool whose
-            aim is to help citizens better understand France's socio-fiscal system.
+            aim is to help citizens better understand France's tax-benefit system.
         </p>
         <p>
-            In the long run, OpenFisca will model the entire socio-fiscal
+            In the long run, OpenFisca will model the entire tax-benefit
             system as well as its progression. It will also be used to calculate
             the impact of various reforms on the state budget.
         </p>
 
-        <h2>${_(u'Copyright')}</h2>
-        <p>${_(u'Copyright © {0} OpenFisca Team').format(u', '.join(
-            unicode(year)
-            for year in range(2011, datetime.date.today().year + 1)
-            ))}</p>
+        <h2>Copyright</h2>
+        <p>
+            ${
+                u'Copyright © {0} OpenFisca Team'.format(u', '.join(
+                    unicode(year)
+                    for year in range(2011, datetime.date.today().year + 1)
+                    ))
+            }
+        </p>
 
-        <h2 id="licence">${_(u'License')}</h2>
-        OpenFisca is a free software under the <a href="http://www.gnu.org/licenses/agpl.html" rel="external">${_(u'GNU Affero General Public License')}</a>.
+        <h2 id="licence">License</h2>
+        <p>
+            OpenFisca is a free software under the
+            <a href="http://www.gnu.org/licenses/agpl.html" rel="external" target="_blank">
+                GNU Affero General Public License
+            </a>
+            version 3 or later.
+        </p>
 
-        <h2>${_(u'Source Code')}</h2>
-        <a href="https://github.com/openfisca" rel="external">https://github.com/openfisca</a>
+        <h2>Source Code</h2>
+        <p>
+            <a href="https://github.com/openfisca" rel="external" target="_blank">https://github.com/openfisca</a>
+        </p>
 
         <h2>Initial developpers</h2>
-        Clément Schaff and Mahdi Ben Jelloul (Centre d'analyse stratégique, Commissariat général à la stratégie et
-        à la prospective)
+        <p>
+            Clément Schaff and Mahdi Ben Jelloul (Centre d'analyse stratégique, then Commissariat général à la stratégie
+            et à la prospective).
+        </p>
 
         <h2>Code contributors (<em>OpenFisca Team</em>)</h2>
         <ul>

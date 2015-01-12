@@ -29,7 +29,7 @@ from openfisca_web_site import urls
 
 
 <%def name="h1_content()" filter="trim">
-Projets
+Utilisations
 </%def>
 
 
@@ -42,17 +42,34 @@ Projets
     items_iter = (
         item
         for item in items_node.iter_items()
-        if u'projet' in (item.get('tags') or [])
+        if u'reform' in (item.get('tags') or [])
         )
 %>\
     <div class="row">
     % for item in items_iter:
-        <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h3>${item['title']}</h3>
-            <p>${item['description']}</p>
-            <p><a class="btn btn-primary" href="${item['source_url']}" role="button">En savoir plus</a></p>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p>${item['description']}</p>
+                    </div>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">See more</a></p>
+                </div>
+            </div>
         </div>
     % endfor
     </div>
 </%def>
 
+
+<%def name="scripts()" filter="trim">
+    <%parent:scripts/>
+    <script src="${urls.get_static_url(ctx, u'/bower/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js')}"></script>
+    <script>
+$(function () {
+    $(".ellipsis").dotdotdot();
+});
+    </script>
+</%def>

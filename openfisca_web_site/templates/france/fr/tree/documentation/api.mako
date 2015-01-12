@@ -24,72 +24,71 @@
 
 
 <%!
-import urlparse
-
 from openfisca_web_site import conf, urls
 %>
 
 
-<%inherit file="/france/fr/tree/api.mako"/>
+<%inherit file="/page-avec-nav.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
-API
+API Web
 </%def>
 
 
 <%def name="page_content()" filter="trim">
-        <h2 id="presentation">Web API presentation</h2>
+        <h2 id="presentation">Présentation de l'API web</h2>
 
-        <p>OpenFisca's web API comprises a few main functions :</p>
+        <p>L'API web OpenFisca est constituée de quelques fonctions principales :</p>
         <ul>
-            <li><a href="#fields"><code>fields</code></a> returns the list of socio-fiscal formulas and variables</li>
-            <li><a href="#field"><code>field</code></a> gives us details on a variable or formula</li>
-            <li><a href="#default-legislation"><code>default-legislation</code></a> returns the socio-fiscal paramaters used by default in formulas</li>
-            <li><a href="#simulate"><code>simulate</code></a> runs the simulation on a standard test case</li>
+            <li><a href="#fields"><code>fields</code></a> retourne la liste des variables et formules socio-fiscales</li>
+            <li><a href="#field"><code>field</code></a> permet de connaître le détail d'une variable ou formule</li>
+            <li><a href="#default-legislation"><code>default-legislation</code></a> retourne les paramètres socio-fiscaux utilisés par défaut dans les formules</li>
+            <li><a href="#simulate"><code>simulate</code></a> lance la simulation sur un cas type</li>
         </ul>
         <p>
-            The web API uses the JSON format, both as input and output. It is compatible with most programming languages.
+            L'API web utilise le format JSON, aussi bien en entrée qu'en sortie et est compatible avec la plupart des langages de programmation.
         </p>
         <p>
-            Each function in the API has its own URL, the path being the following : 
+            Chaque fonction de l'API a sa propre URL, dont le chemin prend la forme :
             <code>b<b>/api/</b><i>(integer: version)</i><b>/</b><i>(string: fonction)</i></code>.
         </p>
         <div class="alert alert-success">
             <p>
-                <span class="glyphicon glyphicon-info-sign"></span> Etalab hosts a public version of this API, open to all, available at the following URL :
-                <code>http://api.openfisca.fr/</code>.
+                <span class="glyphicon glyphicon-info-sign"></span> Etalab héberge et propose une version publique de cette
+                API, ouverte à tous, à l'URL <code>http://api.openfisca.fr/</code>.
             </p>
             <p>
-                To use it, you should add the <code>http://api.openfisca.fr</code> prefix before thee paths above. 
+                Pour l'utiliser, il suffit d'ajouter le préfixe <code>http://api.openfisca.fr</code> devant les chemins des
+                fonctions ci-dessous.
             </p>
         </div>
 
-        <h2 id="detail">Details of the web API functions</h2>
+        <h2 id="detail">Détail des fonctions de l'API web</h2>
 
         <ul>
             <li>
                 <h3 id="default-legislation"><code>/api/1/default-legislation</code></h3>
 
-                <p>Returns the socio-fiscal parameters used by default in formulas.</p>
+                <p>Retourne les paramètres socio-fiscaux utilisés par défaut dans les formules.</p>
 
-                <h4>Request parameters</h4>
+                <h4>Paramètres de la requête</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th>Méthode</th>
                             <td><code>GET</code></td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Call example</h4>
-                <p>Request :</p>
+                <h4>Exemple d'appel</h4>
+                <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/default-legislation HTTP/1.1
 Host: api.openfisca.fr
                  """.strip()}</code></pre>
-                <p>Response :</p>
+                <p>Réponse :</p>
                 <pre><code>${u"""
 HTTP/1.0 200 OK
 Content-Type: application/json; charset=utf-8
@@ -147,27 +146,27 @@ Content-Type: application/json; charset=utf-8
             <li>
                 <h3 id="field"><code>/api/1/field</code></h3>
 
-                <p>Returns details on a variable or formula</p>
+                <p>Retourne le détail d'une variable ou formule.</p>
 
-                <h4>Request parameters</h4>
+                <h4>Paramètres de la requête</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th>Méthode</th>
                             <td><code>GET</code></td>
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Parameters returned as such in the response</td>
+                            <td>Paramètre retourné tel quel dans la réponse</td>
                         </tr>
                         <tr>
                             <th><code>variable</code></th>
-                            <td>Variable name or formula sought</td>
+                            <td>Nom de la variable ou de la formule recherchée</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Call example : <small>Detailed information on the formula calculating disposable income</small></h4>
+                <h4>Exemple d'appel : <small>Détail des informations sur la formule calculant le revenu disponible</small></h4>
                 <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/field?variable=revdisp HTTP/1.1
@@ -248,58 +247,59 @@ Content-Type: application/json; charset=utf-8
 }
                 """.strip()}</code></pre>
 
-                <h4>Examples of use</h4>
-                <p>The navigation tool for the socio-economic formulas uses the API <code>field</code> to display the page for each variable or formula.</p>
-                <p>For example : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">is the formula that calculates the 
-                disposable income</a></p>
+                <h4>Exemple d'utilisation</h4>
+                <p>L'explorateur de variables socio-fiscales utilise le point d'entrée <code>field</code> pour afficher la page de chaque variable ou formule.</p>
+                <p>Par exemple : <a href="${urls.get_url(ctx, 'variables', 'revdisp')}">formule calculant le revenu disponible</a></p>
             </li>
             <li>
                 <h3 id="fields"><code>/api/1/fields</code></h3>
 
-                <p>Returns the list of socio-fiscal formulas and variables.</p>
+                <p>Retourne la liste des variables et formules socio-fiscales.</p>
 
-                <h4>Request parameters</h4>
+                <h4>Paramètres de la requête</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th>Méthode</th>
                             <td><code>GET</code></td>
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Parameter returned as in the response</td>
+                            <td>Paramètre retourné tel quel dans la réponse</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Response content</h4>
+                <h4>Contenu de la réponse</h4>
                 <table class="table">
                     <tbody>
                         <tr>
                             <th><code>columns</code></th>
                             <td>
-                                Contains the list of entry variables, as a dictionary
-                                <code>"<i>(column code)</i>": <i>(dictionnaire describing the column)</i></code>
+                                Contient la liste des variables d'entrée, sous forme de dictionnaire
+                                <code>"<i>(code de la colonne)</i>": <i>(dictionnaire décrivant la colonne)</i></code>
                             </td>
                         </tr>
                         <tr>
                             <th><code>columns_tree</code></th>
                             <td>
-                                Contains the tree of columns entry codes. This tree 
-                                allows to group entry variables by bloc in the user interface.
+                                Contient l'arborescence des codes des colonnes d'entrée. Cette arborescence permet de
+                                regrouper les variables d'entrée par bloc dans l'interface utilisateur
                             </td>
                         </tr>
                         <tr>
-                            <th><code>benefits</code></th>
+                            <th><code>prestations</code></th>
                             <td>
                                 <p>
-                                    Contains the list of formulas (and, as a result, of output variables), as a dictionary
-                                    <code>"<i>(benefits code)</i>": <i>(dictionnary describing the benefits)</i></code>
+                                    Contient la liste des formules (et donc des variables de sortie), sous forme de
+                                    dictionnaire
+                                    <code>"<i>(code de la prestation)</i>": <i>(dictionnaire décrivant la prestation)</i></code>
                                 </p>
                                 <div class="alert alert-success">
                                     <p>
-                                        <strong>Note !</strong> It is possible to enter a value for a specific benefit.
-                                        In this case, the benifit will be treated as an input variable, and its formula will be ignored.
+                                        <strong>Note !</strong> Il est possible de fournir une valeur d'entrée à une prestation.
+                                        Dans ce cas, la prestation est traitée comme une variable d'entrée et sa formule est
+                                        ignorée.
                                     </p>
                                 </div>
                             </td>
@@ -307,8 +307,8 @@ Content-Type: application/json; charset=utf-8
                     </tbody>
                 </table>
 
-                <h4>Call example</h4>
-                <p>Request :</p>
+                <h4>Exemple d'appel</h4>
+                <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/fields HTTP/1.1
 Host: api.openfisca.fr
@@ -638,55 +638,57 @@ Content-Type: application/json; charset=utf-8
                 <h3 id="graph"><code>/api/1/graph</code></h3>
 
                 <p>
-                    Returns the graph of variables and benefits, to calculate the variable given as a parameter .
+                    Retourne le graphe des variables et prestations permettant de calculer la variable donnée en
+                    paramètre.
                 </p>
 
-                <h4>Request parameters</h4>
+                <h4>Paramètres de la requête</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th>Méthode</th>
                             <td><code>GET</code></td>
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Parameter returned as such in the response</td>
+                            <td>Paramètre retourné tel quel dans la réponse</td>
                         </tr>
                         <tr>
                             <th><code>variable</code></th>
                             <td>
-                                Name of the variable (formula) for which we want to obtain the graph.
-                                The <code>revdisp</code> variable is used by default.
+                                Nom de la variable (formule) dont on veut récupérer le graphe. Par défault la variable
+                                <code>revdisp</code> est utilisée.
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Response content</h4>
+                <h4>Contenu de la réponse</h4>
                 <table class="table">
                     <tbody>
                         <tr>
                             <th><code>edges</code></th>
                             <td>
-                                Contains the arcs between the nods
+                                Contient les arcs entre les différents noeuds
                             </td>
                         </tr>
                         <tr>
                             <th><code>nodes</code></th>
                             <td>
-                                Lists the variables and formulas used to calculate the requested variable
+                                Contient la liste des variables et formules intervenant dans le calcul de la variable
+                                demandée
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Call example</h4>
-                <p>Request :</p>
+                <h4>Exemple d'appel</h4>
+                <p>Requête :</p>
                 <pre><code>${u"""
 GET /api/1/graph?variable=zone_apl HTTP/1.1
 Host: api.openfisca.fr
                  """.strip()}</code></pre>
-                <p>Response :</p>
+                <p>Réponse :</p>
                 <pre><code>${u"""
 HTTP/1.0 200 OK
 Content-Type: application/json; charset=utf-8
@@ -723,23 +725,23 @@ Content-Type: application/json; charset=utf-8
 }
                 """.strip()}</code></pre>
 
-                <h4>Example of use</h4>
+                <h4>Exemple d'utilisation</h4>
                 <p>
-                    The<a href="${urls.get_url(ctx, 'graphe-formules')}">graphic animation of the visualization of
-                    dependencies of socio-fiscal formulas and variables </a> uses the API <code>graph</code>.
+                    L'<a href="${urls.get_url(ctx, 'graphe-formules')}">animation graphique de visualisation des
+                    dépendances des variables et des formules socio-fiscales</a> utilise l'API <code>graph</code>.
                 </p>
             </li>
             <li>
                 <h3 id="simulate"><code>/api/1/simulate</code></h3>
 
-                <p>Runs the simulation on a standard test case.</p>
+                <p>Lance la simulation sur un cas type.</p>
 
-                <h4>Request parameters</h4>
-                <p>The request is done in <code>POST</code>JSON format.</p>
+                <h4>Paramètres de la requête</h4>
+                <p>La requête se fait sous forme de <code>POST</code> au format JSON.</p>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>Method</th>
+                            <th>Méthode</th>
                             <td><code>POST</code></td>
                         </tr>
                         <tr>
@@ -754,41 +756,41 @@ Content-Type: application/json; charset=utf-8
                         </tr>
                         <tr>
                             <th><code>context</code></th>
-                            <td>Parameter returned unchanged in the response</td>
+                            <td>Paramètre retourné tel quel dans la réponse</td>
                         </tr>
                         <tr>
                             <th><code>decomposition</code></th>
                             <td>
-                                List of variables to be returned in the response. If no 
-                                decomposition is given, the "waterfall" decomposition is returned.
+                                Liste des variables à retourner dans la réponse. Si aucune décomposition n'est fournie,
+                                la décomposition en cascade (ie "waterfall") est retournée.
                             </td>
                         </tr>
                         <tr>
                             <th><code>scenarios</code></th>
                             <td>
-                                List of scenarios for which to run the simulation
+                                Liste des scénarios sur lesquels lancer la simulation.
                             </td>
                         </tr>
                         <tr>
                             <th><code>validate</code></th>
                             <td>
-                                Boolean, false by default. When it is true,
-                                the simulation is not run. Only a validation of the scenarios is done.
+                                Booléean, faux par défaut. Quand il est vrai, la simulation n'est pas lancée et seule
+                                une validation des scénarios est effectuée.
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h4>Examples of calls</h4>
+                <h4>Exemples d'appels</h4>
                 <p>
-                    A <a href="exemples">dedicated page</a> lists various examples of API calls
-                    <code>simulate</code>, written in various programming languages.
+                    Une <a href="exemples">page dédiée</a> recense différents exemples d'appel de l'API
+                    <code>simulate</code>, écrits dans divers langages de programmation.
                 </p>
 
-                <h4>Examples of use</h4>
+                <h4>Exemples d'utilisations</h4>
                 <p>
-                    Most of the <a href="${urls.get_url(ctx, 'utilisations')}">uses identified</a> of OpenFisca
-                    use the API<code>simulate</code>.
+                    La plupart des <a href="${urls.get_url(ctx, 'utilisations')}">utilisations recensées</a> d'OpenFisca
+                    utilisent l'API <code>simulate</code>.
                 </p>
             </li>
         </ul>
@@ -796,9 +798,9 @@ Content-Type: application/json; charset=utf-8
 
 
 <%def name="nav_content()" filter="trim">
-            <li><a href="#presentation">API presentation/a></li>
+            <li><a href="#presentation">Présentation de l'API</a></li>
             <li>
-                <a href="#detail">Detail of the API functions</a>
+                <a href="#detail">Détail des fonctions de l'API</a>
                 <ul class="nav">
                     <li><a href="#default-legislation"><code>default-legislation</code></a></li>
                     <li><a href="#field"><code>field</code></a></li>

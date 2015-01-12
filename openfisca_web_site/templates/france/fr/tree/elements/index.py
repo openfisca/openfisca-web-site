@@ -31,19 +31,6 @@ from openfisca_web_site import conf, model, urls
 class Node(model.Folder):
     def iter_items(self):
         ctx = self.ctx
-        yield dict(
-            carousel_rank = 5,
-            description = textwrap.dedent(u"""\
-                Infographie représentant les constituants du revenu disponible sous forme de rayons de soleil
-                """).strip(),
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            owner = u"Etalab",
-            source_url = conf['urls.ui'],
-            tags = [u'visualisation'],
-            title = u"Visualisation en rayons du revenu disponible",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-sunburst.png'),
-            updated = u'2014-05-28T16:00:00',
-            )
 #        yield dict(
 #            description = u"""TODO""",
 #            owner = u"TODO",
@@ -140,56 +127,68 @@ class Node(model.Folder):
             updated = u'2014-05-02T00:00:00',
             )
         yield dict(
+            carousel_rank = 1,
+            description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+            owner = u"Etalab",
+            source_url = conf['urls.ui'],
+            tags = [u'outil'],
+            title = ctx._(u'Demonstrator of the simulator'),
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-ui.png'),
+            updated = u'2014-03-01T07:26:00',
+            )
+        yield dict(
             description = u"""Outil de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemple-trace'),
-            tags = [u'exemple', u'outil'],
-            title = u"Outil trace",
+            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/outils/trace'),
+            tags = [u'outil'],
+            title = ctx._(u"Trace tool"),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-trace.png'),
             updated = u'2014-04-27T11:00:00',
-            )
-        yield dict(
-            description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",  # noqa
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemples/waterfall'),
-            tags = [u'exemple'],
-            title = u"Diagramme en cascade",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-waterfall.png'),
-            updated = u'2014-04-21T07:00:00',
-            )
-        yield dict(
-            country = [u'france'],
-            description = u"""Script de comparaison entre les simulations OpenFisca et celles des impôts""",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
-            owner = u"Etalab",
-            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/compare_openfisca_impots.py',  # noqa
-            tags = [u'outil'],
-            title = u"Comparateur impôts",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-comparateur-impots.png'),
-            updated = u'2014-04-01T18:00:00',
             )
         yield dict(
             description = u"Graphe dynamique des dépendances entre les formules socio-fiscales d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../graphe-formules'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/exemples/graphe-formules'),
             tags = [u'exemple'],
-            title = u"Interdépendance des formules d'OpenFisca",
+            title = ctx._(u'Tax-benefit variables interdependence graph'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-graphe-formules.png'),
             updated = u'2014-03-28T09:00:00',
+            )
+        yield dict(
+            description = u"""Diagramme en cascade ("waterfall chart") de décomposition du revenu disponible d'un salarié célibataire sans enfant""",  # noqa
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+            owner = u"Etalab",
+            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/exemples/waterfall'),
+            tags = [u'exemple'],
+            title = ctx._(u'Waterfall diagram'),
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-waterfall.png'),
+            updated = u'2014-04-21T07:00:00',
             )
         yield dict(
             featured = 5,
             description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../variables'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/outils/variables'),
             tags = [u'outil'],
-            title = u"Formules socio-fiscales",
+            title = ctx._(u'Tax-benefit variables explorer'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
             updated = u'2014-03-28T08:00:00',
+            )
+        yield dict(
+            country = [u'france'],
+            carousel_rank = 1,
+            description = u"Simulez tous vos droits en ligne !",
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
+            owner = u"SGMAP",
+            source_url = u'http://mes-aides.gouv.fr/',
+            tags = [u'utilisation'],
+            title = u"mes-aides.gouv.fr",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-mes-aides-gouv-fr.png'),
+            updated = u'2014-10-01T11:01:00',
             )
         yield dict(
             country = [u'france'],
@@ -207,23 +206,11 @@ class Node(model.Folder):
             description = u"""Tableau de décomposition du revenu disponible d'un salarié célibataire sans enfant""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemples/tableau'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/exemples/tableau'),
             tags = [u'exemple'],
-            title = u"Décomposition en tableau",
+            title = ctx._(u'Tabular decomposition'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-tableau.png'),
             updated = u'2014-03-21T07:00:00',
-            )
-        yield dict(
-            country = [u'france'],
-            carousel_rank = 2,
-            description = u"Simulez tous vos droits en ligne !",
-            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
-            owner = u"SGMAP",
-            source_url = u'http://mes-aides.gouv.fr/',
-            tags = [u'utilisation'],
-            title = u"mes-aides.gouv.fr",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-mes-aides-gouv-fr.png'),
-            updated = u'2014-10-01T11:01:00',
             )
         yield dict(
             country = [u'france'],
@@ -254,13 +241,13 @@ class Node(model.Folder):
             updated = u'2014-03-24T19:17:00',
             )
         yield dict(
-            carousel_rank = 1,
-            description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
+            country = [u'france'],
+            description = u"""Script de comparaison entre les simulations OpenFisca et celles des impôts""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = conf['urls.ui'],
+            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/compare_openfisca_impots.py',  # noqa
             tags = [u'outil'],
-            title = u"Simulateur en ligne",
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-ui.png'),
-            updated = u'2014-03-01T07:26:00',
+            title = ctx._(u'Taxes simulations comparator'),
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-comparateur-impots.png'),
+            updated = u'2014-04-01T18:00:00',
             )

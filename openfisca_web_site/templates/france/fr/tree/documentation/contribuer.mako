@@ -24,10 +24,9 @@
 
 
 <%!
-import urlparse
-
 from openfisca_web_site import conf, urls
 %>
+
 
 <%inherit file="/page.mako"/>
 

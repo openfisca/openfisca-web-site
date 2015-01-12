@@ -28,18 +28,18 @@ from openfisca_web_site import urls
 %>
 
 
+<%inherit file="/page.mako"/>
+
+
 <%def name="h1_content()" filter="trim">
 Exemples d'utilisation de l'API web
 </%def>
 
 
-<%inherit file="/page.mako"/>
-
-
 <%def name="page_content()" filter="trim">
     <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h2>
 <%
-    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_node = node.parent.parent.child_from_node(ctx, unique_name = 'elements')
     items_iter = (
         item
         for item in items_node.iter_items()
