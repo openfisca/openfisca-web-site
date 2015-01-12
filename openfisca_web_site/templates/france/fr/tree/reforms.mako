@@ -29,7 +29,7 @@ from openfisca_web_site import urls
 
 
 <%def name="h1_content()" filter="trim">
-Utilisations
+Réformes
 </%def>
 
 
