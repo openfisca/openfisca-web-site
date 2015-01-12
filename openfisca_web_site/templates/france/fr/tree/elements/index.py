@@ -141,7 +141,7 @@ class Node(model.Folder):
             description = u"""Outil de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/outils/trace'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../outils/trace'),
             tags = [u'outil'],
             title = ctx._(u"Trace tool"),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-trace.png'),
@@ -172,7 +172,7 @@ class Node(model.Folder):
             description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../documentation/outils/variables'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../outils/variables'),
             tags = [u'outil'],
             title = ctx._(u'Tax-benefit variables explorer'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),

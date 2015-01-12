@@ -63,7 +63,7 @@ Documentation
             </ul>
         </li>
         <li>
-            <a href="${urls.get_url(ctx, 'documentation', 'outils')}">Outils</a>
+            <a href="${urls.get_url(ctx, 'outils')}">Outils</a>
 <%
     items_iter = (
         item
