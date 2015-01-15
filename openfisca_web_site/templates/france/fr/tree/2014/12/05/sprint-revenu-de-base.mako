@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import urls
+%>
+
+
 <%inherit file="/page.mako"/>
 
 
@@ -61,4 +66,8 @@ Sprint sur le revenu de base <small>le vendredi 19 décembre 2014</small>
   <p class="text-justify">
     Pour plus d'informations, consultez le <b><a href="https://lite5.framapad.org/p/sprint-revenu-de-base">FramaPad avec le planning, les objectifs, etc, du sprint</a></b>.
   </p>
+  <div class="alert alert-info">
+    <strong>Edit :</strong> les résultats du sprint sont disponibles :
+    <a href="${urls.get_url(ctx, '2015', '01', '15', 'resultats-sprint-revenu-de-base')}">cliquez ici !</a>
+  </div>
 </%def>

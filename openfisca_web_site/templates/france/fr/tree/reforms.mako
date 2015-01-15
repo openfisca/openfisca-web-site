@@ -45,17 +45,22 @@ Réformes
         if u'reform' in (item.get('tags') or [])
         )
 %>\
+    <p class="text-justify">
+        Les réformes suivantes ont été développées dans OpenFisca.
+    </p>
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <img src="${item['thumbnail_url']}">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
+        % if item.get('description') is not None:
                         <p>${item['description']}</p>
+        % endif
                     </div>
-                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">See more</a></p>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">En savoir plus</a></p>
                 </div>
             </div>
         </div>

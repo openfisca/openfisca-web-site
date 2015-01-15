@@ -281,11 +281,6 @@ $(function () {
                 <li><a href="${urls.get_url(ctx, 'presentation')}">Présentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'documentation')}">Documentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'outils')}">Outils</a></li>
-                <li>
-                    <a href="${urls.get_url(ctx, 'utilisations')}" title="Projets externes basés sur OpenFisca">
-                        Utilisations
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${urls.get_url(ctx, 'a-propos')}">À propos</a></li>

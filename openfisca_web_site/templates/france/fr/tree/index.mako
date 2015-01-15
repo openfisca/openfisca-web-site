@@ -265,6 +265,8 @@ twitter_statuses_updated = None
 
     <%self:uses/>
 
+    <%self:reforms/>
+
     <%self:twitter/>
 
     <div class="page-header">
@@ -400,6 +402,51 @@ Accueil
     <div class="text-right">
         <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Voir tous les projets...</em></a>
     </div>
+</%def>
+
+
+<%def name="reforms()" filter="trim">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items()
+            if u'reform' in (item.get('tags') or [])
+          	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+            ),
+        3,
+        ))
+%>\
+    % if items:
+    <div class="page-header">
+        <h2>Réformes</h2>
+    </div>
+    <p class="text-justify">
+        Les réformes suivantes ont été développées dans OpenFisca.
+    </p>
+    <div class="row">
+        % for item in items:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+            % if item.get('description') is not None:
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
+            % endif
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+        % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'reforms')}"><em class="lead">Voir toutes les réformes...</em></a>
+    </div>
+    % endif
 </%def>
 
 

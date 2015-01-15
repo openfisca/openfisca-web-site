@@ -47,11 +47,6 @@ from openfisca_web_site import urls
                 <li><a href="${urls.get_url(ctx, 'presentation')}">Presentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'documentation')}">Documentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'outils')}">Tools</a></li>
-                <li>
-                    <a href="${urls.get_url(ctx, 'utilisations')}" title="External projects based on OpenFisca">
-                        Usages
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${urls.get_url(ctx, 'a-propos')}">About</a></li>
