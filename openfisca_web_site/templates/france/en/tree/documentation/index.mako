@@ -46,7 +46,7 @@ Documentation
             <ul>
                 <li><a href="${urls.get_url(ctx, 'documentation', 'api')}">Web API presentation</a></li>
                 <li>
-                    <a href="${urls.get_url(ctx, 'documentation', 'exemples')}">Web API usage examples</a>
+                    <a href="${urls.get_url(ctx, 'exemples')}">Web API usage examples</a>
 <%
     items_iter = (
         item

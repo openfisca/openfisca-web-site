@@ -46,7 +46,7 @@ Documentation
             <ul>
                 <li><a href="${urls.get_url(ctx, 'documentation', 'api')}">Présentation de l'API web</a></li>
                 <li>
-                    <a href="${urls.get_url(ctx, 'documentation', 'exemples')}">Exemples d'utilisation de l'API web</a>
+                    <a href="${urls.get_url(ctx, 'exemples')}">Exemples d'utilisation de l'API web</a>
 <%
     items_iter = (
         item

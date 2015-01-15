@@ -315,7 +315,7 @@ twitter_statuses_updated = None
         % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'documentation', 'exemples')}"><em class="lead">Voir tous les exemples...</em></a>
+        <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">Voir tous les exemples...</em></a>
     </div>
     % endif
 </%def>
