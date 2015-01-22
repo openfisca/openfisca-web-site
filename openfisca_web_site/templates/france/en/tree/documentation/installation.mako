@@ -46,8 +46,8 @@ Installing OpenFisca
         <pre>\
 git clone https://github.com/openfisca/openfisca-core.git
 cd openfisca-core
-python setup.py compile_catalog
-pip install --editable . --user\
+pip install --editable . --user
+python setup.py compile_catalog\
 </pre>
 
         <p>
@@ -75,8 +75,8 @@ pip install --editable . --user\
         <pre>\
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-python setup.py compile_catalog
-pip install --editable . --user\
+pip install --editable . --user
+python setup.py compile_catalog\
 </pre>
 
         <p>
@@ -217,8 +217,8 @@ cd openfisca\
         <pre>\
 git clone https://github.com/openfisca/openfisca-web-api.git
 cd openfisca-web-api
-python setup.py compile_catalog
-pip install --editable .[dev] --user\
+pip install --editable .[dev] --user
+python setup.py compile_catalog\
 </pre>
 
         <p>Run the server:</p>
