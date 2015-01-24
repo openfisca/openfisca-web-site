@@ -88,7 +88,7 @@ python setup.py compile_catalog\
 
 
 <%def name="installing_prerequisites()" filter="trim">
-        <h3 id="installing-prerequisites">Installing prerequisites</h3>
+        <h3 id="installing-prerequisites">Installer les pré-requis</h3>
 
         <p>
             Certains logiciels sont prérequis pour développer avec OpenFisca :
