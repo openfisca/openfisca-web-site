@@ -89,17 +89,19 @@ import datetime
             <li>Grégory Cornu</li>
             <li>Pierre-Yves Cusset</li>
             <li>Félix Defrance</li>
-            <li>Jérôme Desbœufs <span class="label label-success">Nouveau</span></li>
+            <li>Jérôme Desbœufs</li>
             <li>Sarah Dijols</li>
             <li>Alexis Eidelman</li>
             <li>Adrien Fabre</li>
             <li>Emmanuel Gratuze</li>
             <li>Malka Guillot</li>
-            <li>Arnaud Kleinpeter <span class="label label-success">Nouveau</span></li>
+            <li>Arnaud Kleinpeter</li>
             <li>Victor Le Breton</li>
+	    <li>Marion Monnet <span class="label label-success">Nouveau</span></li>
             <li>Adrien Pacifico</li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
+	    <li>Lucile Romanello <span class="label label-success">Nouveau</span></li>
             <li>Stanislas Rybak</li>
             <li>Jérôme Santoul</li>
             <li>Clément Schaff</li>
