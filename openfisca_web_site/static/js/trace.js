@@ -44,13 +44,15 @@ function calculate(apiUrl, simulationJson, onSuccess, onError) {
 }
 
 
-function fetchField(apiUrl, name, onSuccess, onError) {
+function fetchField(apiUrl, name, baseReforms, onSuccess, onError) {
   var fieldUrl = apiUrl + 'api/1/field';
   $.ajax(fieldUrl, {
     data: {
+      reform: baseReforms,
       variable: name,
     },
     dataType: 'json',
+    traditional: true,
     type: 'GET',
     xhrFields: {
       withCredentials: true,
@@ -231,7 +233,7 @@ var TraceTool = React.createClass({
   componentDidMount: function() {
     this.calculate();
   },
-  fetchField: function(variableName) {
+  fetchField: function(variableName, baseReforms) {
     var onError = function(errorMessage) {
       var variableHolderChangeset = {};
       variableHolderChangeset[variableName] = null;
@@ -262,7 +264,7 @@ var TraceTool = React.createClass({
         variableHolderErrorByName: newVariableHolderErrorByName,
       });
     }.bind(this);
-    fetchField(this.props.apiUrl, variableName, onSuccess, onError);
+    fetchField(this.props.apiUrl, variableName, baseReforms, onSuccess, onError);
   },
   findExtrapolatedConsumerTracebacksByVariableId: function(tracebacks) {
     var extrapolatedConsumerTracebacksByVariableId = {};
@@ -346,7 +348,7 @@ var TraceTool = React.createClass({
     );
     this.setState({toggleStatusByVariableId: newToggleStatusByVariableId});
     if (newToggleStatusByVariableId && ! (variableName in this.state.variableHolderByName)) {
-      this.fetchField(variableName);
+      this.fetchField(variableName, this.state.simulationJson.base_reforms);
     }
   },
   render: function() {
