@@ -29,6 +29,7 @@ import itertools
 import urllib
 
 import babel.dates
+import lxml.etree
 import lxml.html
 import logging
 from ttp import ttp
@@ -346,6 +347,15 @@ Accueil
                 <a href="${article['title_url']}" target="_blank"><h3>${article['title']}</h3></a>
             % endif
             % for child_element in article['element']:
+<%
+                if child_element.tag == 'img':
+                    continue
+                lxml.etree.strip_elements(
+                    child_element,
+                    'img',
+                    with_tail = False,
+                    )
+%>
                 ${lxml.html.tostring(child_element, encoding = unicode) | n}
             % endfor
             </div>
