@@ -751,7 +751,7 @@ var VariablePanel = React.createClass({
               </thead>
               <tbody>
                 {
-                  this.props.inputVariables.map(function(inputVariableData, idx) {
+                  this.props.inputVariables && this.props.inputVariables.map(function(inputVariableData, idx) {
                     var argumentName = inputVariableData[0],
                       argumentPeriod = inputVariableData[1];
                     var isComputed = argumentName in this.props.variableByName; // Useful with some dated formulas.
