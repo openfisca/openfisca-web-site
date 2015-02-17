@@ -142,7 +142,16 @@ aria-expanded="false" aria-controls="collapseMacOsX">
                 <div id="collapseMacOsX" class="panel-collapse collapse" role="tabpanel" \
 aria-labelledby="headingMacOsX">
                     <div class="panel-body">
-                        <p>TODO</p>
+                        <p>
+                                Si vous utilisez <a href="http://brew.sh"><code>brew</code></a>,
+                                exécutez <code>brew install python</code> dans un terminal.
+                        </p>
+                        <p>
+                                Sinon, exécutez <code>sudo easy_install pip</code> et
+                                <a href="http://git-scm.com/download/mac">installez Git</a>.
+                        </p>
+                        
+                        <p>Ensuite, exécutez la commande <code>pip install --upgrade setuptools</code>.</p>
                     </div>
                 </div>
             </div>
