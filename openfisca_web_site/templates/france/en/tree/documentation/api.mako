@@ -794,7 +794,7 @@ Content-Type: application/json; charset=utf-8
 
 
 <%def name="nav_content()" filter="trim">
-            <li><a href="#presentation">API presentation/a></li>
+            <li><a href="#presentation">API presentation</a></li>
             <li>
                 <a href="#detail">Detail of the API functions</a>
                 <ul class="nav">
