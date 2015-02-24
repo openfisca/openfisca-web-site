@@ -92,12 +92,15 @@ window.defaultSimulationText = ${simulation_text or u'''\
             "declarants": ["ind0", "ind1"]
           }
         ],
-        "individus": {
-          "ind0": {
+        "individus": [
+          {
+            "id": "ind0",
             "sali": 15000
           },
-          "ind1": {}
-        },
+          {
+            "id": "ind1"
+          }
+        ],
         "menages": [
           {
             "personne_de_reference": "ind0",
