@@ -23,13 +23,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-<%inherit file="/page-avec-nav.mako"/>
-
-
-<%!
-branches = ['prod', 'master', 'next']
-repos = ['openfisca-core', 'openfisca-france', 'openfisca-tunisia', 'openfisca-web-api', 'openfisca-web-ui']
-%>
+<%inherit file="/page.mako"/>
 
 
 <%def name="h1_content()" filter="trim">
@@ -37,17 +31,16 @@ Build Status
 </%def>
 
 
-<%def name="nav_content()" filter="trim">
-% for repo in repos:
-            <li>
-                <a href="#${repo}">${repo}</a>
-            </li>
-% endfor
+<%def name="page_content()" filter="trim">
+${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-core")}
+${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-france")}
+${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
+${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-web-api")}
+${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-web-ui")}
 </%def>
 
 
-<%def name="page_content()" filter="trim">
-% for repo in repos:
+<%def name="repo_table(branches, repo)" filter="trim">
 <h2 id="${repo}">${repo}</h2>
 <table class="table table-bordered table-hover table-striped">
   <thead>
@@ -63,7 +56,6 @@ Build Status
   </tr>
     % endfor
 </table>
-% endfor
 </%def>
 
 
