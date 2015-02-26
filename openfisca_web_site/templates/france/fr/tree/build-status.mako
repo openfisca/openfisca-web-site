@@ -32,8 +32,8 @@ Build Status
 
 
 <%def name="page_content()" filter="trim">
-${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-core")}
-${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-france")}
+${self.repo_table(branches = ['prod', 'master', 'oldmaster'], repo = "openfisca-core")}
+${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-france")}
 ${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
 ${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-web-api")}
 ${self.repo_table(branches = ['prod', 'master'], repo = "openfisca-web-ui")}
