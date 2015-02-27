@@ -107,14 +107,21 @@ from openfisca_web_site import conf, urls
         <h2>Historique d'OpenFisca</h2>
 
         <p>
-          Le développement d'OpenFisca a débuté au <abbr title="Centre d'analyse stratégique">CAS</abbr>,
-          rebaptisé <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>
-          au printemps 2013, avec le soutien de l'<abbr title="Institut d'économie publique">IDEP</abbr>
-          depuis mai 2011.
-          Le code source a été diffusé sous une licence libre en novembre 2011.
-          Initialement OpenFisca a été développé sous forme d'application de bureau
-          (utilisant la librairie <a href="http://qt-project.org/" rel="external" target="_blank">Qt</a>)
-          avec une API Python.
+            Le développement d'OpenFisca a débuté en mai 2011 au
+            <a href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
+              <abbr title="Centre d'analyse stratégique">CAS</abbr>
+              (rebaptisé France Stratégie /
+              <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>
+              en avril 2013)
+            </a>
+            avec le soutien de
+            <a href="http://www.idep-fr.org/" rel="external" target="_blank">
+                l'<abbr title="Institut d'économie publique">IDEP</abbr>
+            </a>.
+            Le code source a été diffusé sous une licence libre en novembre 2011.
+            Initialement OpenFisca a été développé sous forme d'application de bureau
+            (utilisant la librairie <a href="http://qt-project.org/" rel="external" target="_blank">Qt</a>)
+            avec une API Python.
         </p>
         <p>
             Début 2014, quand <a href="https://www.etalab.gouv.fr/" rel="external" target="_blank">Etalab</a>
@@ -140,10 +147,18 @@ from openfisca_web_site import conf, urls
         <p>
             Depuis cette date, le logiciel est développé intensivement par
             <a href="https://www.etalab.gouv.fr/" rel="external" target="_blank">Etalab</a>.
-            Parallèlement le <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>,
-            appuyé par l'<abbr title="Institut d'économie publique">IDEP</abbr>
-            et l'<abbr title="Institut des politiques publiques">IPP</abbr>, améliore le modèle économique et
-            actualise la législation socio-fiscale française.
+            Parallèlement le
+            <a href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
+                <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>
+            </a>,
+            appuyé par
+            <a href="http://www.idep-fr.org/" rel="external" target="_blank">
+                l'<abbr title="Institut d'économie publique">IDEP</abbr>
+            </a>
+            et
+            <a href="http://www.ipp.eu/" rel="external" target="_blank">
+                l'<abbr title="Institut des politiques publiques">IPP</abbr>
+            </a>, améliore le modèle économique et actualise la législation socio-fiscale française.
         </p>
         <p>
             Actuellement (mars 2014), la version Qt n'est plus maintenue et seule la version web fait l'objet de

@@ -98,9 +98,17 @@ from openfisca_web_site import conf, urls
         <h2>History of OpenFisca</h2>
 
         <p>
-            The development of OpenFisca began in May 2011 at the <abbr title="Centre d'analyse stratégique">CAS</abbr>,
-            renamed <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr> in spring 2013,
-            with the support of the <abbr title="Institut d'économie publique">IDEP</abbr> since May 2011.
+            The development of OpenFisca began in May 2011 at the
+            <a href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
+                <abbr title="Centre d'analyse stratégique">CAS</abbr>
+                (renamed France Stratégie /
+                <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>
+                in April 2013)
+            </a>
+            with the support of the
+            <a href="http://www.idep-fr.org/" rel="external" target="_blank">
+                l'<abbr title="Institut d'économie publique">IDEP</abbr>
+            </a>.
             The source code has been released under a free license in November 2011.
             OpenFisca was originally developed as a desktop application
             (using <a href="http://qt-project.org/" rel="external" target="_blank">Qt</a> library)
@@ -131,9 +139,17 @@ from openfisca_web_site import conf, urls
             Since then, the software is being developed extensively by
             <a href="https://www.etalab.gouv.fr/" rel="external" target="_blank">Etalab</a>.
             Meanwhile the economic model is being improved and the tax-benefit legislation updated by the
-            <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>,
-            with the help of the <abbr title="Institut d'économie publique">IDEP</abbr> and the
-            <abbr title="Institut des politiques publiques">IPP</abbr>.
+            <a href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
+                <abbr title="Commissariat général à la stratégie et à la prospective">CGSP</abbr>
+            </a>,
+            with the help of the
+            <a href="http://www.idep-fr.org/" rel="external" target="_blank">
+                <abbr title="Institut d'économie publique">IDEP</abbr>
+            </a>
+            and the
+            <a href="http://www.ipp.eu/" rel="external" target="_blank">
+                <abbr title="Institut des politiques publiques">IPP</abbr>
+            </a>.
         </p>
         <p>
             As of now (March 2014), the Qt version is no longer maintained and only the web version is being developped.
