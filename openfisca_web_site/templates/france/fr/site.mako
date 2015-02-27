@@ -159,23 +159,23 @@ ${conf['realm']}
     <div class="row" style="margin-bottom: 20px">
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
-            <a class="partner" href="http://www.etalab.gouv.fr/" target="_blank">
+            <a class="partner" href="http://www.etalab.gouv.fr/" rel="external" target="_blank">
                 <img alt="Logo d'Etalab" class="partner" src="elements/images/logo-etalab.png"></img>
             </a>
-##            <a href="http://www.etalab.gouv.fr/" target="_blank">
+##            <a href="http://www.etalab.gouv.fr/" rel="external" target="_blank">
 ##                <h4>Etalab</h4>
 ##            </a>
 ##            <p>
 ##                Service du premier ministre chargé de l'ouverture des données publiques et du développement de
-##                la plateforme française Open Data <a href="http://data.gouv.fr" target="_blank">data.gouv.fr</a>
+##                la plateforme française Open Data <a href="http://data.gouv.fr/" rel="external" target="_blank">data.gouv.fr</a>
 ##            </p>
         </div>
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
-            <a class="partner" href="http://www.strategie.gouv.fr/" target="_blank">
+            <a class="partner" href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
                 <img alt="Logo de France Stratégie" class="partner" src="elements/images/logo-france-strategie.jpg"></img>
             </a>
-##            <a href="http://www.strategie.gouv.fr/" target="_blank">
+##            <a href="http://www.strategie.gouv.fr/" rel="external" target="_blank">
 ##                <h4>Commissariat général à la stratégie et à la prospective</h4>
 ##            </a>
 ##            <p>
@@ -196,10 +196,10 @@ ${conf['realm']}
         </div>
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
-            <a class="partner" href="http://www.idep-fr.org/" target="_blank">
+            <a class="partner" href="http://www.idep-fr.org/" rel="external" target="_blank">
                 <img alt="Logo de l'Institut d'économie publique (IDEP)" class="partner" src="elements/images/logo-idep.png"></img>
             </a>
-##            <a href="http://www.idep-fr.org/" target="_blank">
+##            <a href="http://www.idep-fr.org/" rel="external" target="_blank">
 ##                <h4>Institut d'économie publique</h4>
 ##            </a>
 ##            <p>
@@ -222,18 +222,18 @@ ${conf['realm']}
         </div>
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
-            <a class="partner" href="http://www.ipp.eu/" target="_blank">
+            <a class="partner" href="http://www.ipp.eu/" rel="external" target="_blank">
                 <img alt="Logo de l'Institut des politiques publiques (IPP)" class="partner" src="elements/images/logo-ipp.png"></img>
             </a>
-##            <a href="http://www.ipp.eu/" target="_blank">
+##            <a href="http://www.ipp.eu/" rel="external" target="_blank">
 ##                <h4>Institut des politiques publiques</h4>
 ##            </a>
 ##            <p>
 ##                L'Institut des politiques publiques (IPP) est développé dans le cadre d'un partenariat
 ##                scientifique entre
-##                <a href="http://www.parisschoolofeconomics.eu/" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
+##                <a href="http://www.parisschoolofeconomics.eu/" rel="external" target="_blank"><abbr title="Paris School of Economics">PSE</abbr></a>
 ##                et le
-##                <a href="http://www.crest.fr/" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
+##                <a href="http://www.crest.fr/" rel="external" target="_blank"><abbr title="Centre de recherche en économie et statistiques">CREST</abbr></a>.
 ##                L'IPP vise à promouvoir l'analyse et l'évaluation  quantitatives des politiques publiques en
 ##                s'appuyant sur les méthodes les plus récentes de la recherche en économie.
 ##            </p>
