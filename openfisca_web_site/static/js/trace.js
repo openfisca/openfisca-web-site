@@ -410,7 +410,7 @@ var TraceTool = React.createClass({
                 {'URL de l\'API de simulation : ' + this.props.apiUrl + 'api/1/calculate '}
                 (<a href={this.props.apiDocUrl + '#calculate'} rel="external" target="_blank">documentation</a>)
               </p>
-              <p>Paramètre l'URL <code>api_url</code></p>
+              <p>Paramètre l'URL <code>api_url</code> (exemple : http://www.openfisca.fr/outils/trace?api_url=http://localhost:2000/)</p>
               <AutoSizedTextArea
                 disabled={this.state.simulationInProgress}
                 onChange={this.handleSimulationTextChange}
