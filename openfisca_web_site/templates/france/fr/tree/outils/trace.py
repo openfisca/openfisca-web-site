@@ -108,6 +108,7 @@ class Node(model.Page):
                     )
             api_url = data['api_url']
             if data['simulation_url'] is not None:
+                # TODO Implement this call client-side to allow URLs with localhost
                 request = urllib2.Request(data['simulation_url'], headers = {'User-Agent': 'OpenFisca-Trace-Tool'})
                 try:
                     response = urllib2.urlopen(request)
