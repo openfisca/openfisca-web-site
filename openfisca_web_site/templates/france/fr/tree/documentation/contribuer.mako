@@ -146,12 +146,8 @@ Contribuer à OpenFisca
 	     <li> Il existe de nombreux projets autour d'OpenFisca
 	     allant d'utilisation d'OpenFisca avec des données
 	     d'enquêtes à des interfaces utilisateurs utilisant le
-	     web. Certains de ses projets sont décrits sur la page
-	     des <a href="${urls.get_url(ctx, 'projets')}">
-	     projets </a>, tandis que l'ensemble des projets est
-	     disponible sur <a href="https://github.com/openfisca"> la
-	     page github d'OpenFisca </a>.
-	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca"> R</a>.
+	     web. Cf <a href="https://github.com/openfisca">https://github.com/openfisca</a>.
+	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca">R</a>.
 	   </ul>
         </p>
 
