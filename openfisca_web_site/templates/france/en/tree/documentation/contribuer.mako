@@ -120,12 +120,8 @@ Contribute to OpenFisca
 		   ## <li> <a href="https://github.com/openfisca/openfisca-tunisia-pension">
 	       </ul>
 	     <li> Other projetcs built around OpenFisca (use of survey
-	     data, web user interface) can be found on the
-	     <a href="${urls.get_url(ctx, 'projets')}"> project
-	     page</a>. The extensive list of OpenFisca related
-	     projects are available on
+	     data, web user interface) can be found on
 	     <a href="https://github.com/openfisca"> the OpenFisca
-	     github page</a>.
 	     <li> Using OpenFisca through <a href="https://github.com/blaquans/ropenfisca"> R</a>.
 	   </ul>
         </p>
