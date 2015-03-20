@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenFisca-Web-Site 0.2dev\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-01-12 18:56+0100\n"
+"POT-Creation-Date: 2015-03-20 15:24+0100\n"
 "PO-Revision-Date: 2015-01-12 12:03+0100\n"
 "Last-Translator: Christophe Benz <christophe.benz@data.gouv.fr>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -113,7 +113,6 @@ msgid "Page \"{}\" not found"
 msgstr "Page \"{}\" non trouvée"
 
 #: openfisca_web_site/templates/france/fr/site.mako:70
-#: openfisca_web_site/templates/france/fr/tree/variante.mako:402
 msgid "Home"
 msgstr "Accueil"
 
@@ -125,19 +124,19 @@ msgstr "Erreur !"
 msgid "Please, correct the informations below."
 msgstr "Veuillez corriger les informations ci-dessous."
 
-#: openfisca_web_site/templates/france/fr/site.mako:303
+#: openfisca_web_site/templates/france/fr/site.mako:298
 msgid "France"
 msgstr "France"
 
-#: openfisca_web_site/templates/france/fr/site.mako:304
+#: openfisca_web_site/templates/france/fr/site.mako:299
 msgid "Tunisia"
 msgstr "Tunisie"
 
-#: openfisca_web_site/templates/france/fr/site.mako:329
+#: openfisca_web_site/templates/france/fr/site.mako:324
 msgid "Other countries"
 msgstr "Autres pays"
 
-#: openfisca_web_site/templates/france/fr/site.mako:388
+#: openfisca_web_site/templates/france/fr/site.mako:383
 msgid "Skip to main content"
 msgstr "Sauter au contenu principal"
 
@@ -177,7 +176,7 @@ msgstr "JSON invalide dans le body de la requête POST"
 msgid "Bad parameters in request"
 msgstr "Mauvais paramètres dans la requête"
 
-#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:116
+#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:117
 msgid "Unable to open simulation_url"
 msgstr "Impossible d'ouvrir simulation_url"
 
