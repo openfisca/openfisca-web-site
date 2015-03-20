@@ -369,12 +369,12 @@ Content-Type: application/json; charset=utf-8
       "name": "prenom"
     },
     ...
-    "so": {
+    "statut_occupation": {
       "@type": "Enumeration",
       "default": 0,
       "entity": "men",
       "label": "Statut d'occupation",
-      "name": "so",
+      "name": "statut_occupation",
       "labels": {
         "0": "Non renseigné",
         "1": "Accédant à la propriété",
@@ -575,7 +575,7 @@ Content-Type: application/json; charset=utf-8
           "label": "Principal",
           "children": [
             "loyer",
-            "so",
+            "statut_occupation",
             "code_postal"
           ]
         },
