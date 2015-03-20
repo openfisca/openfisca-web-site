@@ -262,8 +262,6 @@ twitter_statuses_updated = None
 
     <%self:examples/>
 
-##    <%self:projects/>
-
     <%self:uses/>
 
     <%self:reforms/>
@@ -380,38 +378,6 @@ Accueil
         <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Fil d'actualité</span></a>
     </div>
     % endif
-</%def>
-
-
-<%def name="projects()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'projet' in (item.get('tags') or [])
-            ),
-        3,
-        ))
-%>\
-    <div class="page-header">
-        <h2>Projets</h2>
-    </div>
-    <div class="row" style="margin-bottom: 20px">
-    % for item in items:
-        <div class="col-md-4 col-sm-6" style="height: 180px">
-            <h3>${item['title']}</h3>
-            <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a>
-            </p>
-        </div>
-    % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'projets')}"><em class="lead">Voir tous les projets...</em></a>
-    </div>
 </%def>
 
 
