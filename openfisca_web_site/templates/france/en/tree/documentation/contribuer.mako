@@ -56,14 +56,14 @@ Contribute to OpenFisca
 	  <ul>
 	    <li> Share your uses: you are welcome to keep us informed of the uses
 	    you make of the API including visualizations you may create.
-	    We'd love to be able to include them on the OpenFisca website.
+	    We'd love to be able to include them on the OpenFisca website.</li>
 
 	   <li> Suggest features: please tell us about the improvements
-	   to the API you would like to see, so that we can make it meet your needs.
+	   to the API you would like to see, so that we can make it meet your needs.</li>
 
 	   <li> Participate directly in the
 	   <a href="https://github.com/openfisca/openfisca-web-api">
-	   API's development</a>.
+	   API's development</a>.</li>
 	  </ul>
 
 	</p>
@@ -74,12 +74,12 @@ Contribute to OpenFisca
 	   You can contribute to the development of OpenFisca by reporting errors you would find on the calculation of benefits and taxes.
 	   To enable the OpenFisca developers to solve your problems quickly, please follow these few steps:
 	   <ol>
-	     <li> try to create a minimal standard case that generates the error
-	     <li> verify <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> that this error is not already listed  </a> ;
-	     <li> try to identify the source of the error by inspecting <a href="${urls.get_url(ctx, 'variables')}"> the formulas for the different benefits and taxes</a> ;
+	     <li> try to create a minimal standard case that generates the error</li>
+	     <li> verify <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> that this error is not already listed  </a> ;</li>
+	     <li> try to identify the source of the error by inspecting <a href="${urls.get_url(ctx, 'variables')}"> the formulas for the different benefits and taxes</a> ;</li>
 	     <li> report the error, possibly with additional information concerning <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open">
                the page dedicated to the of collaborative development website </a>. If possible, please provide the code that allows to reproduce the error
-               or the json file of the standard case you created.
+               or the json file of the standard case you created.</li>
 	   </ol>
 	</p>
 
@@ -90,10 +90,10 @@ Contribute to OpenFisca
             social benefits to maintain and improve the software. You can help by following these steps:
 
 	    <ol>
-	      <li> identify the incomplete or missing taxes or benefits;
-              <li> gather the necessary documentation to fix this issue
+	      <li> identify the incomplete or missing taxes or benefits;</li>
+              <li> gather the necessary documentation to fix this issue</li>
 	      <li> propose patches that implement the incomplete or missing benefits and
-	      taxes on<a href="https://github.com/openfisca/openfisca-${conf['country']}/"> collaborative development website</a>.
+	      taxes on<a href="https://github.com/openfisca/openfisca-${conf['country']}/"> collaborative development website</a>.</li>
 	    </ol>
 	</p>
 
@@ -112,17 +112,16 @@ Contribute to OpenFisca
            You can also participate in other projects that make use of
            OpenFisca.
 	   <ul>
-	     <li> The development of tax-benefit simulators is ongoging for the following countries:
+	     <li> The development of tax-benefit simulators is ongoging for the following countries:</li>
 	       <ul>
-		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a>
-		 <li> <a href="https://github.com/openfisca/openfisca-tunisia">
-		   Tunisia </a>
-		   ## <li> <a href="https://github.com/openfisca/openfisca-tunisia-pension">
+		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a></li>
+		 <li> <a href="https://github.com/openfisca/openfisca-tunisia"> Tunisia </a></li>
 	       </ul>
 	     <li> Other projetcs built around OpenFisca (use of survey
 	     data, web user interface) can be found on
 	     <a href="https://github.com/openfisca"> the OpenFisca
-	     <li> Using OpenFisca through <a href="https://github.com/blaquans/ropenfisca"> R</a>.
+	     github page</a>.</li>
+	     <li> Using OpenFisca through <a href="https://github.com/blaquans/ropenfisca"> R</a>.</li>
 	   </ul>
         </p>
 

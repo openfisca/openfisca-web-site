@@ -61,15 +61,15 @@ Contribuer à OpenFisca
 	   tenir informer des utilisations que vous faîtes de l'API et
 	   notamment des visualisations que vous pourriez
 	   produire. Nous serions ravis de pouvoir les recenser sur le
-	   site d'OpenFisca.
+	   site d'OpenFisca.</li>
 
 	   <li> Suggérer des fonctionnalités : n'hésitez pas à nous
 	   faire part des améliorations à apporter à l'API afin qu'elle
-	   puisse répondre au mieux à vos besoins.
+	   puisse répondre au mieux à vos besoins.</li>
 
 	   <li> Participer directement au
 	   <a href="https://github.com/openfisca/openfisca-web-api">
-	   développement de l'API</a>.
+	   développement de l'API</a>.</li>
 	  </ul>
 
 	</p>
@@ -85,18 +85,18 @@ Contribuer à OpenFisca
 	   suivante :
 	   <ol>
 	     <li> essayer de réaliser un cas-type minimal permettant
-	       de mettre en évidence l'erreur rencontrée
-	     <li> vérifier que <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> cette erreur n'est pas déjà répertoriée  </a> ;
+	       de mettre en évidence l'erreur rencontrée</li>
+	     <li> vérifier que <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open"> cette erreur n'est pas déjà répertoriée  </a> ;</li>
 	     <li> tenter d'identifier la source de l'erreur en
 	   inspectant <a href="${urls.get_url(ctx, 'variables')}"> les
-	   formules des différents prestations et impôts</a> ;
+	   formules des différents prestations et impôts</a> ;</li>
 	     <li> rapporter l'erreur accompagnée éventuellement
                d'informations complémentaires
                sur <a href="https://github.com/openfisca/openfisca-${conf['country']}/issues?state=open">
                la page consacrée sur le site de développement
                collaboratif</a> en fournissant si possible le code
                permettant de reproduire l'erreur ou le fichier json du
-               cas type considéré.
+               cas type considéré.</li>
 	   </ol>
 	</p>
 
@@ -111,13 +111,13 @@ Contribuer à OpenFisca
 
 	    <ol>
 	      <li> identifier les prestations ou les impôts incomplets
-	      ou manquants ;
+	      ou manquants ;</li>
               <li> rassembler la documentation nécessaire à l'écriture
-              des formules permettant de les calculer ;
+              des formules permettant de les calculer ;</li>
 	      <li> proposer les correctifs implémentant les
 	      prestations et les impôts incomplets ou manquants
 	      sur <a href="https://github.com/openfisca/openfisca-${conf['country']}/">le
-	      site de développement collaboratif</a>.
+	      site de développement collaboratif</a>.</li>
 	    </ol>
 	</p>
 
@@ -136,18 +136,17 @@ Contribuer à OpenFisca
            Vous pouvez également participer à d'autres projets faisant usage d'OpenFisca.
 	   <ul>
 	     <li> Le développement des systèmes
-	     sociaux fiscaux est plus ou mois achevé pour les pays suivants :
+	     sociaux fiscaux est plus ou mois achevé pour les pays suivants :</li>
 	       <ul>
-		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a>
+		 <li> <a href="https://github.com/openfisca/openfisca-france"> France </a></li>
 		 <li> <a href="https://github.com/openfisca/openfisca-tunisia">
-		   Tunisie </a>
-		   ## <li> <a href="https://github.com/openfisca/openfisca-tunisia-pension">
+		   Tunisie </a></li>
 	       </ul>
 	     <li> Il existe de nombreux projets autour d'OpenFisca
 	     allant d'utilisation d'OpenFisca avec des données
 	     d'enquêtes à des interfaces utilisateurs utilisant le
-	     web. Cf <a href="https://github.com/openfisca">https://github.com/openfisca</a>.
-	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca">R</a>.
+	     web. Cf <a href="https://github.com/openfisca">https://github.com/openfisca</a>.</li>
+	     <li> Une utilisation d'OpenFisca à travers <a href="https://github.com/blaquans/ropenfisca">R</a>.</li>
 	   </ul>
         </p>
 
