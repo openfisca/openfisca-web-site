@@ -783,8 +783,9 @@ Content-Type: application/json; charset=utf-8
 
                 <h4>Exemples d'appels</h4>
                 <p>
-                    Une <a href="exemples">page dédiée</a> recense différents exemples d'appel de l'API
-                    <code>simulate</code>, écrits dans divers langages de programmation.
+                    Une <a href="${urls.get_url(ctx, 'exemples')}">page dédiée</a>
+                    recense différents exemples d'appel de l'API <code>simulate</code>, écrits dans divers
+                    langages de programmation.
                 </p>
 
                 <h4>Exemples d'utilisations</h4>
