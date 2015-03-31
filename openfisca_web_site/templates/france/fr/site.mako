@@ -117,6 +117,7 @@ ${conf['realm']}
                         self.filename[len(conf['app_dir']):]}">Source de la page</a></li>
                 <li><a href="http://stats.data.gouv.fr/index.php?idSite=4">Statistiques du site</a></li>
                 <li><a href="${urls.get_url(ctx, 'mentions-legales')}">Mentions légales</a></li>
+                <li><a href="${urls.get_url(ctx, 'build-status')}">État du code source</a></li>
             </ul>
         </div>
     </footer>
