@@ -405,7 +405,6 @@ Accueil
         % for item in items:
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>

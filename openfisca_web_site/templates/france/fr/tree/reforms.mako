@@ -52,7 +52,6 @@ Réformes
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="${item['thumbnail_url']}">
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
