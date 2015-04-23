@@ -77,7 +77,7 @@ class Node(model.Folder):
             owner = u"Etalab",
             source_url = conf['urls.legislation'],
             tags = [u'outil'],
-            title = ctx._(u'Tax-benefit variables explorer'),
+            title = ctx._(u'Legislation explorer'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
             updated = u'2014-03-28T08:00:00',
             )
