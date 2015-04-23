@@ -93,7 +93,7 @@ def load_environment(global_conf, app_conf):
                     full = True),
                 conv.not_none,
                 ),
-            'urls.ui': conv.pipe(
+            'urls.legislation': conv.pipe(
                 conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
                     full = True),
                 conv.not_none,
@@ -116,6 +116,11 @@ def load_environment(global_conf, app_conf):
                         conv.not_none,
                         )
                     ),
+                ),
+            'urls.ui': conv.pipe(
+                conv.make_input_to_url(error_if_fragment = True, error_if_path = True, error_if_query = True,
+                    full = True),
+                conv.not_none,
                 ),
             },
         default = 'drop',
