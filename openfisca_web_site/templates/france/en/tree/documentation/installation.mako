@@ -58,16 +58,7 @@ python setup.py compile_catalog\
 
 
 <%def name="installing_openfisca_france()" filter="trim">
-        <h3 id="installing-openfisca-france">Installing the Tax-Benefit System</h3>
-
-        <p>
-            For the purpose of this documentation, we are going to install the
-            <a href="https://github.com/openfisca/openfisca-france" rel="external" target="_blank">
-                french tax-benefit system
-            </a>
-            but you can also install the
-            <a href="https://github.com/openfisca/openfisca-tunisia" rel="external" target="_blank">tunisian one</a>.
-        </p>
+        <h3 id="installing-openfisca-france">Installing the French Tax-Benefit System</h3>
 
         <p>
             Clone the OpenFisca-France Git repository on your machine and install the Python package.
@@ -80,6 +71,13 @@ cd openfisca-france
 pip install --editable .[tests] --user
 python setup.py compile_catalog\
 </pre>
+
+        <p>
+            For your information, the Tunisian tax-benefit system is also available:
+            <a href="https://github.com/openfisca/openfisca-tunisia" rel="external" target="_blank">
+                OpenFisca-Tunisia
+            </a>.
+        </p>
 </%def>
 
 

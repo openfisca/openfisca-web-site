@@ -58,19 +58,14 @@ python setup.py compile_catalog\
 
 
 <%def name="installing_openfisca_france()" filter="trim">
-        <h3 id="installing-openfisca-france">Installer le Système Socio-Fiscal</h3>
+        <h3 id="installing-openfisca-france">Installer le Système Socio-Fiscal français</h3>
 
         <p>
-            Dans le cadre de cette documentation, nous allons installer le
+            Cloner le dépôt Git
             <a href="https://github.com/openfisca/openfisca-france" rel="external" target="_blank">
-                système socio-fiscal français
+                OpenFisca-France
             </a>
-            mais vous pouvez aussi installer le
-            <a href="https://github.com/openfisca/openfisca-tunisia" rel="external" target="_blank">tunisien</a>.
-        </p>
-
-        <p>
-            Cloner le dépôt Git OpenFisca-France sur votre machine et installer le paquet Python.
+            sur votre machine et installer le paquet Python.
         </p>
 
         <pre>\
@@ -80,6 +75,13 @@ cd openfisca-france
 pip install --editable .[tests] --user
 python setup.py compile_catalog\
 </pre>
+
+        <p>
+            Pour information, le système socio-fiscal tunisien est également disponible :
+            <a href="https://github.com/openfisca/openfisca-tunisia" rel="external" target="_blank">
+                OpenFisca-Tunisia
+            </a>.
+        </p>
 </%def>
 
 
