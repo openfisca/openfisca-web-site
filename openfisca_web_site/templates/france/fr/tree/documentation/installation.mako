@@ -80,12 +80,6 @@ cd openfisca-france
 pip install --editable . --user
 python setup.py compile_catalog\
 </pre>
-
-        <p>
-            Après l'installation d'OpenFisca-France, vous pouvez commencer à développer avec OpenFisca !
-            Veuillez consulter la <a href="${urls.get_url(ctx, 'developing')}">documentation de développement</a>
-            pour commencer.
-        </p>
 </%def>
 
 
@@ -150,7 +144,7 @@ aria-labelledby="headingMacOsX">
                                 Sinon, exécutez <code>sudo easy_install pip</code> et
                                 <a href="http://git-scm.com/download/mac">installez Git</a>.
                         </p>
-                        
+
                         <p>Ensuite, exécutez la commande <code>pip install --upgrade setuptools</code>.</p>
                     </div>
                 </div>

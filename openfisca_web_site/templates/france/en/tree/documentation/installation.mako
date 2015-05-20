@@ -80,11 +80,6 @@ cd openfisca-france
 pip install --editable . --user
 python setup.py compile_catalog\
 </pre>
-
-        <p>
-            Once OpenFisca-France is installed, you can start developing with OpenFisca!
-            Please consult the <a href="${urls.get_url(ctx, 'developing')}">developing documentation</a> to start.
-        </p>
 </%def>
 
 
