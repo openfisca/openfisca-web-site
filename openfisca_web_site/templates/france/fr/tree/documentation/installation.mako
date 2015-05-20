@@ -77,7 +77,7 @@ python setup.py compile_catalog\
 cd ~/openfisca
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-pip install --editable . --user
+pip install --editable .[tests] --user
 python setup.py compile_catalog\
 </pre>
 </%def>
