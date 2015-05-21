@@ -87,6 +87,7 @@ ${_(u'About OpenFisca')}
             <li>Léo Bouloc</li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
+            <li>Sophie Cottet <span class="label label-success">New</span></li>
             <li>Pierre-Yves Cusset</li>
             <li>Félix Defrance</li>
             <li>Jérôme Desbœufs</li>
@@ -97,14 +98,16 @@ ${_(u'About OpenFisca')}
             <li>Malka Guillot</li>
             <li>Arnaud Kleinpeter</li>
             <li>Victor Le Breton</li>
-	    <li>Marion Monnet <span class="label label-success">New</span></li>
+            <li>Marion Monnet</li>
             <li>Adrien Pacifico</li>
+            <li>Florian Pagnoux <span class="label label-success">New</span></li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
-	    <li>Lucile Romanello <span class="label label-success">New</span></li>
+            <li>Lucile Romanello</li>
             <li>Stanislas Rybak</li>
             <li>Jérôme Santoul</li>
             <li>Clément Schaff</li>
+            <li>Matti Schneider</li>
             <li>Romain Soufflet</li>
             <li>Suzanne Vergnolle</li>
         </ul>
@@ -113,7 +116,7 @@ ${_(u'About OpenFisca')}
         <ul>
             <li>Antoine Bozio</li>
             <li>Fabien Dell</li>
-            <li>Pierre Pezziardi <span class="label label-success">New</span></li>
+            <li>Pierre Pezziardi</li>
             <li>Alain Trannoy</li>
         </ul>
 
