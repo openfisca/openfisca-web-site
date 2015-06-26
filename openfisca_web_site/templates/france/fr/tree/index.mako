@@ -88,8 +88,8 @@ twitter_statuses_updated = None
             <div class="row">
                 <div class="col-lg-4" style="margin-bottom: 15px">
                     <p>
-                        <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'elements', 'images',
-                                'logo-openfisca-280x200.png')}">
+                        <img alt="OpenFisca" class="img-responsive" src="${urls.get_url(ctx, 'hotlinks',
+                                'logo-openfisca.svg')}">
                     </p>
                     <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
