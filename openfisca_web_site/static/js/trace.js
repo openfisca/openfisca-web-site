@@ -440,7 +440,7 @@ var TraceTool = React.createClass({
       simulationVariables = this.state.simulationJson.variables;
     return (
       this.state.tracebacks.map(function(traceback, idx) {
-        if (traceback.default_input_variables && ! this.state.showDefaultFormulas) {
+        if (idx < this.state.tracebacks.length - 1 && traceback.default_input_variables && ! this.state.showDefaultFormulas) {
           return null;
         }
         var variable = this.state.variableByName[traceback.name];
