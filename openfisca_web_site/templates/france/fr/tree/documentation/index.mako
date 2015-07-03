@@ -46,6 +46,38 @@ Documentation
             <a href="https://github.com/openfisca/openfisca-web-api/blob/next/endpoints.md" rel="external" target="_blank">
               endpoints.md
             </a>
+            <ul>
+                <li>
+                    <a href="${urls.get_url(ctx, 'exemples')}">Exemples d'utilisation de l'API web</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items()
+        if u'exemple' in (item.get('tags') or [])
+        )
+%>\
+                    <ul>
+    % for item in items_iter:
+                        <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="${urls.get_url(ctx, 'outils')}">Outils</a>
+<%
+    items_iter = (
+        item
+        for item in items_node.iter_items()
+        if u'outil' in (item.get('tags') or [])
+        )
+%>\
+            <ul>
+    % for item in items_iter:
+                <li><a href="${item['source_url']}">${item['title']}</a></li>
+    % endfor
+            </ul>
         </li>
         <li><a href="${urls.get_url(ctx, 'documentation', 'installation')}">Installation d'OpenFisca</a></li>
         <li><a href="${urls.get_url(ctx, 'documentation', 'contribuer')}">Contribuer à OpenFisca</a></li>

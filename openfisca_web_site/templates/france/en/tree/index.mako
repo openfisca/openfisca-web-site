@@ -182,7 +182,9 @@ twitter_statuses_updated = None
                 a research project, an economic article, to create a dynamic infographics, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'api')}" role="button">Use the web API</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'api')}" role="button">
+                    Use the web API
+                </a>
             </p>
         </div>
 
