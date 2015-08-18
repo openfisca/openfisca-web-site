@@ -43,7 +43,7 @@ Documentation
     <ul>
         <li>
             Web API: see
-            <a href="https://github.com/openfisca/openfisca-web-api/blob/next/endpoints.md" rel="external" target="_blank">
+            <a href="https://github.com/openfisca/openfisca-web-api/blob/next/docs/endpoints.md" rel="external" target="_blank">
               endpoints.md
             </a>
             <ul>

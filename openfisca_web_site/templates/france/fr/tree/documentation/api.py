@@ -31,4 +31,4 @@ class Node(model.Redirect):
 
     @property
     def location(self):
-        return u'https://github.com/openfisca/openfisca-web-api/blob/next/endpoints.md'
+        return u'https://github.com/openfisca/openfisca-web-api/blob/next/docs/endpoints.md'
