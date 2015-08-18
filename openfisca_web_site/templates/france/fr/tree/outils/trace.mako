@@ -94,8 +94,7 @@ window.defaultSimulationText = ${simulation_text or u'''\
         ],
         "individus": [
           {
-            "id": "ind0",
-            "sali": 15000
+            "id": "ind0"
           },
           {
             "id": "ind1"
