@@ -92,6 +92,7 @@ import datetime
             <li>Félix Defrance</li>
             <li>Jérôme Desbœufs</li>
             <li>Sarah Dijols</li>
+            <li>Thomas Douenne <span class="label label-success">Nouveau</span></li>
             <li>Alexis Eidelman</li>
             <li>Adrien Fabre</li>
             <li>Emmanuel Gratuze</li>
