@@ -41,9 +41,10 @@ Build Status
 
 ${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-core")}
 ${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-france")}
-${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
+${self.repo_table(branches = ['master'], repo = "openfisca-france-reform-landais-piketty-saez")}
 ${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-web-api")}
 ${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-web-ui")}
+${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
 </%def>
 
 
