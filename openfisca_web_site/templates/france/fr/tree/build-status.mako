@@ -32,11 +32,14 @@ Build Status
 
 
 <%def name="page_content()" filter="trim">
-<h2>Rules</h2>
-<p>To merge a pull-request into "next" the tests must pass on the repository (make test-ci).</p>
+<h2>Development process</h2>
+
 <p>
-  When all tests pass in core, france and web-api repositories, and after a discussion with the core team,
-  the release manager merges the "next" branch into "master" for each repository.
+  See
+  <a href="https://github.com/openfisca/openfisca-core/blob/master/docs/development-process.md">
+    development process
+  </a>
+  documentation
 </p>
 
 ${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-core")}
