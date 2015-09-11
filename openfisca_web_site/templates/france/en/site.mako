@@ -44,7 +44,6 @@ from openfisca_web_site import urls
         </div>
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${urls.get_url(ctx, 'presentation')}">Presentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'documentation')}">Documentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'outils')}">Tools</a></li>
             </ul>

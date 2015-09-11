@@ -279,7 +279,6 @@ $(function () {
         </div>
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${urls.get_url(ctx, 'presentation')}">Présentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'documentation')}">Documentation</a></li>
                 <li><a href="${urls.get_url(ctx, 'outils')}">Outils</a></li>
             </ul>

@@ -168,7 +168,9 @@ twitter_statuses_updated = None
                 citoyens à mieux comprendre le système socio-fiscal.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'presentation')}" role="button">Lire la suite</a>
+                <a class="btn btn-jumbotron" href="${conf['urls.gitbook'] + 'presentation.html'}" role="button">
+                    Lire la suite
+                </a>
             </p>
         </div>
 
@@ -183,7 +185,7 @@ twitter_statuses_updated = None
                 illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'api')}" role="button">
+                <a class="btn btn-jumbotron" href="${conf['urls.gitbook'] + 'openfisca-web-api'}" role="button">
                     Utiliser l'API web
                 </a>
             </p>
@@ -216,7 +218,7 @@ twitter_statuses_updated = None
                 systèmes différents.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'installation')}" role="button">
+                <a class="btn btn-jumbotron" href="${conf['urls.gitbook'] + 'install'}" role="button">
                     Installation
                 </a>
             </p>
@@ -248,7 +250,7 @@ twitter_statuses_updated = None
                 développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'documentation', 'contribuer')}" role="button">
+                <a class="btn btn-jumbotron" href="${conf['urls.gitbook'] + 'contribute'}" role="button">
                     Contribuer
                 </a>
             </p>

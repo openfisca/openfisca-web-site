@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import conf
+%>
+
+
 <%inherit file="/page.mako"/>
 
 
@@ -35,11 +40,11 @@ Build Status
 <h2>Development process</h2>
 
 <p>
-  See
-  <a href="https://github.com/openfisca/openfisca-core/blob/master/docs/development-process.md">
+  See the
+  <a href="${conf['urls.gitbook'] + 'contribute/development-process.html'}">
     development process
   </a>
-  documentation
+  section in the documentation.
 </p>
 
 ${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-core")}
