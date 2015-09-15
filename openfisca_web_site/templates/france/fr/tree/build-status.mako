@@ -24,6 +24,9 @@
 
 
 <%!
+import json
+import urllib2
+
 from openfisca_web_site import conf
 %>
 
@@ -57,7 +60,40 @@ ${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
 
 
 <%def name="repo_table(branches, repo)" filter="trim">
+<%
+def call_travis_api(endpoint):
+    url = 'https://api.travis-ci.org{}'.format(endpoint)
+    request = urllib2.Request(url, headers = {'Accept': 'application/json', 'User-Agent': 'OpenFisca-Web-Site'})
+    try:
+        response = urllib2.urlopen(request)
+    except urllib2.HTTPError as response:
+        print url, response
+    response_text = response.read()
+    try:
+        response_json = json.loads(response_text)
+    except ValueError, error:
+        print url, response_text, error
+    return response_json
+
+repos = call_travis_api('/repos?slug=openfisca%2F{}'.format(repo))
+repo_id = repos[0]['id'] \
+    if repos is not None and isinstance(repos, list) \
+    else None
+if repo_id is not None:
+    builds = call_travis_api('/builds?branches=true&repository_id={}'.format(repo_id))
+    build_id_by_branch = {
+        build['branch']: build['id']
+        for build in builds
+        } if builds is not None and isinstance(builds, list) else None
+else:
+    build_id_by_branch = None
+%>
 <h2 id="${repo}">${repo}</h2>
+% if build_id_by_branch is None:
+<div class="alert alert-warning">
+Could not fetch information about branches from Travis API for this repository.
+</div>
+% endif
 <table class="table table-bordered table-hover table-striped">
   <thead>
     <tr>
@@ -68,17 +104,25 @@ ${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
   </thead>
     % for branch in branches:
   <tr>
-    <%self:travis_badge branch="${branch}" repo="${repo}" />
+    <%self:travis_badge branch="${branch}" build_id_by_branch="${build_id_by_branch}" repo="${repo}" />
   </tr>
     % endfor
 </table>
 </%def>
 
 
-<%def name="travis_badge(branch, repo)" filter="trim">
+<%def name="travis_badge(branch, build_id_by_branch, repo)" filter="trim">
+<%
+build_id = build_id_by_branch.get(branch) \
+    if build_id_by_branch is not None \
+    else None
+href =  u'https://travis-ci.org/openfisca/{}/builds/{}'.format(repo, build_id)\
+    if build_id is not None \
+    else u'https://travis-ci.org/openfisca/{}/branches'.format(repo)
+%>
 <td>${branch}</td>
 <td>
-  <a href="https://travis-ci.org/openfisca/${repo}/branches" rel="external" target="_blank" title="branch ${branch}">\
+  <a href="${href}" rel="external" target="_blank" title="branch ${branch}">\
 <img alt="travis build status" src="https://travis-ci.org/openfisca/${repo}.svg?branch=${branch}" />\
 </a>
 </td>
