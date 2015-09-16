@@ -32,6 +32,9 @@ from openfisca_web_site import conf
 %>
 
 
+<%page cached="False" />
+
+
 <%inherit file="/page.mako"/>
 
 
