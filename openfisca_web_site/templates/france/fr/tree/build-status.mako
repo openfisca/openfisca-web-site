@@ -26,6 +26,7 @@
 <%!
 import json
 import urllib2
+import urlparse
 
 from openfisca_web_site import conf
 %>
@@ -40,26 +41,6 @@ Build Status
 
 
 <%def name="page_content()" filter="trim">
-<h2>Development process</h2>
-
-<p>
-  See the
-  <a href="${conf['urls.gitbook'] + 'contribute/development-process.html'}">
-    development process
-  </a>
-  section in the documentation.
-</p>
-
-${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-core")}
-${self.repo_table(branches = ['prod', 'master', 'next', 'oldmaster'], repo = "openfisca-france")}
-${self.repo_table(branches = ['master'], repo = "openfisca-france-reform-landais-piketty-saez")}
-${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-web-api")}
-${self.repo_table(branches = ['prod', 'master', 'next'], repo = "openfisca-web-ui")}
-${self.repo_table(branches = ['master'], repo = "openfisca-tunisia")}
-</%def>
-
-
-<%def name="repo_table(branches, repo)" filter="trim">
 <%
 def call_travis_api(endpoint):
     url = 'https://api.travis-ci.org{}'.format(endpoint)
@@ -75,60 +56,152 @@ def call_travis_api(endpoint):
         print url, response_text, error
     return response_json
 
-repos = call_travis_api('/repos?slug=openfisca%2F{}'.format(repo))
-repo_id = repos[0]['id'] \
-    if repos is not None and isinstance(repos, list) \
-    else None
-if repo_id is not None:
-    builds = call_travis_api('/builds?branches=true&repository_id={}'.format(repo_id))
-    build_id_by_branch = {
-        build['branch']: build['id']
-        for build in builds
-        } if builds is not None and isinstance(builds, list) else None
-else:
-    build_id_by_branch = None
+def fetch_build_json_by_branch(repository_name):
+    repos_json = call_travis_api('/repos?slug=openfisca%2F{}'.format(repository_name))
+    repository_id = repos_json[0]['id'] \
+        if repos_json is not None and isinstance(repos_json, list) \
+        else None
+    if repository_id is not None:
+        builds_json = call_travis_api('/builds?branches=true&repository_id={}'.format(repository_id))
+        build_json_by_branch = {
+            build_json['branch']: build_json
+            for build_json in builds_json
+            } if builds_json is not None and isinstance(builds_json, list) else None
+    else:
+        build_json_by_branch = None
+    return build_json_by_branch
+
+repositories_name = [
+    'openfisca-core',
+    'openfisca-france',
+    'openfisca-web-api',
+    'openfisca-france-reform-landais-piketty-saez',
+    'openfisca-web-ui',
+    'openfisca-tunisia',
+    ]
+build_json_by_branch_by_repository_name = {
+    repository_name: fetch_build_json_by_branch(repository_name)
+    for repository_name in repositories_name
+    }
 %>
-<h2 id="${repo}">${repo}</h2>
-% if build_id_by_branch is None:
+
+<p>
+  The
+  <a href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute/development-process.html')}">
+    development process
+  </a>
+  section of the <a href="${conf['urls.gitbook']}">documentation</a> presents the different branches.
+</p>
+
+<h2>By branch</h2>
+
+<h3 id="branch-next">next</h3>
+
+<ul>
+    % for repository_name in ['openfisca-core', 'openfisca-france', 'openfisca-web-api']:
+    <li>
+        ${repository_name}
+        ${travis_badge(
+            branch = 'next',
+            build_json = build_json_by_branch_by_repository_name[repository_name].get('next'),
+            repository_name = repository_name,
+            )}
+    </li>
+    % endfor
+</ul>
+
+<h2>By repository</h2>
+
+${self.repo_table(
+    branches = ['prod', 'master', 'next'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-core'),
+    repository_name = 'openfisca-core',
+    )}
+${self.repo_table(
+    branches = ['prod', 'master', 'next'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-france'),
+    repository_name = 'openfisca-france',
+    )}
+${self.repo_table(
+    branches = ['prod', 'master', 'next'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-api'),
+    repository_name = 'openfisca-web-api',
+    )}
+${self.repo_table(
+    branches = ['master'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-france-reform-landais-piketty-saez'),
+    repository_name = 'openfisca-france-reform-landais-piketty-saez',
+    )}
+${self.repo_table(
+    branches = ['prod', 'master', 'next'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-ui'),
+    repository_name = 'openfisca-web-ui',
+    )}
+${self.repo_table(
+    branches = ['master'],
+    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-tunisia'),
+    repository_name = 'openfisca-tunisia',
+    )}
+</%def>
+
+
+<%def name="repo_table(branches, repository_name, build_json_by_branch = None)" filter="trim">
+<h3 id="${repository_name}">${repository_name}</h3>
+% if build_json_by_branch is None:
 <div class="alert alert-warning">
 Could not fetch information about branches from Travis API for this repository.
 </div>
 % endif
 <table class="table table-bordered table-hover table-striped">
-  <thead>
-    <tr>
-      <th>Branch</th>
-      <th>Travis</th>
-      <th>GitHub</th>
-    </tr>
-  </thead>
+    <thead>
+        <tr>
+            <th>Branch</th>
+            <th>Travis</th>
+            <th>GitHub</th>
+        </tr>
+    </thead>
     % for branch in branches:
-  <tr>
-    <%self:travis_badge branch="${branch}" build_id_by_branch="${build_id_by_branch}" repo="${repo}" />
-  </tr>
+<%
+build_json = build_json_by_branch.get(branch) \
+    if build_json_by_branch is not None \
+    else None
+%>
+    <%self:travis_badge_row branch="${branch}" build_json="${build_json}" repository_name="${repository_name}" />
     % endfor
 </table>
 </%def>
 
 
-<%def name="travis_badge(branch, build_id_by_branch, repo)" filter="trim">
+<%def name="travis_badge_row(branch, build_json, repository_name)" filter="trim">
+<tr>
+    <td>${branch}</td>
+    <td>
+        <%self:travis_badge branch="${branch}" build_json="${build_json}" repository_name="${repository_name}" />
+    </td>
+    <td>
+        <a href="https://github.com/openfisca/${repository_name}/tree/${branch}/" rel="external" target="_blank">
+            ${repository_name}/${branch}
+        </a>
+    </td>
+</tr>
+</%def>
+
+<%def name="travis_badge(branch, build_json, repository_name)" filter="trim">
 <%
-build_id = build_id_by_branch.get(branch) \
-    if build_id_by_branch is not None \
+build_id = build_json.get('id') \
+    if build_json is not None \
     else None
-href =  u'https://travis-ci.org/openfisca/{}/builds/{}'.format(repo, build_id)\
+build_state = build_json.get('state') \
+    if build_json is not None \
+    else None
+href = u'https://travis-ci.org/openfisca/{}/builds/{}'.format(repository_name, build_id)\
     if build_id is not None \
-    else u'https://travis-ci.org/openfisca/{}/branches'.format(repo)
+    else u'https://travis-ci.org/openfisca/{}/branches'.format(repository_name)
 %>
-<td>${branch}</td>
-<td>
-  <a href="${href}" rel="external" target="_blank" title="branch ${branch}">\
-<img alt="travis build status" src="https://travis-ci.org/openfisca/${repo}.svg?branch=${branch}" />\
+<a href="${href}" rel="external" target="_blank">\
+<img alt="travis build status" src="https://travis-ci.org/openfisca/${repository_name}.svg?branch=${branch}" />\
 </a>
-</td>
-<td>
-  <a href="https://github.com/openfisca/${repo}/tree/${branch}/" rel="external" target="_blank">
-    ${repo}/${branch}
-  </a>
-</td>
+% if build_state == 'started':
+<span class="label label-warning">pending</span>
+% endif
 </%def>
