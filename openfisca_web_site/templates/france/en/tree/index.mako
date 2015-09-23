@@ -335,11 +335,7 @@ Home
         % for article in last_articles:
         <article class="col-md-4 col-sm-6">
             <div class="ellipsis" style="height: 190px">
-            % if article.get('title_url') is None:
                 <h3>${article['title']}</h3>
-            % else:
-                <a href="${article['title_url']}" target="_blank"><h3>${article['title']}</h3></a>
-            % endif
             % for child_element in article['element']:
                 ${lxml.html.tostring(child_element, encoding = unicode) | n}
             % endfor

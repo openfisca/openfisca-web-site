@@ -43,11 +43,7 @@ Actualités
         <hr>
         % endif
         <article id="${article['hash']}">
-        % if article.get('title_url') is None:
-            <h3>${article['title']}</h3>
-        % else:
-            <a href="${article['title_url']}"><h3>${article['title']}</h3></a>
-        % endif
+            <a href="${article['node'].url_path}"><h3>${article['title']}</h3></a>
         % for child_element in article['element']:
             ${lxml.html.tostring(child_element, encoding = unicode) | n}
         % endfor
