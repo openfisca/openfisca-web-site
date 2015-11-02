@@ -148,7 +148,7 @@ class Node(model.Folder):
             description = u"""Script de comparaison entre les simulations OpenFisca et celles des impôts""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/compare_openfisca_impots.py',  # noqa
+            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/scripts/calculateur_impots/compare_openfisca_impots.py',  # noqa
             tags = [u'outil'],
             title = ctx._(u'Taxes simulations comparator'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-comparateur-impots.png'),
