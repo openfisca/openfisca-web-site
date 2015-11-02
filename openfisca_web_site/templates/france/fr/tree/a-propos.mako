@@ -87,7 +87,7 @@ import datetime
             <li>Léo Bouloc</li>
             <li>Laurence Bouvard</li>
             <li>Grégory Cornu</li>
-            <li>Sophie Cottet <span class="label label-success">Nouveau</span></li>
+            <li>Sophie Cottet</li>
             <li>Pierre-Yves Cusset</li>
             <li>Félix Defrance</li>
             <li>Jérôme Desbœufs</li>
@@ -101,7 +101,7 @@ import datetime
             <li>Victor Le Breton</li>
             <li>Marion Monnet</li>
             <li>Adrien Pacifico</li>
-            <li>Florian Pagnoux <span class="label label-success">Nouveau</span></li>
+            <li>Florian Pagnoux</li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
             <li>Lucile Romanello</li>
@@ -110,6 +110,7 @@ import datetime
             <li>Clément Schaff</li>
             <li>Matti Schneider</li>
             <li>Romain Soufflet</li>
+            <li>Maël Thomas <span class="label label-success">Nouveau</span></li>
             <li>Suzanne Vergnolle</li>
         </ul>
 

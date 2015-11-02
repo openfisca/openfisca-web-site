@@ -100,7 +100,7 @@ ${_(u'About OpenFisca')}
             <li>Victor Le Breton</li>
             <li>Marion Monnet</li>
             <li>Adrien Pacifico</li>
-            <li>Florian Pagnoux <span class="label label-success">New</span></li>
+            <li>Florian Pagnoux</li>
             <li>Louise Paul-Delvaux</li>
             <li>Emmanuel Raviart</li>
             <li>Lucile Romanello</li>
@@ -109,6 +109,7 @@ ${_(u'About OpenFisca')}
             <li>Clément Schaff</li>
             <li>Matti Schneider</li>
             <li>Romain Soufflet</li>
+            <li>Maël Thomas <span class="label label-success">New</span></li>
             <li>Suzanne Vergnolle</li>
         </ul>
 
