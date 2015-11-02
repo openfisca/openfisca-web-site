@@ -262,8 +262,6 @@ twitter_statuses_updated = None
 
     <%self:news/>
 
-    <%self:tools/>
-
     <%self:examples/>
 
     <%self:uses/>
@@ -392,52 +390,6 @@ $(function () {
 
 <%def name="title_content()" filter="trim">
 <%self:brand/>
-</%def>
-
-
-<%def name="tools()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'outil' in (item.get('tags') or [])
-        	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
-            ),
-        3,
-        ))
-%>\
-    <div class="page-header">
-        <h2>Outils en Ligne</h2>
-    </div>
-    <p class="text-justify">
-        Pour vous aider à mieux comprendre le fonctionnement d'OpenFisca, à améliorer ses formules socio-fiscales,
-        à compléter la législation, etc, nous développons différents outils web de visualisation, d'exploration et de
-        déboguage.
-    </p>
-    <p class="text-justify">
-        Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API web OpenFisca.
-    </p>
-    <div class="row">
-    % for item in items:
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
-                <div class="caption">
-                    <div class="ellipsis" style="height: 120px">
-                        <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
-                    </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
-                </div>
-            </div>
-        </div>
-    % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Voir tous les outils...</em></a>
-    </div>
 </%def>
 
 

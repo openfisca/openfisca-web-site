@@ -45,6 +45,14 @@ Outils
         if u'outil' in (item.get('tags') or []) and (item.get('country') is None or conf['country'] in item['country'])
         )
 %>\
+    <p class="text-justify">
+        Pour vous aider à mieux comprendre le fonctionnement d'OpenFisca, à améliorer ses formules socio-fiscales,
+        à compléter la législation, etc, nous développons différents outils web de visualisation, d'exploration et de
+        déboguage.
+    </p>
+    <p class="text-justify">
+        Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API web OpenFisca.
+    </p>
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">
