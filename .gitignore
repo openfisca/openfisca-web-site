@@ -1,5 +1,5 @@
 /build/
-/cache/
+/cache
 /development-*local.ini
 /dist/
 /openfisca_web_site/static/bower/
