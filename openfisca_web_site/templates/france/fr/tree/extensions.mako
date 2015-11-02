@@ -29,7 +29,7 @@ from openfisca_web_site import urls
 
 
 <%def name="h1_content()" filter="trim">
-Réformes
+Extensions
 </%def>
 
 
@@ -42,12 +42,9 @@ Réformes
     items_iter = (
         item
         for item in items_node.iter_items()
-        if u'reform' in (item.get('tags') or [])
+        if u'extension' in (item.get('tags') or [])
         )
 %>\
-    <p class="text-justify">
-        Les réformes suivantes ont été développées dans OpenFisca.
-    </p>
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">

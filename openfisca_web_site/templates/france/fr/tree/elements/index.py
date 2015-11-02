@@ -156,25 +156,22 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
+            description = u"""Le revenu de base est un droit inaliénable, \
+inconditionnel, cumulable avec d’autres revenus, distribué par une communauté politique à tous ses membres, \
+de la naissance à la mort, sur base individuelle, sans contrôle des ressources ni exigence de contrepartie, \
+dont le montant et le financement sont ajustés démocratiquement.""",
             owner = u"Équipe sprint revenu de base",
-            source_url = u'https://github.com/openfisca/openfisca-france-reform-revenu-de-base-enfants',
-            tags = [u'reform'],
-            title = u'Revenu de base enfants',
-            updated = u'2015-01-15T16:36:00',
+            source_url = u'https://github.com/openfisca/openfisca-france-extension-revenu-de-base',
+            tags = [u'extension'],
+            title = u'Revenu de base',
+            updated = u'2015-11-02T18:30:00',
             )
         yield dict(
             country = [u'france'],
-            owner = u"Équipe sprint revenu de base",
-            source_url = u'https://github.com/JeanEricHyafil/openfisca-france-reform-revenu-de-base-cotisations',
-            tags = [u'reform'],
-            title = u'Cotisations revenu de base',
-            updated = u'2015-01-15T17:59:00',
-            )
-        yield dict(
-            country = [u'france'],
+            # TODO description = u'',
             owner = u"Équipe OpenFisca",
-            source_url = u'https://github.com/openfisca/openfisca-france-reform-landais-piketty-saez',
-            tags = [u'reform'],
+            source_url = u'https://github.com/openfisca/openfisca-france-extension-landais-piketty-saez',
+            tags = [u'extension'],
             title = u'Réforme Landais Piketty Saez',
-            updated = u'2015-01-15T17:59:00',
+            updated = u'2015-11-02T18:30:00',
             )
