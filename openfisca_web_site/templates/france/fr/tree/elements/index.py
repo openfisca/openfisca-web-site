@@ -30,7 +30,6 @@ class Node(model.Folder):
     def iter_items(self):
         ctx = self.ctx
         yield dict(
-            carousel_rank = 1,
             description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
@@ -83,7 +82,6 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            carousel_rank = 1,
             description = u"Simulez tous vos droits en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"SGMAP",
@@ -95,7 +93,6 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            carousel_rank = 6,
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
             owner = u"Regards citoyens",
@@ -117,7 +114,6 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            carousel_rank = 3,
             description = u"Proposition de réforme du statut du quotient conjugal",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"Équipe hackathon",
@@ -129,7 +125,6 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            carousel_rank = 4,
             description = u"Différence des taux d'imposition en fonction des revenus du capital et du travail",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"Équipe hackathon",
