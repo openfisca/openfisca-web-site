@@ -54,7 +54,7 @@ class Node(model.Folder):
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
             source_url = urls.get_full_url(ctx, self.url_path, '../exemples/graphe-formules'),
-            tags = [u'exemple'],
+            tags = [u'utilisation'],
             title = ctx._(u'Tax-benefit variables interdependence graph'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-graphe-formules.png'),
             updated = u'2014-03-28T09:00:00',
