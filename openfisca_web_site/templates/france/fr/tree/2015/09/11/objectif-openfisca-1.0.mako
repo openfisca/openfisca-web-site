@@ -24,7 +24,7 @@
 
 
 <%!
-from openfisca_web_site import urls
+from openfisca_web_site import conf, urls
 %>
 
 
@@ -45,7 +45,7 @@ Objectif : OpenFisca 1.0
   </p>
   <ul>
       <li>
-          disposera d'une <a href="${urls.get_url(ctx, 'documentation')}">documentation complète</a>
+          disposera d'une <a href="${conf['urls.gitbook']}">documentation complète</a>
           (en cours de rédaction)
       </li>
       <li>garantira la compatibilité dans le temps des programmes qui utilisent OpenFisca</li>

@@ -210,7 +210,7 @@ twitter_statuses_updated = None
         </div>
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'documentation')}"><em class="lead">Voir toute la documentation...</em></a>
+        <a href="${conf['urls.gitbook']}"><em class="lead">Voir toute la documentation...</em></a>
     </div>
 
     <%self:news/>
