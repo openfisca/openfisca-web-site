@@ -98,15 +98,15 @@ build_json_by_branch_by_repository_name = {
 
 <h2>By branch</h2>
 
-<h3 id="branch-next">next</h3>
+<h3 id="branch-master">master</h3>
 
 <ul>
     % for repository_name in ['openfisca-core', 'openfisca-france', 'openfisca-web-api']:
     <li>
         ${repository_name}
         ${travis_badge(
-            branch = 'next',
-            build_json = build_json_by_branch_by_repository_name[repository_name].get('next'),
+            branch = 'master',
+            build_json = build_json_by_branch_by_repository_name[repository_name].get('master'),
             repository_name = repository_name,
             )}
     </li>
@@ -116,17 +116,17 @@ build_json_by_branch_by_repository_name = {
 <h2>By repository</h2>
 
 ${self.repo_table(
-    branches = ['prod', 'master', 'next'],
+    branches = ['prod', 'master'],
     build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-core'),
     repository_name = 'openfisca-core',
     )}
 ${self.repo_table(
-    branches = ['prod', 'master', 'next'],
+    branches = ['prod', 'master'],
     build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-france'),
     repository_name = 'openfisca-france',
     )}
 ${self.repo_table(
-    branches = ['prod', 'master', 'next'],
+    branches = ['prod', 'master'],
     build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-api'),
     repository_name = 'openfisca-web-api',
     )}
@@ -136,7 +136,7 @@ ${self.repo_table(
     repository_name = 'openfisca-france-reform-landais-piketty-saez',
     )}
 ${self.repo_table(
-    branches = ['prod', 'master', 'next'],
+    branches = ['prod', 'master'],
     build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-ui'),
     repository_name = 'openfisca-web-ui',
     )}
