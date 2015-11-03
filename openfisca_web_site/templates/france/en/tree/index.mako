@@ -213,8 +213,6 @@ twitter_statuses_updated = None
 
     <%self:tools/>
 
-    <%self:examples/>
-
     <%self:uses/>
 
     <%self:twitter/>
@@ -223,52 +221,6 @@ twitter_statuses_updated = None
         <h2>Partners</h2>
     </div>
     <%self:partners/>
-</%def>
-
-
-<%def name="examples()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'exemple' in (item.get('tags') or []) and u'outil' not in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))	    ),
-        3,
-        ))
-%>\
-    % if items:
-    <div class="page-header">
-        <h2>Web API Usage Examples</h2>
-    </div>
-    <p class="text-justify">
-       To allow you to adapt to your needs the OpenFisca team
-       develops and documents several examples, trying to cover the various possible uses.
-    </p>
-    <p class="text-justify">
-      These examples might inspire you when you will make of your own projects.
-    </p>
-    <div class="row">
-        % for item in items:
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
-                <div class="caption">
-                    <div class="ellipsis" style="height: 120px">
-                        <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
-                    </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Analyse</a></p>
-                </div>
-            </div>
-        </div>
-        % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'exemples')}"><em class="lead">See all examples...</em></a>
-    </div>
-    % endif
 </%def>
 
 
