@@ -45,8 +45,8 @@ Build Status
 
 <%def name="page_content()" filter="trim">
 <%
-def call_travis_api(endpoint):
-    url = 'https://api.travis-ci.org{}'.format(endpoint)
+def call_travis_api(url_path):
+    url = 'https://api.travis-ci.org{}'.format(url_path)
     request = urllib2.Request(url, headers = {'Accept': 'application/json', 'User-Agent': 'OpenFisca-Web-Site'})
     try:
         response = urllib2.urlopen(request)
@@ -60,7 +60,8 @@ def call_travis_api(endpoint):
     return response_json
 
 def fetch_build_json_by_branch(repository_name):
-    repos_json = call_travis_api('/repos?slug=openfisca%2F{}'.format(repository_name))
+    url_path = '/repos?slug=openfisca%2F{}'.format(repository_name)
+    repos_json = call_travis_api(url_path)
     repository_id = repos_json[0]['id'] \
         if repos_json is not None and isinstance(repos_json, list) \
         else None
@@ -78,9 +79,8 @@ repositories_name = [
     'openfisca-core',
     'openfisca-france',
     'openfisca-web-api',
-    'openfisca-france-reform-landais-piketty-saez',
-    'openfisca-web-ui',
-    'openfisca-tunisia',
+    ## 'openfisca-web-ui',
+    ## 'openfisca-tunisia',
     ]
 build_json_by_branch_by_repository_name = {
     repository_name: fetch_build_json_by_branch(repository_name)
@@ -96,14 +96,11 @@ build_json_by_branch_by_repository_name = {
   section of the <a href="${conf['urls.gitbook']}">documentation</a> presents the different branches.
 </p>
 
-<h2>By branch</h2>
-
-<h3 id="branch-master">master</h3>
-
 <ul>
     % for repository_name in ['openfisca-core', 'openfisca-france', 'openfisca-web-api']:
     <li>
-        ${repository_name}
+        <a href="https://github.com/openfisca/${repository_name}" rel="external" target="_blank">\
+${repository_name}</a>
         ${travis_badge(
             branch = 'master',
             build_json = build_json_by_branch_by_repository_name[repository_name].get('master'),
@@ -112,82 +109,8 @@ build_json_by_branch_by_repository_name = {
     </li>
     % endfor
 </ul>
-
-<h2>By repository</h2>
-
-${self.repo_table(
-    branches = ['prod', 'master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-core'),
-    repository_name = 'openfisca-core',
-    )}
-${self.repo_table(
-    branches = ['prod', 'master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-france'),
-    repository_name = 'openfisca-france',
-    )}
-${self.repo_table(
-    branches = ['prod', 'master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-api'),
-    repository_name = 'openfisca-web-api',
-    )}
-${self.repo_table(
-    branches = ['master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-france-reform-landais-piketty-saez'),
-    repository_name = 'openfisca-france-reform-landais-piketty-saez',
-    )}
-${self.repo_table(
-    branches = ['prod', 'master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-web-ui'),
-    repository_name = 'openfisca-web-ui',
-    )}
-${self.repo_table(
-    branches = ['master'],
-    build_json_by_branch = build_json_by_branch_by_repository_name.get('openfisca-tunisia'),
-    repository_name = 'openfisca-tunisia',
-    )}
 </%def>
 
-
-<%def name="repo_table(branches, repository_name, build_json_by_branch = None)" filter="trim">
-<h3 id="${repository_name}">${repository_name}</h3>
-% if build_json_by_branch is None:
-<div class="alert alert-warning">
-Could not fetch information about branches from Travis API for this repository.
-</div>
-% endif
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-        <tr>
-            <th>Branch</th>
-            <th>Travis</th>
-            <th>GitHub</th>
-        </tr>
-    </thead>
-    % for branch in branches:
-<%
-build_json = build_json_by_branch.get(branch) \
-    if build_json_by_branch is not None \
-    else None
-%>
-    <%self:travis_badge_row branch="${branch}" build_json="${build_json}" repository_name="${repository_name}" />
-    % endfor
-</table>
-</%def>
-
-
-<%def name="travis_badge_row(branch, build_json, repository_name)" filter="trim">
-<tr>
-    <td>${branch}</td>
-    <td>
-        <%self:travis_badge branch="${branch}" build_json="${build_json}" repository_name="${repository_name}" />
-    </td>
-    <td>
-        <a href="https://github.com/openfisca/${repository_name}/tree/${branch}/" rel="external" target="_blank">
-            ${repository_name}/${branch}
-        </a>
-    </td>
-</tr>
-</%def>
 
 <%def name="travis_badge(branch, build_json, repository_name)" filter="trim">
 <%
