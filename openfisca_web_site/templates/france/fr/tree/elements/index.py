@@ -165,7 +165,7 @@ dont le montant et le financement sont ajustés démocratiquement.""",
             country = [u'france'],
             # TODO description = u'',
             owner = u"Équipe OpenFisca",
-            source_url = u'https://github.com/openfisca/openfisca-france-extension-landais-piketty-saez',
+            source_url = u'https://github.com/openfisca/openfisca-france/blob/master/openfisca_france/extensions/landais_piketty_saez.py',  # noqa
             tags = [u'extension'],
             title = u'Réforme Landais Piketty Saez',
             updated = u'2015-11-02T18:30:00',
