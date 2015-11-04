@@ -609,7 +609,7 @@ var VariablePanel = React.createClass({
               }
               <div style={{position: 'absolute', right: 7, top: 5}}>
                 <a
-                  href={window.variablesExplorerUrl + '/' + this.props.name}
+                  href={window.legislationExplorerUrl + 'variables/' + this.props.name}
                   rel="external"
                   target="_blank"
                   title="Ouvrir dans l'explorateur de variables, hors du cadre de cette simulation">
