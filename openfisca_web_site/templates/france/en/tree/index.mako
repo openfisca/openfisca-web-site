@@ -184,7 +184,7 @@ twitter_statuses_updated = None
                 The only constraint: OpenFisca re-uses must also be free of use.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">About</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'about')}" role="button">About</a>
             </p>
         </div>
 

@@ -188,7 +188,7 @@ twitter_statuses_updated = None
                 Une seule contrainte : les travaux dérivés d'OpenFisca doivent eux aussi être libres.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'a-propos')}" role="button">À propos</a>
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'about')}" role="button">À propos</a>
             </p>
         </div>
 

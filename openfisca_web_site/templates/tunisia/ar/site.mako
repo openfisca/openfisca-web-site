@@ -48,7 +48,7 @@ from openfisca_web_site import conf, urls
                 <li><a href="${urls.get_url(ctx, 'tools')}">أدوات</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${urls.get_url(ctx, 'a-propos')}">حول</a></li>
+                <li><a href="${urls.get_url(ctx, 'about')}">حول</a></li>
                 <li><a href="${urls.get_url(ctx, 'contact')}">الاتصال</a></li>
                 <%self:topbar_lang/>
             </ul>

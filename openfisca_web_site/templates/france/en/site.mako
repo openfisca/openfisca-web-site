@@ -49,7 +49,7 @@ from openfisca_web_site import conf, urls
                 <li><a href="${urls.get_url(ctx, 'extensions')}">Extensions</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${urls.get_url(ctx, 'a-propos')}">About</a></li>
+                <li><a href="${urls.get_url(ctx, 'about')}">About</a></li>
                 <li><a href="${urls.get_url(ctx, 'contact')}">Contact</a></li>
                 <%self:topbar_lang/>
             </ul>
