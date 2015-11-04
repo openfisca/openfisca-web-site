@@ -53,10 +53,10 @@ class Node(model.Folder):
             description = u"Graphe dynamique des dépendances entre les formules socio-fiscales d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = urls.get_full_url(ctx, self.url_path, '../exemples/graphe-formules'),
+            source_url = urls.get_full_url(ctx, self.url_path, '../tools/variables-graph'),
             tags = [u'outil'],
             title = ctx._(u'Tax-benefit variables interdependence graph'),
-            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-graphe-formules.png'),
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variables-graph.png'),
             updated = u'2014-03-28T09:00:00',
             )
         yield dict(
