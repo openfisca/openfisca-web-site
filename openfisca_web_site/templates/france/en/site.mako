@@ -45,7 +45,7 @@ from openfisca_web_site import conf, urls
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="${conf['urls.gitbook']}">Documentation</a></li>
-                <li><a href="${urls.get_url(ctx, 'outils')}">Tools</a></li>
+                <li><a href="${urls.get_url(ctx, 'tools')}">Tools</a></li>
                 <li><a href="${urls.get_url(ctx, 'extensions')}">Extensions</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
