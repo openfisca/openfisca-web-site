@@ -215,8 +215,6 @@ twitter_statuses_updated = None
 
     <%self:news/>
 
-    <%self:uses/>
-
     <%self:twitter/>
 
     <div class="page-header">
@@ -331,52 +329,5 @@ $(function () {
         <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
     </div>
         % endif
-    % endif
-</%def>
-
-
-<%def name="uses()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'utilisation' in (item.get('tags') or [])
-	    and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
-            ),
-        3,
-        ))
-%>\
-    % if items:
-    <div class="page-header">
-        <h2>Utilisations</h2>
-    </div>
-    <p class="text-justify">
-        OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
-        recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
-    </p>
-    <p class="text-justify">
-        Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
-    </p>
-    <div class="row">
-        % for item in items:
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
-                <div class="caption">
-                    <div class="ellipsis" style="height: 120px">
-                        <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
-                    </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
-                </div>
-            </div>
-        </div>
-        % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Voir toutes les utilisations...</em></a>
-    </div>
     % endif
 </%def>
