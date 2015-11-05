@@ -127,7 +127,7 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>API web</h3>
+            <h3>Web API</h3>
             <p class="text-justify">
                The API lets you use the web OpenFisca engine, without installing it, from any web page.
             </p>
