@@ -32,7 +32,7 @@ import datetime
 
 
 <%def name="h1_content()" filter="trim">
-${_(u'About OpenFisca')}
+About OpenFisca
 </%def>
 
 
