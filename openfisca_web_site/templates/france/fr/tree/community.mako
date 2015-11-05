@@ -28,21 +28,16 @@ from openfisca_web_site import urls
 %>
 
 
-<%def name="h1_content()" filter="trim">
-Utilisations
-</%def>
-
-
 <%inherit file="/page.mako"/>
 
 
-<%def name="page_content()" filter="trim">
+<%def name="community_blocks()" filter="trim">
 <%
     items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
     items_iter = (
         item
         for item in items_node.iter_items()
-        if u'utilisation' in (item.get('tags') or [])
+        if u'community' in (item.get('tags') or [])
         )
 %>\
     <div class="row">
@@ -61,6 +56,22 @@ Utilisations
         </div>
     % endfor
     </div>
+</%def>
+
+
+<%def name="h1_content()" filter="trim">
+Communauté
+</%def>
+
+
+<%def name="page_content()" filter="trim">
+<p>
+  Voici une liste de travaux réalisés par la communauté qui s'appuient sur OpenFisca.
+</p>
+<p>
+  Contactez-nous pour ajouter les vôtres !
+</p>
+<%self:community_blocks/>
 </%def>
 
 
