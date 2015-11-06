@@ -32,11 +32,37 @@ Community
 
 
 <%def name="page_content()" filter="trim">
-<p>
-  Here is a list of works done by the community that rely on OpenFisca.
-</p>
-<p>
-  Contact us to add yours!
-</p>
-<%self:community_blocks/>
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items()
+        if u'community' in (item.get('tags') or [])
+        )
+%>\
+    <p class="text-justify">
+        OpenFisca has already been used for project developed during
+        hackathons to produce new visualisations, illustrate some research, create specialized
+        simulators, etc.
+    </p>
+    <p class="text-justify">
+       This is just the beginning, but these early projects are promising.
+       Contact us to add your work!
+    </p>
+    <div class="row">
+    % for item in items_iter:
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p>${item['description']}</p>
+                    </div>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
 </%def>

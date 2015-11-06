@@ -149,6 +149,56 @@ twitter_statuses_updated = None
 </%def>
 
 
+<%def name="community()" filter="trim">
+
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items()
+            if u'community' in (item.get('tags') or [])
+                and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+            ),
+        3,
+        ))
+%>\
+    % if items:
+    <div class="page-header">
+        <h2>Community</h2>
+    </div>
+    <p class="text-justify">
+        OpenFisca has already been used for project developed during
+        hackathons to produce new visualisations, illustrate some research, create specialized
+        simulators, etc.
+    </p>
+    <p class="text-justify">
+       This is just the beginning, but these early projects are promising.
+       Contact us to add your project!
+    </p>
+    <div class="row">
+        % for item in items:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Read more</a></p>
+                </div>
+            </div>
+        </div>
+        % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">See all the community's projects...</em></a>
+    </div>
+    % endif
+</%def>
+
+
 <%def name="container_content()" filter="trim">
 <%
     items_node = node.child_from_node(ctx, unique_name = 'elements')
@@ -257,6 +307,10 @@ twitter_statuses_updated = None
 
     <%self:news/>
 
+    <%self:tools/>
+
+    <%self:community/>
+
     <%self:twitter/>
 
     <div class="page-header">
@@ -325,6 +379,54 @@ $(function () {
 
 <%def name="title_content()" filter="trim">
 <%self:brand/>
+</%def>
+
+
+<%def name="tools()" filter="trim">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+    items = list(itertools.islice(
+        (
+            item
+            for item in items_node.iter_items()
+            if u'tool' in (item.get('tags') or [])
+                and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+            ),
+        3,
+        ))
+%>\
+    % if items:
+    <div class="page-header">
+        <h2>Tools</h2>
+    </div>
+    <p class="text-justify">
+        To improve your understanding of OpenFisca, to enhance its tax and benefit formulas,
+        to complete the legislation, etc, we develop several web tools for visualization, exploration and
+        debug.
+    </p>
+    <p class="text-justify">
+        These tools are also, in themselves, examples of use of the web API of OpenFisca.
+    </p>
+    <div class="row">
+    % for item in items:
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], tem['description']['fr'])}</p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
+    <div class="text-right">
+        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">See all the available tools...</em></a>
+    </div>
+    % endif
 </%def>
 
 

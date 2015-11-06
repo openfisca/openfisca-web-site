@@ -37,6 +37,14 @@ Outils
 
 
 <%def name="page_content()" filter="trim">
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items()
+        if u'tool' in (item.get('tags') or []) and (item.get('country') is None or conf['country'] in item['country'])
+        )
+%>\
     <p class="text-justify">
         Pour vous aider à mieux comprendre le fonctionnement d'OpenFisca, à améliorer ses formules socio-fiscales,
         à compléter la législation, etc, nous développons différents outils web de visualisation, d'exploration et de
@@ -45,19 +53,6 @@ Outils
     <p class="text-justify">
         Ces outils sont aussi, en eux-mêmes, des exemples d'utilisation de l'API web OpenFisca.
     </p>
-    <%self:tools_blocks/>
-</%def>
-
-
-<%def name="tools_blocks()" filter="trim">
-<%
-    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
-    items_iter = (
-        item
-        for item in items_node.iter_items()
-        if u'outil' in (item.get('tags') or []) and (item.get('country') is None or conf['country'] in item['country'])
-        )
-%>\
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">

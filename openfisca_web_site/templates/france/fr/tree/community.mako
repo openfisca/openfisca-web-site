@@ -32,6 +32,16 @@ from openfisca_web_site import urls
 
 
 <%def name="community_blocks()" filter="trim">
+
+</%def>
+
+
+<%def name="h1_content()" filter="trim">
+Communauté
+</%def>
+
+
+<%def name="page_content()" filter="trim">
 <%
     items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
     items_iter = (
@@ -40,6 +50,14 @@ from openfisca_web_site import urls
         if u'community' in (item.get('tags') or [])
         )
 %>\
+    <p class="text-justify">
+        OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
+        recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
+    </p>
+    <p class="text-justify">
+        Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
+        Contactez-nous pour ajouter votre projet !
+    </p>
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">
@@ -56,22 +74,6 @@ from openfisca_web_site import urls
         </div>
     % endfor
     </div>
-</%def>
-
-
-<%def name="h1_content()" filter="trim">
-Communauté
-</%def>
-
-
-<%def name="page_content()" filter="trim">
-<p>
-  Voici une liste de travaux réalisés par la communauté qui s'appuient sur OpenFisca.
-</p>
-<p>
-  Contactez-nous pour ajouter les vôtres !
-</p>
-<%self:community_blocks/>
 </%def>
 
 

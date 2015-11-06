@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import conf, urls
+%>
+
+
 <%inherit file="/france/fr/tree/tools/index.mako"/>
 
 
@@ -32,6 +37,14 @@ Tools
 
 
 <%def name="page_content()" filter="trim">
+<%
+    items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
+    items_iter = (
+        item
+        for item in items_node.iter_items()
+        if u'tool' in (item.get('tags') or []) and (item.get('country') is None or conf['country'] in item['country'])
+        )
+%>\
     <p class="text-justify">
         To improve your understanding of OpenFisca, to enhance its tax and benefit formulas,
         to complete the legislation, etc, we develop several web tools for visualization, exploration and
@@ -40,5 +53,20 @@ Tools
     <p class="text-justify">
         These tools are also, in themselves, examples of use of the web API of OpenFisca.
     </p>
-    <%self:tools_blocks/>
+    <div class="row">
+    % for item in items_iter:
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p>${item['description']}</p>
+                    </div>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+                </div>
+            </div>
+        </div>
+    % endfor
+    </div>
 </%def>
