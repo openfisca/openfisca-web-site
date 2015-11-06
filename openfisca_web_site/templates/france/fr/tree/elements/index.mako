@@ -28,12 +28,12 @@ from openfisca_web_site import urls
 %>
 
 
-<%def name="h1_content()" filter="trim">
-Utilisations de l'API
-</%def>
-
-
 <%inherit file="/page.mako"/>
+
+
+<%def name="h1_content()" filter="trim">
+Éléments
+</%def>
 
 
 <%def name="page_content()" filter="trim">
@@ -42,18 +42,22 @@ Utilisations de l'API
     items_iter = (
         item
         for item in items_node.iter_items()
-        if set([u'exemple', u'outil', u'utilisation']).intersection(item.get('tags') or [])
+        ## if set([u'exemple', u'tool', u'community']).intersection(item.get('tags') or [])
         )
 %>\
     <div class="row">
     % for item in items_iter:
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
+        % if 'thumbnail_url' in item:
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+        % endif
                 <div class="caption">
                     <div class="ellipsis" style="height: 120px">
                         <h3>${item['title']}</h3>
+        % if 'description' in item:
                         <p>${item['description']}</p>
+        % endif
                     </div>
                     <p><a href="${item['source_url']}" class="btn btn-primary" role="button">En savoir plus</a></p>
                 </div>
