@@ -59,7 +59,7 @@ Community
                         <h3>${item['title']}</h3>
                         <p>${item['description']}</p>
                     </div>
-                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">En savoir plus</a></p>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Read more</a></p>
                 </div>
             </div>
         </div>

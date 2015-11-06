@@ -63,7 +63,7 @@ Tools
                         <h3>${item['title']}</h3>
                         <p>${item['description']}</p>
                     </div>
-                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Voir</a></p>
+                    <p><a href="${item['source_url']}" class="btn btn-primary" role="button">Use</a></p>
                 </div>
             </div>
         </div>

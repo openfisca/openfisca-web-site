@@ -187,14 +187,14 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Read more</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">En savoir plus</a></p>
                 </div>
             </div>
         </div>
         % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">Vous tous les projets de la communauté...</em></a>
+        <a href="${urls.get_url(ctx, 'community')}"><em class="lead">Vous tous les projets de la communauté...</em></a>
     </div>
     % endif
 </%def>
@@ -430,14 +430,14 @@ $(function () {
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], tem['description']['fr'])}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
                 </div>
             </div>
         </div>
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">Voir tous les outils disponibles...</em></a>
+        <a href="${urls.get_url(ctx, 'tools')}"><em class="lead">Voir tous les outils disponibles...</em></a>
     </div>
     % endif
 </%def>

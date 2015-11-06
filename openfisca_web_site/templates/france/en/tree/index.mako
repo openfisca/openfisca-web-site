@@ -193,7 +193,7 @@ twitter_statuses_updated = None
         % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'utilisations')}"><em class="lead">See all the community's projects...</em></a>
+        <a href="${urls.get_url(ctx, 'community')}"><em class="lead">See all the community's projects...</em></a>
     </div>
     % endif
 </%def>
@@ -424,7 +424,7 @@ $(function () {
     % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'outils')}"><em class="lead">See all the available tools...</em></a>
+        <a href="${urls.get_url(ctx, 'tools')}"><em class="lead">See all the available tools...</em></a>
     </div>
     % endif
 </%def>
