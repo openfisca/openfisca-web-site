@@ -82,7 +82,7 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            description = u"Simulez tous vos droits en ligne !",
+            description = u"Simulez toutes vos aides en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"SGMAP",
             source_url = u'http://mes-aides.gouv.fr/',
