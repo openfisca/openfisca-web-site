@@ -246,11 +246,6 @@ ${conf['realm']}
 <%def name="scripts()" filter="trim">
     <script src="${urls.get_static_url(ctx, u'/bower/jquery/dist/jquery.min.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/bootstrap/dist/js/bootstrap.min.js')}"></script>
-    <script>
-$(function () {
-    $('.dropdown-toggle').dropdown();
-});
-    </script>
 </%def>
 
 
