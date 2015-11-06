@@ -93,6 +93,17 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
+            description = u"Simulez le coût d'une embauche dans votre entreprise, combien le salarié touchera, et à combien il sera imposable.",  # noqa
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
+            owner = u"SGMAP",
+            source_url = u'http://embauche.sgmap.fr/',
+            tags = [u'community'],
+            title = u"Simulateur de coût d'embauche",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-simulateur-embauche.png'),
+            updated = u'2015-11-05T18:01:00',
+            )
+        yield dict(
+            country = [u'france'],
             description = u"Évolution du taux effectif d'imposition en fonction du salaire et du capital",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-regards-citoyens.jpeg'),
             owner = u"Regards citoyens",
