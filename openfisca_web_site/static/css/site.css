@@ -54,6 +54,36 @@ h3,
 }
 
 
+/* Carousel */
+/* Center images in carousel: */
+/* http://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive */
+
+div.c-wrapper{
+    width: 80%; /* for example */
+    margin: auto;
+}
+
+.carousel-inner > div.item {
+    height: 350px;
+    overflow: hidden;
+}
+
+.carousel-inner > div.item > img,
+.carousel-inner > div.item > a > img {
+    margin: auto;
+    /* width: 100%; use this, or not */
+}
+
+.carousel-caption {
+    background-color: #21526e;
+    left: 0px;
+    bottom: 0px;
+    opacity: 0.7;
+    padding-bottom: 60px;
+    right: 0px;
+}
+
+
 /* Jumbotron button */
 
 .btn-jumbotron {

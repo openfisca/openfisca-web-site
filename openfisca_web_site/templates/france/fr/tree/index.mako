@@ -87,12 +87,59 @@ twitter_statuses_updated = None
             }) repeat center left #c7edfa; margin-top: -20px">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12" style="margin-bottom: 15px">
+                <div class="col-lg-4" style="margin-bottom: 15px">
                     <p>
                         <img alt="OpenFisca" class="img-responsive" src="/hotlinks/logo-openfisca.svg">
                     </p>
                     <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
+                </div>
+                <div class="col-lg-8">
+<%
+    items = sorted(
+        (
+            item
+            for item in items_node.iter_items()
+            if item.get('carousel_rank') is not None
+            ),
+        key = lambda item: item['carousel_rank']
+        )
+%>\
+                    <div class="carousel slide" data-ride="carousel" id="carousel">
+                        ## Indicators
+                        <ol class="carousel-indicators">
+    % for item in items:
+                            <li data-target="#carousel" data-slide-to="${loop.index}"${
+                                    u' class="active"' if loop.first else u'' | n}></li>
+    % endfor
+                        </ol>
+                        ## Wrapper for slides
+                        <div class="carousel-inner">
+    % for item in items:
+                            <div class="item${u' active' if loop.first else u''}">
+##                                <a href="${item['source_url']}"><img alt="Copie d'écran : ${item['title']}" src="${
+##                                        item['thumbnail_url']}"></a>
+                                <img alt="Copie d'écran : ${item['title']}" src="${item['thumbnail_url']}">
+                                <div class="carousel-caption">
+                                    <h3><a href="${item['source_url']}">${item['title']}</a></h3>
+                                    ${item['owner']}, ${babel.dates.format_date(
+                                        datetime.date(*[
+                                            int(number)
+                                            for number in item['updated'].split('T')[0].split('-')
+                                            ]),
+                                        locale = ctx.lang[0][:2],
+                                        )}
+                                </div>
+                            </div>
+    % endfor
+                        </div>
+                        <a class="carousel-control left" href="index.html#carousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="carousel-control right" href="index.html#carousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
