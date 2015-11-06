@@ -133,10 +133,10 @@ twitter_statuses_updated = None
                             </div>
     % endfor
                         </div>
-                        <a class="carousel-control left" href="index.html#carousel" data-slide="prev">
+                        <a class="carousel-control left" href="#carousel" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
-                        <a class="carousel-control right" href="index.html#carousel" data-slide="next">
+                        <a class="carousel-control right" href="#carousel" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </div>
