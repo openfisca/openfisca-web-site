@@ -313,6 +313,8 @@ twitter_statuses_updated = None
 
     <%self:tools/>
 
+    <%self:community/>
+
     <%self:twitter/>
 
     <div class="page-header">
