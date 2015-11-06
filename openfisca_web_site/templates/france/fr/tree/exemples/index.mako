@@ -37,7 +37,6 @@ Exemples d'utilisation de l'API web
 
 
 <%def name="page_content()" filter="trim">
-    <h2 id="exemples-javascript">Exemples d'utilisation de l'API en JavaScript</h2>
 <%
     items_node = node.parent.child_from_node(ctx, unique_name = 'elements')
     items_iter = (
