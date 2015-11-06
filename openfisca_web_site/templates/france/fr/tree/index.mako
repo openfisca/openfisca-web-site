@@ -458,7 +458,7 @@ $(function () {
 %>\
         % if twitter_statuses:
     <div class="page-header">
-        <h2>Tweets <small>@OpenFisca</small></h2>
+        <h2>Tweets <small><a href="https://twitter.com/OpenFisca" rel="external" target="_blank">@OpenFisca</a></small></h2>
     </div>
     <div class="row" style="margin-bottom: 20px">
             % for status_index, status in enumerate(twitter_statuses):
@@ -474,7 +474,7 @@ $(function () {
             % endfor
     </div>
     <div class="text-right">
-        <a href="https://twitter.com/OpenFisca" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
+        <a href="https://twitter.com/OpenFisca" rel="external" target="_blank"><em class="lead">Voir tous les tweets...</em></a>
     </div>
         % endif
     % endif
