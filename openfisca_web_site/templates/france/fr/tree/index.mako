@@ -267,7 +267,7 @@ twitter_statuses_updated = None
                 systèmes différents.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install', 'index.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
                     Installation
                 </a>
             </p>
