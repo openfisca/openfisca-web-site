@@ -234,7 +234,7 @@ twitter_statuses_updated = None
                 illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api', 'index.html')}" role="button">
                     Utiliser l'API web
                 </a>
             </p>
@@ -267,7 +267,7 @@ twitter_statuses_updated = None
                 systèmes différents.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install/')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install', 'index.html')}" role="button">
                     Installation
                 </a>
             </p>
@@ -299,7 +299,7 @@ twitter_statuses_updated = None
                 développement. Toutes les bonnes volontés sont les bienvenues.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute/')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute', 'index.html')}" role="button">
                     Contribuer
                 </a>
             </p>
