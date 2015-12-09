@@ -95,7 +95,7 @@ class Node(model.Folder):
             )
         yield dict(
             country = [u'france'],
-            description = u"Simulez le coût d'une embauche dans votre entreprise, combien le salarié touchera, et à combien il sera imposable.",  # noqa
+            description = u"Simulez le coût d'une embauche dans votre entreprise, et combien le salarié touchera.",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"SGMAP",
             source_url = u'http://embauche.sgmap.fr/',
