@@ -194,7 +194,7 @@ twitter_statuses_updated = None
         % endfor
     </div>
     <div class="text-right">
-        <a href="${urls.get_url(ctx, 'community')}"><em class="lead">Vous tous les projets de la communauté...</em></a>
+        <a href="${urls.get_url(ctx, 'community')}"><em class="lead">Voir tous les projets de la communauté...</em></a>
     </div>
     % endif
 </%def>
