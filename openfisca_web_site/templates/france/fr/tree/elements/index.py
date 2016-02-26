@@ -186,3 +186,13 @@ dont le montant et le financement sont ajustés démocratiquement.""",
             title = u'Réforme Landais Piketty Saez',
             updated = u'2015-11-02T18:30:00',
             )
+        yield dict(
+            description = u'Développez en Python dans le cloud d\'OpenFisca ! Totalement en ligne, avec comptes utilisateurs, sans installer de logiciels sur votre ordinateur.',  # noqa
+            logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+            owner = u"Équipe OpenFisca",
+            source_url = 'https://jupyter.openfisca.fr/',
+            tags = [u'tool'],
+            title = ctx._(u'Jupyter notebook with OpenFisca'),
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'logo-jupyter.svg'),
+            updated = u'2016-02-26T18:00:00',
+            )

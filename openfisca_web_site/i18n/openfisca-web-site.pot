@@ -1,15 +1,15 @@
 # Translations template for OpenFisca-Web-Site.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2016 ORGANIZATION
 # This file is distributed under the same license as the OpenFisca-Web-Site
 # project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenFisca-Web-Site 0.2.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-04-23 10:43+0200\n"
+"POT-Creation-Date: 2016-02-26 18:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,13 +91,9 @@ msgid "Redirection in progress..."
 msgstr ""
 
 #: openfisca_web_site/templates/france/en/site.mako:38
-#: openfisca_web_site/templates/france/fr/site.mako:273
+#: openfisca_web_site/templates/france/fr/site.mako:268
 #: openfisca_web_site/templates/tunisia/ar/site.mako:38
 msgid "Toggle navigation"
-msgstr ""
-
-#: openfisca_web_site/templates/france/en/tree/a-propos.mako:35
-msgid "About OpenFisca"
 msgstr ""
 
 #: openfisca_web_site/templates/france/fr/page-not-found.mako:31
@@ -124,59 +120,63 @@ msgstr ""
 msgid "Please, correct the informations below."
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:299
+#: openfisca_web_site/templates/france/fr/site.mako:295
 msgid "France"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:300
+#: openfisca_web_site/templates/france/fr/site.mako:296
 msgid "Tunisia"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:325
+#: openfisca_web_site/templates/france/fr/site.mako:321
 msgid "Other countries"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:384
+#: openfisca_web_site/templates/france/fr/site.mako:380
 msgid "Skip to main content"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:41
-msgid "Demonstrator of the simulator"
-msgstr ""
-
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:51
-msgid "Trace tool"
-msgstr ""
-
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:61
-msgid "Tax-benefit variables interdependence graph"
-msgstr ""
-
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:71
-msgid "Waterfall diagram"
-msgstr ""
-
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:82
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:39
 msgid "Legislation explorer"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:116
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:49
+msgid "Trace tool"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:59
+msgid "Tax-benefit variables interdependence graph"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:70
+msgid "Demonstrator of the simulator"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:80
+msgid "Waterfall diagram"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:125
 msgid "Tabular decomposition"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:155
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:164
 msgid "Taxes simulations comparator"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:61
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:195
+msgid "Jupyter notebook with OpenFisca"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/tools/trace.py:61
 msgid "Invalid JSON in request POST body"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:101
+#: openfisca_web_site/templates/france/fr/tree/tools/trace.py:101
 msgid "Bad parameters in request"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/outils/trace.py:117
+#: openfisca_web_site/templates/france/fr/tree/tools/trace.py:117
 msgid "Unable to open simulation_url"
 msgstr ""
 
