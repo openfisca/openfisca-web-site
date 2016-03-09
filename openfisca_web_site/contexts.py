@@ -88,7 +88,8 @@ class Ctx(conv.State):
     def application_path_info_set(self, application_path_info):
         self._application_path_info = application_path_info
         if self.req is not None:
-            self.req.environ.setdefault('openfisca-web-site', {})['_application_path_info'] = self._application_path_info
+            self.req.environ.setdefault('openfisca-web-site', {})['_application_path_info'] = \
+                self._application_path_info
 
     application_path_info = property(application_path_info_get, application_path_info_set, application_path_info_del)
 

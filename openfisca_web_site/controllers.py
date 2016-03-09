@@ -41,10 +41,9 @@ def make_router():
     """Return a WSGI application that searches requests to controllers """
     global router
     router = urls.make_router(
-#        ('GET', '^/login/?$', login),
-#        ('GET', '^/login-done/?$', login_done),
-#        ('GET', '^/logout/?$', logout),
-
+        # ('GET', '^/login/?$', login),
+        # ('GET', '^/login-done/?$', login_done),
+        # ('GET', '^/logout/?$', logout),
         (None, '', route_node),
         )
     return router
