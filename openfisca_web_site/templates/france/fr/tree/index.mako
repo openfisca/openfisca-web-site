@@ -309,11 +309,11 @@ twitter_statuses_updated = None
         <a href="${conf['urls.gitbook']}"><em class="lead">Voir toute la documentation...</em></a>
     </div>
 
+    <%self:news/>
+
     <%self:tools/>
 
     <%self:community/>
-
-    <%self:news/>
 
     <%self:twitter/>
 
