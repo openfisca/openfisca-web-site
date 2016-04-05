@@ -23,6 +23,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import urlparse
+
 from openfisca_web_site import conf, model, urls
 
 
@@ -61,7 +63,7 @@ class Node(model.Folder):
             updated = u'2014-03-28T09:00:00',
             )
         yield dict(
-            carousel_rank = 1,
+            carousel_rank = 2,
             description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
@@ -82,7 +84,7 @@ class Node(model.Folder):
             updated = u'2014-04-21T07:00:00',
             )
         yield dict(
-            carousel_rank = 1,
+            carousel_rank = 2,
             country = [u'france'],
             description = u"Simulez toutes vos aides en ligne !",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
@@ -195,4 +197,14 @@ dont le montant et le financement sont ajustés démocratiquement.""",
             title = ctx._(u'Jupyter notebook with OpenFisca'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'logo-jupyter.svg'),
             updated = u'2016-02-26T18:00:00',
+            )
+        yield dict(
+            carousel_rank = 1,
+            country = [u'france'],
+            owner = u"DGFiP / Etalab",
+            source_url = urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37'),
+            tags = [u'calculette-impots'],
+            title = u"Ouverture de la Calculette Impôts",
+            thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'cerfa-2042.png'),
+            updated = u'2016-04-05T16:17:00',
             )
