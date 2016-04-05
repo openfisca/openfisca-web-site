@@ -23,6 +23,11 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+<%!
+from openfisca_web_site import conf
+%>
+
+
 <%inherit file="/page.mako"/>
 
 
@@ -32,14 +37,11 @@ Contact
 
 
 <%def name="page_content()" filter="trim">
-        <h2>Contacter l'équipe OpenFisca</h2>
-        <ul>
-            <li>Courriel : <a href="mailto:contact@openfisca.fr">contact@openfisca.fr</a></li>
-            <li>Twitter : <a href="https://twitter.com/OpenFisca">@OpenFisca</a></li>
-        </ul>
-        <h2>Contacter l'équipe Etalab</h2>
-        <ul>
-            <li>Courriel : <a href="mailto:info@data.gouv.fr">info@data.gouv.fr</a></li>
-            <li>Twitter : <a href="https://twitter.com/etalab">@etalab</a></li>
-        </ul>
+    <p>Pour contacter l'équipe OpenFisca :</p>
+    <ul>
+        <li>par courriel : <a href="mailto:contact@openfisca.fr">contact@openfisca.fr</a></li>
+        <li>par Twitter : <a href="https://twitter.com/OpenFisca">@OpenFisca</a></li>
+        <li>sur le <a href="${conf['urls.forum']}">forum</a> s'il s'agit d'une question ouverte</li>
+        <li>ou bien, pour les développeurs, s'il s'agit d'un problème avec un logiciel en particulier, ouvrez une "issue" sur <a href="https://github.com/openfisca/">GitHub</a>
+    </ul>
 </%def>
