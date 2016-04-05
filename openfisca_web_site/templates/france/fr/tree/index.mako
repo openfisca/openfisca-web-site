@@ -91,7 +91,7 @@ twitter_statuses_updated = None
                     <p>
                         <img alt="OpenFisca" class="img-responsive" src="/hotlinks/logo-openfisca.svg">
                     </p>
-                    <em class="lead" style="color: white; font-size: 32px">Moteur ouvert de simulation du système socio-fiscal</em>
+                    <em class="lead" style="color: white; font-size: 32px">Modèles ouverts de calcul des systèmes socio-fiscaux</em>
 ##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
@@ -151,8 +151,68 @@ twitter_statuses_updated = None
 </%def>
 
 
-<%def name="community()" filter="trim">
+<%def name="calculette_impots_blocks()" filter="trim">
+    <div class="page-header">
+        <h2>Calculette Impôts <span class="label label-success">nouveau</span></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <h3>Présentation</h3>
+            <p class="text-justify">
+                 La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
+            </p>
+            <p class="text-justify">
+                Ce logiciel a été ouvert en avril 2016. Il est écrit en langage M développé par la DGFiP et l'équipe OpenFisca a réalisé une traduction en Python.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37')}" role="button">
+                    Lire la suite
+                </a>
+            </p>
+        </div>
 
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>API web</h3>
+            <p class="text-justify">
+                L'API web permet aux développeurs d'utiliser la Calculette Impôts depuis n'importe quelle application web.
+            </p>
+            <p class="text-justify">
+                Grâce aux serveurs mis à votre disposition sur Internet par
+                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
+                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="https://git.framasoft.org/openfisca/calculette-impots-web-api" role="button">
+                    Utiliser l'API web
+                </a>
+            </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>Web Explorer</h3>
+            <p class="text-justify">
+                Pour naviguer dans les variables du code source en langage M, l'équipe OpenFisca a réalisé une application web minimaliste : le Web Explorer de la Calculette Impôts.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="http://calc.ir.openfisca.fr/" role="button">Web Explorer</a>
+            </p>
+        </div>
+    </div>
+</%def>
+
+
+<%def name="community()" filter="trim">
+    <div class="page-header">
+        <h2>Communauté</h2>
+    </div>
+    <p class="text-justify">
+        OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
+        ne pourra pas réussir sans l'aide du plus grand nombre.
+    </p>
+    <p class="text-justify">
+        Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
+        développement. Toutes les bonnes volontés sont les bienvenues.
+    </p>
 <%
     items_node = node.child_from_node(ctx, unique_name = 'elements')
     items = list(itertools.islice(
@@ -166,9 +226,6 @@ twitter_statuses_updated = None
         ))
 %>\
     % if items:
-    <div class="page-header">
-        <h2>Communauté</h2>
-    </div>
     <p class="text-justify">
         OpenFisca commence déjà à être utilisé : durant des "hackathons", pour des projets de
         recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
@@ -176,6 +233,11 @@ twitter_statuses_updated = None
     <p class="text-justify">
         Ce n'est qu'un début, mais ces premiers projets sont prometteurs.
         Contactez-nous pour ajouter votre projet !
+    </p>
+    <p style="margin-bottom: 20px">
+        <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute/index.html')}" role="button">
+            Contribuer
+        </a>
     </p>
     <div class="row">
         % for item in items:
@@ -201,122 +263,12 @@ twitter_statuses_updated = None
 
 
 <%def name="container_content()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-%>\
-    <div class="row">
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Présentation</h3>
-            <p class="text-justify">
-                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal. Il permet de
-                 calculer simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de
-                 simuler l'impact de réformes sur leur budget.
-            </p>
-            <p class="text-justify">
-                Il s'agit d'un outil à <em>vocation pédagogique</em> pour aider les
-                citoyens à mieux comprendre le système socio-fiscal.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'presentation.html')}" role="button">
-                    Lire la suite
-                </a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>API web</h3>
-            <p class="text-justify">
-                L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
-            </p>
-            <p class="text-justify">
-                Grâce aux serveurs mis à votre disposition sur Internet par
-                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
-                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/index.html')}" role="button">
-                    Utiliser l'API web
-                </a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Simulation de cas types</h3>
-            <p class="text-justify">
-                Pour illustrer les possibilités offertes par l'API web, nous avons réalisé un simulateur en ligne.
-            </p>
-            <p class="text-justify">
-                Grâce à ce <em>démonstrateur</em>, décrivez votre situation familiale, saisissez vos revenus et
-                votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
-                découvrez votre niveau de vie, etc.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simuler un cas type</a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Installation</h3>
-            <p class="text-justify">
-                Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
-                logiciels qui composent OpenFisca sur votre propre ordinateur, sur des serveurs ou même dans le
-                "cloud".
-            </p>
-            <p class="text-justify">
-                Nous déployons de gros efforts afin qu'OpenFisca puisse fonctionner sur de plus en plus de
-                systèmes différents.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
-                    Installation
-                </a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Logiciel libre</h3>
-            <p class="text-justify">
-                OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
-                OpenFisca, de l'installer, d'étudier son code source, de le modifier et devle redistribuer comme bon
-                vous semble.
-            </p>
-            <p class="text-justify">
-                Une seule contrainte : les travaux dérivés d'OpenFisca doivent eux aussi être libres.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'about')}" role="button">À propos</a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Communauté</h3>
-            <p class="text-justify">
-                OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
-                ne pourra pas réussir sans l'aide du plus grand nombre.
-            </p>
-            <p class="text-justify">
-                Quelles que soient vos compétences, si OpenFisca vous intéresse, vous pouvez contribuer à son
-                développement. Toutes les bonnes volontés sont les bienvenues.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute/index.html')}" role="button">
-                    Contribuer
-                </a>
-            </p>
-        </div>
-    </div>
-    <div class="text-right">
-        <a href="${conf['urls.gitbook']}"><em class="lead">Voir toute la documentation...</em></a>
-    </div>
-
+    <%self:calculette_impots_blocks/>
+    <%self:openfisca_blocks/>
     <%self:news/>
-
     <%self:tools/>
-
     <%self:community/>
-
     <%self:twitter/>
-
     <div class="page-header">
         <h2>Porteurs du projet</h2>
     </div>
@@ -376,6 +328,92 @@ Accueil
         <a href="${urls.get_url(ctx, 'atom')}"><span class="label label-warning">Fil d'actualité</span></a>
     </div>
     % endif
+</%def>
+
+
+<%def name="openfisca_blocks()" filter="trim">
+    <div class="page-header">
+        <h2>Simulateur OpenFisca</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>Présentation</h3>
+            <p class="text-justify">
+                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal. Il permet de
+                 calculer simplement un grand nombre de prestations sociales et d'impôts payés, par les ménages, et de
+                 simuler l'impact de réformes sur leur budget.
+            </p>
+            <p class="text-justify">
+                Il s'agit d'un outil à <em>vocation pédagogique</em> pour aider les
+                citoyens à mieux comprendre le système socio-fiscal.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'presentation.html')}" role="button">
+                    Lire la suite
+                </a>
+            </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>API web</h3>
+            <p class="text-justify">
+                L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
+            </p>
+            <p class="text-justify">
+                Grâce aux serveurs mis à votre disposition sur Internet par
+                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
+                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/index.html')}" role="button">
+                    Utiliser l'API web
+                </a>
+            </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>Simulation de cas types</h3>
+            <p class="text-justify">
+                Pour illustrer les possibilités offertes par l'API web, nous avons réalisé un simulateur en ligne.
+            </p>
+            <p class="text-justify">
+                Grâce à ce <em>démonstrateur</em>, décrivez votre situation familiale, saisissez vos revenus et
+                votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
+                découvrez votre niveau de vie, etc.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simuler un cas type</a>
+            </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>Installation</h3>
+            <p class="text-justify">
+                Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
+                logiciels qui composent OpenFisca sur votre propre ordinateur, sur des serveurs ou même dans le
+                "cloud".
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
+                    Installation
+                </a>
+            </p>
+        </div>
+        <div class="col-md-4 col-sm-6" style="height: 280px">
+            <h3>Logiciel libre</h3>
+            <p class="text-justify">
+                OpenFisca est un simulateur ouvert sous licence libre. Cette licence vous permet d'utiliser
+                OpenFisca, de l'installer, d'étudier son code source, de le modifier et devle redistribuer comme bon
+                vous semble.
+            </p>
+            <p class="text-justify">
+                Une seule contrainte : les travaux dérivés d'OpenFisca doivent eux aussi être libres.
+            </p>
+            <p style="margin-top: 20px">
+                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'about')}" role="button">À propos</a>
+            </p>
+        </div>
+    </div>
 </%def>
 
 
