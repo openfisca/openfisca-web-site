@@ -162,7 +162,7 @@ twitter_statuses_updated = None
                  La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
             </p>
             <p class="text-justify">
-                Ce logiciel a été ouvert en avril 2016. Il est écrit en langage M développé par la DGFiP et l'équipe OpenFisca a réalisé une traduction en Python.
+                Ce logiciel a été ouvert en avril 2016. Il est écrit en langage M développé par la DGFiP et l'équipe OpenFisca notamment a réalisé une traduction en Python.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37')}" role="button">
