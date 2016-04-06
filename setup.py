@@ -70,6 +70,7 @@ setup(
         'Mako >= 0.7.0',
         # 'python-magic',  # TODO: This is the name of the Debian package. Pypi name is not known.
         'python-twitter >= 1.1',
+        'toolz >= 0.7.4',
         'twitter-text-python >= 1.0.1',
         'WebError >= 0.10',
         'WebOb >= 1.1',

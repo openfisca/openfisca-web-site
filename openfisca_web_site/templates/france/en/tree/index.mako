@@ -32,6 +32,7 @@ import urlparse
 import babel.dates
 import lxml.html
 import logging
+from toolz import partition_all
 from ttp import ttp
 import twitter
 
@@ -88,9 +89,9 @@ twitter_statuses_updated = None
             <div class="row">
                 <div class="col-lg-4" style="margin-bottom: 15px">
                     <p>
-                        <img alt="OpenFisca" class="img-responsive" src="/hotlinks/logo-openfisca.svg"> </p>
+                        <img alt="OpenFisca" class="img-responsive" src="/hotlinks/logo-openfisca.svg">
+                    </p>
                     <em class="lead" style="color: white; font-size: 32px">Open models to compute tax and benefit systems</em>
-##                    <div><a class="btn btn-jumbotron btn-lg" href="${conf['urls.ui']}" role="button">Simuler un cas type en ligne</a></div>
                 </div>
                 <div class="col-lg-8">
 <%
@@ -160,39 +161,58 @@ twitter_statuses_updated = None
                  La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
             </p>
             <p class="text-justify">
-                Ce logiciel a été ouvert en avril 2016. Il est écrit en langage M développé par la DGFiP et l'équipe OpenFisca a réalisé une traduction en Python.
+                Ce logiciel a été ouvert par l'administration en avril 2016. Il est écrit en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-source-code">langage M</a> développé en interne à la DGFiP, et contient les règles de calcul de l'impôt telles que décrites dans la législation.
+            </p>
+            <p class="text-justify">
+                L'équipe OpenFisca a d'abord réalisé une <a href="https://git.framasoft.org/openfisca/calculette-impots-python">traduction en Python</a> du code M, permettant d'exécuter des calculs sur n'importe quel ordinateur.
+            </p>
+            <p class="text-justify">
+                Puis un <a href="https://forum.openfisca.fr/t/guide-pratique-du-hackathon-codeimpot/42">hackathon</a> célébrant cette ouverture a eu lieu début avril 2016, et a accueilli plusieurs <a href="https://forum.openfisca.fr/t/projets-du-hackathon-codeimpot/40?source_topic_id=42">ateliers</a> qui ont donné naissance à des outils gravitant autour du code M.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37')}" role="button">
-                    Lire la suite
+                    Read more
                 </a>
             </p>
         </div>
 
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>API web</h3>
+        <div class="col-md-4 col-sm-6">
+            <h3>Outils supplémentaires</h3>
             <p class="text-justify">
-                L'API web permet aux développeurs d'utiliser la Calculette Impôts depuis n'importe quelle application web.
+                L'<a href="https://git.framasoft.org/openfisca/calculette-impots-web-api">API web</a> permet
+                aux développeurs d'utiliser la Calculette Impôts depuis une application web, un article économique,
+                une infographie dynamique, etc.
             </p>
             <p class="text-justify">
-                Grâce aux serveurs mis à votre disposition sur Internet par
-                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>, vous pouvez utiliser l'API pour
-                illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
+                Le <a href="http://calc.ir.openfisca.fr/">Web Explorer</a> de la Calculette Impôts permet de naviguer
+                dans les variables du code M.
+            </p>
+            <p class="text-justify">
+                D'autres traductions de la Calculette Impôts ont émergé du hackathon :
+                en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-vector-computing">Python vectoriel</a>,
+                permettant notamment d'accélérer considérablement les calculs,
+                et en <a href="http://calc.ir.openfisca.fr/mtojs/">JavaScript</a> afin d'effectuer les calculs
+                sans disposer de connexion internet, directement depuis le navigateur ou une application mobile.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="https://git.framasoft.org/openfisca/calculette-impots-web-api" role="button">
-                    Utiliser l'API web
+                <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
+                    Voir tous les outils
                 </a>
             </p>
         </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Web Explorer</h3>
+        <div class="col-md-4 col-sm-6">
+            <h3>Installation</h3>
             <p class="text-justify">
-                Pour naviguer dans les variables du code source en langage M, l'équipe OpenFisca a réalisé une application web minimaliste : le Web Explorer de la Calculette Impôts.
+                Depuis son ouverture, il est tout à fait possible d'installer la Calculette Impôts sur un ordinateur,
+                tout comme chacun des outils l'accompagnant.
+            </p>
+            <p class="text-justify">
+                Pour cela, veuillez vous référer aux fichiers <code>README</code> de chaque projet.
             </p>
             <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="http://calc.ir.openfisca.fr/" role="button">Web Explorer</a>
+                <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
+                    Voir tous les projets
+                </a>
             </p>
         </div>
     </div>
@@ -201,46 +221,55 @@ twitter_statuses_updated = None
 
 <%def name="community()" filter="trim">
     <div class="page-header">
-        <h2>Community</h2>
+        <h2>Free software and Community</h2>
     </div>
     <p class="text-justify">
-        OpenFisca is a free project, open to all. But it is first and foremost a very ambitious project, which cannot
-        succeede without the help of many.
+        Tous les outils développés par la communauté OpenFisca sont des logiciels libres.
+        Cela signifie que vous pouvez utiliser les logiciels du projet OpenFisca, les installer,
+        étudier leur code source et le modifier, et le redistribuer comme bon vous semble.
+        Une seule contrainte : les travaux dérivés d'OpenFisca doivent eux aussi être libres.
     </p>
     <p class="text-justify">
-        Whatever your qualifications, if you are interested in OpenFisca, you can contribute to its development. All people of
-        good will are welcome.
+        Nous croyons qu'il est indispensable pour la société de disposer de modèles ouverts de calcul des impôts et
+        des prestations sociales, en premier lieu pour des raisons de transparence. D'où le choix du logiciel libre.
+    </p>
+    <p class="text-justify">
+        OpenFisca is a free project, open to all. But it is first and foremost a very ambitious project, which cannot succeede without the help of many.
+    </p>
+    <p class="text-justify">
+        Whatever your qualifications, if you are interested in OpenFisca, you can contribute to its development.
+        All people of good will are welcome.
+        Que vous soyez chercheur, économiste,
+        agent de l'administration publique, étudiant ou citoyen intéressé par l'ouverture des modèles.
+    </p>
+    <p class="text-justify">
+        Les membres de la communauté peuvent échanger entre-eux ou avec les nouveaux venus sur le
+        <a href="${conf['urls.forum']}" role="button">forum d'OpenFisca</a>.
+    </p>
+    <p class="text-justify">
+        La communauté OpenFisca a déjà fourni un énorme travail de représentation de la législation française,
+        de développement du moteur de calcul et de réalisation de produits utilisant OpenFisca,
+        comme le site gouvernemental <a href="https://mes-aides.gouv.fr/">mes-aides.gouv.fr</a>.
+        Voir la <a href="https://github.com/openfisca/openfisca-france#contributors">liste des contributeurs à OpenFisca-France</a>,
+        le dépôt contenant la traduction en code source Python du système socio-fiscal français.
+    </p>
+    <p class="text-justify">
+        OpenFisca has already been used for project developed during hackathons to produce new visualisations, illustrate some research, create specialized simulators, etc.
+        Contact us to add your project!
     </p>
 <%
     items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'community' in (item.get('tags') or [])
-                and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
-            ),
-        3,
-        ))
+    items = [
+        item
+        for item in items_node.iter_items()
+        if u'community' in (item.get('tags') or [])
+            and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+        ]
 %>\
     % if items:
-    <p class="text-justify">
-        OpenFisca has already been used for project developed during
-        hackathons to produce new visualisations, illustrate some research, create specialized
-        simulators, etc.
-    </p>
-    <p class="text-justify">
-       This is just the beginning, but these early projects are promising.
-       Contact us to add your project!
-    </p>
-    <p style="margin-bottom: 20px">
-        <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'contribute/index.html')}" role="button">
-            Contribute
-        </a>
-    </p>
     <div class="row">
         % for item in items:
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
@@ -248,14 +277,11 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Read more</a></p>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
                 </div>
             </div>
         </div>
         % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'community')}"><em class="lead">See all the community's projects...</em></a>
     </div>
     % endif
 </%def>
@@ -264,12 +290,11 @@ twitter_statuses_updated = None
 <%def name="container_content()" filter="trim">
     <%self:calculette_impots_blocks/>
     <%self:openfisca_blocks/>
-    <%self:tools/>
-    <%self:community/>
     <%self:news/>
+    <%self:community/>
     <%self:twitter/>
     <div class="page-header">
-        <h2>Partners</h2>
+        <h2>Porteurs du projet</h2>
     </div>
     <%self:partners/>
 </%def>
@@ -326,86 +351,88 @@ Home
         <h2>OpenFisca simulator</h2>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-6" style="height: 280px">
+        <div class="col-md-4 col-sm-6">
             <h3>Presentation</h3>
             <p class="text-justify">
-                 OpenFisca is an open micro-simulator of the tax-benefit system.
-                 It allows users to simply calculate many social benefits and taxes
-                 paid by households and to simulate the impact of reforms on their budget.
+                OpenFisca is an open micro-simulator of the tax-benefit system.
+                It allows users to calculate many social benefits and taxes paid by households and to simulate
+                the impact of reforms on their budget.
             </p>
             <p class="text-justify">
-                This tool has an <em>educational purpose</em>, and aims
-                to help citizens better understand the tax-benefit system.
+                This tool has an <em>educational purpose</em>, and aims to help citizens better understand the tax-benefit system.
             </p>
-            <p style="margin-top: 20px">
+            <p>
                 <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'presentation.html')}" role="button">
                     Read more
                 </a>
             </p>
         </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
+        <div class="col-md-4 col-sm-6">
             <h3>Web API</h3>
             <p class="text-justify">
-               The API lets you use the web OpenFisca engine, without installing it, from any web page.
+                The API lets you use the web OpenFisca engine, without installing it, from any web page.
             </p>
             <p class="text-justify">
-                The servers made available on the Internet by
-                <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a> allow you to use the API to illustrate
+                The servers made available on the Internet by <a href="http://www.etalab.gouv.fr" target="_blank">Etalab</a>
+                allow you to use the API to illustrate
                 a research project, an economic article, to create a dynamic infographics, etc.
             </p>
-            <p style="margin-top: 20px">
+            <p>
                 <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/index.html')}" role="button">
                     Use the web API
                 </a>
             </p>
         </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Test-case simulations</h3>
-            <p class="text-justify">
-                To illustrate the possibilities offered by the web API, we created an online simulator.
-            </p>
-            <p class="text-justify">
-                With this <em>demonstrator</em>, by describing your family situation and entering your income
-                and assets, you can compare your tax-benefit situation with that of other households, discover your
-                living standard, etc.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${conf['urls.ui']}" role="button">Simulate a test case</a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
+        <div class="col-md-4 col-sm-6">
             <h3>Installation</h3>
             <p class="text-justify">
-                If the use of OpenFisca online is not enough for you, you can also install
-                different OpenFisca softwares on your own computer, on servers or even in the "cloud".
+                If the use of OpenFisca online is not enough for you, you can also install different
+                OpenFisca softwares on your own computer, on servers or even in the "cloud".
             </p>
-            <p class="text-justify">
-                We are working hard to make OpenFisca compatible with the greatest number of systems.
-            </p>
-            <p style="margin-top: 20px">
+            <p>
                 <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
-                    Installation
+                    Install OpenFisca
                 </a>
             </p>
         </div>
-
-        <div class="col-md-4 col-sm-6" style="height: 280px">
-            <h3>Free software</h3>
-            <p class="text-justify">
-                OpenFisca is an open simulator under a free license. This license allows you to use OpenFisca,
-                install it, study its source code, modify and redistribute it as you see fit.
-            </p>
-            <p class="text-justify">
-                The only constraint: OpenFisca re-uses must also be free of use.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urls.get_url(ctx, 'about')}" role="button">About</a>
-            </p>
-        </div>
     </div>
+    <%self:openfisca_tools/>
+</%def>
+
+
+<%def name="openfisca_tools()" filter="trim">
+<%
+    items_node = node.child_from_node(ctx, unique_name = 'elements')
+    items_tuples = partition_all(
+        3,
+        (
+            item
+            for item in items_node.iter_items()
+            if u'tool' in (item.get('tags') or [])
+                and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
+            ),
+        )
+%>\
+    % for items_tuple in items_tuples:
+    <div class="row">
+        % for item in items_tuple:
+        <div class="col-md-4 col-sm-6">
+            <div class="thumbnail">
+                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
+                <div class="caption">
+                    <div class="ellipsis" style="height: 120px">
+                        <h3>${item['title']}</h3>
+                        <p class="text-justify">
+                          ${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}
+                        </p>
+                    </div>
+                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
+                </div>
+            </div>
+        </div>
+        % endfor
+    </div>
+    % endfor
 </%def>
 
 
@@ -422,54 +449,6 @@ $(function () {
 
 <%def name="title_content()" filter="trim">
 <%self:brand/>
-</%def>
-
-
-<%def name="tools()" filter="trim">
-<%
-    items_node = node.child_from_node(ctx, unique_name = 'elements')
-    items = list(itertools.islice(
-        (
-            item
-            for item in items_node.iter_items()
-            if u'tool' in (item.get('tags') or [])
-                and (item.get('country') is None or any(country == conf['country'] for country in item.get('country')))
-            ),
-        3,
-        ))
-%>\
-    % if items:
-    <div class="page-header">
-        <h2>Tools</h2>
-    </div>
-    <p class="text-justify">
-        To improve your understanding of OpenFisca, to enhance its tax and benefit formulas,
-        to complete the legislation, etc, we develop several web tools for visualization, exploration and
-        debug.
-    </p>
-    <p class="text-justify">
-        These tools are also, in themselves, examples of use of the web API of OpenFisca.
-    </p>
-    <div class="row">
-    % for item in items:
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
-                <div class="caption">
-                    <div class="ellipsis" style="height: 120px">
-                        <h3>${item['title']}</h3>
-                        <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], tem['description']['fr'])}</p>
-                    </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Use</a></p>
-                </div>
-            </div>
-        </div>
-    % endfor
-    </div>
-    <div class="text-right">
-        <a href="${urls.get_url(ctx, 'tools')}"><em class="lead">See all the available tools...</em></a>
-    </div>
-    % endif
 </%def>
 
 
