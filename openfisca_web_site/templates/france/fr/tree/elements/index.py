@@ -64,12 +64,15 @@ class Node(model.Folder):
             )
         yield dict(
             carousel_rank = 2,
-            description = u"Interface utilisateur de simulation d'une situation socio-fiscale",
+            description = u"""\
+Décrivez votre situation familiale, saisissez vos revenus et
+votre patrimoine, et découvrez votre situation socio-fiscale, situez-vous par rapport aux autres foyers,
+découvrez votre niveau de vie, etc.""",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
             source_url = conf['urls.ui'],
             tags = [u'tool'],
-            title = ctx._(u'Demonstrator of the simulator'),
+            title = ctx._(u'OpenFisca Demonstrator'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-ui.png'),
             updated = u'2014-03-01T07:26:00',
             )
@@ -96,8 +99,9 @@ class Node(model.Folder):
             updated = u'2014-10-01T11:01:00',
             )
         yield dict(
+            carousel_rank = 2,
             country = [u'france'],
-            description = u"Simulez le coût d'une embauche dans votre entreprise, et combien le salarié touchera.",  # noqa
+            description = u"Estimez le coût d'une embauche dans votre entreprise, et combien le salarié touchera.",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"SGMAP",
             source_url = u'http://embauche.sgmap.fr/',
