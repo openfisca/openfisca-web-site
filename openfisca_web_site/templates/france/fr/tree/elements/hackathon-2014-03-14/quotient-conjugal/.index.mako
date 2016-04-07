@@ -33,7 +33,7 @@ from openfisca_web_site import urls
 
 <%def name="page_content()" filter="trim">
     <p>
-        Les fichiers du hackathon OpenFisca du 14 mars 2014 concernant la proposition de réforme du quotion conjugal.
+        Les fichiers du hackathon OpenFisca du 14 mars 2014 concernant la proposition de réforme du quotient conjugal.
     </p>
     <p>
         Le résultat est décrit dans <a href="${urls.get_url(ctx, node.url_path, 'beamer.pdf')}">le fichier PDF
