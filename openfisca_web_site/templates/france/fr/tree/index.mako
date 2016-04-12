@@ -92,7 +92,9 @@ twitter_statuses_updated = None
                     <p>
                         <img alt="OpenFisca" class="img-responsive" src="/hotlinks/logo-openfisca.svg">
                     </p>
-                    <em class="lead" style="color: white; font-size: 32px">Modèles ouverts de calcul des systèmes socio-fiscaux</em>
+                    <em class="lead" style="color: white; font-size: 32px">
+                        ${_(u'Open models to compute tax and benefit systems')}
+                    </em>
                 </div>
                 <div class="col-lg-8">
 <%
@@ -258,6 +260,11 @@ twitter_statuses_updated = None
         recherche, pour créer des simulateurs spécialisés, pour illustrer des propos, etc.
         Contactez-nous pour ajouter votre projet !
     </p>
+    <%self:community_elements/>
+</%def>
+
+
+<%def name="community_elements()" filter="trim">
 <%
     items_node = node.child_from_node(ctx, unique_name = 'elements')
     items = [
@@ -278,7 +285,11 @@ twitter_statuses_updated = None
                         <h3>${item['title']}</h3>
                         <p class="text-justify">${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}</p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
+                    <p>
+                        <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">
+                            ${_(u'Use')}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -404,11 +415,11 @@ Accueil
             </p>
         </div>
     </div>
-    <%self:openfisca_tools/>
+    <%self:openfisca_elements/>
 </%def>
 
 
-<%def name="openfisca_tools()" filter="trim">
+<%def name="openfisca_elements()" filter="trim">
 <%
     items_node = node.child_from_node(ctx, unique_name = 'elements')
     items_tuples = partition_all(
@@ -434,7 +445,11 @@ Accueil
                           ${item['description'] if isinstance(item['description'], basestring) else item['description'].get(ctx.lang[0], item['description']['fr'])}
                         </p>
                     </div>
-                    <p><a class="btn btn-jumbotron" href="${item['source_url']}" role="button">Utiliser</a></p>
+                    <p>
+                        <a class="btn btn-jumbotron" href="${item['source_url']}" role="button">
+                            ${_(u'Use')}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
