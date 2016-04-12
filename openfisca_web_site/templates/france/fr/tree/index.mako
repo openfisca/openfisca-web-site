@@ -156,7 +156,7 @@ twitter_statuses_updated = None
         <h2>Calculette Impôts <span class="label label-success">nouveau</span></h2>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>Présentation</h3>
             <p class="text-justify">
                  La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
@@ -177,7 +177,7 @@ twitter_statuses_updated = None
             </p>
         </div>
 
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>Outils supplémentaires</h3>
             <p class="text-justify">
                 L'<a href="https://git.framasoft.org/openfisca/calculette-impots-web-api">API web</a> permet
@@ -201,7 +201,7 @@ twitter_statuses_updated = None
                 </a>
             </p>
         </div>
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>Installation</h3>
             <p class="text-justify">
                 Depuis son ouverture, il est tout à fait possible d'installer la Calculette Impôts sur un ordinateur,
@@ -271,7 +271,7 @@ twitter_statuses_updated = None
     % if items:
     <div class="row">
         % for item in items:
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
@@ -318,7 +318,7 @@ Accueil
     </div>
     <div class="row" style="margin-bottom: 20px">
         % for article in last_articles:
-        <article class="col-md-4 col-sm-6">
+        <article class="col-md-4">
             <div class="ellipsis" style="height: 190px">
                 <h3>${article['title']}</h3>
             % for child_element in article['element']:
@@ -361,7 +361,7 @@ Accueil
         <h2>Simulateur OpenFisca</h2>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>Présentation</h3>
             <p class="text-justify">
                 OpenFisca est un moteur ouvert de micro-simulation du système socio-fiscal. Il permet entre autres de
@@ -378,7 +378,7 @@ Accueil
                 </a>
             </p>
         </div>
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>API web</h3>
             <p class="text-justify">
                 L'API web permet d'utiliser le moteur OpenFisca, sans l'installer, depuis n'importe quelle page web.
@@ -394,7 +394,7 @@ Accueil
                 </a>
             </p>
         </div>
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <h3>Installation</h3>
             <p class="text-justify">
                 Si l'utilisation en ligne d'OpenFisca ne vous suffit pas, vous pouvez aussi installer les différents
@@ -428,7 +428,7 @@ Accueil
     % for items_tuple in items_tuples:
     <div class="row">
         % for item in items_tuple:
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-4">
             <div class="thumbnail">
                 <img src="${item['thumbnail_url']}" style="width: 300px; height: 200px">
                 <div class="caption">
@@ -488,7 +488,7 @@ $(function () {
     </div>
     <div class="row" style="margin-bottom: 20px">
             % for status_index, status in enumerate(twitter_statuses):
-        <div class="col-md-4 col-sm-6" style="height: 120px">
+        <div class="col-md-4" style="height: 120px">
             <p>${twitter_parser.parse(status.text).html | n}</p>
             <div class="text-muted text-right">
                 ${babel.dates.format_date(
