@@ -156,7 +156,7 @@ twitter_statuses_updated = None
     </div>
     <div class="row">
         <div class="col-md-4 col-sm-6">
-            <h3>Présentation</h3>
+            <h3>Presentation</h3>
             <p class="text-justify">
                  La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
             </p>
@@ -177,7 +177,7 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4 col-sm-6">
-            <h3>Outils supplémentaires</h3>
+            <h3>Related tools</h3>
             <p class="text-justify">
                 L'<a href="https://git.framasoft.org/openfisca/calculette-impots-web-api">API web</a> permet
                 aux développeurs d'utiliser la Calculette Impôts depuis une application web, un article économique,
@@ -207,7 +207,7 @@ twitter_statuses_updated = None
                 tout comme chacun des outils l'accompagnant.
             </p>
             <p class="text-justify">
-                Pour cela, veuillez vous référer aux fichiers <code>README</code> de chaque projet.
+                Pour cela, veuillez vous référer aux fichiers <tt>README</tt> de chaque projet.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
@@ -243,11 +243,11 @@ twitter_statuses_updated = None
         agent de l'administration publique, étudiant ou citoyen intéressé par l'ouverture des modèles.
     </p>
     <p class="text-justify">
-        Les membres de la communauté peuvent échanger entre-eux ou avec les nouveaux venus sur le
+        Les membres de la communauté ainsi que les nouveaux venus peuvent échanger sur le
         <a href="${conf['urls.forum']}" role="button">forum d'OpenFisca</a>.
     </p>
     <p class="text-justify">
-        La communauté OpenFisca a déjà fourni un énorme travail de représentation de la législation française,
+        La communauté OpenFisca a déjà fourni un énorme travail de rePresentation de la législation française,
         de développement du moteur de calcul et de réalisation de produits utilisant OpenFisca,
         comme le site gouvernemental <a href="https://mes-aides.gouv.fr/">mes-aides.gouv.fr</a>.
         Voir la <a href="https://github.com/openfisca/openfisca-france#contributors">liste des contributeurs à OpenFisca-France</a>,
@@ -293,9 +293,6 @@ twitter_statuses_updated = None
     <%self:news/>
     <%self:community/>
     <%self:twitter/>
-    <div class="page-header">
-        <h2>Porteurs du projet</h2>
-    </div>
     <%self:partners/>
 </%def>
 

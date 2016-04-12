@@ -153,7 +153,8 @@ twitter_statuses_updated = None
 
 <%def name="calculette_impots_blocks()" filter="trim">
     <div class="page-header">
-        <h2>Calculette Impôts <span class="label label-success">nouveau</span></h2>
+        <h2 style="display: inline-block;">Calculette Impôts</h2>
+        <span class="label label-success">nouveau</span>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -162,7 +163,7 @@ twitter_statuses_updated = None
                  La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
             </p>
             <p class="text-justify">
-                Ce logiciel a été ouvert par l'administration en avril 2016. Il est écrit en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-source-code">langage M</a> développé en interne à la DGFiP, et contient les règles de calcul de l'impôt telles que décrites dans la législation.
+                Ce logiciel a été ouvert par l'administration en avril 2016. Il est écrit en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-source-code">langage M</a> – langage développé en interne à la DGFiP – et contient les règles de calcul de l'impôt telles que décrites dans la législation.
             </p>
             <p class="text-justify">
                 L'équipe OpenFisca a d'abord réalisé une <a href="https://git.framasoft.org/openfisca/calculette-impots-python">traduction en Python</a> du code M, permettant d'exécuter des calculs sur n'importe quel ordinateur.
@@ -178,7 +179,7 @@ twitter_statuses_updated = None
         </div>
 
         <div class="col-md-4">
-            <h3>Outils supplémentaires</h3>
+            <h3>Outils connexes</h3>
             <p class="text-justify">
                 L'<a href="https://git.framasoft.org/openfisca/calculette-impots-web-api">API web</a> permet
                 aux développeurs d'utiliser la Calculette Impôts depuis une application web, un article économique,
@@ -208,7 +209,7 @@ twitter_statuses_updated = None
                 tout comme chacun des outils l'accompagnant.
             </p>
             <p class="text-justify">
-                Pour cela, veuillez vous référer aux fichiers <code>README</code> de chaque projet.
+                Pour cela, veuillez vous référer aux fichiers <tt>README</tt> de chaque projet.
             </p>
             <p style="margin-top: 20px">
                 <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
@@ -235,16 +236,14 @@ twitter_statuses_updated = None
         des prestations sociales, en premier lieu pour des raisons de transparence. D'où le choix du logiciel libre.
     </p>
     <p class="text-justify">
-        OpenFisca est un projet libre et ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
+        OpenFisca est un projet ouvert à tous. Mais c'est surtout un projet très ambitieux, qui
         ne pourra pas réussir sans l'aide du plus grand nombre.
-    </p>
-    <p class="text-justify">
         Quelles que soient vos compétences, si la fiscalité vous intéresse, vous pouvez contribuer au développement.
         Toutes les bonnes volontés sont les bienvenues, que vous soyez chercheur, économiste,
         agent de l'administration publique, étudiant ou citoyen intéressé par l'ouverture des modèles.
     </p>
     <p class="text-justify">
-        Les membres de la communauté peuvent échanger entre-eux ou avec les nouveaux venus sur le
+        Les membres de la communauté ainsi que les nouveaux venus peuvent échanger sur le
         <a href="${conf['urls.forum']}" role="button">forum d'OpenFisca</a>.
     </p>
     <p class="text-justify">
@@ -295,9 +294,6 @@ twitter_statuses_updated = None
     <%self:news/>
     <%self:community/>
     <%self:twitter/>
-    <div class="page-header">
-        <h2>Porteurs du projet</h2>
-    </div>
     <%self:partners/>
 </%def>
 
