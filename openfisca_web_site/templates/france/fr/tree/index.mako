@@ -450,9 +450,14 @@ Accueil
 
 <%def name="scripts()" filter="trim">
     <%parent:scripts/>
+    <script src="${urls.get_static_url(ctx, u'/bower/anchor-js/anchor.min.js')}"></script>
     <script src="${urls.get_static_url(ctx, u'/bower/jQuery.dotdotdot/src/js/jquery.dotdotdot.min.js')}"></script>
     <script>
 $(function () {
+    anchors.options = {
+      placement: 'left'
+    };
+    anchors.add('h2');
     $(".ellipsis").dotdotdot();
 });
     </script>
