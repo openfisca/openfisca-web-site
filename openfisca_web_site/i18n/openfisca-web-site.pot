@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenFisca-Web-Site 0.2.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-26 18:45+0100\n"
+"POT-Creation-Date: 2016-04-12 10:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,51 +120,55 @@ msgstr ""
 msgid "Please, correct the informations below."
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:295
+#: openfisca_web_site/templates/france/fr/site.mako:292
 msgid "France"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:296
+#: openfisca_web_site/templates/france/fr/site.mako:293
 msgid "Tunisia"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:321
+#: openfisca_web_site/templates/france/fr/site.mako:318
 msgid "Other countries"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/site.mako:380
+#: openfisca_web_site/templates/france/fr/site.mako:377
 msgid "Skip to main content"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:39
+#: openfisca_web_site/templates/france/fr/tree/index.mako:96
+msgid "ModÃ¨les ouverts de calcul des systÃ¨mes socio-fiscaux"
+msgstr ""
+
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:41
 msgid "Legislation explorer"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:49
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:51
 msgid "Trace tool"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:59
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:61
 msgid "Tax-benefit variables interdependence graph"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:70
-msgid "Demonstrator of the simulator"
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:75
+msgid "OpenFisca Demonstrator"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:80
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:85
 msgid "Waterfall diagram"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:125
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:131
 msgid "Tabular decomposition"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:164
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:170
 msgid "Taxes simulations comparator"
 msgstr ""
 
-#: openfisca_web_site/templates/france/fr/tree/elements/index.py:195
+#: openfisca_web_site/templates/france/fr/tree/elements/index.py:201
 msgid "Jupyter notebook with OpenFisca"
 msgstr ""
 
