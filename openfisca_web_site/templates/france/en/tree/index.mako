@@ -175,7 +175,7 @@ Home
                 This tool has an <em>educational purpose</em>, and aims to help citizens better understand the tax-benefit system.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'presentation.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/presentation.html')}" role="button">
                     Read more
                 </a>
             </p>
@@ -191,7 +191,7 @@ Home
                 a research project, an economic article, to create a dynamic infographics, etc.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/index.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/openfisca-web-api/index.html')}" role="button">
                     Use the web API
                 </a>
             </p>
@@ -203,7 +203,7 @@ Home
                 OpenFisca softwares on your own computer, on servers or even in the "cloud".
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/install.html')}" role="button">
                     Install OpenFisca
                 </a>
             </p>
