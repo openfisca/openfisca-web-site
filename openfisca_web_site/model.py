@@ -409,7 +409,7 @@ class File(AbstractNode):
         data_file = open(self.path)
         if self.mime_type is None:
             block = data_file.read(4096)  # File type detection may require up to 4KB of file head.
-            response.content_type = magic.from_buffer(block)
+            response.content_type = magic.from_buffer(block, mime=True)
             data_file.seek(0)
         else:
             response.content_type = self.mime_type
