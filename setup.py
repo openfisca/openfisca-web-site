@@ -68,7 +68,7 @@ setup(
         'Biryani >= 0.10.1',
         'lxml >= 3.6',
         'Mako >= 0.7.0',
-        # 'python-magic',  # TODO: This is the name of the Debian package. Pypi name is not known.
+        'python-magic >= 0.4',
         'python-twitter >= 1.1',
         'toolz >= 0.7.4',
         'twitter-text-python >= 1.0.1',

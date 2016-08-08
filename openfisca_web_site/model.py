@@ -35,9 +35,10 @@ import urlparse
 from biryani import strings
 import lxml.etree
 import lxml.html
+import magic
 import webob
 
-from . import contexts, conv, mimetypes, objects, templates, urls, wsgihelpers
+from . import contexts, conv, objects, templates, urls, wsgihelpers
 
 
 day_re = re.compile(r'\d{2}$')
@@ -408,7 +409,7 @@ class File(AbstractNode):
         data_file = open(self.path)
         if self.mime_type is None:
             block = data_file.read(4096)  # File type detection may require up to 4KB of file head.
-            response.content_type = mimetypes.magic_scanner.buffer(block)
+            response.content_type = magic.from_buffer(block)
             data_file.seek(0)
         else:
             response.content_type = self.mime_type
