@@ -42,4 +42,12 @@ PYCONfr Rennes 2016
     La présentation s'intitule « Libération du calculateur des impôts »,
     voir le <a href="https://2016.pycon.fr/pages/programme.html#Libération du calculateur des impôts">descriptif</a>.
   </p>
+  <p>
+    Voir les slides
+    <a href="https://openfisca.github.io/communication/PyConFR-2016/" rel="external" target="_blank">en ligne</a>,
+    <a href="https://github.com/openfisca/communication/blob/master/docs/PyConFR-2016/%C3%89crire%20la%20loi%20en%20Python.pdf" rel="external" target="_blank">en PDF</a>
+    ou sur
+    <a href="https://speakerdeck.com/cbenz/ecrire-la-loi-en-python" rel="external" target="_blank">Speaker Deck</a>.
+  </p>
+  <script async class="speakerdeck-embed" data-id="863108f704be4c9dbb252f489fed8bb7" data-ratio="1.33159947984395" src="//speakerdeck.com/assets/embed.js"></script>
 </%def>
