@@ -48,7 +48,8 @@ Build Status
 <div class="col-md-6">
 <table class="table table-striped">
   <tbody>
-  % for repository_name in ['openfisca-core', 'openfisca-france', 'openfisca-web-api']:
+  % for repository_name in ['openfisca-core', 'openfisca-france', 'openfisca-web-api', 'openfisca-survey-manager', \
+      'openfisca-france-data']:
     <tr>
       <td>
         <a href="https://github.com/openfisca/${repository_name}" rel="external" target="_blank">${repository_name}</a>
