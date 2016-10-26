@@ -175,7 +175,7 @@ Home
                 This tool has an <em>educational purpose</em>, and aims to help citizens better understand the tax-benefit system.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/presentation.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/index.html')}" role="button">
                     Read more
                 </a>
             </p>

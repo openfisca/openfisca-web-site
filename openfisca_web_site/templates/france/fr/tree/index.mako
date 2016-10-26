@@ -380,7 +380,7 @@ Accueil
                 citoyens à mieux comprendre le système socio-fiscal.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/presentation.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/index.html')}" role="button">
                     Lire la suite
                 </a>
             </p>
