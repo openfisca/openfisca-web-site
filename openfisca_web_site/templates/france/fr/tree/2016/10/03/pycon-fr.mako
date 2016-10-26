@@ -49,5 +49,4 @@ PYCONfr Rennes 2016
     ou sur
     <a href="https://speakerdeck.com/cbenz/ecrire-la-loi-en-python" rel="external" target="_blank">Speaker Deck</a>.
   </p>
-  <script async class="speakerdeck-embed" data-id="863108f704be4c9dbb252f489fed8bb7" data-ratio="1.33159947984395" src="//speakerdeck.com/assets/embed.js"></script>
 </%def>
