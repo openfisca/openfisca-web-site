@@ -43,75 +43,6 @@ from openfisca_web_site import conf, urls
 <%inherit file="/france/fr/tree/index.mako"/>
 
 
-<%def name="calculette_impots_blocks()" filter="trim">
-    <div class="page-header">
-        <h2>"Calculette Impôts" <span class="label label-success">new</span></h2>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-sm-6">
-            <h3>Presentation</h3>
-            <p class="text-justify">
-                 La « Calculette Impôts » est le logiciel écrit par la <a href="http://www.economie.gouv.fr/dgfip"><abbr title="Direction générale des Finances publiques">DGFiP</abbr></a> qui calcule l'impôt sur les revenus des particuliers.
-            </p>
-            <p class="text-justify">
-                Ce logiciel a été ouvert par l'administration en avril 2016. Il est écrit en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-source-code">langage M</a> développé en interne à la DGFiP, et contient les règles de calcul de l'impôt telles que décrites dans la législation.
-            </p>
-            <p class="text-justify">
-                L'équipe OpenFisca a d'abord réalisé une <a href="https://git.framasoft.org/openfisca/calculette-impots-python">traduction en Python</a> du code M, permettant d'exécuter des calculs sur n'importe quel ordinateur.
-            </p>
-            <p class="text-justify">
-                Puis un <a href="https://forum.openfisca.fr/t/guide-pratique-du-hackathon-codeimpot/42">hackathon</a> célébrant cette ouverture a eu lieu début avril 2016, et a accueilli plusieurs <a href="https://forum.openfisca.fr/t/projets-du-hackathon-codeimpot/40?source_topic_id=42">ateliers</a> qui ont donné naissance à des outils gravitant autour du code M.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37')}" role="button">
-                    Read more
-                </a>
-            </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-            <h3>Related tools</h3>
-            <p class="text-justify">
-                L'<a href="https://git.framasoft.org/openfisca/calculette-impots-web-api">API web</a> permet
-                aux développeurs d'utiliser la Calculette Impôts depuis une application web, un article économique,
-                une infographie dynamique, etc.
-            </p>
-            <p class="text-justify">
-                Le <a href="http://calc.ir.openfisca.fr/">Web Explorer</a> de la Calculette Impôts permet de naviguer
-                dans les variables du code M.
-            </p>
-            <p class="text-justify">
-                D'autres traductions de la Calculette Impôts ont émergé du hackathon :
-                en <a href="https://git.framasoft.org/openfisca/calculette-impots-m-vector-computing">Python vectoriel</a>,
-                permettant notamment d'accélérer considérablement les calculs,
-                et en <a href="http://calc.ir.openfisca.fr/mtojs/">JavaScript</a> afin d'effectuer les calculs
-                sans disposer de connexion internet, directement depuis le navigateur ou une application mobile.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
-                    Voir tous les outils
-                </a>
-            </p>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <h3>Installation</h3>
-            <p class="text-justify">
-                Depuis son ouverture, il est tout à fait possible d'installer la Calculette Impôts sur un ordinateur,
-                tout comme chacun des outils l'accompagnant.
-            </p>
-            <p class="text-justify">
-                Pour cela, veuillez vous référer aux fichiers <tt>README</tt> de chaque projet.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="https://forum.openfisca.fr/t/code-source-de-la-calculette-impots/37" role="button">
-                    Voir tous les projets
-                </a>
-            </p>
-        </div>
-    </div>
-</%def>
-
-
 <%def name="community()" filter="trim">
     <div class="page-header">
         <h2>Free software and Community</h2>
@@ -154,15 +85,21 @@ from openfisca_web_site import conf, urls
 </%def>
 
 
+<%def name="container_content()" filter="trim">
+    <%self:openfisca_blocks/>
+    <%self:news/>
+    <%self:community/>
+    <%self:twitter/>
+    <%self:partners/>
+</%def>
+
+
 <%def name="h1_content()" filter="trim">
 Home
 </%def>
 
 
 <%def name="openfisca_blocks()" filter="trim">
-    <div class="page-header">
-        <h2>OpenFisca simulator</h2>
-    </div>
     <div class="row">
         <div class="col-md-4 col-sm-6">
             <h3>Presentation</h3>

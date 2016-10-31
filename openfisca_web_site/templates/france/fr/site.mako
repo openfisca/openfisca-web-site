@@ -157,7 +157,7 @@ ${conf['realm']}
 
 
 <%def name="partners()" filter="trim">
-    <div class="row" style="margin-bottom: 20px">
+    <div class="row" style="margin: 100px 0">
 ##        <div class="col-lg-3 col-sm-6" style="height: 160px">
         <div class="col-lg-3 col-sm-6" style="text-align: center">
             <a class="partner" href="http://www.etalab.gouv.fr/" rel="external" target="_blank">
