@@ -339,7 +339,7 @@ Accueil
                 citoyens à mieux comprendre le système socio-fiscal.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/index.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'index.html')}" role="button">
                     Lire la suite
                 </a>
             </p>
@@ -355,7 +355,7 @@ Accueil
                 illustrer un sujet de recherche, un article économique, réaliser une infographie dynamique, etc.
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/openfisca-web-api/index.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'openfisca-web-api/index.html')}" role="button">
                     Utiliser l'API web
                 </a>
             </p>
@@ -368,7 +368,7 @@ Accueil
                 "cloud".
             </p>
             <p>
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'en/install.html')}" role="button">
+                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.gitbook'], 'install.html')}" role="button">
                     Installer OpenFisca
                 </a>
             </p>
