@@ -67,10 +67,6 @@ from openfisca_web_site import conf, urls
         agent de l'administration publique, étudiant ou citoyen intéressé par l'ouverture des modèles.
     </p>
     <p class="text-justify">
-        Les membres de la communauté ainsi que les nouveaux venus peuvent échanger sur le
-        <a href="${conf['urls.forum']}" role="button">forum d'OpenFisca</a>.
-    </p>
-    <p class="text-justify">
         La communauté OpenFisca a déjà fourni un énorme travail de rePresentation de la législation française,
         de développement du moteur de calcul et de réalisation de produits utilisant OpenFisca,
         comme le site gouvernemental <a href="https://mes-aides.gouv.fr/">mes-aides.gouv.fr</a>.
