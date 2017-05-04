@@ -172,13 +172,7 @@ twitter_statuses_updated = None
                 permettant d'exécuter des calculs sur n'importe quel ordinateur disposant du langage de programmation Python.
             </p>
             <p class="text-justify">
-                Puis un <a href="https://forum.openfisca.fr/t/guide-pratique-du-hackathon-codeimpot/42">hackathon</a> célébrant cette ouverture a eu lieu début avril 2016, et a accueilli plusieurs
-                <a href="https://forum.openfisca.fr/t/projets-du-hackathon-codeimpot/40?source_topic_id=42">ateliers</a> qui ont donné naissance à des outils gravitant autour du code M.
-            </p>
-            <p style="margin-top: 20px">
-                <a class="btn btn-jumbotron" href="${urlparse.urljoin(conf['urls.forum'], '/t/acceder-au-code-source-de-la-calculette-impots/37')}" role="button">
-                    Lire la suite
-                </a>
+                Puis un hackathon célébrant cette ouverture a eu lieu début avril 2016, et a accueilli plusieurs ateliers qui ont donné naissance à des outils gravitant autour du code M.
             </p>
         </div>
     </div>
@@ -205,10 +199,6 @@ twitter_statuses_updated = None
         Quelles que soient vos compétences, si la fiscalité vous intéresse, vous pouvez contribuer au développement.
         Toutes les bonnes volontés sont les bienvenues, que vous soyez chercheur, économiste,
         agent de l'administration publique, étudiant ou citoyen intéressé par l'ouverture des modèles.
-    </p>
-    <p class="text-justify">
-        Les membres de la communauté ainsi que les nouveaux venus peuvent échanger sur le
-        <a href="${conf['urls.forum']}" role="button">forum d'OpenFisca</a>.
     </p>
     <p class="text-justify">
         La communauté OpenFisca a déjà fourni un énorme travail de représentation de la législation française,

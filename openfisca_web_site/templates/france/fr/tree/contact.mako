@@ -41,7 +41,6 @@ Contact
     <ul>
         <li>par courriel : <a href="mailto:contact@openfisca.fr">contact@openfisca.fr</a></li>
         <li>par Twitter : <a href="https://twitter.com/OpenFisca">@OpenFisca</a></li>
-        <li>sur le <a href="${conf['urls.forum']}">forum</a> s'il s'agit d'une question ouverte</li>
         <li>ou bien, pour les développeurs, s'il s'agit d'un problème avec un logiciel en particulier, ouvrez une "issue" sur <a href="https://github.com/openfisca/">GitHub</a>
     </ul>
 </%def>

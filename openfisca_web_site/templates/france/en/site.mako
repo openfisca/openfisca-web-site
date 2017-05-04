@@ -45,7 +45,6 @@ from openfisca_web_site import conf, urls
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="${conf['urls.gitbook']}">Documentation</a></li>
-                <li><a href="${conf['urls.forum']}">Forum</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${urls.get_url(ctx, 'contact')}">Contact</a></li>
