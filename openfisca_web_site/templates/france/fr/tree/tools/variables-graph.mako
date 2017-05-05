@@ -50,7 +50,7 @@ Graphe des formules socio-fiscales
     <script>
 $.ajax(${urlparse.urljoin(conf['urls.api'], '/api/1/graph') | n, js}, {
     data: {
-        variable: 'revdisp'
+        variable: 'revenu_disponible'
     },
     dataType: 'json',
     xhrFields: {

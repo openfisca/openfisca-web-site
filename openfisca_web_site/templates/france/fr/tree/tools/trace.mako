@@ -110,6 +110,6 @@ window.defaultSimulationText = ${simulation_text or u'''\
       "period": "2013"
     }
   ],
-  "variables": ["revdisp"]
+  "variables": ["revenu_disponible"]
 }''' | n, js};
 </%def>
