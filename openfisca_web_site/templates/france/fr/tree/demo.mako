@@ -1,28 +1,5 @@
 ## -*- coding: utf-8 -*-
 
-
-## OpenFisca -- A versatile microsimulation software
-## By: OpenFisca Team <contact@openfisca.fr>
-##
-## Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-## https://github.com/openfisca
-##
-## This file is part of OpenFisca.
-##
-## OpenFisca is free software; you can redistribute it and/or modify
-## it under the terms of the GNU Affero General Public License as
-## published by the Free Software Foundation, either version 3 of the
-## License, or (at your option) any later version.
-##
-## OpenFisca is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU Affero General Public License for more details.
-##
-## You should have received a copy of the GNU Affero General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 <%!
 from openfisca_web_site import conf
 %>
@@ -45,28 +22,29 @@ from openfisca_web_site import conf
     <script type="text/javascript">
 
       //Variables globales
-      var salaire1 = 25000;
-      var salaire2 = 15000;
+      var salary1 = 25000;
+      var salary2 = 15000;
 
-      window.addEventListener("load", appelALAPI, false);
+      window.addEventListener("load", callOnLoad, false);
 
       // Fonctions
-      function miseAjourDesSalaires(salaire, montant){
-        if (salaire == "salaire1"){
-          salaire1 = montant;
-        }else if (salaire == "salaire2"){
-          salaire2 = montant;
+      function updateSalaries(salary, montant){
+        console.log("hello")
+        if (salary == "salary1"){
+          salary1 = Number(montant);
+        }else if (salary == "salary2"){
+          salary2 = Number(montant);
         }
-        appelALAPI();
+        callOpenFiscaAPI();
       }
 
 
-      function JSONDeLaSituation(){
-        var situationObj = {
+      function formatJSONOfSituation(){
+        return JSON.stringify({
           "individus": {
             "Bill": {
               "salaire_de_base": {
-                "2017": salaire1
+                "2017": salary1
               },
               "revenus_du_travail": {
                 "2017": null
@@ -74,7 +52,7 @@ from openfisca_web_site import conf
             },
             "Bob": {
               "salaire_de_base": {
-                "2017": salaire2
+                "2017": salary2
               },
               "revenus_du_travail": {
                 "2017": null
@@ -116,22 +94,31 @@ from openfisca_web_site import conf
               }
             }
           }
-        };
-        var situationString = JSON.stringify(situationObj);
-        return situationString;
+        });
       }
 
+      function callOnLoad(){
+        var resultsOnLoad = {};
+        resultsOnLoad.salaires_de_base = salary1 + salary2;
+        resultsOnLoad.revenu_disponible = 29191;
+        resultsOnLoad.impots_directs = 3064;
+        resultsOnLoad.prestations_sociales = 0;
+        resultsOnLoad.revenus_du_travail = resultsOnLoad.revenu_disponible + resultsOnLoad.impots_directs;
+        resultsOnLoad.cotisations_salariales = resultsOnLoad.salaires_de_base - resultsOnLoad.revenus_du_travail;
+        
+        displayData(resultsOnLoad);
+      }
 
-      function appelALAPI(){
+      function callOpenFiscaAPI(){
         var xmlhttp = new XMLHttpRequest();
         var url = "http://localhost:5000/calculate";
-        var json = JSONDeLaSituation();
+        var json = formatJSONOfSituation();
         xmlhttp.open("POST", url, true);
 
         xmlhttp.onreadystatechange=function() {
           if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            responseFromAPI = JSON.parse(xmlhttp.responseText);
-            transformationDeLaDonnee(responseFromAPI);
+            var responseFromAPI = JSON.parse(xmlhttp.responseText);
+            transformData(responseFromAPI);
             }
           };
         xmlhttp.setRequestHeader("Content-Type", "application/json");
@@ -139,30 +126,31 @@ from openfisca_web_site import conf
         }
 
 
-      function transformationDeLaDonnee(responseFromAPI) {
+      function transformData(responseFromAPI) {
         var results = {};
 
         results.revenu_disponible = Math.round(responseFromAPI.menages.menage_1.revenu_disponible["2017"]);
         results.impots_directs = - Math.round(responseFromAPI.menages.menage_1.impots_directs["2017"]);
-        results.revenus_du_travail = 0;
-        for (var individu in responseFromAPI.individus) {
-          results.revenus_du_travail += Math.round(responseFromAPI.individus[individu].revenus_du_travail["2017"]);
-        };
+        results.revenus_du_travail = Math.round(responseFromAPI.individus.Bill.revenus_du_travail["2017"] + responseFromAPI.individus.Bob.revenus_du_travail["2017"]);
         results.prestations_sociales = Math.round(responseFromAPI.familles.famille_1.prestations_sociales["2017"]);
-        results.txDImposition = Math.round((results.impots_directs)*100/(results.impots_directs + (results.revenu_disponible)));
-        results.salairesBruts = salaire1 + salaire2;
-        results.chargesSalariales = results.salairesBruts - results.revenus_du_travail;
-
-        affichageDeLInformation(results);
+        results.taux_imposition = Math.round(results.impots_directs * 100 / (results.impots_directs + results.revenu_disponible));
+        results.salaires_de_base = salary1 + salary2;
+        results.cotisations_salariales = results.salaires_de_base - results.revenus_du_travail;
+        console.log("-------->");
+        console.log(results.salaires_de_base);
+        console.log(results.revenus_du_travail);
+        console.log(results.cotisations_salariales);
+        console.log("<--------");
+        displayData(results);
         }
 
 
-      function affichageDeLInformation(results){
-        document.getElementById("txtDescriptifSituation").innerHTML=`
+      function displayData(results){
+        document.getElementById("situationDescription").innerHTML=`
 
           <li>dispose d'un <strong>revenu disponible</strong> de ` + Math.round(results.revenu_disponible).toLocaleString("fr") + ` €/an, c'est à dire ` + (Math.round(results.revenu_disponible/12)).toLocaleString("fr") + ` €/mois ;</li>
 
-          <li> est <strong>imposé directement</strong> à hauteur de ` + results.txDImposition + `%( ` + results.impots_directs.toLocaleString("fr") + ` €/an, c'est à dire `+ Math.round(results.impots_directs/12).toLocaleString("fr") + ` €/mois) ;</li>
+          <li> est <strong>imposé directement</strong> à hauteur de ` + results.taux_imposition + `%( ` + results.impots_directs.toLocaleString("fr") + ` €/an, c'est à dire `+ Math.round(results.impots_directs/12).toLocaleString("fr") + ` €/mois) ;</li>
 
           <li>perçoit ` + results.prestations_sociales.toLocaleString("fr") + ` €/an de <strong>prestations sociales</strong>, c'est à dire ` + Math.round(results.prestations_sociales/12).toLocaleString("fr") + ` €/mois.</li>`;
           //Display du graph
@@ -173,13 +161,13 @@ from openfisca_web_site import conf
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
               ["Element", "Source", "Montant", "Montant (color)"],
-              ["Salaires bruts",null, results["salairesBruts"], results["salairesBruts"]],
-              ["Charges salariales", "Salaires bruts", results["chargesSalariales"], - results["chargesSalariales"]],
+              ["Salaires bruts",null, results.salaires_de_base, results.salaires_de_base],
+              ["Cotisations salariales", "Salaires bruts", results.cotisations_salariales, - results.cotisations_salariales],
 
-              ["Impots directs", "Salaires bruts", results["impots_directs"] , - results["impots_directs"] ],
-              ["Revenu disponible", "Salaires bruts", results["revenu_disponible"],                               results["revenu_disponible"]],
-              ["Revenu du travail", "Revenu disponible", results["revenus_du_travail"],                               results["revenus_du_travail"]],
-              ["Prestations sociales", "Revenu disponible", results["prestations_sociales"], results["prestations_sociales"]],
+              ["Impots directs", "Salaires bruts", results.impots_directs , - results.impots_directs],
+              ["Revenu disponible", "Salaires bruts", results.revenu_disponible, results.revenu_disponible],
+              ["Revenu du travail", "Revenu disponible", results.revenus_du_travail, results.revenus_du_travail],
+              ["Prestations sociales", "Revenu disponible", results.prestations_sociales, results.prestations_sociales],
             ]);
 
             tree = new google.visualization.TreeMap(document.getElementById("chart_div"));
@@ -214,11 +202,12 @@ Calcul du revenu disponible
           <form action="javascript:void(0);">
             <p><b>Salaire annuel brut du premier conjoint :</b></p>
             <p>
-              <input type="text" onkeyup= miseAjourDesSalaires("salaire1",this.value) size="20" value="25000"> €/an
+            <p>
+            <input type="text" onkeyup=updateSalaries("salary1",this.value) size="20" value="25000"> €/an
             </p>
             <p><b>Salaire annuel brut du second conjoint :</b></p>
             <p>
-            <input type="text" onkeyup=miseAjourDesSalaires("salaire2",this.value) size="20" value="15000"> €/an
+            <input type="text" onkeyup=updateSalaries("salary2",this.value) size="20" value="15000"> €/an
             </p>
             <p>
             </p>
@@ -226,7 +215,7 @@ Calcul du revenu disponible
           </div>
         <div class="col-md-8">
           <p>Ce ménage, composé de 2 adultes sans enfants, et qui ne perçoit ni pensions ni revenus du capital :</p>
-          <span id="txtDescriptifSituation"></span>
+          <span id="situationDescription"></span>
         </div>
       </div>
       <hr>
