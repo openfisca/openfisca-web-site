@@ -43,130 +43,158 @@ from openfisca_web_site import conf
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      //Variables globales
-      var salaire1 = 25000
-      var salaire2 = 15000
-      var revenuDisponible = 0
 
-      window.addEventListener('load', appelALAPI, false);
+      //Variables globales
+      var salaire1 = 25000;
+      var salaire2 = 15000;
+
+      window.addEventListener("load", appelALAPI, false);
 
       // Fonctions
       function miseAjourDesSalaires(salaire, montant){
         if (salaire == "salaire1"){
-          salaire1 = Number(montant);
+          salaire1 = montant;
         }else if (salaire == "salaire2"){
-          salaire2 = Number(montant);
-        };
-        appelALAPI()
-      }
-      function JSONDeLaSituation(){
-        var scenarioObj = {
-                    scenarios: [
-                      {
-                        test_case: {
-                          familles: [
-                            {
-                              parents: ["individu0", "individu1"]
-                            }
-                          ],
-                          foyers_fiscaux: [
-                            {
-                              declarants: ["individu0", "individu1"],
-                            }
-                          ],
-                          individus: [
-                            {
-                              date_naissance: "1980-01-01",
-                              id: "individu0",
-                              salaire_de_base: salaire1
-                            },
-                            {
-                              date_naissance: "1982-01-01",
-                              id: "individu1",
-                              salaire_de_base: salaire2
-                            }
-                          ],
-                          menages: [
-                            {
-                              personne_de_reference: "individu0",
-                              conjoint:"individu1"
-                            }
-                          ]
-                        },
-                        period: "2016"
-                      }
-                    ],
-                    variables: ["revenu_disponible"],
-                    intermediate_variables: true
-          }
-        var scenarioString = JSON.stringify(scenarioObj)
-        return scenarioString
+          salaire2 = montant;
         }
+        appelALAPI();
+      }
+
+
+      function JSONDeLaSituation(){
+        var situationObj = {
+          "individus": {
+            "Bill": {
+              "salaire_de_base": {
+                "2017": salaire1
+              },
+              "revenus_du_travail": {
+                "2017": null
+              }
+            },
+            "Bob": {
+              "salaire_de_base": {
+                "2017": salaire2
+              },
+              "revenus_du_travail": {
+                "2017": null
+              }
+            }
+          },
+          "familles": {
+            "famille_1": {
+              "parents": [
+                "Bill",
+                "Bob"
+              ],
+              "prestations_sociales": {
+                "2017": null
+              }
+            }
+          },
+          "foyers_fiscaux": {
+            "foyer_fiscal_1": {
+              "declarants": [
+                "Bill",
+                "Bob"
+              ]
+            }
+          },
+          "menages": {
+            "menage_1": {
+              "conjoint": [
+                "Bob"
+              ],
+              "personne_de_reference": [
+                "Bill"
+              ],
+              "impots_directs": {
+                "2017": null
+              },
+              "revenu_disponible": {
+                "2017": null
+              }
+            }
+          }
+        };
+        var situationString = JSON.stringify(situationObj);
+        return situationString;
+      }
+
+
       function appelALAPI(){
         var xmlhttp = new XMLHttpRequest();
-        var url = "https://api.openfisca.fr/api/1/calculate";
+        var url = "http://localhost:5000/calculate";
         var json = JSONDeLaSituation();
         xmlhttp.open("POST", url, true);
 
         xmlhttp.onreadystatechange=function() {
-          //console.log(xmlhttp.responseText)
           if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             responseFromAPI = JSON.parse(xmlhttp.responseText);
-            //console.log(responseFromAPI || xmlhttp.responseText);
             transformationDeLaDonnee(responseFromAPI);
             }
           };
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(json);
         }
+
+
       function transformationDeLaDonnee(responseFromAPI) {
         var results = {};
-        results["revenu_disponible"] = Math.round(responseFromAPI.value[0].menages[0].revenu_disponible["2016"]);
-        results["impots_directs"] = -Math.round((responseFromAPI.value[0].menages[0].impots_directs["2016"]));
-        results["revenus_du_travail"] = 0;
-        for (var individu in responseFromAPI.value[0].individus){
-          results["revenus_du_travail"] += Math.round(responseFromAPI.value[0].individus[individu].revenus_du_travail["2016"]);
-            }
-        results["prestations_sociales"] = Math.round(responseFromAPI.value[0].familles[0].prestations_sociales["2016"]);
-        results["txDImposition"] = Math.round((results["impots_directs"])*100/(results["impots_directs"] + (results["revenu_disponible"])));
-        results["txDisponible"] = Math.round(100 - results["txDImposition"]);
-        results["salairesBruts"] = salaire1 + salaire2;
-        results["chargesSalariales"] = results["salairesBruts"] - results["revenus_du_travail"];
-        affichageDeLInformation(results);
+
+        results.revenu_disponible = Math.round(responseFromAPI.menages.menage_1.revenu_disponible["2017"]);
+        results.impots_directs = - Math.round(responseFromAPI.menages.menage_1.impots_directs["2017"]);
+        results.revenus_du_travail = 0;
+        for (var individu in responseFromAPI.individus) {
+          results.revenus_du_travail += Math.round(responseFromAPI.individus[individu].revenus_du_travail["2017"]);
         };
+        results.prestations_sociales = Math.round(responseFromAPI.familles.famille_1.prestations_sociales["2017"]);
+        results.txDImposition = Math.round((results.impots_directs)*100/(results.impots_directs + (results.revenu_disponible)));
+        results.salairesBruts = salaire1 + salaire2;
+        results.chargesSalariales = results.salairesBruts - results.revenus_du_travail;
+
+        affichageDeLInformation(results);
+        }
+
+
       function affichageDeLInformation(results){
-        document.getElementById("txtRevenuDisponible").innerHTML=`
-          <li>dispose d'un <strong>revenu disponible</strong> de ` + (Math.round(results["revenu_disponible"])).toLocaleString("fr") + ` €/an, c'est à dire ` + (Math.round(results["revenu_disponible"]/12)).toLocaleString("fr") + ` €/mois ;</li>
-          <li> est <strong>imposé directement</strong> à hauteur de `+ results["txDImposition"]+`%( `+results["impots_directs"].toLocaleString("fr") + ` €/an, c'est à dire `+ Math.round(results["impots_directs"]/12).toLocaleString("fr") + ` €/mois) ;</li>
-          <li>perçoit `+results["prestations_sociales"].toLocaleString("fr")+ ` €/an de <strong>prestations sociales</strong>, c'est à dire `+ Math.round(results["prestations_sociales"]/12).toLocaleString("fr") + ` €/mois.</li>`;
+        document.getElementById("txtDescriptifSituation").innerHTML=`
+
+          <li>dispose d'un <strong>revenu disponible</strong> de ` + Math.round(results.revenu_disponible).toLocaleString("fr") + ` €/an, c'est à dire ` + (Math.round(results.revenu_disponible/12)).toLocaleString("fr") + ` €/mois ;</li>
+
+          <li> est <strong>imposé directement</strong> à hauteur de ` + results.txDImposition + `%( ` + results.impots_directs.toLocaleString("fr") + ` €/an, c'est à dire `+ Math.round(results.impots_directs/12).toLocaleString("fr") + ` €/mois) ;</li>
+
+          <li>perçoit ` + results.prestations_sociales.toLocaleString("fr") + ` €/an de <strong>prestations sociales</strong>, c'est à dire ` + Math.round(results.prestations_sociales/12).toLocaleString("fr") + ` €/mois.</li>`;
           //Display du graph
-          google.charts.load('current', {'packages':['treemap']});
+          google.charts.load("current", {"packages":["treemap"]});
           google.charts.setOnLoadCallback(drawChart);
+
+
           function drawChart() {
             var data = google.visualization.arrayToDataTable([
-              ['Element', 'Source', 'Montant', 'Montant (color)'],
-              ['Salaires bruts',null, results["salairesBruts"], results["salairesBruts"]],
-              ['Charges salariales', 'Salaires bruts', results["chargesSalariales"], - results["chargesSalariales"]],
+              ["Element", "Source", "Montant", "Montant (color)"],
+              ["Salaires bruts",null, results["salairesBruts"], results["salairesBruts"]],
+              ["Charges salariales", "Salaires bruts", results["chargesSalariales"], - results["chargesSalariales"]],
 
-              ['Impots directs', 'Salaires bruts', results["impots_directs"] , - results["impots_directs"] ],
-              ['Revenu disponible', 'Salaires bruts', results["revenu_disponible"],                               results["revenu_disponible"]],
-              ['Revenu du travail', 'Revenu disponible', results["revenus_du_travail"],                               results["revenus_du_travail"]],
-              ['Prestations sociales', 'Revenu disponible', results["prestations_sociales"], results["prestations_sociales"]],
+              ["Impots directs", "Salaires bruts", results["impots_directs"] , - results["impots_directs"] ],
+              ["Revenu disponible", "Salaires bruts", results["revenu_disponible"],                               results["revenu_disponible"]],
+              ["Revenu du travail", "Revenu disponible", results["revenus_du_travail"],                               results["revenus_du_travail"]],
+              ["Prestations sociales", "Revenu disponible", results["prestations_sociales"], results["prestations_sociales"]],
             ]);
 
-            tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+            tree = new google.visualization.TreeMap(document.getElementById("chart_div"));
 
             tree.draw(data, {
-              minColor: '#5bc0de',
-              midColor: '#5bc0de',
-              maxColor: '#5cb85c',
+              minColor: "#5bc0de",
+              midColor: "#5bc0de",
+              maxColor: "#5cb85c",
               headerHeight: 55,
-              fontColor: 'black',
+              fontColor: "black",
               showScale: true
             });
 
           }
-          document.getElementById("graph").innerHTML='<div id="chart_div" style="width: 100%; height: 400px;"></div>';
+          document.getElementById("graph").innerHTML="<div id='chart_div' style='width: 100%; height: 400px;'></div>";
 
         }
     </script>
@@ -198,7 +226,7 @@ Calcul du revenu disponible
           </div>
         <div class="col-md-8">
           <p>Ce ménage, composé de 2 adultes sans enfants, et qui ne perçoit ni pensions ni revenus du capital :</p>
-          <span id="txtRevenuDisponible"></span>
+          <span id="txtDescriptifSituation"></span>
         </div>
       </div>
       <hr>
