@@ -136,11 +136,6 @@ from openfisca_web_site import conf
         results.taux_imposition = Math.round(results.impots_directs * 100 / (results.impots_directs + results.revenu_disponible));
         results.salaires_de_base = salary1 + salary2;
         results.cotisations_salariales = results.salaires_de_base - results.revenus_du_travail;
-        console.log("-------->");
-        console.log(results.salaires_de_base);
-        console.log(results.revenus_du_travail);
-        console.log(results.cotisations_salariales);
-        console.log("<--------");
         displayData(results);
         }
 
