@@ -116,7 +116,7 @@ from openfisca_web_site import urls
 
     function callOpenFiscaAPI(callback){
       var xmlhttp = new XMLHttpRequest();
-      var url = "http://localhost:5000/calculate";
+      var url = "https://api-test.openfisca.fr/calculate";
       var json = formatJSONOfSituation();
       xmlhttp.open("POST", url, true);
 
