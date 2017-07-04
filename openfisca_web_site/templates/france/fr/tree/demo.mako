@@ -2,13 +2,14 @@
 
 <%!
 from openfisca_web_site import conf
+from openfisca_web_site import urls
 %>
-
 
 <%inherit file="/page.mako"/>
 
 <%def name="scripts()" filter="trim">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    <script src="${urls.get_static_url(ctx, u'/bower/lodash/dist/lodash.min.js')}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,16 +28,14 @@ from openfisca_web_site import conf
 
       window.addEventListener("load", callOnLoad, false);
 
-      // Fonctions
-      function updateSalaries(salary, montant){
-        console.log("hello")
-        if (salary == "salary1"){
-          salary1 = Number(montant);
-        }else if (salary == "salary2"){
-          salary2 = Number(montant);
-        }
-        callOpenFiscaAPI();
-      }
+      var updateSalaries = _.debounce(function(salary, montant) {
+          if (salary == "salary1") {
+            salary1 = Number(montant);
+          } else if (salary == "salary2") {
+            salary2 = Number(montant);
+          }
+          callOpenFiscaAPI();
+      }, 500);
 
 
       function formatJSONOfSituation(){
@@ -105,7 +104,7 @@ from openfisca_web_site import conf
         resultsOnLoad.prestations_sociales = 0;
         resultsOnLoad.revenus_du_travail = resultsOnLoad.revenu_disponible + resultsOnLoad.impots_directs;
         resultsOnLoad.cotisations_salariales = resultsOnLoad.salaires_de_base - resultsOnLoad.revenus_du_travail;
-        
+
         displayData(resultsOnLoad);
       }
 
