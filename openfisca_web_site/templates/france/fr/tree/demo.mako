@@ -28,7 +28,7 @@ from openfisca_web_site import urls
 
     window.addEventListener("load", preDisplayPage, false);
 
-    function preDisplayPage(){
+    function preDisplayPage() {
       var resultsOnLoad = {};
       resultsOnLoad.salaires_de_base = salary1 + salary2;
       resultsOnLoad.revenu_disponible = 29191;
@@ -48,14 +48,14 @@ from openfisca_web_site import urls
         } else if (salary == "salary2") {
           salary2 = Number(montant);
         }
-        callOpenFiscaAPI(function(response){
+        callOpenFiscaAPI(function(response) {
           var results = transformData(response)
           displayData(results)
         });
     }, 500);
 
 
-    function formatJSONOfSituation(){
+    function formatJSONOfSituation() {
       return JSON.stringify({
         "individus": {
           "Bill": {
@@ -114,14 +114,14 @@ from openfisca_web_site import urls
     }
 
 
-    function callOpenFiscaAPI(callback){
+    function callOpenFiscaAPI(callback) {
       var xmlhttp = new XMLHttpRequest();
       var url = "https://api-test.openfisca.fr/calculate";
       var json = formatJSONOfSituation();
       xmlhttp.open("POST", url, true);
 
       xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var responseFromAPI = JSON.parse(xmlhttp.responseText);
           callback(responseFromAPI);
           }
@@ -145,7 +145,7 @@ from openfisca_web_site import urls
       }
 
 
-    function displayData(results){
+    function displayData(results) {
       document.getElementById("situationDescription").innerHTML=`
 
         <li>dispose d'un <strong>revenu disponible</strong> de ` + Math.round(results.revenu_disponible).toLocaleString("fr") + ` €/an, c'est à dire ` + (Math.round(results.revenu_disponible/12)).toLocaleString("fr") + ` €/mois ;</li>
