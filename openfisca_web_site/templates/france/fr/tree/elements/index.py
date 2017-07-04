@@ -34,12 +34,23 @@ class Node(model.Folder):
             description = u"Navigation dans les variables, les formules et la législation socio-fiscale d'OpenFisca",
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
             owner = u"Etalab",
-            source_url = conf['urls.legislation'],
+            source_url=conf['urls.legislation'],
             tags = [u'tool'],
             title = ctx._(u'Legislation explorer'),
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-variable-revdisp.png'),
             updated = u'2014-03-28T08:00:00',
             )
+        yield dict(
+            featured=4,
+            description=u"Calculez la décomposition d'un revenu disponible en fonction d'un salaire brut, avec l'endpoint /calculate",
+            logo_url=urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
+            owner=u"Etalab",
+            source_url='./demo',
+            tags=[u'tool'],
+            title=ctx._(u'Calcul du revenu disponible'),
+            thumbnail_url=urls.get_url(ctx, self.url_path, 'images', 'vignette-simulateur-nouvelle-api.png'),
+            updated=u'2017-07-06T08:00:00',
+        )
         yield dict(
             description = u"""Outil de visualisation des formules socio-fiscales intervenant dans le calcul d'un cas type, des valeurs de leurs paramètres et de leur résultat""",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-etalab.png'),
