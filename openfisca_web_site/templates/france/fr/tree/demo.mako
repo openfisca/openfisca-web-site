@@ -161,11 +161,11 @@ from openfisca_web_site import urls
         function drawChart() {
           var data = google.visualization.arrayToDataTable([
             ["Element", "Source", "Montant", "Montant (color)"],
-            ["Salaires bruts",null, results.salaires_de_base, results.salaires_de_base],
-            ["Cotisations salariales", "Salaires bruts", results.cotisations_salariales, - results.cotisations_salariales],
+            ["Revenus bruts",null, results.salaires_de_base, results.salaires_de_base],
+            ["Cotisations salariales", "Revenus bruts", results.cotisations_salariales, - results.cotisations_salariales],
 
-            ["Impots directs", "Salaires bruts", results.impots_directs , - results.impots_directs],
-            ["Revenu disponible", "Salaires bruts", results.revenu_disponible, results.revenu_disponible],
+            ["Impots directs", "Revenus bruts", results.impots_directs , - results.impots_directs],
+            ["Revenu disponible", "Revenus bruts", results.revenu_disponible, results.revenu_disponible],
             ["Revenu du travail", "Revenu disponible", results.revenus_du_travail, results.revenus_du_travail],
             ["Prestations sociales", "Revenu disponible", results.prestations_sociales, results.prestations_sociales],
           ]);
