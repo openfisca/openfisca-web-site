@@ -1,7 +1,7 @@
 # OpenFisca Web-Site
 
 [OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.
-This is the source code of the Web-Site module.
+This is the source code of the [Web-Site](http://www.openfisca.fr/).
 
 Please consult http://doc.openfisca.fr/
 
