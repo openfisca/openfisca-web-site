@@ -3,7 +3,7 @@
 [OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.  
 This is the source code of the [Web-Site](http://www.openfisca.fr/).
 
-For more information, please consult http://doc.openfisca.fr/
+For more information, please consult http://openfisca.org/doc/
 
 ## Install procedure
 
