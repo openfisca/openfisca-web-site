@@ -113,7 +113,7 @@ découvrez votre niveau de vie, etc.""",
             description = u"Estimez le coût d'une embauche dans votre entreprise, et combien le salarié touchera.",  # noqa
             logo_url = urls.get_url(ctx, self.url_path, 'images', 'logo-openfisca.png'),
             owner = u"SGMAP",
-            source_url = u'http://embauche.sgmap.fr/',
+            source_url = u'https://embauche.beta.gouv.fr/',
             tags = [u'community'],
             title = u"Simulateur de coût d'embauche",
             thumbnail_url = urls.get_url(ctx, self.url_path, 'images', 'vignette-simulateur-embauche.png'),
