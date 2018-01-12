@@ -75,10 +75,9 @@ data-spy="scroll" data-target="#sommaire"
         </p>
         <address>
             <strong>Mission Etalab</strong><br>
-            <abbr title="Secrétariat général pour la modernisation de l'action publique">SGMAP</abbr><br>
-            64 à 70, allée de Bercy<br>
-            bâtiment Sully<br>
-            75572 Paris Cedex 12
+            <abbr title="Direction interministérielle du numérique et du système d'information et de communication de l'État">DINSIC</abbr><br>
+            20 avenue de Ségu<br>
+            75334 PARIS Cedex 07
         </address>
 
         <p>
@@ -104,7 +103,7 @@ data-spy="scroll" data-target="#sommaire"
             L'éditeur se réserve la possibilité de refuser que certaines personnes aient accès au site openfisca.fr en
             cas de violation de dispositions législatives ou réglementaires en vigueur. L'éditeur doit alors justifier
             sa décision.
-        </p> 
+        </p>
         <p>
             Concernant les contenus qu'elle propose afin d'animer la plateforme, la mission Etalab assume une responsabilité éditoriale telle que définie par la loi en vigueur. La plateforme openfisca.fr héberge des contributions provenant d'utilisateurs tiers. Conformément à la loi en vigueur, l'éditeur de la plateforme bénéficie de la responsabilité d'hébergeur de ces contenus et ne saurait en être tenu pour responsable.
         </p>
@@ -124,13 +123,11 @@ data-spy="scroll" data-target="#sommaire"
         <p>Ce site est publié par :</p>
         <address>
             <strong>Mission Etalab</strong><br>
-            <abbr title="Secrétariat général pour la modernisation de l'action publique">SGMAP</abbr><br>
-            64 à 70, allée de Bercy<br>
-            bâtiment Sully<br>
-            75572 Paris Cedex 12
+            <abbr title="<abbr title="Direction interministérielle du numérique et du système d'information et de communication de l'État">DINSIC</abbr><br>
+            20 avenue de Ségu<br>
+            75334 PARIS Cedex 07
         </address>
-        <p>Directeur de la publication : M. Henri VERDIER, Directeur d'Etalab, <abbr title="Secrétariat général pour la modernisation de l'action publique">SGMAP</abbr></p>
-    </div>
+        <p>Directeur de la publication : M. Henri VERDIER, Directeur d'Etalab, <abbr title="Direction interministérielle du numérique et du système d'information et de communication de l'État">DINSIC</abbr></p>
 
     <div class="col-md-3 hidden-print sidebar" id="sommaire" role="complementary">
         <ul class="nav sidenav" data-offset-top="60" data-spy="affix">
